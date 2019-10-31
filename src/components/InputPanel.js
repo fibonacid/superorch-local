@@ -12,7 +12,10 @@ const StyledTextArea = styled.textarea`
   margin: 0;
   border: none;
   font-family: monospace;
-  &:hover {
+  text-indent: 10px;
+  &:focus,
+  &:hover,
+  &:active {
     outline:0px !important;
     -webkit-appearance:none;
     box-shadow: none !important;

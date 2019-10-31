@@ -33,7 +33,8 @@ const StyledContainer = styled.div`
 const StyledWrapper = styled.div`
   flex: 1;
   display: flex;
-  border: solid 1px black;
+  border-top: solid 1px black;
+  border-bottom: solid 1px black;
 `;
 
 const initialState = {};
