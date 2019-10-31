@@ -44,7 +44,7 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    store.dispatch(connect('ws://localhost:8000/socket.io/?EIO=3&transport=websocket'));
+    store.dispatch(connect(process.env['REACT_APP_WS_URL']));
   }
 
   render() {
