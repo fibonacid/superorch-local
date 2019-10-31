@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Provider} from "react-redux";
 import configureStore from "./store";
-import { connect } from '@giantmachines/redux-websocket'
+import { connect } from '@giantmachines/redux-websocket';
 import styled, { createGlobalStyle } from 'styled-components'
 import reset from 'styled-reset';
 import normalize from "styled-normalize";
@@ -10,7 +10,7 @@ import normalize from "styled-normalize";
 import Header from "./components/Header";
 import StatusBar from "./components/StatusBar";
 import SideBar from "./components/SideBar";
-import Document from "./components/Document";
+import Chat from "./components/Chat";
 
 const GlobalStyle = createGlobalStyle`
   ${normalize}
@@ -55,7 +55,7 @@ class App extends Component {
             <Header />
             <StyledWrapper>
               <SideBar />
-              <Document />
+              <Chat />
             </StyledWrapper>
             <StatusBar />
         </StyledContainer>
