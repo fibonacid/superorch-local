@@ -8,9 +8,9 @@ import normalize from "styled-normalize";
 
 // Components
 import Header from "./components/Header";
-import InputPanel from "./components/InputPanel";
 import StatusBar from "./components/StatusBar";
 import SideBar from "./components/SideBar";
+import Document from "./components/Document";
 
 const GlobalStyle = createGlobalStyle`
   ${normalize}
@@ -55,7 +55,7 @@ class App extends Component {
             <Header />
             <StyledWrapper>
               <SideBar />
-              <InputPanel />
+              <Document />
             </StyledWrapper>
             <StatusBar />
         </StyledContainer>
