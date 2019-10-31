@@ -3,7 +3,12 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import { rootReducer } from './reducers/rootReducer'
 import reduxWebsocket from '@giantmachines/redux-websocket';
 
-const reduxWebsocketMiddleware = reduxWebsocket();
+// @see https://github.com/giantmachines/redux-websocket#available-options
+const reduxWebsocketMiddleware = reduxWebsocket({
+    // Defaults to false. If set to true, will attempt to reconnect when conn is closed without error event
+    // e.g. when server closes connection
+    reconnectOnClose: true,
+});
 
 export default function configureStore(preloadedState) {
 
