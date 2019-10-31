@@ -1,9 +1,9 @@
 const defaultState = {
     connected: false,
-    activeChat: undefined
+    activeChat: 1
 };
 
-export const baseReducer = (state={}, action) => {
+export const baseReducer = (state=defaultState, action) => {
     switch(action.type) {
         case "REDUX_WEBSOCKET::OPEN":
             return {
