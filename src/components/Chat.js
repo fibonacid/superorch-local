@@ -8,6 +8,7 @@ const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 100%;
 `;
 
 const StyledSplashScreen = styled.div`
@@ -32,10 +33,10 @@ class Chat extends Component {
    */
   renderChat() {
     return (
-      <div>
+      <StyledContainer>
         <ReadArea />
         <WriteArea/>
-      </div>
+      </StyledContainer>
     )
   }
 
