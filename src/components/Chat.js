@@ -54,7 +54,7 @@ class Chat extends Component {
     return (
       <StyledContainer>
         {activeChat !== undefined ?
-          this.renderChat.bind(this) :
+          this.renderChat() :
           this.renderSplashScreen()
         }
       </StyledContainer>
