@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux';
 import styled from 'styled-components'
 
 const StyledContainer = styled.div`
@@ -8,17 +9,24 @@ const StyledContainer = styled.div`
 `;
 
 const StyledList = styled.div`
-  
+  /* */  
 `;
 
 class StatusBar extends Component {
   render() {
     return (
       <StyledContainer>
-        Status
+        {this.props.connected ?
+          <p style={{color: "green"}}>connected</p> :
+          <p style={{color: "red"}}>not connected</p>
+        }
       </StyledContainer>
     )
   }
 }
 
-export default StatusBar;
+const mapStateToProps = state => ({
+  connected: state.base.connected
+});
+
+export default connect(mapStateToProps)(StatusBar);
