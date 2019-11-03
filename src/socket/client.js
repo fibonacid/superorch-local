@@ -28,7 +28,7 @@ export const setupSocket = (dispatch, username) => {
       case actionTypes.USERS_LIST:
         dispatch(populateUserList(data.users));
       case actionTypes.ADD_MESSAGE:
-        dispatch(messageReceived(data.message, data.author))
+        dispatch(messageReceived(data))
     }
   };
   return socket
