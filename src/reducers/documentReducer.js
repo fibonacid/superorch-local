@@ -10,7 +10,7 @@ export const documentReducer = (state=defaultState, action) => {
     case actionTypes.MESSAGE_RECEIVED:
         return {
           ...state,
-          current: state.current + action.message
+          current: state.current + action.data.message
         };
     default:
       return state;
