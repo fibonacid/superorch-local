@@ -1,7 +1,7 @@
 import {actionTypes} from "./actionTypes";
 
-export const sendMessage = (data) => ({
-  type: actionTypes.SEND_MESSAGE,
+export const addMessage = (data) => ({
+  type: actionTypes.ADD_MESSAGE,
   data
 });
 
