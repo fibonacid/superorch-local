@@ -50,6 +50,12 @@ class Document extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps, nextContext) {
+    this.setState({
+      value: nextProps.document.current
+    });
+  }
+
   handleChange(e) {
     e.preventDefault();
     const { document } = this.props;
