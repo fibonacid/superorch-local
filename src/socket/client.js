@@ -1,5 +1,5 @@
 import {actionTypes} from '../actions/actionTypes'
-import {messageReceived} from "../actions/actions";
+import {messageReceived, populateUserList} from "../actions/actions";
 
 require('ws');
 
@@ -26,23 +26,10 @@ export const setupSocket = (dispatch, username) => {
     switch(data.type) {
       // If data represents a user list:
       case actionTypes.USERS_LIST:
-        dispatch(messageReceived(data.users));
-    }
-  };
-
-
-  /*socket.onmessage = (event) => {
-    const data = JSON.parse(event.data)
-    switch (data.type) {
+        dispatch(populateUserList(data.users));
       case actionTypes.ADD_MESSAGE:
         dispatch(messageReceived(data.message, data.author))
-        break
-      case actionTypes.USERS_LIST:
-        dispatch(populateUsersList(data.users))
-        break
-      default:
-        break
     }
-  };*/
+  };
   return socket
 };
