@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import styled from 'styled-components'
-import { send } from '@giantmachines/redux-websocket'
 
 const resetAppearence = `
   &:focus,
@@ -41,7 +40,7 @@ const StyledButton = styled.button`
   &:active { background: grey; }
 `;
 
-class WriteArea extends Component {
+class Document extends Component {
 
   constructor(props) {
     super(props);
@@ -82,7 +81,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  send: (message) => dispatch(send(message))
+  //send: (message) => dispatch(send(message))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(WriteArea);
+export default connect(mapStateToProps, mapDispatchToProps)(Document);

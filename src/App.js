@@ -10,7 +10,7 @@ import normalize from "styled-normalize";
 import Header from "./components/Header";
 import StatusBar from "./components/StatusBar";
 import SideBar from "./components/SideBar";
-import Chat from "./components/Chat";
+import Document from "./components/Document";
 
 const GlobalStyle = createGlobalStyle`
   ${normalize}
@@ -44,7 +44,6 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    store.dispatch(connect(process.env['REACT_APP_WS_URL']));
   }
 
   render() {
@@ -55,7 +54,7 @@ class App extends Component {
             <Header />
             <StyledWrapper>
               <SideBar />
-              <Chat />
+              <Document />
             </StyledWrapper>
             <StatusBar />
         </StyledContainer>
