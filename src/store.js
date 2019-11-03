@@ -1,19 +1,15 @@
 import { applyMiddleware, createStore } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { rootReducer } from './reducers/rootReducer'
-import reduxWebsocket from '@giantmachines/redux-websocket';
+import createSagaMiddleware from 'redux-saga';
+import {rootSaga} from "./saga/rootSaga";
 
-// @see https://github.com/giantmachines/redux-websocket#available-options
-const reduxWebsocketMiddleware = reduxWebsocket({
-    // Defaults to false. If set to true, will attempt to reconnect when conn is closed without error event
-    // e.g. when server closes connection
-    reconnectOnClose: true,
-});
+const sagaMiddleware = createSagaMiddleware();
 
 export default function configureStore(preloadedState) {
 
     const middlewares = [
-        reduxWebsocketMiddleware
+        sagaMiddleware
     ];
     const middlewareEnhancer = applyMiddleware(...middlewares)
 
@@ -21,6 +17,8 @@ export default function configureStore(preloadedState) {
     const composedEnhancers = composeWithDevTools(...enhancers);
 
     const store = createStore(rootReducer, preloadedState, composedEnhancers)
+
+    sagaMiddleware.run(rootSaga);
 
     return store
 }
