@@ -30,7 +30,8 @@ const StyledContainer = styled.div`
 `;
 
 const StyledWrapper = styled.div`
-  flex: 1;
+  flex: 1 1 100%;
+  overflow-y: auto;
   display: flex;
   border-top: solid 1px black;
   border-bottom: solid 1px black;

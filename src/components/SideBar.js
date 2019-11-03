@@ -6,10 +6,10 @@ const StyledContainer = styled.div`
   border-right: solid 1px black;
   width: 200px;
   max-width: 300px;
+  overflow-y: auto;
 `;
 
 const StyledList = styled.ul`
-  overflow-y: auto;
   height: 100%;
 `;
 

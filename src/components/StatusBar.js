@@ -6,6 +6,7 @@ const StyledContainer = styled.div`
   padding: 5px;
   text-align: right;
   font-size: 14px;
+  flex: 0 0 auto;
 `;
 
 const StyledList = styled.div`
