@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import styled from 'styled-components'
+import {sendMessage} from "../actions/actions";
 
 const resetAppearence = `
   &:focus,
@@ -81,7 +82,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  //send: (message) => dispatch(send(message))
+  send: (message) => dispatch(sendMessage(message))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Document);
