@@ -1,8 +1,8 @@
 import {actionTypes} from "./actionTypes";
 
-export const addMessage = (data) => ({
+export const addMessage = (message) => ({
   type: actionTypes.ADD_MESSAGE,
-  data
+  message
 });
 
 export const messageReceived = (data) => ({

@@ -60,7 +60,7 @@ class Document extends Component {
 
   handleClick(e) {
     const { value } = this.state;
-    this.props.send({message: value});
+    this.props.send(value);
   }
 
   render() {
