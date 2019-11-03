@@ -1,9 +1,4 @@
-const defaultState = {
-  data: {},
-  index: []
-};
-
-export const usersReducer = (state=defaultState, action) => {
+export const usersReducer = (state=[], action) => {
   switch(action.type) {
     default:
       return state;
