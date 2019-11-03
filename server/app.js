@@ -27,11 +27,12 @@ function broadcast(data, socket) {
   })
 }
 
-/**
- * A list of connected users
- * @type {Array}
- */
+// List of connected users
 let users = [];
+
+// Keep a register of how many
+// clients connect to the server
+let clientIndex = 0;
 
 /* ==============================
  *    DEFINE EVENT HANDLERS
@@ -40,6 +41,24 @@ let users = [];
 // When there is a new connection:
 server.on('connection', function(socket) {
   console.log('A user has connected');
+  // Update client index
+  clientIndex++;
+  const clientId = clientIndex;
+
+  // When a client disconnects
+  socket.on('close', function(reasonCode, description) {
+    console.log(`A user has disconnected`);
+    // Delete users that belong to this socket
+    users = users.filter(user =>
+      (user.clientId !== clientId)
+    );
+    // Broadcast new user list
+    broadcast({
+      type: eventTypes.USERS_LIST,
+      users
+    }, socket);
+  });
+
   // When client sends a message
   socket.on('message', function(message) {
     console.log(message);
@@ -47,13 +66,13 @@ server.on('connection', function(socket) {
     // Do different things according to
     // the type of message received
     switch (data.type) {
-
       // If client want to add a user:
       case eventTypes.ADD_USER: {
         // Add user to the array
         users.push({
           name: data.name,
-          id: data.length + 1
+          id: users.length + 1,
+          clientId
         });
         // Send new user list
         socket.send(JSON.stringify({
