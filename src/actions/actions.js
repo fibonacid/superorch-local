@@ -11,5 +11,6 @@ export const messageReceived = (data) => ({
 });
 
 export const populateUserList = (users) => ({
-  type: actionTypes.USERS_LIST
+  type: actionTypes.USERS_LIST,
+  users
 });

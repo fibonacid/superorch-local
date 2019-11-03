@@ -25,10 +25,12 @@ export const setupSocket = (dispatch, username) => {
     // Do different stuff depending on message type:
     switch(data.type) {
       // If data represents a user list:
-      case actionTypes.USERS_LIST:
+      case actionTypes.USER_LIST:
         dispatch(populateUserList(data.users));
+        break;
       case actionTypes.ADD_MESSAGE:
-        dispatch(messageReceived(data))
+        dispatch(messageReceived(data));
+        break;
     }
   };
   return socket
