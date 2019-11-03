@@ -32,7 +32,7 @@
     "eject": "react-scripts eject",
     "electron": "electron .",
     "dev": "NODE_ENV='development' nf start -p 3000",
-    "server": "node server/index.js"
+    "server": "node server/app.js"
   },
   "resolutions": {
     "**/**/fsevents": "^1.2.9"
