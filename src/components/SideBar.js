@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import styled from 'styled-components'
 
 const StyledContainer = styled.div`
@@ -20,16 +21,21 @@ const StyledItem = styled.li`
 
 class SideBar extends Component {
   render() {
+    const {users} = this.props;
     return (
       <StyledContainer>
         <StyledList>
-          <StyledItem>User 1</StyledItem>
-          <StyledItem>User 2</StyledItem>
-          <StyledItem>User 3</StyledItem>
+          {users.map((user,i) => (
+            <StyledItem key={i}>{user.name}</StyledItem>
+          ))}
         </StyledList>
       </StyledContainer>
     )
   }
 }
 
-export default SideBar
+const mapStateToProps = state => ({
+  users: state.chat.users
+});
+
+export default connect(mapStateToProps, null)(SideBar);
