@@ -3,6 +3,8 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import { rootReducer } from './reducers/rootReducer'
 import createSagaMiddleware from 'redux-saga';
 import {rootSaga} from "./saga/rootSaga";
+import {setupSocket} from './socket/client'
+import username from './utils/name'
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -18,7 +20,10 @@ export default function configureStore(preloadedState) {
 
     const store = createStore(rootReducer, preloadedState, composedEnhancers)
 
-    sagaMiddleware.run(rootSaga);
+    // Create WebSocket client
+    const socket = setupSocket(store.dispatch, username);
+
+    sagaMiddleware.run(rootSaga, {socket, username});
 
     return store
 }
