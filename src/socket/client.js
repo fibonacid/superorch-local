@@ -21,6 +21,7 @@ export const setupSocket = (dispatch, username) => {
   };
   // When there is a new message:
   socket.onmessage = (event) => {
+    //console.log('Socket Event: ', event.data);
     const data = JSON.parse(event.data);
     // Do different stuff depending on message type:
     switch(data.type) {
