@@ -4,7 +4,7 @@ require('ws');
 
 export const setupSocket = (dispatch, username) => {
   // Create Socket Client
-  const socket = new WebSocket(process.env['REACT_APP_SOCKET_SERVER']);
+  const socket = new WebSocket(process.env['REACT_APP_SOCKET_URL']);
 
   // ----------------------
   // DEFINE EVENT LISTENERS
