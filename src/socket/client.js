@@ -1,4 +1,5 @@
 import {actionTypes} from '../actions/actionTypes'
+import {messageReceived} from "../actions/actions";
 
 require('ws');
 
@@ -10,13 +11,26 @@ export const setupSocket = (dispatch, username) => {
   // DEFINE EVENT LISTENERS
   // ----------------------
 
-  // When a connection is opened
+  // When a connection is opened:
   socket.onopen = () => {
+    // Send a ADD_USER to server
     socket.send(JSON.stringify({
       type: actionTypes.ADD_USER,
       name: username
     }))
   };
+  // When there is a new message:
+  socket.onmessage = (event) => {
+    const data = JSON.parse(event.data);
+    // Do different stuff depending on message type:
+    switch(data.type) {
+      // If data represents a user list:
+      case actionTypes.USERS_LIST:
+        dispatch(messageReceived(data.users));
+    }
+  };
+
+
   /*socket.onmessage = (event) => {
     const data = JSON.parse(event.data)
     switch (data.type) {
