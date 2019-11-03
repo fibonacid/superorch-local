@@ -1,6 +1,6 @@
 const WebSocket = require('ws');
 
-export const eventTypes = {
+const eventTypes = {
   ADD_USER: "ADD_USER",
   ADD_MESSAGE: "ADD_MESSAGE",
   USERS_LIST: "USER_LIST"
