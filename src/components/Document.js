@@ -52,8 +52,9 @@ class Document extends Component {
 
   handleChange(e) {
     e.preventDefault();
+    const { document } = this.props;
     this.setState({
-      value: e.target.value
+      value: document.current + e.target.value
     });
   }
 
@@ -78,7 +79,7 @@ class Document extends Component {
 }
 
 const mapStateToProps = state => ({
-  document: state.document
+  document: state.chat.document
 });
 
 const mapDispatchToProps = dispatch => ({
