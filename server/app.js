@@ -1,8 +1,14 @@
 const WebSocket = require('ws');
 
-const server = new WebSocket.Server({ port: 8989 })
+export const eventTypes = {
+  ADD_USER: "ADD_USER",
+  ADD_MESSAGE: "ADD_MESSAGE",
+  USERS_LIST: "USER_LIST"
+};
 
-const users = [];
+const server = new WebSocket.Server({
+  port: process.env['SOCKET_PORT'] || 8989
+});
 
 /**
  * BROADCAST
@@ -21,6 +27,12 @@ function broadcast(data, socket) {
   })
 }
 
+/**
+ * A list of connected users
+ * @type {Array}
+ */
+let users = [];
+
 /* ==============================
  *    DEFINE EVENT HANDLERS
  * ============================== */
@@ -31,7 +43,42 @@ server.on('connection', function(socket) {
   // When client sends a message
   socket.on('message', function(message) {
     console.log(message);
-    // Broadcast the message
-    broadcast(message, socket)
+    const data = JSON.parse(message);
+    // Do different things according to
+    // the type of message received
+    switch (data.type) {
+
+      // If client want to add a user:
+      case eventTypes.ADD_USER: {
+        // Add user to the array
+        users.push({
+          name: data.name,
+          id: data.length + 1
+        });
+        // Send new user list
+        socket.send(JSON.stringify({
+          type: eventTypes.USERS_LIST,
+          users
+        }));
+        broadcast({
+          type: eventTypes.USERS_LIST,
+          users
+        }, socket);
+        break
+      }
+
+      // If the client want to add a message
+      case eventTypes.ADD_MESSAGE:
+        // Send it to everybody
+        broadcast({
+          type: eventTypes.ADD_MESSAGE,
+          message: data.message,
+          author: data.author
+        }, socket);
+        break;
+      default:
+        break
+    }
   })
 });
+
