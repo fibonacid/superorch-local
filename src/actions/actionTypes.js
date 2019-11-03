@@ -1,1 +1,6 @@
-export const actionTypes = {};
+export const actionTypes = {
+  ADD_USER: "ADD_USER",
+  DOCUMENT_MOD_RECEIVED: "DOCUMENT_MOD_RECEIVED",
+  SEND_DOCUMENT_MOD: "SEND_DOCUMENT_MOD",
+  USERS_LIST: "USERS_LIST",
+};
