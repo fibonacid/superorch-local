@@ -9,9 +9,7 @@ export function* sendMessageWatcher(params) {
 }
 
 export function* sendMessageSaga(params, action) {
-
-  console.log(`sendMessageSaga`,params);
-
+  yield console.log(`sendMessageSaga`,params);
   action.author = params.username;
   params.socket.send(JSON.stringify(action))
 }

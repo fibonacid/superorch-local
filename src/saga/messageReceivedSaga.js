@@ -6,5 +6,5 @@ export function * messageReceivedWatcher() {
 }
 
 export function* messageReceivedSaga(action) {
-  console.log(action);
+  yield console.log(action);
 }
