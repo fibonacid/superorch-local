@@ -4,12 +4,15 @@ import configureStore from "./store";
 import styled, { createGlobalStyle } from 'styled-components'
 import reset from 'styled-reset';
 import normalize from "styled-normalize";
+import { channels } from '../shared/constants';
 
 // Components
 import Header from "./components/Header";
 import StatusBar from "./components/StatusBar";
 import SideBar from "./components/SideBar";
 import Document from "./components/Document";
+
+const { ipcRenderer } = window;
 
 const GlobalStyle = createGlobalStyle`
   ${normalize}
@@ -44,6 +47,16 @@ class App extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      appName: '',
+      appVersion: '',
+    };
+    ipcRenderer.send(channels.APP_INFO);
+    ipcRenderer.on(channels.APP_INFO, (event, arg) => {
+      ipcRenderer.removeAllListeners(channels.APP_INFO);
+      const { appName, appVersion } = arg;
+      this.setState({ appName, appVersion });
+    });
   }
 
   render() {
@@ -56,7 +69,7 @@ class App extends Component {
               <SideBar />
               <Document />
             </StyledWrapper>
-            <StatusBar />
+            <StatusBar appName={this.state.appName} appVersion={this.state.appVersion}/>
         </StyledContainer>
       </Provider>
     );

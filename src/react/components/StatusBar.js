@@ -15,12 +15,14 @@ const StyledList = styled.div`
 
 class StatusBar extends Component {
   render() {
+    const { appName, appVersion } = this.props;
     return (
       <StyledContainer>
-        {this.props.connected ?
+        {/*this.props.connected ?
           <p style={{color: "green"}}>connected</p> :
           <p style={{color: "red"}}>not connected</p>
-        }
+        */}
+        <span>{appName} {appVersion}</span>
       </StyledContainer>
     )
   }
