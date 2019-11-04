@@ -12,8 +12,11 @@ dist
 
 # misc
 .DS_Store
-.env
 npm-debug.log
 
 # jetbrains
 .idea
+
+# environment
+.env
+electron-builder.yaml
