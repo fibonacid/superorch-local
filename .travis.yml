@@ -10,4 +10,3 @@ script:
   - yarn test
   - yarn build
   - yarn build-electron
-  - yarn package
