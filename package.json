@@ -4,6 +4,10 @@
   "private": true,
   "homepage": "./",
   "main": "electron/main.js",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/lorenzorivosecchi/colliderchat-prototype.git"
+  },
   "scripts": {
     "start": "export BROWSER=none && react-scripts start",
     "start-electron": "export ELECTRON_START_URL=http://localhost:3000 && electron .",
