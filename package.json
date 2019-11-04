@@ -65,5 +65,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "engineStrict": false,
+  "engines": {
+    "node": ">=12.13.0",
+    "yarn": ">=1.19.1"
   }
 }
