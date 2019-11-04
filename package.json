@@ -2,8 +2,29 @@
   "name": "colliderchat-prototype",
   "version": "0.0.0",
   "private": true,
+  "homepage": "./",
+  "main": "src/electron/electron-starter.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "electron": "electron .",
+    "dev": "NODE_ENV='development' nf start -p 3000",
+    "server": "node server/app.js",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "build": {
+    "appId": "com.colliderchat-prototype.app"
+  },
+  "resolutions": {
+    "**/**/fsevents": "^1.2.9"
+  },
   "devDependencies": {
     "electron": "^1.7.9",
+    "electron-builder": "^22.1.0",
     "electron-devtools-installer": "^2.2.4",
     "foreman": "^2.0.0",
     "react-scripts": "0.8.5",
@@ -24,19 +45,5 @@
     "styled-normalize": "^8.0.6",
     "styled-reset": "^4.0.3",
     "ws": "^7.2.0"
-  },
-  "homepage": "./",
-  "main": "src/electron/electron-starter.js",
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "electron": "electron .",
-    "dev": "NODE_ENV='development' nf start -p 3000",
-    "server": "node server/app.js"
-  },
-  "resolutions": {
-    "**/**/fsevents": "^1.2.9"
   }
 }
