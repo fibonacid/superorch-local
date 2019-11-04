@@ -11,8 +11,13 @@ import Header from "./components/Header";
 import StatusBar from "./components/StatusBar";
 import SideBar from "./components/SideBar";
 import Document from "./components/Document";
+import Notifications from "./components/Notifications";
+import {notificationTypes} from "./utils/constants";
+import {addNotification} from "./actions/actions";
 
-const { ipcRenderer } = window;
+/* =============================================== */
+/*    STYLES                                       */
+/* =============================================== */
 
 const GlobalStyle = createGlobalStyle`
   ${normalize}
@@ -40,9 +45,39 @@ const StyledWrapper = styled.div`
   border-bottom: solid 1px black;
 `;
 
+/* =============================================== */
+/*    REDUX                                        */
+/* =============================================== */
+
 const initialState = {};
 const store = configureStore(initialState);
 
+/* =============================================== */
+/*    ELECTRON                                     */
+/* =============================================== */
+
+const { ipcRenderer } = window;
+
+// When there are some updates available:
+ipcRenderer.on('update_available', () => {
+  ipcRenderer.removeAllListeners('update_available');
+  let message = 'A new update is available. Downloading now...';
+  store.dispatch(addNotification(message, notificationTypes.INFO))
+});
+
+
+ipcRenderer.on('update_downloaded', () => {
+  ipcRenderer.removeAllListeners('update_downloaded');
+  let message = 'Update Downloaded. It will be installed on restart. Restart now?';
+  store.dispatch(addNotification(message, notificationTypes.INFO))
+});
+
+
+/**
+ * ============================
+ *    REACT ROOT COMPONENT
+ * ============================
+ */
 class App extends Component {
 
   constructor(props) {
@@ -68,6 +103,7 @@ class App extends Component {
             <StyledWrapper>
               <SideBar />
               <Document />
+              <Notifications />
             </StyledWrapper>
             <StatusBar appName={this.state.appName} appVersion={this.state.appVersion}/>
         </StyledContainer>
