@@ -10,6 +10,12 @@ export const addUser = name => ({
   name
 });
 
+export const addNotification = (message, kind) => ({
+  type: actionTypes.ADD_NOTIFICATION,
+  message,
+  kind
+});
+
 export const messageReceived = (data) => ({
   type: actionTypes.MESSAGE_RECEIVED,
   data
