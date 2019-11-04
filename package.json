@@ -21,16 +21,10 @@
     "server": "node server/app.js"
   },
   "build": {
-    "appId": "com.colliderchat-prototype.app",
     "files": [
       "build/**/*",
       "node_modules/**/*"
-    ],
-    "publish": {
-      "provider": "github",
-      "repo": "colliderchat-protptype",
-      "owner": "lorenzorivosecchi"
-    }
+    ]
   },
   "resolutions": {
     "**/**/fsevents": "^1.2.9"
