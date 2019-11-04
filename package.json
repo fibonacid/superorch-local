@@ -26,9 +26,6 @@
       "node_modules/**/*"
     ]
   },
-  "resolutions": {
-    "**/**/fsevents": "^1.2.9"
-  },
   "devDependencies": {
     "electron": "^1.7.9",
     "electron-builder": "^21.1.1",
