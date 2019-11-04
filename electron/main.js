@@ -2,6 +2,7 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const url = require('url');
 const { channels } = require('../src/shared/constants');
+const { autoUpdater } = require('electron-updater');
 
 let mainWindow;
 
@@ -24,7 +25,12 @@ function createWindow () {
   });
 }
 
-app.on('ready', createWindow);
+app.on('ready', () => {
+  // Create window
+  createWindow();
+  // Check for updates
+  autoUpdater.checkForUpdatesAndNotify();
+});
 
 app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') {
@@ -43,4 +49,15 @@ ipcMain.on(channels.APP_INFO, (event) => {
     appName: app.getName(),
     appVersion: app.getVersion(),
   });
+});
+
+ipcMain.on('restart_app', () => {
+  autoUpdater.quitAndInstall();
+});
+
+autoUpdater.on('update-available', () => {
+  mainWindow.webContents.send('update_available');
+});
+autoUpdater.on('update-downloaded', () => {
+  mainWindow.webContents.send('update_downloaded');
 });
