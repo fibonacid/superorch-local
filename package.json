@@ -1,12 +1,12 @@
 {
-  "name": "colliderchat-prototype",
+  "name": "colliderchat",
   "version": "0.0.0",
   "private": true,
   "homepage": "./",
   "main": "electron/main.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lorenzorivosecchi/colliderchat-prototype.git"
+    "url": "https://github.com/lorenzorivosecchi/colliderchat.git"
   },
   "scripts": {
     "start": "export BROWSER=none && react-scripts start",
