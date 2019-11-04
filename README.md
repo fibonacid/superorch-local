@@ -1,4 +1,4 @@
-# colliderchat-prototype
+# ColliderChat
 
 Work in Progress 
 
