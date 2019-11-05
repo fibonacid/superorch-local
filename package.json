@@ -17,6 +17,7 @@
     "package": "electron-builder build --mac -c.extraMetadata.main=build/electron/main.js --publish never",
     "deploy": "electron-builder build --mac --config=electron-builder.yml -c.extraMetadata.main=build/electron/main.js --publish always",
     "test": "react-scripts test --env=jsdom",
+    "test-coverage": "react-scripts test --env=jsdom --coverage",
     "eject": "react-scripts eject",
     "server": "node server/app.js"
   },
