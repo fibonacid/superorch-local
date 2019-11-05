@@ -6,6 +6,6 @@ export function* addMessageWatcher(params) {
 }
 
 export function* addMessageSaga(params, action) {
-  action.author = params.username;
+  yield action.author = params.username;
   params.socket.send(JSON.stringify(action))
 }
