@@ -15,7 +15,7 @@ describe('documentReducer', () => {
       type: actionTypes.MESSAGE_RECEIVED,
       data: { message: 'foo' }
     };
-    const expectedResult = _.merge({}, initialState, { current: "foo" });
+    const expectedResult = _.merge({}, initialState, { shared: "foo" });
     const result = documentReducer(undefined, action);
     expect(result).toEqual(expectedResult);
   });
