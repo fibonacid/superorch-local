@@ -1,68 +1,32 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import styled from 'styled-components'
 import {addMessage} from "../actions/actions";
+import * as styled from './styles/Document.styles'
 
 const Diff = require('diff');
-
-const resetAppearence = `
-  &:focus,
-  &:hover,
-  &:active {
-    outline:0px !important;
-    -webkit-appearance:none;
-    box-shadow: none !important;
-  }
-`;
-
-const StyledContainer = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-`;
-
-const StyledTextArea = styled.textarea`
-  flex: 1;
-  margin: 0;
-  border: none;
-  font-family: monospace;
-  padding-top: 10px;
-  padding-left: 10px;
-  ${resetAppearence}
-`;
-
-const StyledButton = styled.button`
-  display: block;
-  -webkit-appearance:none;
-  padding: 2.5px;
-  background: black;
-  color: white;
-  font-weight: bold;
-  border: 0;
-  ${resetAppearence}
-  &:active { background: grey; }
-`;
 
 class Document extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      input: props.document.shared,
+      local: props.document.shared,
+      shared: props.document.shared
     };
   }
 
-  componentWillReceiveProps(nextProps, nextContext) {
-    const { shared } = nextProps.document;
-    const diffs = Diff.diffWordsWithSpace(this.state.input, shared);
-    let newInput = "";
+  componentDidUpdate() {
+    const { shared } = this.props.document;
+    const { input, local } = this.state;
+    const diffs = Diff.diffWordsWithSpace(local, shared);
+    let text = "";
     diffs.forEach(part => {
       if (!part.removed) {
-        newInput += part.value;
+        text += part.value;
       }
     });
     this.setState({
-      input: newInput
+      local: text
     });
     console.log(diffs);
   }
@@ -71,7 +35,7 @@ class Document extends Component {
     e.preventDefault();
     const { document } = this.props;
     this.setState({
-      input: e.target.value,
+      local: e.target.value,
     });
   }
 
@@ -82,15 +46,15 @@ class Document extends Component {
 
   render() {
     return (
-      <StyledContainer>
-        <StyledTextArea
+      <styled.Container>
+        <styled.TextArea
           resizable={false}
           value={this.state.input}
           onChange={e => {this.handleChange(e)}} />
-        <StyledButton
+        <styled.Button
           onClick={e => {this.handleClick(e)}}
-        >SEND</StyledButton>
-      </StyledContainer>
+        >SEND</styled.Button>
+      </styled.Container>
     )
   }
 }

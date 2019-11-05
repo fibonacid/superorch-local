@@ -1,17 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
-
-const StyledContainer = styled.div`
-  font-size: 20px;
-  font-weight: bold;
-  padding: 5px;
-  flex: 0 0 auto;
-`;
-
-
-const StyledTitle = styled.h1`
-  text-align: center; 
-`;
+import {StyledContainer, StyledTitle} from './styles/Header.styles';
 
 const Header = props => (
   <StyledContainer>
