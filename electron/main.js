@@ -60,7 +60,8 @@ app.on('window-all-closed', function () {
 // When the user try to relaunch the app:
 app.on('activate', function () {
   // If there is at least one window open:
-  if (mainWindow === null) {
+  if (mainWindow === null ||
+    process.env['NODE_ENV'] === "development") {
     // Create another window
     createWindow();
   }
