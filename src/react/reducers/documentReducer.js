@@ -1,11 +1,11 @@
 import {actionTypes} from "../actions/actionTypes";
 
-const defaultState = {
+export const initialState = {
   current: "",
   modified: false,
 };
 
-export const documentReducer = (state=defaultState, action) => {
+export const documentReducer = (state=initialState, action) => {
   switch(action.type) {
     case actionTypes.MESSAGE_RECEIVED:
         return {
