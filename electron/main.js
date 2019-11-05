@@ -7,6 +7,26 @@ const { autoUpdater } = require('electron-updater');
 let mainWindow;
 
 /**
+ * INSTALL EXTENSIONS
+ * ==========================
+ * This function installs
+ * useful chromium extensions
+ * necessary for debugging
+ */
+const installExtensions = async () => {
+  const installer = require('electron-devtools-installer');
+  const extensions = ['REACT_DEVELOPER_TOOLS', 'REDUX_DEVTOOLS'];
+  const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
+  for (const name of extensions) {
+    try {
+      await installer.default(installer[name], forceDownload);
+    } catch (e) {
+      console.log(`Error installing ${name} extension: ${e.message}`);
+    }
+  }
+};
+
+/**
  * CREATE WINDOW
  * ==============
  * This function creates the window
@@ -29,6 +49,10 @@ function createWindow () {
   });
   // Load index.html
   mainWindow.loadURL(startUrl);
+
+  mainWindow.loadURL(startUrl);
+  // Open the DevTools.
+  mainWindow.webContents.openDevTools();
   // When the window is closed:
   mainWindow.on('closed', function () {
     // Delete window.
@@ -41,11 +65,14 @@ function createWindow () {
 /* ========================================= */
 
 // When app is ready:
-app.on('ready', () => {
+app.on('ready', async () => {
+  if (process.env.NODE_ENV === "development") {
+    await installExtensions();
+  }
   // Create window
   createWindow();
   // Check for updates
-  autoUpdater.checkForUpdatesAndNotify();
+  await autoUpdater.checkForUpdatesAndNotify();
 });
 
 // When all windows are closed
