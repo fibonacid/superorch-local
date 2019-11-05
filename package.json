@@ -76,5 +76,10 @@
   "engines": {
     "node": ">=12.13.0",
     "yarn": ">=1.19.1"
+  },
+  "babelMacros": {
+    "styledComponents": {
+      "pure": true
+    }
   }
 }
