@@ -1,10 +1,8 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
+import React from 'react'
 import * as styled from './styles/SideBar.styles'
 
-class SideBar extends Component {
-  render() {
-    const {users} = this.props;
+function SideBar(props) {
+    const {users} = props;
     return (
       <styled.Container>
         <styled.List>
@@ -14,11 +12,6 @@ class SideBar extends Component {
         </styled.List>
       </styled.Container>
     )
-  }
 }
 
-const mapStateToProps = state => ({
-  users: state.chat.users
-});
-
-export default connect(mapStateToProps, null)(SideBar);
+export default SideBar;

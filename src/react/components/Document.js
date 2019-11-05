@@ -60,12 +60,4 @@ class Document extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  document: state.chat.document
-});
-
-const mapDispatchToProps = dispatch => ({
-  send: (message) => dispatch(addMessage(message))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Document);
+export default Document;

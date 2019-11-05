@@ -6,14 +6,16 @@ import reset from 'styled-reset';
 import normalize from "styled-normalize";
 import { channels } from '../shared/constants';
 
-// Components
+// Simple Components
 import Header from "./components/Header";
 import StatusBar from "./components/StatusBar";
-import SideBar from "./components/SideBar";
-import Document from "./components/Document";
-import Notifications from "./components/Notifications";
 import {notificationTypes} from "./utils/constants";
 import {addNotification} from "./actions/actions";
+
+// Connected Components
+import Document from "./containers/Document";
+import Notifications from "./containers/Notifications";
+import SideBar from "./containers/SideBar";
 
 /* =============================================== */
 /*    STYLES                                       */
