@@ -1,15 +1,5 @@
 import styled from "styled-components/macro";
 
-const resetAppearence = `
-  &:focus,
-  &:hover,
-  &:active {
-    outline:0px !important;
-    -webkit-appearance:none;
-    box-shadow: none !important;
-  }
-`;
-
 export const Container = styled.div`
   flex: 1;
   display: flex;
@@ -23,7 +13,7 @@ export const TextArea = styled.textarea`
   font-family: monospace;
   padding-top: 10px;
   padding-left: 10px;
-  ${resetAppearence}
+  ${resetAppearance()}
 `;
 
 export const Button = styled.button`
@@ -34,6 +24,18 @@ export const Button = styled.button`
   color: white;
   font-weight: bold;
   border: 0;
-  ${resetAppearence}
   &:active { background: grey; }
+  ${resetAppearance()}
 `;
+
+function resetAppearance() {
+  return (`
+  &:focus,
+  &:hover,
+  &:active {
+    outline:0px !important;
+    -webkit-appearance:none;
+    box-shadow: none !important;
+  }
+  `)
+}
