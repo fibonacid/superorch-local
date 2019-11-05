@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {addMessage} from "../actions/actions";
 import * as styled from './styles/Document.styles'
 
 const Diff = require('diff');
@@ -46,12 +44,15 @@ class Document extends Component {
 
   render() {
     return (
-      <styled.Container>
+      <styled.Container
+        data-test={'DocumentComponent'}>
         <styled.TextArea
+          data-test={'textarea'}
           resizable={false}
           value={this.state.input}
           onChange={e => {this.handleChange(e)}} />
         <styled.Button
+          data-test={'button'}
           onClick={e => {this.handleClick(e)}}
         >SEND</styled.Button>
       </styled.Container>
