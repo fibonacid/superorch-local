@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import styled from 'styled-components'
 import {addMessage} from "../actions/actions";
 
+const Diff = require('diff');
+
 const resetAppearence = `
   &:focus,
   &:hover,
@@ -46,27 +48,36 @@ class Document extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: ""
-    }
+      input: props.document.shared,
+    };
   }
 
   componentWillReceiveProps(nextProps, nextContext) {
-    this.setState({
-      value: nextProps.document.current
+    const { shared } = nextProps.document;
+    const diffs = Diff.diffWordsWithSpace(this.state.input, shared);
+    let newInput = "";
+    diffs.forEach(part => {
+      if (!part.removed) {
+        newInput += part.value;
+      }
     });
+    this.setState({
+      input: newInput
+    });
+    console.log(diffs);
   }
 
   handleChange(e) {
     e.preventDefault();
     const { document } = this.props;
     this.setState({
-      value: document.current + e.target.value
+      input: e.target.value,
     });
   }
 
   handleClick(e) {
-    const { value } = this.state;
-    this.props.send(value);
+    const { input } = this.state;
+    this.props.send(input);
   }
 
   render() {
@@ -74,7 +85,7 @@ class Document extends Component {
       <StyledContainer>
         <StyledTextArea
           resizable={false}
-          value={this.state.value}
+          value={this.state.input}
           onChange={e => {this.handleChange(e)}} />
         <StyledButton
           onClick={e => {this.handleClick(e)}}

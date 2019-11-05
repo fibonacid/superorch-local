@@ -1,7 +1,7 @@
 import {actionTypes} from "../actions/actionTypes";
 
 export const initialState = {
-  current: "",
+  shared: "/* Initial Text */",
   modified: false,
 };
 
@@ -10,7 +10,7 @@ export const documentReducer = (state=initialState, action) => {
     case actionTypes.MESSAGE_RECEIVED:
         return {
           ...state,
-          current: state.current + action.data.message
+          shared: action.data.message
         };
     default:
       return state;
