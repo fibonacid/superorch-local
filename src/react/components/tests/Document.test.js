@@ -1,36 +1,51 @@
 import React from "react";
 import {shallow} from 'enzyme'
-import { Provider } from 'react-redux'
-import configureStore from "../../store";
 import Document from '../Document';
+import {findByTestAttr} from "../../utils/testing";
 
-const mockStore = configureStore();
+const setUp = (props={}) => {
+  const component = shallow(<Document {...props} />);
+  return component;
+};
 
-let component;
-beforeEach(() => {
-  component = shallow(
-    <Provider store={mockStore}>
-      <Document/>
-    </Provider>
-  );
+describe('Header Component', () => {
 
-});
-afterEach(() => {
-  component.unmount();
-});
+  describe('has props', () => {
+    let wrapper;
+    beforeEach(() => {
+      const props = {
+        document: {
+          shared: "foo"
+        },
+        send: () => {}
+      };
+      wrapper = setUp(props);
+    });
 
-describe("Document", () => {
+    it('Should render without errors', () => {
+      const component = findByTestAttr(wrapper, 'DocumentComponent');
+      expect(component.length).toBe(1);
+    });
 
-  it('should render', () => {});
+    it('Should render a textarea', () => {
+      const textarea = findByTestAttr(wrapper, 'textarea');
+      expect(textarea.length).toBe(1);
+    });
 
-  it('should have a textarea and a button', () => {
-    /*expect(component.find('styled.TextArea').length).toEqual(1);
-    expect(component.find('styled.Button').length).toEqual(1);*/
-  }).todo();
+    it('Should render a button', () => {
+      const button = findByTestAttr(wrapper, 'button');
+      expect(button.length).toBe(1);
+    });
+  });
 
-  it("should create an entry in component state", () => {
-    /*const textarea = component.find('styled.TextArea');
-    textarea.simulate('change', { target: textarea, value: 'foo' });
-    expect(component.state.local).toEqual('foo');*/
-  }).todo();
+  describe('has NO props', () => {
+    let wrapper;
+    beforeEach(() => {
+      wrapper = setUp();
+    });
+    it('Should render without errors', () => {
+      const component = findByTestAttr(wrapper, 'DocumentComponent');
+      expect(component.length).toBe(1);
+    }).todo();
+  });
 });
