@@ -3,7 +3,7 @@ import {addMessage} from "../actions/actions";
 import {connect} from "react-redux";
 
 const mapStateToProps = state => ({
-  document: state.chat.document
+  shared: state.chat.document.shared
 });
 
 const mapDispatchToProps = dispatch => ({
