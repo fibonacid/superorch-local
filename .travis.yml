@@ -1,4 +1,8 @@
 language: node_js
+branches:
+  only:
+    - master
+    - stable
 node_js:
   - v12.13.0
 env:
