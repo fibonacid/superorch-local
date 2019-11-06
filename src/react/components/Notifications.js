@@ -20,4 +20,8 @@ function Notifications(props) {
   )
 }
 
+Notifications.propTypes = {
+  notifications: PropTypes.arrayOf(PropTypes.object)
+};
+
 export default Notifications;

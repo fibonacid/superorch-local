@@ -1,5 +1,6 @@
 import React from 'react'
 import * as styled from './styles/StatusBar.styles';
+import PropTypes from 'prop-types';
 
 function StatusBar(props) {
   const { appName, appVersion } = props;
@@ -12,5 +13,10 @@ function StatusBar(props) {
     </styled.Container>
   )
 }
+
+StatusBar.propTypes = {
+  appName: PropTypes.string,
+  appVersion: PropTypes.string
+};
 
 export default StatusBar;

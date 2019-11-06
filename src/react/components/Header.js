@@ -1,5 +1,6 @@
 import React from 'react';
 import * as styled from './styles/Header.styles';
+import PropTypes from 'prop-types';
 
 function Header(props) {
   return (
@@ -10,5 +11,9 @@ function Header(props) {
     </styled.Container>
   )
 }
+
+Header.propTypes = {
+  appName: PropTypes.string
+};
 
 export default Header;

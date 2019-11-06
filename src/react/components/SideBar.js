@@ -1,5 +1,6 @@
 import React from 'react'
 import * as styled from './styles/SideBar.styles'
+import PropTypes from 'prop-types';
 
 function SideBar(props) {
     const {users} = props;
@@ -20,5 +21,9 @@ function SideBar(props) {
       </styled.Container>
     )
 }
+
+SideBar.propTypes = {
+  users: PropTypes.arrayOf(PropTypes.object)
+};
 
 export default SideBar;
