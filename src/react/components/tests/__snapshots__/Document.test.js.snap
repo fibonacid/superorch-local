@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header Component has props Should render without errors 1`] = `
+<Documentstyles__Container
+  data-test="DocumentComponent"
+>
+  <Documentstyles__TextArea
+    data-test="textarea"
+    onChange={[Function]}
+    resizable={false}
+  />
+  <Documentstyles__Button
+    data-test="button"
+    onClick={[Function]}
+  >
+    SEND
+  </Documentstyles__Button>
+</Documentstyles__Container>
+`;
