@@ -3,17 +3,15 @@ import {Provider} from "react-redux";
 import configureStore from "./store";
 import { channels } from '../shared/constants';
 import * as styled from './App.styles';
-
-// Simple Components
-import Header from "./components/Header";
-import StatusBar from "./components/StatusBar";
+import {addNotification, appInfo} from "./actions/actions";
 import {notificationTypes} from "./utils/constants";
-import {addNotification} from "./actions/actions";
 
-// Connected Components
+// Containers
 import Document from "./containers/Document";
 import Notifications from "./containers/Notifications";
 import SideBar from "./containers/SideBar";
+import Header from "./containers/Header";
+import StatusBar from "./containers/StatusBar";
 
 /* =============================================== */
 /*    REDUX                                        */
@@ -52,15 +50,10 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      appName: '',
-      appVersion: '',
-    };
     ipcRenderer.send(channels.APP_INFO);
     ipcRenderer.on(channels.APP_INFO, (event, arg) => {
       ipcRenderer.removeAllListeners(channels.APP_INFO);
-      const { appName, appVersion } = arg;
-      this.setState({ appName, appVersion });
+      store.dispatch(appInfo(arg))
     });
   }
 
@@ -69,13 +62,13 @@ class App extends Component {
       <Provider store={store}>
         <styled.Container className="App">
             <styled.GlobalStyle/>
-            <Header appName={this.state.appName} />
+            <Header />
             <styled.Wrapper>
               <SideBar />
               <Document />
               <Notifications />
             </styled.Wrapper>
-            <StatusBar appName={this.state.appName} appVersion={this.state.appVersion}/>
+            <StatusBar />
         </styled.Container>
       </Provider>
     );
