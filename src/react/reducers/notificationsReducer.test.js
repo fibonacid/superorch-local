@@ -2,14 +2,14 @@ import {notificationsReducer} from './notificationsReducer';
 import {actionTypes} from "../actions/actionTypes";
 import _ from 'lodash'
 
-describe('notificationsReducer', () => {
+describe('notifications (Reducer)', () => {
 
-  it('should return the initial state', () => {
+  it('Should return the initial state', () => {
     const result = notificationsReducer(undefined, {type:"foo"});
     expect(result).toEqual([]);
   });
 
-  it('it should handle ADD_NOTIFICATION', () => {
+  it('Should handle ADD_NOTIFICATION', () => {
     const action = {
       type: actionTypes.ADD_NOTIFICATION,
       message: 'foo',
@@ -23,7 +23,7 @@ describe('notificationsReducer', () => {
   });
 
   describe('when state is already populated', () => {
-    it('it should handle ADD_NOTIFICATION', () => {
+    it('Should handle ADD_NOTIFICATION', () => {
       const action = {
         type: actionTypes.ADD_NOTIFICATION,
         message: 'other foo',

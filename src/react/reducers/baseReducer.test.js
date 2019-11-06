@@ -1,9 +1,9 @@
 import {baseReducer} from './baseReducer';
 import {initialState} from "./baseReducer";
 
-describe('baseReducer', () => {
+describe('base (Reducer)', () => {
 
-  it('should return the initial state', () => {
+  it('Should return the initial state', () => {
     const result = baseReducer(undefined, {type:"foo"});
     expect(result).toEqual(initialState);
   });

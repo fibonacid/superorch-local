@@ -1,14 +1,14 @@
 import {usersReducer} from './usersReducer';
 import {actionTypes} from "../actions/actionTypes";
 
-describe('usersReducer', () => {
+describe('users (Reducer)', () => {
 
-  it('should return the initial state', () => {
+  it('Should return the initial state', () => {
     const result = usersReducer(undefined, {type:"foo"});
     expect(result).toEqual([]);
   });
 
-  it('it should handle USER_LIST', () => {
+  it('Should handle USER_LIST', () => {
     const action = {
       type: actionTypes.USER_LIST,
       users: ['Al', 'John', 'Jack']
@@ -19,7 +19,7 @@ describe('usersReducer', () => {
   });
 
   describe('when state is already populated', () => {
-    it('it should handle USER_LIST', () => {
+    it('Should handle USER_LIST', () => {
       const action = {
         type: actionTypes.USER_LIST,
         users: ['Al', 'John', 'Jack']
