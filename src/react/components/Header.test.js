@@ -23,6 +23,10 @@ describe('Header Component', () => {
       expect(component.length).toBe(1);
       expect(toJson(wrapper)).toMatchSnapshot();
     });
+    it('Should have a title', () => {
+      const title = findByTestAttr(wrapper, 'title');
+      expect(title.text()).toBeTruthy();
+    })
   });
 
   describe('When has NO props', () => {
