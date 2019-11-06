@@ -1,17 +1,17 @@
 import React from "react";
 import {shallow} from 'enzyme'
 import { Provider } from 'react-redux'
-import configureStore from "../../store";
-import SideBar from "../../components/SideBar";
+import configureStore from "../store";
+import Notifications from "./Notifications";
 
 const mockStore = configureStore();
 
-describe("SideBar", () => {
+describe("Notifications", () => {
   it ('should render my component', () => {
     // mount component (shallow)
     const component = shallow(
       <Provider store={mockStore}>
-        <SideBar/>
+        <Notifications/>
       </Provider>
     );
     // unmount component

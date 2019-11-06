@@ -1,5 +1,5 @@
-import {notificationsReducer} from '../../reducers/notificationsReducer';
-import {actionTypes} from "../../actions/actionTypes";
+import {notificationsReducer} from './notificationsReducer';
+import {actionTypes} from "../actions/actionTypes";
 import _ from 'lodash'
 
 describe('notificationsReducer', () => {
