@@ -41,7 +41,8 @@
     "react-app-rewired": "^2.1.4",
     "react-scripts": "^3.2.0",
     "redux-devtools-extension": "^2.13.8",
-    "redux-saga-test-plan": "^4.0.0-rc.3"
+    "redux-saga-test-plan": "^4.0.0-rc.3",
+    "redux-test-utils": "^0.3.0"
   },
   "dependencies": {
     "@giantmachines/redux-websocket": "^1.1.5",
