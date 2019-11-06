@@ -9,4 +9,4 @@ before_install:
 script:
   - yarn test
   - yarn build
-  - yarn build-electron
+  - yarn build:electron

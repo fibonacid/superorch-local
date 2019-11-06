@@ -20,7 +20,7 @@ const tryConnection = () => client.connect({port: port}, () => {
       console.log('starting electron');
       startedElectron = true;
       const exec = require('child_process').exec;
-      const electron = exec('yarn run start-electron');
+      const electron = exec('yarn run start:electron');
       electron.stdout.on("data", function(data) {
         console.log("stdout: " + data.toString());
       });
