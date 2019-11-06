@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import * as styled from './styles/Document.styles'
 
 const Diff = require('diff');
@@ -8,8 +9,7 @@ class Document extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      local: props.document.shared,
-      shared: props.document.shared
+      local: props.shared
     };
   }
 
@@ -30,7 +30,6 @@ class Document extends Component {
   }
 
   handleChange(e) {
-    e.preventDefault();
     const { document } = this.props;
     this.setState({
       local: e.target.value,
@@ -38,8 +37,8 @@ class Document extends Component {
   }
 
   handleClick(e) {
-    const { input } = this.state;
-    this.props.send(input);
+    const { local } = this.state;
+    this.props.send(local);
   }
 
   render() {
@@ -49,7 +48,7 @@ class Document extends Component {
         <styled.TextArea
           data-test={'textarea'}
           resizable={false}
-          value={this.state.input}
+          value={this.state.local}
           onChange={e => {this.handleChange(e)}} />
         <styled.Button
           data-test={'button'}
@@ -59,5 +58,9 @@ class Document extends Component {
     )
   }
 }
+
+Document.propTypes = {
+  shared: PropTypes.string
+};
 
 export default Document;
