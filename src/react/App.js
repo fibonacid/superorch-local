@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import {Provider} from "react-redux";
 import configureStore from "./store";
-import styled, { createGlobalStyle } from 'styled-components'
-import reset from 'styled-reset';
-import normalize from "styled-normalize";
 import { channels } from '../shared/constants';
+import * as styled from './App.styles';
 
 // Simple Components
 import Header from "./components/Header";
@@ -16,36 +14,6 @@ import {addNotification} from "./actions/actions";
 import Document from "./containers/Document";
 import Notifications from "./containers/Notifications";
 import SideBar from "./containers/SideBar";
-
-/* =============================================== */
-/*    STYLES                                       */
-/* =============================================== */
-
-const GlobalStyle = createGlobalStyle`
-  ${normalize}
-  ${reset}
-  html, body {
-    height: 100%;
-  }
-  #root {
-    height: 100%;
-  }
-`;
-
-// Styles
-const StyledContainer = styled.div`
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-`;
-
-const StyledWrapper = styled.div`
-  flex: 1 1 100%;
-  overflow-y: auto;
-  display: flex;
-  border-top: solid 1px black;
-  border-bottom: solid 1px black;
-`;
 
 /* =============================================== */
 /*    REDUX                                        */
@@ -99,16 +67,16 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <StyledContainer className="App">
-            <GlobalStyle/>
-            <Header />
-            <StyledWrapper>
+        <styled.Container className="App">
+            <styled.GlobalStyle/>
+            <Header appName={this.state.appName} />
+            <styled.Wrapper>
               <SideBar />
               <Document />
               <Notifications />
-            </StyledWrapper>
+            </styled.Wrapper>
             <StatusBar appName={this.state.appName} appVersion={this.state.appVersion}/>
-        </StyledContainer>
+        </styled.Container>
       </Provider>
     );
   }
