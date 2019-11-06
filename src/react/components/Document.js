@@ -14,7 +14,7 @@ class Document extends Component {
   }
 
   componentDidUpdate() {
-    const { shared } = this.props.document;
+    /*const { shared } = this.props.document;
     const { input, local } = this.state;
     const diffs = Diff.diffWordsWithSpace(local, shared);
     let text = "";
@@ -26,7 +26,7 @@ class Document extends Component {
     this.setState({
       local: text
     });
-    console.log(diffs);
+    console.log(diffs);*/
   }
 
   handleChange(e) {
