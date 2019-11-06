@@ -1,11 +1,13 @@
 import React from 'react';
-import {StyledContainer, StyledTitle} from './styles/Header.styles';
+import * as styled from './styles/Header.styles';
 
 function Header(props) {
   return (
-    <StyledContainer>
-      <StyledTitle>ColliderChat</StyledTitle>
-    </StyledContainer>
+    <styled.Container data-test={'HeaderComponent'}>
+      <styled.Title data-test={'title'}>
+        {props.appName}
+      </styled.Title>
+    </styled.Container>
   )
 }
 

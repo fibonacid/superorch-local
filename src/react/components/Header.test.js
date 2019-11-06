@@ -1,26 +1,38 @@
 import React from "react";
 import {shallow} from 'enzyme'
-import { Provider } from 'react-redux'
-import configureStore from "../store";
 import Header from "./Header";
+import {findByTestAttr} from "../utils/testing";
+import toJson from "enzyme-to-json";
 
-const mockStore = configureStore();
+const setUp = (props={}) => {
+  return shallow(<Header {...props} />);
+};
 
-let component;
-beforeEach(() => {
-  component = shallow(
-    <Provider store={mockStore}>
-      <Header/>
-    </Provider>
-  );
+describe('Header Component', () => {
 
-});
-afterEach(() => {
-  component.unmount();
-});
+  describe('When has props', () => {
+    let wrapper;
+    beforeEach(() => {
+      wrapper = setUp({ appName: "test"} )
+    });
+    afterEach(() => {
+      wrapper.unmount();
+    });
+    it('Should renderer without errors', () => {
+      const component = findByTestAttr(wrapper, 'HeaderComponent');
+      expect(component.length).toBe(1);
+      expect(toJson(wrapper)).toMatchSnapshot();
+    });
+  });
 
-
-describe("Header", () => {
-  // Snapshot test
-  it('should render', () => {});
+  describe('When has NO props', () => {
+    let wrapper;
+    beforeEach(() => {
+      wrapper = setUp()
+    });
+    afterEach(() => {
+      wrapper.unmount();
+    });
+    it('Should not render', () => {}).todo();
+  });
 });

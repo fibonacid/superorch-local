@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SideBar Component When has props Should renderer without errors 1`] = `
+<SideBarstyles__Container
+  data-test="SideBarComponent"
+>
+  <SideBarstyles__List
+    data-test="list"
+  >
+    <SideBarstyles__ListItem
+      data-test="list-item"
+      key="0"
+    >
+      Al
+    </SideBarstyles__ListItem>
+    <SideBarstyles__ListItem
+      data-test="list-item"
+      key="1"
+    >
+      John
+    </SideBarstyles__ListItem>
+  </SideBarstyles__List>
+</SideBarstyles__Container>
+`;

@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StatusBar Component When has props Should renderer without errors 1`] = `
+<StatusBarstyles__Container
+  data-test="StatusBarComponent"
+>
+  <span
+    data-test="app-info"
+  >
+    testApp
+     
+    0.0.0.test
+  </span>
+</StatusBarstyles__Container>
+`;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   StyledList,
   StyledItem
@@ -6,9 +7,14 @@ import {
 
 function Notifications(props) {
   return (
-    <StyledList>
+    <StyledList data-test={'NotificationsComponent'}>
       {props.notifications.map((notification, i) => (
-        <StyledItem key={i}>{notification.message}</StyledItem>
+        <StyledItem
+          key={i}
+          data-test={'list-item'}
+        >
+          {notification.message}
+        </StyledItem>
       ))}
     </StyledList>
   )

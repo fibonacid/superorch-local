@@ -4,8 +4,11 @@ import * as styled from './styles/StatusBar.styles';
 function StatusBar(props) {
   const { appName, appVersion } = props;
   return (
-    <styled.Container>
-      <span>{appName} {appVersion}</span>
+    <styled.Container
+      data-test={'StatusBarComponent'} >
+      <span data-test={'app-info'}>
+        {appName} {appVersion}
+    </span>
     </styled.Container>
   )
 }
