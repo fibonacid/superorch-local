@@ -1,5 +1,5 @@
 import React from "react";
-import SideBar from './SideBar';
+import Header from './Header';
 import {Provider} from "react-redux";
 import {shallow} from "enzyme";
 import { createMockStore } from 'redux-test-utils';
@@ -10,7 +10,7 @@ beforeEach(() => {
   const store = createMockStore(initialState);
   wrapper = shallow(
     <Provider store={store}>
-      <SideBar/>
+      <Header/>
     </Provider>
   );
 });
@@ -20,8 +20,12 @@ afterEach(() => {
 });
 
 
-describe('SideBar (Container)', () => {
+describe('Header (Container)', () => {
   it("Should render without errors", () => {
     expect(wrapper).toBeDefined();
   });
+
+  it("Should have prop appName set", () => {
+    expect(wrapper.props())
+  })
 });
