@@ -1,5 +1,10 @@
 import {actionTypes} from "./actionTypes";
 
+export const appInfo = (data) => ({
+  type: actionTypes.APP_INFO,
+  data
+});
+
 export const addMessage = (message) => ({
   type: actionTypes.ADD_MESSAGE,
   message

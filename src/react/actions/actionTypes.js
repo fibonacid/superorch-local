@@ -1,4 +1,5 @@
 export const actionTypes = {
+  APP_INFO: "APP_INFO",
   ADD_MESSAGE: "ADD_MESSAGE",
   ADD_NOTIFICATION: "ADD_NOTIFICATION",
   ADD_USER: "ADD_USER",
