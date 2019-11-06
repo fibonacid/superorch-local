@@ -1,5 +1,5 @@
-import {baseReducer} from '../baseReducer';
-import {initialState} from "../baseReducer";
+import {baseReducer} from '../../reducers/baseReducer';
+import {initialState} from "../../reducers/baseReducer";
 
 describe('baseReducer', () => {
 

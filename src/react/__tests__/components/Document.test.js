@@ -1,6 +1,6 @@
 import React from "react";
 import {shallow} from 'enzyme'
-import Document from '../Document';
+import Document from '../../components/Document';
 import {findByTestAttr} from "../../utils/testing";
 import toJson from 'enzyme-to-json';
 
@@ -9,7 +9,7 @@ const setUp = (props={}) => {
   return component;
 };
 
-describe('Header Component', () => {
+describe('Document Component', () => {
 
   describe('has props', () => {
     let wrapper;
@@ -39,10 +39,11 @@ describe('Header Component', () => {
       expect(button.length).toBe(1);
     });
 
-    it('Should store and display text input', () => {
+    it('Should store text input into the state', () => {
       const textarea = findByTestAttr(wrapper, 'textarea');
-      const event = { target: { value: "hello" } };
-      textarea.simulate('change', event);
+      textarea.simulate('change', {
+        target: { value: "hello" }
+      });
       expect(wrapper.state('local')).toEqual('hello');
     });
   });

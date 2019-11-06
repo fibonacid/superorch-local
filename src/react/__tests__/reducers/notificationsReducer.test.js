@@ -1,4 +1,4 @@
-import {notificationsReducer} from '../notificationsReducer';
+import {notificationsReducer} from '../../reducers/notificationsReducer';
 import {actionTypes} from "../../actions/actionTypes";
 import _ from 'lodash'
 

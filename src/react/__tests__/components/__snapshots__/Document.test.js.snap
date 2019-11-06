@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Header Component has props Should render without errors 1`] = `
+exports[`Document Component has props Should render without errors 1`] = `
 <Documentstyles__Container
   data-test="DocumentComponent"
 >

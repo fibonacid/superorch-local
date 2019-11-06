@@ -1,11 +1,11 @@
-import { actionTypes } from "../actionTypes";
+import { actionTypes } from "../../actions/actionTypes";
 import {
   addMessage,
   addUser,
   addNotification,
   messageReceived,
   populateUserList
-} from "../actions";
+} from "../../actions/actions";
 
 describe('addMessage', () => {
   it('works', () => {
