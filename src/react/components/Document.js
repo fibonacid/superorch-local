@@ -60,7 +60,8 @@ class Document extends Component {
 }
 
 Document.propTypes = {
-  shared: PropTypes.string
+  shared: PropTypes.string,
+  send: PropTypes.func
 };
 
 export default Document;
