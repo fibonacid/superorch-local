@@ -49,7 +49,7 @@ class Document extends Component {
     this.setState({
       local: event.target.value,
     });
-
+    this.props.send(event.target.value);
   }
 
   handleClick() {
