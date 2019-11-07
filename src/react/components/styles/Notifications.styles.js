@@ -1,13 +1,14 @@
 import styled from "styled-components/macro";
+import _FlashMessage from "../FlashMessage";
 
-export const StyledList = styled.ul`
+export const List = styled.ul`
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
 `;
 
-export const StyledItem = styled.li`
+export const FlashMessage = styled(_FlashMessage)`
   background: yellow;
   border: solid 1px black;
 `;
