@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Document Component has props Should render without errors 1`] = `
+exports[`Document Component Should render without errors 1`] = `
 <Documentstyles__Container
   data-test="DocumentComponent"
 >
@@ -8,6 +8,7 @@ exports[`Document Component has props Should render without errors 1`] = `
     data-test="textarea"
     onChange={[Function]}
     resizable={false}
+    value="/* Initial Text */"
   />
   <Documentstyles__Button
     data-test="button"
