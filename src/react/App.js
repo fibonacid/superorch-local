@@ -25,19 +25,19 @@ const store = configureStore(initialState);
 
 const { ipcRenderer } = window;
 
-// When there are some updates available:
-ipcRenderer.on('update_available', () => {
-  ipcRenderer.removeAllListeners('update_available');
-  let message = 'A new update is available. Downloading now...';
-  store.dispatch(flashInfo(message))
-});
-
-
-ipcRenderer.on('update_downloaded', () => {
-  ipcRenderer.removeAllListeners('update_downloaded');
-  let message = 'Update Downloaded. It will be installed on restart. Restart now?';
-  store.dispatch(flashInfo(message))
-});
+if (ipcRenderer) {
+  // When there are some updates available:
+  ipcRenderer.on('update_available', () => {
+    ipcRenderer.removeAllListeners('update_available');
+    let message = 'A new update is available. Downloading now...';
+    store.dispatch(flashInfo(message))
+  });
+  ipcRenderer.on('update_downloaded', () => {
+    ipcRenderer.removeAllListeners('update_downloaded');
+    let message = 'Update Downloaded. It will be installed on restart. Restart now?';
+    store.dispatch(flashInfo(message))
+  });
+}
 
 
 /**
@@ -49,11 +49,13 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    ipcRenderer.send(channels.APP_INFO);
-    ipcRenderer.on(channels.APP_INFO, (event, arg) => {
-      ipcRenderer.removeAllListeners(channels.APP_INFO);
-      store.dispatch(appInfo(arg))
-    });
+    if(ipcRenderer) {
+      ipcRenderer.send(channels.APP_INFO);
+      ipcRenderer.on(channels.APP_INFO, (event, arg) => {
+        ipcRenderer.removeAllListeners(channels.APP_INFO);
+        store.dispatch(appInfo(arg))
+      });
+    }
   }
 
   render() {
