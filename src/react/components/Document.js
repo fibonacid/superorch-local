@@ -13,16 +13,19 @@ class Document extends Component {
     };
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
     const { shared } = this.props;
     const { local } = this.state;
-    const diffs = Diff.diffWordsWithSpace(local, shared);
-    let text = "";
-    diffs.forEach(part => {
-      if (!part.removed) {
-        text += part.value;
-      }
-    });
+    let text = local;
+    // If shared document has changed:
+    if (prevProps.shared !== this.props.shared) {
+      text = this.mergeText(local, shared);
+    } else {
+      text = this.mergeText(shared, local);
+    }
+    console.log({ shared, local });
+
+    // Avoid infinite loop
     if (this.state.local !== text) {
       this.setState({
         local: text
@@ -30,10 +33,23 @@ class Document extends Component {
     }
   }
 
+  mergeText(a, b) {
+    const diffs = Diff.diffChars(a, b);
+    let text = "";
+    diffs.forEach(part => {
+      if (!part.removed) {
+        text += part.value;
+      }
+    });
+    console.log(diffs);
+    return text;
+  }
+
   handleChange(event) {
     this.setState({
       local: event.target.value,
     });
+
   }
 
   handleClick() {
