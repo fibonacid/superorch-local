@@ -1,20 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Notifications Component When has props Should renderer without errors 1`] = `
-<Notificationsstyles__StyledList
+<Notificationsstyles__List
   data-test="NotificationsComponent"
 >
-  <Notificationsstyles__StyledItem
-    data-test="list-item"
+  <Notificationsstyles__FlashMessage
     key="0"
   >
     First Message
-  </Notificationsstyles__StyledItem>
-  <Notificationsstyles__StyledItem
-    data-test="list-item"
+  </Notificationsstyles__FlashMessage>
+  <Notificationsstyles__FlashMessage
     key="1"
   >
     Second Message
-  </Notificationsstyles__StyledItem>
-</Notificationsstyles__StyledList>
+  </Notificationsstyles__FlashMessage>
+</Notificationsstyles__List>
 `;
