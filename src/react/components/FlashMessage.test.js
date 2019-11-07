@@ -1,6 +1,6 @@
 import React from "react";
 import {shallow} from 'enzyme'
-import FlashMessage from "FlashMessage";
+import FlashMessage from "./FlashMessage";
 import {findByTestAttr} from "../utils/testing";
 import toJson from "enzyme-to-json";
 
@@ -37,5 +37,5 @@ describe('FlashMessage Component', () => {
       wrapper.unmount();
     });
     it('Should not render', () => {})
-  }).skip();
+  })
 });
