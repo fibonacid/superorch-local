@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import * as styled from "./styles/Notifications.styles";
+import FlashMessage from "./FlashMessage";
 
 function Notifications(props) {
   return (
-    <styled.List data-test={'NotificationsComponent'}>
+    <ul data-test={'NotificationsComponent'}>
       {props.notifications.map((notification, i) => (
-        <styled.FlashMessage key={i}>
+        <FlashMessage key={i}>
           {notification.message}
-        </styled.FlashMessage>
+        </FlashMessage>
       ))}
-    </styled.List>
+    </ul>
   )
 }
 

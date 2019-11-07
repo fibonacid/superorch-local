@@ -1,9 +1,45 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import * as styled from './styles/Document.styles'
+import styled from 'styled-components/macro'
+import {resetAppearance} from "../utils/styles";
 
+const StyledContainer = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+`;
+
+const StyledTextArea = styled.textarea`
+  flex: 1;
+  margin: 0;
+  border: none;
+  font-family: monospace;
+  padding-top: 10px;
+  padding-left: 10px;
+  ${resetAppearance()}
+`;
+
+const StyledButton = styled.button`
+  display: block;
+  -webkit-appearance:none;
+  padding: 2.5px;
+  background: black;
+  color: white;
+  font-weight: bold;
+  border: 0;
+  &:active { background: grey; }
+  ${resetAppearance()}
+`;
+
+
+// This module helps finding
+// differences in text buffers
 const Diff = require('diff');
 
+/**
+ * DOCUMENT COMPONENT
+ * ==================
+ */
 class Document extends Component {
 
   constructor(props) {
@@ -59,18 +95,18 @@ class Document extends Component {
 
   render() {
     return (
-      <styled.Container
+      <StyledContainer
         data-test={'DocumentComponent'}>
-        <styled.TextArea
+        <StyledTextArea
           data-test={'textarea'}
           resizable={false}
           value={this.state.local}
           onChange={this.handleChange.bind(this)} />
-        <styled.Button
+        <StyledButton
           data-test={'button'}
           onClick={this.handleClick.bind(this)}
-        >SEND</styled.Button>
-      </styled.Container>
+        >SEND</StyledButton>
+      </StyledContainer>
     )
   }
 }

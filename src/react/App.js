@@ -2,15 +2,19 @@ import React, { Component } from 'react';
 import {Provider} from "react-redux";
 import configureStore from "./store";
 import { channels } from '../shared/constants';
-import * as styled from './App.styles';
 import {appInfo, flashInfo} from "./actions/actions";
+import styled from 'styled-components/macro';
+
+import TextEditor from "./components/TextEditor";
 
 // Containers
-import Document from "./containers/Document";
 import Notifications from "./containers/Notifications";
 import SideBar from "./containers/SideBar";
 import Header from "./containers/Header";
 import StatusBar from "./containers/StatusBar";
+import {createGlobalStyle} from "styled-components";
+import normalize from "styled-normalize";
+import reset from "styled-reset";
 
 /* =============================================== */
 /*    REDUX                                        */
@@ -39,6 +43,37 @@ if (ipcRenderer) {
   });
 }
 
+/* =============================================== */
+/*    STYLES                                       */
+/* =============================================== */
+
+export const GlobalStyle = createGlobalStyle`
+  ${normalize}
+  ${reset}
+  html, body {
+    height: 100%;
+  }
+  #root {
+    height: 100%;
+  }
+`;
+
+// Styles
+export const StyledContainer = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const StyledWrapper = styled.div`
+  flex: 1 1 100%;
+  overflow-y: auto;
+  display: flex;
+  border-top: solid 1px black;
+  border-bottom: solid 1px black;
+`;
+
+
 
 /**
  * ============================
@@ -61,16 +96,16 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <styled.Container className="App">
-            <styled.GlobalStyle/>
+        <StyledContainer className="App">
+            <GlobalStyle/>
             <Header />
-            <styled.Wrapper>
+              <StyledWrapper>
               <SideBar />
-              <Document />
+              <TextEditor />
               <Notifications />
-            </styled.Wrapper>
+              </StyledWrapper>
             <StatusBar />
-        </styled.Container>
+          </StyledContainer>
       </Provider>
     );
   }

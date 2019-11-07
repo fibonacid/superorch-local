@@ -1,16 +1,23 @@
 import React from 'react'
-import * as styled from './styles/StatusBar.styles';
 import PropTypes from 'prop-types';
+import styled from 'styled-components/macro'
+
+export const StyledContainer = styled.div`
+  padding: 5px;
+  text-align: right;
+  font-size: 14px;
+  flex: 0 0 auto;
+`;
 
 function StatusBar(props) {
   const { appName, appVersion } = props;
   return (
-    <styled.Container
+    <StyledContainer
       data-test={'StatusBarComponent'} >
       <span data-test={'app-info'}>
         {appName} {appVersion}
     </span>
-    </styled.Container>
+    </StyledContainer>
   )
 }
 
