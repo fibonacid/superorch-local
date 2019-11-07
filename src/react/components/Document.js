@@ -14,8 +14,8 @@ class Document extends Component {
   }
 
   componentDidUpdate() {
-    /*const { shared } = this.props.document;
-    const { input, local } = this.state;
+    const { shared } = this.props;
+    const { local } = this.state;
     const diffs = Diff.diffWordsWithSpace(local, shared);
     let text = "";
     diffs.forEach(part => {
@@ -23,9 +23,11 @@ class Document extends Component {
         text += part.value;
       }
     });
-    this.setState({
-      local: text
-    });
+    if (this.state.local !== text) {
+      this.setState({
+        local: text
+      });
+    }
   }
 
   handleChange(event) {
