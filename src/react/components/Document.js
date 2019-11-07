@@ -26,17 +26,15 @@ class Document extends Component {
     this.setState({
       local: text
     });
-    console.log(diffs);*/
   }
 
-  handleChange(e) {
-    const { document } = this.props;
+  handleChange(event) {
     this.setState({
-      local: e.target.value,
+      local: event.target.value,
     });
   }
 
-  handleClick(e) {
+  handleClick() {
     const { local } = this.state;
     this.props.send(local);
   }
@@ -49,10 +47,10 @@ class Document extends Component {
           data-test={'textarea'}
           resizable={false}
           value={this.state.local}
-          onChange={e => {this.handleChange(e)}} />
+          onChange={this.handleChange.bind(this)} />
         <styled.Button
           data-test={'button'}
-          onClick={e => {this.handleClick(e)}}
+          onClick={this.handleClick.bind(this)}
         >SEND</styled.Button>
       </styled.Container>
     )
