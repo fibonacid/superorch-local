@@ -41,7 +41,7 @@ describe('Document Component', () => {
       const wrapper = setUp();
       wrapper.setState({ local: "foo" });
       wrapper.setProps({ shared: "bar" });
-      wrapper.instance().componentWillReceiveProps();
+      wrapper.instance().componentDidUpdate();
       //expect(wrapper.state('local')).toMatch(/bar/);
       expect(wrapper.state('local')).toMatch(/foo(bar)/);
     });
