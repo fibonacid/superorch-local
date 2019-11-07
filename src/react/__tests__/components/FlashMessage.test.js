@@ -1,30 +1,28 @@
 import React from "react";
 import {shallow} from 'enzyme'
-import Notifications from "./Notifications";
-import {findByTestAttr} from "../utils/testing";
+import FlashMessage from "../../components/FlashMessage";
+import {findByTestAttr} from "../../utils/testing";
 import toJson from "enzyme-to-json";
 
 const setUp = (props={}) => {
-  return shallow(<Notifications {...props} />);
+  return shallow(<FlashMessage {...props} />);
 };
 
-describe('Notifications Component', () => {
+describe('FlashMessage Component', () => {
 
   describe('When has props', () => {
     let wrapper;
     beforeEach(() => {
       wrapper = setUp({
-       notifications: [
-         { message: "First Message", type: "TEST" },
-         { message: "Second Message", type: "TEST" }
-       ]
+        message: "foo",
+        type: "bar"
       })
     });
     afterEach(() => {
       wrapper.unmount();
     });
     it('Should renderer without errors', () => {
-      const component = findByTestAttr(wrapper, 'NotificationsComponent');
+      const component = findByTestAttr(wrapper, 'FlashMessageComponent');
       expect(component.length).toBe(1);
       expect(toJson(wrapper)).toMatchSnapshot();
     });
@@ -38,6 +36,6 @@ describe('Notifications Component', () => {
     afterEach(() => {
       wrapper.unmount();
     });
-    it('Should not render', () => {}).todo();
-  });
+    it('Should not render', () => {})
+  })
 });

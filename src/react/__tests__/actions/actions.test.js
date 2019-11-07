@@ -1,4 +1,4 @@
-import { actionTypes } from "./actionTypes";
+import { actionTypes } from "../../actions/actionTypes";
 import {
   appInfo,
   addMessage,
@@ -8,7 +8,7 @@ import {
   flashInfo,
   flashWarning,
   flashError
-} from "./actions";
+} from "../../actions/actions";
 
 describe('appInfo (Action)', () => {
   it('works', () => {

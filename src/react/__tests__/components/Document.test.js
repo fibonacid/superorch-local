@@ -1,7 +1,7 @@
 import React from "react";
 import {shallow} from 'enzyme'
-import Document from './Document';
-import {findByTestAttr} from "../utils/testing";
+import Document from '../../components/Document';
+import {findByTestAttr} from "../../utils/testing";
 import toJson from 'enzyme-to-json';
 
 const requiredProps = {

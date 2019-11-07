@@ -1,6 +1,6 @@
-import {documentReducer} from './documentReducer';
-import {actionTypes} from "../actions/actionTypes";
-import {initialState} from "./documentReducer";
+import {documentReducer} from '../../reducers/documentReducer';
+import {actionTypes} from "../../actions/actionTypes";
+import {initialState} from "../../reducers/documentReducer";
 import _ from 'lodash'
 
 describe('document (Reducer)', () => {

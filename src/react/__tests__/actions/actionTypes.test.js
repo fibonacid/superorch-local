@@ -1,4 +1,4 @@
-import {actionTypes} from "./actionTypes";
+import {actionTypes} from "../../actions/actionTypes";
 import _ from 'lodash';
 
 describe('actionTypes', () => {

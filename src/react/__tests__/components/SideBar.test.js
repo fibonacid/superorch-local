@@ -1,32 +1,30 @@
 import React from "react";
 import {shallow} from 'enzyme'
-import Header from "./Header";
-import {findByTestAttr} from "../utils/testing";
+import SideBar from "../../components/SideBar";
+import {findByTestAttr} from "../../utils/testing";
 import toJson from "enzyme-to-json";
 
 const setUp = (props={}) => {
-  return shallow(<Header {...props} />);
+  return shallow(<SideBar {...props} />);
 };
 
-describe('Header Component', () => {
+describe('SideBar Component', () => {
 
   describe('When has props', () => {
     let wrapper;
     beforeEach(() => {
-      wrapper = setUp({ appName: "test"} )
+      wrapper = setUp({
+        users: [{ name: "Al" },{ name: "John" }]
+      })
     });
     afterEach(() => {
       wrapper.unmount();
     });
     it('Should renderer without errors', () => {
-      const component = findByTestAttr(wrapper, 'HeaderComponent');
+      const component = findByTestAttr(wrapper, 'SideBarComponent');
       expect(component.length).toBe(1);
       expect(toJson(wrapper)).toMatchSnapshot();
     });
-    it('Should have a title', () => {
-      const title = findByTestAttr(wrapper, 'title');
-      expect(title.text()).toBeTruthy();
-    })
   });
 
   describe('When has NO props', () => {

@@ -1,28 +1,30 @@
 import React from "react";
 import {shallow} from 'enzyme'
-import StatusBar from "./StatusBar";
-import {findByTestAttr} from "../utils/testing";
+import Notifications from "../../components/Notifications";
+import {findByTestAttr} from "../../utils/testing";
 import toJson from "enzyme-to-json";
 
 const setUp = (props={}) => {
-  return shallow(<StatusBar {...props} />);
+  return shallow(<Notifications {...props} />);
 };
 
-describe('StatusBar Component', () => {
+describe('Notifications Component', () => {
 
   describe('When has props', () => {
     let wrapper;
     beforeEach(() => {
       wrapper = setUp({
-        appName: "testApp",
-        appVersion: "0.0.0.test"
+       notifications: [
+         { message: "First Message", type: "TEST" },
+         { message: "Second Message", type: "TEST" }
+       ]
       })
     });
     afterEach(() => {
       wrapper.unmount();
     });
     it('Should renderer without errors', () => {
-      const component = findByTestAttr(wrapper, 'StatusBarComponent');
+      const component = findByTestAttr(wrapper, 'NotificationsComponent');
       expect(component.length).toBe(1);
       expect(toJson(wrapper)).toMatchSnapshot();
     });

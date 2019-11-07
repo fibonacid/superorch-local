@@ -1,28 +1,28 @@
 import React from "react";
 import {shallow} from 'enzyme'
-import FlashMessage from "./FlashMessage";
-import {findByTestAttr} from "../utils/testing";
+import StatusBar from "../../components/StatusBar";
+import {findByTestAttr} from "../../utils/testing";
 import toJson from "enzyme-to-json";
 
 const setUp = (props={}) => {
-  return shallow(<FlashMessage {...props} />);
+  return shallow(<StatusBar {...props} />);
 };
 
-describe('FlashMessage Component', () => {
+describe('StatusBar Component', () => {
 
   describe('When has props', () => {
     let wrapper;
     beforeEach(() => {
       wrapper = setUp({
-        message: "foo",
-        type: "bar"
+        appName: "testApp",
+        appVersion: "0.0.0.test"
       })
     });
     afterEach(() => {
       wrapper.unmount();
     });
     it('Should renderer without errors', () => {
-      const component = findByTestAttr(wrapper, 'FlashMessageComponent');
+      const component = findByTestAttr(wrapper, 'StatusBarComponent');
       expect(component.length).toBe(1);
       expect(toJson(wrapper)).toMatchSnapshot();
     });
@@ -36,6 +36,6 @@ describe('FlashMessage Component', () => {
     afterEach(() => {
       wrapper.unmount();
     });
-    it('Should not render', () => {})
-  })
+    it('Should not render', () => {}).todo();
+  });
 });

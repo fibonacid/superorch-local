@@ -1,5 +1,5 @@
-import {appReducer} from './appReducer';
-import {actionTypes} from "../actions/actionTypes";
+import {appReducer} from '../../reducers/appReducer';
+import {actionTypes} from "../../actions/actionTypes";
 
 describe('app (Reducer)', () => {
 

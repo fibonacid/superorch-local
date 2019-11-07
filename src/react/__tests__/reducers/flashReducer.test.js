@@ -1,5 +1,5 @@
-import {flashReducer, flashTypes} from './flashReducer';
-import {actionTypes} from "../actions/actionTypes";
+import {flashReducer, flashTypes} from '../../reducers/flashReducer';
+import {actionTypes} from "../../actions/actionTypes";
 
 describe('flash (Reducer)', () => {
 
