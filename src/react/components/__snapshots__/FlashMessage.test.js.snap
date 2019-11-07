@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FlashMessage Component When has props Should renderer without errors 1`] = `
+<div
+  data-test="FlashMessageComponent"
+>
+  foo
+</div>
+`;
