@@ -3,9 +3,11 @@ import {
   appInfo,
   addMessage,
   addUser,
-  addNotification,
   messageReceived,
-  populateUserList
+  populateUserList,
+  flashInfo,
+  flashWarning,
+  flashError
 } from "./actions";
 
 describe('appInfo (Action)', () => {
@@ -29,10 +31,24 @@ describe('addUser (Action)', () => {
   });
 });
 
-describe('addNotification (Action)', () => {
+describe('flashInfo (Action)', () => {
   it('works', () => {
-    const expectedResult = { type: actionTypes.ADD_NOTIFICATION, message: 'foo', kind: "INFO" };
-    expect(addNotification('foo', 'INFO')).toEqual(expectedResult);
+    const expectedResult = { type: actionTypes.FLASH_INFO, message: 'foo' };
+    expect(flashInfo('foo')).toEqual(expectedResult);
+  });
+});
+
+describe('flashWarning (Action)', () => {
+  it('works', () => {
+    const expectedResult = { type: actionTypes.FLASH_WARNING, message: 'foo' };
+    expect(flashWarning('foo')).toEqual(expectedResult);
+  });
+});
+
+describe('flashError (Action)', () => {
+  it('works', () => {
+    const expectedResult = { type: actionTypes.FLASH_ERROR, message: 'foo' };
+    expect(flashError('foo')).toEqual(expectedResult);
   });
 });
 

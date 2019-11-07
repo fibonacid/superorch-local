@@ -15,10 +15,19 @@ export const addUser = name => ({
   name
 });
 
-export const addNotification = (message, kind) => ({
-  type: actionTypes.ADD_NOTIFICATION,
-  message,
-  kind
+export const flashInfo = (message) => ({
+  type: actionTypes.FLASH_INFO,
+  message
+});
+
+export const flashWarning = (message) => ({
+  type: actionTypes.FLASH_WARNING,
+  message
+});
+
+export const flashError = (message) => ({
+  type: actionTypes.FLASH_ERROR,
+  message
 });
 
 export const messageReceived = (data) => ({
