@@ -9,7 +9,6 @@ import {
   RichUtils,
 } from 'draft-js';
 
-
 /* ============================== */
 /*   STYLES                       */
 /* ============================== */
@@ -45,7 +44,7 @@ class TextEditor extends React.Component {
     if (prevProps.shared !== shared) {
       // Update editorState with new content
       const newContent = convertFromRaw(JSON.parse(this.props.shared));
-      console.log(newContent);
+      //console.log(newContent);
 
       this.setState({
         editorState: EditorState.createWithContent(newContent)
