@@ -6,7 +6,14 @@ import {
   Editor,
   EditorState,
   RichUtils,
+  KeyBindingUtil,
+  getDefaultKeyBinding
 } from 'draft-js';
+import {
+  getSelectedBlocksList,
+} from 'draftjs-utils'
+
+const { hasCommandModifier } = KeyBindingUtil;
 
 // =======================================
 //    STYLES
@@ -71,9 +78,23 @@ class TextEditor extends React.Component {
    */
   handleKeyCommand(command, editorState) {
     const newState = RichUtils.handleKeyCommand(editorState, command);
+    // If a Rich Text Command has been invoke:
     if (newState) {
+      // Update state
       this.onChange(newState);
       return 'handled';
+    }
+    // If a custom event has been invoked:
+    if (command === "execute-selected-block") {
+      // Get Selected blocks
+      const selectedBlocks = getSelectedBlocksList(editorState);
+      let text = "";
+      // Make sure that carriage return is counted
+      selectedBlocks.forEach(block => {
+        text = `${block.getText()}\n`
+      });
+      // Execute selected block of text
+      this.props.execText(text);
     }
     return 'not-handled';
   }
@@ -99,6 +120,19 @@ class TextEditor extends React.Component {
     //}
   }
 
+  /**
+   *
+   * @param e
+   * @returns {string|?DraftEditorCommand}
+   */
+  customKeyBindingFn(e) {
+    // CMD + ENTER
+    if (e.keyCode === 13 /* `CR` key */ && hasCommandModifier(e)) {
+      return 'execute-selected-block';
+    }
+    return getDefaultKeyBinding(e);
+  }
+
   render() {
     return (
       <StyledWrapper
@@ -109,6 +143,7 @@ class TextEditor extends React.Component {
           editorState={this.state.editorState}
           onChange={this.onChange}
           handleKeyCommand={this.handleKeyCommand}
+          keyBindingFn={this.customKeyBindingFn}
         />
       </StyledWrapper>
     )
