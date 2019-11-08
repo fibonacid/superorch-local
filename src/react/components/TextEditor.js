@@ -1,12 +1,13 @@
 import React from "react";
 import styled from 'styled-components';
 import {
+  convertToRaw,
+  convertFromRaw,
   Editor,
   EditorState,
   ContentState,
   RichUtils,
 } from 'draft-js';
-import {mergeText} from "../utils/text";
 
 
 /* ============================== */
@@ -25,11 +26,13 @@ class TextEditor extends React.Component {
 
   constructor(props) {
     super(props);
+
     this.state = {
       editorState: EditorState.createWithContent(
         ContentState.createFromText(props.shared)
       )
     };
+
     this.onChange = this.onChange.bind(this);
     this.handleKeyCommand = this.handleKeyCommand.bind(this);
     this.setDomEditorRef = ref => this.domEditor = ref;
@@ -38,20 +41,14 @@ class TextEditor extends React.Component {
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     const { shared } = this.props;
-    const local = this.getPlainText();
     // If shared document has changed:
-    let newLocal = "";
-    if (prevProps.shared !== this.props.shared) {
-      newLocal = mergeText(local, shared);
-    } else {
-      newLocal = mergeText(shared, local);
-    }
-    // Avoid infinite loop
-    if (local !== newLocal) {
+    if (prevProps.shared !== shared) {
+      // Update editorState with new content
+      const newContent = convertFromRaw(JSON.parse(this.props.shared));
+      console.log(newContent);
+
       this.setState({
-        editorState: EditorState.createWithContent(
-          ContentState.createFromText(newLocal)
-        )
+        editorState: EditorState.createWithContent(newContent)
       })
     }
   }
@@ -67,15 +64,10 @@ class TextEditor extends React.Component {
 
   onChange(editorState) {
     this.setState({editorState});
-    const plain = this.getPlainText();
-    console.log(plain);
-    this.props.send(plain);
-  }
-
-  getPlainText() {
-    const { editorState } = this.state;
-    const content = editorState.getCurrentContent();
-    return content.getPlainText();
+    const contentState = editorState.getCurrentContent();
+    const raw = convertToRaw(contentState);
+    this.props.send(JSON.stringify(raw));
+    console.log()
   }
 
   render() {
