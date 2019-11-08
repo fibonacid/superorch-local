@@ -7,6 +7,7 @@ const StyledWrapper = styled.div`
 `;
 
 class TextEditor extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -14,6 +15,8 @@ class TextEditor extends React.Component {
     };
     this.onChange = this.onChange.bind(this);
     this.handleKeyCommand = this.handleKeyCommand.bind(this);
+    this.setDomEditorRef = ref => this.domEditor = ref;
+    this.focus = () => this.domEditor.focus();
   }
 
   handleKeyCommand(command, editorState) {
@@ -33,8 +36,9 @@ class TextEditor extends React.Component {
 
   render() {
     return (
-      <StyledWrapper>
+      <StyledWrapper onClick={this.focus}>
         <Editor
+          ref={this.setDomEditorRef}
           editorState={this.state.editorState}
           onChange={this.onChange}
           handleKeyCommand={this.handleKeyCommand}
