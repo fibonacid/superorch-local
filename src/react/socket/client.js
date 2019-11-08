@@ -1,5 +1,10 @@
 import {actionTypes} from '../actions/actionTypes'
-import {messageReceived, populateUserList} from "../actions/actions";
+import {
+  execTextReceived,
+  messageReceived,
+  populateUserList,
+  textInputReceived
+} from "../actions/actions";
 
 require('ws');
 
@@ -33,6 +38,12 @@ export const setupSocket = (dispatch, username) => {
         break;
       case actionTypes.ADD_MESSAGE:
         dispatch(messageReceived(data));
+        break;
+      case actionTypes.TEXT_INPUT:
+        dispatch(textInputReceived(data));
+        break;
+      case actionTypes.EXEC_TEXT:
+        dispatch(execTextReceived(data));
         break;
     }
   };
