@@ -1,67 +1,79 @@
 import { actionTypes } from "../../actions/actionTypes";
-import {
-  appInfo,
-  addMessage,
-  addUser,
-  messageReceived,
-  populateUserList,
-  flashInfo,
-  flashWarning,
-  flashError
-} from "../../actions/actions";
+import * as action from "../../actions/actions";
 
 describe('appInfo (Action)', () => {
   it('works', () => {
     const expectedResult = { type: actionTypes.APP_INFO, data: { foo: 'bar' } };
-    expect(appInfo({ foo: 'bar' })).toEqual(expectedResult);
+    expect(action.appInfo({ foo: 'bar' })).toEqual(expectedResult);
   });
 });
 
 describe('addMessage (Action)', () => {
   it('works', () => {
     const expectedResult = { type: actionTypes.ADD_MESSAGE, message: "foo" };
-    expect(addMessage("foo")).toEqual(expectedResult);
+    expect(action.addMessage("foo")).toEqual(expectedResult);
   });
 });
 
 describe('addUser (Action)', () => {
   it('works', () => {
     const expectedResult = { type: actionTypes.ADD_USER, name: 'foo' };
-    expect(addUser('foo')).toEqual(expectedResult);
+    expect(action.addUser('foo')).toEqual(expectedResult);
   });
 });
 
 describe('flashInfo (Action)', () => {
   it('works', () => {
     const expectedResult = { type: actionTypes.FLASH_INFO, message: 'foo' };
-    expect(flashInfo('foo')).toEqual(expectedResult);
+    expect(action.flashInfo('foo')).toEqual(expectedResult);
   });
 });
 
 describe('flashWarning (Action)', () => {
   it('works', () => {
     const expectedResult = { type: actionTypes.FLASH_WARNING, message: 'foo' };
-    expect(flashWarning('foo')).toEqual(expectedResult);
+    expect(action.flashWarning('foo')).toEqual(expectedResult);
   });
 });
 
 describe('flashError (Action)', () => {
   it('works', () => {
     const expectedResult = { type: actionTypes.FLASH_ERROR, message: 'foo' };
-    expect(flashError('foo')).toEqual(expectedResult);
+    expect(action.flashError('foo')).toEqual(expectedResult);
   });
 });
 
 describe('messageReceived (Action)', () => {
   it('works', () => {
     const expectedResult = { type: actionTypes.MESSAGE_RECEIVED, data: { foo: 'bar' } };
-    expect(messageReceived({ foo: 'bar' })).toEqual(expectedResult);
+    expect(action.messageReceived({ foo: 'bar' })).toEqual(expectedResult);
   });
 });
 
-describe('populateUserList (Action)', () => {
+describe('textInput (Action)', () => {
   it('works', () => {
-    const expectedResult = { type: actionTypes.USER_LIST, users: ['Al', 'John', 'Jack'] };
-    expect(populateUserList(['Al', 'John', 'Jack'])).toEqual(expectedResult);
+    const expectedResult = { type: actionTypes.TEXT_INPUT, data: "foo" };
+    expect(action.textInput("foo")).toEqual(expectedResult);
+  });
+});
+
+describe('textInputReceived (Action)', () => {
+  it('works', () => {
+    const expectedResult = { type: actionTypes.TEXT_INPUT_RECEIVED, data: "foo" };
+    expect(action.textInputReceived("foo")).toEqual(expectedResult);
+  });
+});
+
+describe('execText (Action)', () => {
+  it('works', () => {
+    const expectedResult = { type: actionTypes.EXEC_TEXT, data: "foo" };
+    expect(action.execText("foo")).toEqual(expectedResult);
+  });
+});
+
+describe('execTextReceived (Action)', () => {
+  it('works', () => {
+    const expectedResult = { type: actionTypes.EXEC_TEXT_RECEIVED, data: "foo" };
+    expect(action.execTextReceived("foo")).toEqual(expectedResult);
   });
 });
