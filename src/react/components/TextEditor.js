@@ -1,4 +1,10 @@
-import {Editor, EditorState, RichUtils, convertToRaw} from 'draft-js';
+import {
+  Editor,
+  EditorState,
+  convertToRaw,
+  ContentState,
+  RichUtils,
+} from 'draft-js';
 import React from "react";
 import styled from 'styled-components'
 
@@ -11,12 +17,18 @@ class TextEditor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      editorState: EditorState.createEmpty()
+      editorState: EditorState.createWithContent(
+        ContentState.createFromText(props.shared)
+      )
     };
     this.onChange = this.onChange.bind(this);
     this.handleKeyCommand = this.handleKeyCommand.bind(this);
     this.setDomEditorRef = ref => this.domEditor = ref;
     this.focus = () => this.domEditor.focus();
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+
   }
 
   handleKeyCommand(command, editorState) {
