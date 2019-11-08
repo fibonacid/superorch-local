@@ -3,7 +3,9 @@ const WebSocket = require('ws');
 const eventTypes = {
   ADD_USER: "ADD_USER",
   ADD_MESSAGE: "ADD_MESSAGE",
-  USERS_LIST: "USER_LIST"
+  USERS_LIST: "USER_LIST",
+  EXEC_TEXT: "EXEC_TEXT",
+  TEXT_INPUT: "TEXT_INPUT"
 };
 
 const server = new WebSocket.Server({
@@ -63,6 +65,7 @@ server.on('connection', function(socket) {
   socket.on('message', function(message) {
     console.log(message);
     const data = JSON.parse(message);
+
     // Do different things according to
     // the type of message received
     switch (data.type) {
@@ -86,7 +89,7 @@ server.on('connection', function(socket) {
         break
       }
 
-      // If the client want to add a message
+      // If client want to add a message
       case eventTypes.ADD_MESSAGE:
         // Send it to everybody
         broadcast({
@@ -95,6 +98,27 @@ server.on('connection', function(socket) {
           author: data.author
         }, socket);
         break;
+
+      // If client typed some text
+      case eventTypes.TEXT_INPUT:
+        // Send it to everybody
+        broadcast({
+          type: eventTypes.TEXT_INPUT,
+          value: data.data,
+          author: data.author
+        }, socket);
+        break;
+
+      // If the client typed some text
+      case eventTypes.EXEC_TEXT:
+        // Send it to everybody
+        broadcast({
+          type: eventTypes.EXEC_TEXT,
+          value: data.data,
+          author: data.author
+        }, socket);
+        break;
+
       default:
         break
     }
