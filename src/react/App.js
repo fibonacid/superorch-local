@@ -5,12 +5,11 @@ import { channels } from '../shared/constants';
 import {appInfo, flashInfo} from "./actions/actions";
 import styled from 'styled-components/macro';
 
-import TextEditor from "./components/TextEditor";
-
 // Containers
 import Notifications from "./containers/Notifications";
 import SideBar from "./containers/SideBar";
 import Header from "./containers/Header";
+import TextEditor from "./containers/TextEditor";
 import StatusBar from "./containers/StatusBar";
 import {createGlobalStyle} from "styled-components";
 import normalize from "styled-normalize";
