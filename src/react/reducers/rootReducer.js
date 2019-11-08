@@ -1,10 +1,12 @@
 import { combineReducers } from "redux";
 import {baseReducer} from "./baseReducer";
 import {chatReducer} from "./chatReducer";
-import {notificationsReducer} from "./notificationsReducer";
+import {appReducer} from "./appReducer";
+import {flashReducer} from "./flashReducer";
 
 export const rootReducer = combineReducers({
+    app: appReducer,
     base: baseReducer,
     chat: chatReducer,
-    notifications: notificationsReducer
+    flash: flashReducer
 });

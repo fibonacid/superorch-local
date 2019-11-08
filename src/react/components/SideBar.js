@@ -1,17 +1,42 @@
 import React from 'react'
-import * as styled from './styles/SideBar.styles'
+import PropTypes from 'prop-types';
+import styled from 'styled-components/macro'
+
+const StyledContainer = styled.div`
+  border-right: solid 1px black;
+  width: 200px;
+  max-width: 300px;
+  overflow-y: auto;
+`;
+
+const StyledList = styled.ul`
+  height: 100%;
+`;
+
+const StyledListItem = styled.li`
+  padding: 5px;
+  border-bottom: solid 1px black;
+`;
+
 
 function SideBar(props) {
     const {users} = props;
     return (
-      <styled.Container>
-        <styled.List>
+      <StyledContainer
+        data-test={'SideBarComponent'} >
+        <StyledList data-test={'list'} >
           {users.map((user,i) => (
-            <styled.ListItem key={i}>{user.name}</styled.ListItem>
+            <StyledListItem data-test={'list-item'} key={i}>
+                {user.name}
+            </StyledListItem>
           ))}
-        </styled.List>
-      </styled.Container>
+        </StyledList>
+      </StyledContainer>
     )
 }
+
+SideBar.propTypes = {
+  users: PropTypes.arrayOf(PropTypes.object)
+};
 
 export default SideBar;

@@ -9,16 +9,16 @@
     "url": "https://github.com/lorenzorivosecchi/colliderchat.git"
   },
   "scripts": {
-    "start": "export BROWSER=none && react-scripts start",
+    "start": "export BROWSER=none && react-app-rewired start",
     "start:electron": "export ELECTRON_START_URL=http://localhost:3000 && electron .",
     "dev": "NODE_ENV='development' nf start -p 3000",
-    "build": "react-scripts build",
+    "build": "react-app-rewired build",
     "build:electron": "mkdir build/src && cp -r electron/. build/electron && cp -r src/shared/. build/src/shared",
     "package": "electron-builder build --mac -c.extraMetadata.main=build/electron/main.js --publish never",
     "deploy": "electron-builder build --mac --config=electron-builder.yml -c.extraMetadata.main=build/electron/main.js --publish always",
-    "test": "react-scripts test --env=jsdom",
-    "test:coverage": "react-scripts test --env=jsdom --coverage",
-    "test:update": "react-scripts test --env=jsdom --updateSnapshot",
+    "test": "react-app-rewired test --env=jsdom",
+    "test:coverage": "react-app-rewired test --env=jsdom --coverage",
+    "test:update": "react-app-rewired test --env=jsdom --updateSnapshot",
     "eject": "react-scripts eject",
     "server": "node server/app.js"
   },
@@ -29,6 +29,7 @@
     ]
   },
   "devDependencies": {
+    "babel-plugin-module-resolver": "^3.2.0",
     "electron": "^1.7.9",
     "electron-builder": "^21.1.1",
     "electron-devtools-installer": "^2.2.4",
@@ -37,15 +38,18 @@
     "foreman": "^3.0.1",
     "jest-enzyme": "^7.1.2",
     "jest-styled-components": "^6.3.3",
+    "react-app-rewired": "^2.1.4",
     "react-scripts": "^3.2.0",
     "redux-devtools-extension": "^2.13.8",
-    "redux-saga-test-plan": "^4.0.0-rc.3"
+    "redux-saga-test-plan": "^4.0.0-rc.3",
+    "redux-test-utils": "^0.3.0"
   },
   "dependencies": {
     "@giantmachines/redux-websocket": "^1.1.5",
     "chance": "^1.1.3",
     "diff": "^4.0.1",
     "dotenv": "^8.2.0",
+    "draft-js": "^0.11.2",
     "electron-updater": "^4.2.0",
     "enzyme": "^3.10.0",
     "lodash": "^4.17.15",

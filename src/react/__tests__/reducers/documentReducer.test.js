@@ -1,16 +1,16 @@
-import {documentReducer} from '../documentReducer';
+import {documentReducer} from '../../reducers/documentReducer';
 import {actionTypes} from "../../actions/actionTypes";
-import {initialState} from "../documentReducer";
+import {initialState} from "../../reducers/documentReducer";
 import _ from 'lodash'
 
-describe('documentReducer', () => {
+describe('document (Reducer)', () => {
 
-  it('should return the initial state', () => {
+  it('Should return the initial state', () => {
     const result = documentReducer(undefined, {type:"foo"});
     expect(result).toEqual(initialState);
   });
 
-  it('it should handle MESSAGE_RECEIVED', () => {
+  it('Should handle MESSAGE_RECEIVED', () => {
     const action = {
       type: actionTypes.MESSAGE_RECEIVED,
       data: { message: 'foo' }
@@ -21,7 +21,7 @@ describe('documentReducer', () => {
   });
 
   describe('when state is already populated', () => {
-    it('it should handle MESSAGE_RECEIVED', () => {}).todo();
+    it('Should handle MESSAGE_RECEIVED', () => {}).todo();
   });
 
 });
