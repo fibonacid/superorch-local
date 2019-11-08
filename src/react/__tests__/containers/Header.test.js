@@ -25,7 +25,5 @@ describe('Header (Container)', () => {
     expect(wrapper).toBeDefined();
   });
 
-  it("Should have prop appName set", () => {
-    expect(wrapper.props())
-  })
+  it("Should have prop appName set", () => {}).todo()
 });
