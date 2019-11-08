@@ -71,7 +71,9 @@ class TextEditor extends React.Component {
 
   render() {
     return (
-      <StyledWrapper onClick={this.focus}>
+      <StyledWrapper
+        data-test={"TextEditorComponent"}
+        onClick={this.focus} >
         <Editor
           ref={this.setDomEditorRef}
           editorState={this.state.editorState}
