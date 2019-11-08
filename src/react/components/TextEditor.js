@@ -1,5 +1,3 @@
-// @flow
-
 import React from "react";
 import styled from 'styled-components';
 import {
@@ -10,12 +8,11 @@ import {
   RichUtils,
 } from 'draft-js';
 
-/* ============================== */
-/*   STYLES                       */
-/* ============================== */
-
+// =======================================
+//    STYLES
+// =======================================
 const StyledWrapper = styled.div`
-  flex: 1;
+   flex: 1;
 `;
 
 /**=======================================
@@ -26,17 +23,30 @@ class TextEditor extends React.Component {
 
   constructor(props) {
     super(props);
-
+    // Initialize component state.
     this.state = {
       editorState: EditorState.createEmpty()
     };
-
+    this.setDomEditorRef = ref => this.domEditor = ref;
+    // This function forces the editor to be focused.
+    this.focus = () => this.domEditor.focus();
+    // Event Handler Bindings.
     this.onChange = this.onChange.bind(this);
     this.handleKeyCommand = this.handleKeyCommand.bind(this);
-    this.setDomEditorRef = ref => this.domEditor = ref;
-    this.focus = () => this.domEditor.focus();
   }
 
+  /**
+   * COMPONENT DID UPDATE
+   * ==================================================
+   * This class is called every time the component
+   * needs to update it's internal state.
+   * Example: when setState is called or when its props
+   * change.
+   *
+   * @param prevProps
+   * @param prevState
+   * @param snapshot
+   */
   componentDidUpdate(prevProps, prevState, snapshot) {
     const { remote } = this.props;
     // If remote document has changed:
@@ -50,6 +60,15 @@ class TextEditor extends React.Component {
     }
   }
 
+  /**
+   * HANDLE KEY COMMAND
+   * ==================================================
+   * This function is called every time a key command
+   * is invoked by the user, example cmd + b
+   * @param command
+   * @param editorState
+   * @returns {string}
+   */
   handleKeyCommand(command, editorState) {
     const newState = RichUtils.handleKeyCommand(editorState, command);
     if (newState) {
@@ -59,6 +78,14 @@ class TextEditor extends React.Component {
     return 'not-handled';
   }
 
+  /**
+   * ON CHANGE
+   * ===================================
+   * This function is called every time the editor
+   * needs to update it's internal data,
+   * example: when user types some text
+   * @param editorState
+   */
   onChange(editorState) {
     // Update editor state
     this.setState({editorState});
