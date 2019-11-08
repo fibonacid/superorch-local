@@ -23,7 +23,6 @@ describe('SideBar Component', () => {
     it('Should renderer without errors', () => {
       const component = findByTestAttr(wrapper, 'SideBarComponent');
       expect(component.length).toBe(1);
-      expect(toJson(wrapper)).toMatchSnapshot();
     });
   });
 

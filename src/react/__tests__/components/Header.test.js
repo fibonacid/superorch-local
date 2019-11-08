@@ -21,7 +21,6 @@ describe('Header Component', () => {
     it('Should renderer without errors', () => {
       const component = findByTestAttr(wrapper, 'HeaderComponent');
       expect(component.length).toBe(1);
-      expect(toJson(wrapper)).toMatchSnapshot();
     });
     it('Should have a title', () => {
       const title = findByTestAttr(wrapper, 'title');

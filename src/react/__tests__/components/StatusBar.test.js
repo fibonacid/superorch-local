@@ -24,7 +24,6 @@ describe('StatusBar Component', () => {
     it('Should renderer without errors', () => {
       const component = findByTestAttr(wrapper, 'StatusBarComponent');
       expect(component.length).toBe(1);
-      expect(toJson(wrapper)).toMatchSnapshot();
     });
   });
 
