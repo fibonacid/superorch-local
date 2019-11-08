@@ -1,3 +1,5 @@
+// @flow
+
 import React from "react";
 import styled from 'styled-components';
 import {
@@ -5,7 +7,6 @@ import {
   convertFromRaw,
   Editor,
   EditorState,
-  ContentState,
   RichUtils,
 } from 'draft-js';
 
@@ -27,9 +28,7 @@ class TextEditor extends React.Component {
     super(props);
 
     this.state = {
-      editorState: EditorState.createWithContent(
-        ContentState.createFromText(props.shared)
-      )
+      editorState: EditorState.createEmpty()
     };
 
     this.onChange = this.onChange.bind(this);
@@ -39,13 +38,12 @@ class TextEditor extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    const { shared } = this.props;
-    // If shared document has changed:
-    if (prevProps.shared !== shared) {
+    const { remote } = this.props;
+    // If remote document has changed:
+    if (prevProps.remote.input.value !== remote.input.value) {
       // Update editorState with new content
-      const newContent = convertFromRaw(JSON.parse(this.props.shared));
+      const newContent = convertFromRaw(JSON.parse(remote.input.value));
       //console.log(newContent);
-
       this.setState({
         editorState: EditorState.createWithContent(newContent)
       })
@@ -62,11 +60,16 @@ class TextEditor extends React.Component {
   }
 
   onChange(editorState) {
+    // Update editor state
     this.setState({editorState});
-    const contentState = editorState.getCurrentContent();
-    const raw = convertToRaw(contentState);
-    this.props.send(JSON.stringify(raw));
-    console.log()
+    // If some text were added:
+    //if (editorState.getLastChangeType() === "insert-characters") {
+      // Extrapolate raw contentState
+      const contentState = editorState.getCurrentContent();
+      const raw = convertToRaw(contentState);
+      // And send it the socket server as a string
+      this.props.textInput(JSON.stringify(raw));
+    //}
   }
 
   render() {

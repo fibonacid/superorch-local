@@ -39,3 +39,23 @@ export const populateUserList = (users) => ({
   type: actionTypes.USER_LIST,
   users
 });
+
+export const textInput = (data) => ({
+  type: actionTypes.TEXT_INPUT,
+  data
+});
+
+export const textInputReceived = (data) => ({
+  type: actionTypes.TEXT_INPUT_RECEIVED,
+  data
+});
+
+export const execText = (data) => ({
+  type: actionTypes.EXEC_TEXT,
+  data
+});
+
+export const execTextReceived = (data) => ({
+  type: actionTypes.EXEC_TEXT_RECEIVED,
+  data
+});

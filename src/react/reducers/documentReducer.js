@@ -1,8 +1,8 @@
 import {actionTypes} from "../actions/actionTypes";
 
 export const initialState = {
-  shared: "/* Initial Text */",
-  modified: false,
+  input: { value: "", author: "" },
+  exec: { value: "", author: "" }
 };
 
 export const documentReducer = (state=initialState, action) => {
@@ -12,6 +12,22 @@ export const documentReducer = (state=initialState, action) => {
           ...state,
           shared: action.data.message
         };
+    case actionTypes.TEXT_INPUT_RECEIVED:
+      return {
+        ...state,
+        input: {
+          value: action.data.value,
+          author: action.data.author
+        }
+      };
+    case actionTypes.EXEC_TEXT_RECEIVED:
+      return {
+        ...state,
+        exec: {
+          value: action.data.value,
+          author: action.data.author
+        }
+      };
     default:
       return state;
   }

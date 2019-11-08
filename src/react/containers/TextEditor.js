@@ -1,13 +1,16 @@
 import {connect} from 'react-redux';
-import {addMessage} from "../actions/actions";
+import {execText, textInput} from "../actions/actions";
 import TextEditor from "../components/TextEditor";
 
 const mapStateToProps = state => ({
-  shared: state.chat.document.shared
+  remote: {
+    ...state.chat.document
+  }
 });
 
 const mapDispatchToProps = dispatch => ({
-  send: (message) => dispatch(addMessage(message))
+  textInput: (data) => dispatch(textInput(data)),
+  execText: (data) => dispatch(execText(data))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TextEditor);
