@@ -7,11 +7,13 @@ import {
   Editor,
   EditorState,
   getDefaultKeyBinding,
+  CompositeDecorator,
   KeyBindingUtil,
   Modifier,
   RichUtils
 } from 'draft-js';
-import {getSelectedBlocksList, getSelectedTextBlocks} from '../utils/draftjs';
+import {findWithRegex, getSelectedBlocksList, getSelectedTextBlocks} from '../utils/draftjs';
+import {lowerCasedProps} from "../utils/common";
 
 
 // ----------------------
@@ -21,8 +23,6 @@ import {getSelectedBlocksList, getSelectedTextBlocks} from '../utils/draftjs';
 const StyledWrapper = styled.div`
    flex: 1;
 `;
-
-
 
 // -----------------------
 // Key Binding Function
@@ -37,6 +37,21 @@ const keyBindingFn = (e) => {
   return getDefaultKeyBinding(e);
 };
 
+// ------------------------
+// Entities
+// ------------------------
+
+
+// ------------------------
+// Strategies
+// ------------------------
+
+const UNIVERSAL_REGEX =  /\#[\w\u0590-\u05ff]+/g;
+
+function everythingStrategy(contentBlock, callback, contentState) {
+  findWithRegex(UNIVERSAL_REGEX, contentBlock, callback);
+}
+
 
 
 // ------------------------
@@ -47,9 +62,17 @@ export default class TextEditor extends React.Component {
 
   constructor(props) {
     super(props);
+
+    const compositeDecorator = new CompositeDecorator([
+      {
+        strategy: everythingStrategy,
+        component: SignedSpan,
+      },
+    ]);
+
     // Initialize component state.
     this.state = {
-      editorState: EditorState.createEmpty()
+      editorState: EditorState.createEmpty(compositeDecorator)
     };
 
     this.setDomEditorRef = ref => this.domEditor = ref;
@@ -79,10 +102,11 @@ export default class TextEditor extends React.Component {
     if (prevProps.remote.input.value !== remote.input.value) {
       // Update editorState with new content
       const newContent = convertFromRaw(JSON.parse(remote.input.value));
+      const newState = EditorState.push(this.state.editorState, newContent, "change-block-data");
       //console.log(newContent);
       this.setState({
-        editorState: EditorState.createWithContent(newContent)
-      })
+        editorState: newState
+      });
     }
   }
 
@@ -161,4 +185,29 @@ export default class TextEditor extends React.Component {
       </StyledWrapper>
     )
   }
+}
+
+
+
+// ------------------------
+// Decorator Components
+// ------------------------
+
+/**
+ * SIGNED SPAN
+ * ================
+ * @param props
+ * @returns {*}
+ * @constructor
+ */
+function SignedSpan(props) {
+  const style = {
+    color: "green",
+    textDecoration: "underline"
+  };
+  return (
+    <span {...lowerCasedProps(props)} style={style}>
+      {props.children}
+    </span>
+  );
 }
