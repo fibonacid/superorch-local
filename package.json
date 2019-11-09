@@ -52,6 +52,7 @@
     "draft-js": "~0.10.5",
     "electron-updater": "^4.2.0",
     "enzyme": "^3.10.0",
+    "immutable": "^4.0.0-rc.12",
     "lodash": "^4.17.15",
     "prop-types": "^15.7.2",
     "react": "^16.1.1",
