@@ -41,9 +41,24 @@ const keyBindingFn = (e) => {
 // Entities
 // ------------------------
 
+function createLinkEntity(editorState, selectionState) {
+  const contentState = editorState.getCurrentContent();
+  const contentStateWithEntity = contentState.createEntity(
+    'LINK',
+    'MUTABLE',
+    {url: 'http://www.zombo.com'}
+  );
+  const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
+  const contentStateWithLink = Modifier.applyEntity(
+    contentStateWithEntity,
+    selectionState,
+    entityKey
+  );
+  return EditorState.push(editorState, contentStateWithLink);
+}
 
 // ------------------------
-// Strategies
+// DECORATOR
 // ------------------------
 
 const UNIVERSAL_REGEX =  /\#[\w\u0590-\u05ff]+/g;
@@ -52,7 +67,33 @@ function everythingStrategy(contentBlock, callback, contentState) {
   findWithRegex(UNIVERSAL_REGEX, contentBlock, callback);
 }
 
+function findLinkEntities(contentBlock, callback, contentState) {
+  contentBlock.findEntityRanges(
+    (character) => {
+      const entityKey = character.getEntity();
+      return (
+        entityKey !== null &&
+        contentState.getEntity(entityKey).getType() === 'LINK'
+      );
+    },
+    callback,
+  );
+}
 
+const compositeDecorator = new CompositeDecorator([
+  {
+    strategy: everythingStrategy,
+    component: LinkSpan,
+  },
+  {
+    strategy: (
+      contentBlock,
+      callback,
+      contentState
+    ) => findLinkEntities(contentBlock, callback, contentState),
+    component: LinkSpan,
+  }
+]);
 
 // ------------------------
 // Text Editor Component
@@ -62,13 +103,6 @@ export default class TextEditor extends React.Component {
 
   constructor(props) {
     super(props);
-
-    const compositeDecorator = new CompositeDecorator([
-      {
-        strategy: everythingStrategy,
-        component: SignedSpan,
-      },
-    ]);
 
     // Initialize component state.
     this.state = {
@@ -103,12 +137,12 @@ export default class TextEditor extends React.Component {
       // Update editorState with new content
       const newContent = convertFromRaw(JSON.parse(remote.input.value));
       const newState = EditorState.push(this.state.editorState, newContent, "change-block-data");
-      //console.log(newContent);
       this.setState({
         editorState: newState
-      });
+      })
     }
   }
+
 
   /**
    * HANDLE KEY COMMAND
@@ -132,14 +166,9 @@ export default class TextEditor extends React.Component {
 
     // If a custom event has been invoked:
     if (command === "execute-selected-block") {
-      // Get Selected blocks
-      let selectedText = getSelectedTextBlocks(editorState);
-      // If text isn't empty or undefined:
-      if (selectedText) {
-        // Execute selected block of text
-        //this.props.execText(selectedText);
-        console.log(JSON.stringify(selectedText));
-      }
+      const selectionState = editorState.getSelection();
+      const newState = createLinkEntity(editorState, selectionState);
+      this.onChange(newState);
       return 'handled';
     }
     return 'not-handled';
@@ -200,9 +229,9 @@ export default class TextEditor extends React.Component {
  * @returns {*}
  * @constructor
  */
-function SignedSpan(props) {
+function LinkSpan(props) {
   const style = {
-    color: "green",
+    color: "blue",
     textDecoration: "underline"
   };
   return (
