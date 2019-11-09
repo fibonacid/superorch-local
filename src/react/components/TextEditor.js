@@ -138,9 +138,7 @@ export default class TextEditor extends React.Component {
     const raw = convertToRaw(contentState);
 
     // And send it the socket server as a string
-    _.debounce(() => {
-      this.props.textInput(JSON.stringify(raw));
-    }, 500);
+    this.props.textInput(JSON.stringify(raw));
   }
 
   /**
