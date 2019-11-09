@@ -105,17 +105,18 @@ export default class TextEditor extends React.Component {
       this.onChange(newState);
       return 'handled';
     }
+
     // If a custom event has been invoked:
     if (command === "execute-selected-block") {
       // Get Selected blocks
-      const selectedBlocks = getSelectedBlocksList(editorState);
-      let text = "";
-      // Make sure that carriage return is counted
-      selectedBlocks.forEach(block => {
-        text = `${block.getText()}\n`
-      });
-      // Execute selected block of text
-      this.props.execText(text);
+      let selectedText = getSelectedTextBlocks(editorState);
+      // If text isn't empty or undefined:
+      if (selectedText) {
+        // Execute selected block of text
+        //this.props.execText(selectedText);
+        console.log(JSON.stringify(selectedText));
+      }
+      return 'handled';
     }
     return 'not-handled';
   }
