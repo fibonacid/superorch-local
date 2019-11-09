@@ -1,32 +1,49 @@
 import React from "react";
 import styled from 'styled-components';
+import _ from 'lodash';
 import {
   convertToRaw,
   convertFromRaw,
   Editor,
   EditorState,
-  RichUtils,
+  getDefaultKeyBinding,
   KeyBindingUtil,
-  getDefaultKeyBinding
+  Modifier,
+  RichUtils
 } from 'draft-js';
-import {
-  getSelectedBlocksList,
-} from 'draftjs-utils'
+import {getSelectedBlocksList, getSelectedTextBlocks} from '../utils/draftjs';
 
-const { hasCommandModifier } = KeyBindingUtil;
 
-// =======================================
-//    STYLES
-// =======================================
+// ----------------------
+// Styled Components
+// ----------------------
+
 const StyledWrapper = styled.div`
    flex: 1;
 `;
 
-/**=======================================
- *    TEXT EDITOR
- *========================================
- */
-class TextEditor extends React.Component {
+
+
+// -----------------------
+// Key Binding Function
+// -----------------------
+
+const { hasCommandModifier } = KeyBindingUtil;
+
+const keyBindingFn = (e) => {
+  if (e.keyCode === 13 /* `CR` key */ && hasCommandModifier(e)) {
+    return 'execute-selected-block';
+  }
+  return getDefaultKeyBinding(e);
+};
+
+
+
+// ------------------------
+// Text Editor Component
+// ------------------------
+
+export default class TextEditor extends React.Component {
 
   constructor(props) {
     super(props);
@@ -34,12 +51,14 @@ class TextEditor extends React.Component {
     this.state = {
       editorState: EditorState.createEmpty()
     };
+
     this.setDomEditorRef = ref => this.domEditor = ref;
+
     // This function forces the editor to be focused.
     this.focus = () => this.domEditor.focus();
-    // Event Handler Bindings.
+
+    // Event Handler Bindings
     this.onChange = this.onChange.bind(this);
-    this.handleKeyCommand = this.handleKeyCommand.bind(this);
   }
 
   /**
@@ -77,7 +96,9 @@ class TextEditor extends React.Component {
    * @returns {string}
    */
   handleKeyCommand(command, editorState) {
+
     const newState = RichUtils.handleKeyCommand(editorState, command);
+
     // If a Rich Text Command has been invoke:
     if (newState) {
       // Update state
@@ -110,29 +131,22 @@ class TextEditor extends React.Component {
   onChange(editorState) {
     // Update editor state
     this.setState({editorState});
-    // If some text were added:
-    //if (editorState.getLastChangeType() === "insert-characters") {
-      // Extrapolate raw contentState
-      const contentState = editorState.getCurrentContent();
-      const raw = convertToRaw(contentState);
-      // And send it the socket server as a string
+
+    // Extrapolate raw contentState
+    const contentState = editorState.getCurrentContent();
+    const raw = convertToRaw(contentState);
+
+    // And send it the socket server as a string
+    _.debounce(() => {
       this.props.textInput(JSON.stringify(raw));
-    //}
+    }, 500);
   }
 
   /**
-   *
-   * @param e
-   * @returns {string|?DraftEditorCommand}
+   * RENDER
+   * ============
+   * @returns {*}
    */
-  customKeyBindingFn(e) {
-    // CMD + ENTER
-    if (e.keyCode === 13 /* `CR` key */ && hasCommandModifier(e)) {
-      return 'execute-selected-block';
-    }
-    return getDefaultKeyBinding(e);
-  }
-
   render() {
     return (
       <StyledWrapper
@@ -143,12 +157,9 @@ class TextEditor extends React.Component {
           editorState={this.state.editorState}
           onChange={this.onChange}
           handleKeyCommand={this.handleKeyCommand}
-          keyBindingFn={this.customKeyBindingFn}
+          keyBindingFn={keyBindingFn}
         />
       </StyledWrapper>
     )
   }
 }
-
-
-export default TextEditor;
