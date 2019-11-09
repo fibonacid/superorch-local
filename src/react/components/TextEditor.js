@@ -41,6 +41,12 @@ const keyBindingFn = (e) => {
 // Entities
 // ------------------------
 
+/**
+ *
+ * @param editorState
+ * @param selectionState
+ * @returns {EditorState}
+ */
 function createLinkEntity(editorState, selectionState) {
   const contentState = editorState.getCurrentContent();
   const contentStateWithEntity = contentState.createEntity(
@@ -57,16 +63,28 @@ function createLinkEntity(editorState, selectionState) {
   return EditorState.push(editorState, contentStateWithLink);
 }
 
-// ------------------------
-// DECORATOR
-// ------------------------
-
-const UNIVERSAL_REGEX =  /\#[\w\u0590-\u05ff]+/g;
-
-function everythingStrategy(contentBlock, callback, contentState) {
-  findWithRegex(UNIVERSAL_REGEX, contentBlock, callback);
+function createExecBlockEntity(editorState, selectionState) {
+  const contentState = editorState.getCurrentContent();
+  const contentStateWithEntity = contentState.createEntity(
+    'EXEC_BLOCK',
+    'MUTABLE',
+    { times: 1 }
+  );
+  const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
+  const contentStateWithLink = Modifier.applyEntity(
+    contentStateWithEntity,
+    selectionState,
+    entityKey
+  );
+  return EditorState.push(editorState, contentStateWithLink);
 }
 
+/**
+ *
+ * @param contentBlock
+ * @param callback
+ * @param contentState
+ */
 function findLinkEntities(contentBlock, callback, contentState) {
   contentBlock.findEntityRanges(
     (character) => {
@@ -78,20 +96,47 @@ function findLinkEntities(contentBlock, callback, contentState) {
     },
     callback,
   );
-}
+};
+
+/**
+ *
+ * @param contentBlock
+ * @param callback
+ * @param contentState
+ */
+function findExecBlockEntities(contentBlock, callback, contentState) {
+  contentBlock.findEntityRanges(
+    (character) => {
+      const entityKey = character.getEntity();
+      return (
+        entityKey !== null &&
+        contentState.getEntity(entityKey).getType() === 'EXEC_BLOCK'
+      );
+    },
+    callback,
+  );
+};
+
+// ------------------------
+// DECORATOR
+// ------------------------
 
 const compositeDecorator = new CompositeDecorator([
-  {
-    strategy: everythingStrategy,
-    component: LinkSpan,
-  },
   {
     strategy: (
       contentBlock,
       callback,
       contentState
     ) => findLinkEntities(contentBlock, callback, contentState),
-    component: LinkSpan,
+    component: LinkComponent,
+  },
+  {
+    strategy: (
+      contentBlock,
+      callback,
+      contentState
+    ) => findExecBlockEntities(contentBlock, callback, contentState),
+    component: ExecBlockComponent,
   }
 ]);
 
@@ -154,21 +199,29 @@ export default class TextEditor extends React.Component {
    * @returns {string}
    */
   handleKeyCommand(command, editorState) {
-
-    const newState = RichUtils.handleKeyCommand(editorState, command);
-
-    // If a Rich Text Command has been invoke:
-    if (newState) {
-      // Update state
-      this.onChange(newState);
-      return 'handled';
-    }
-
     // If a custom event has been invoked:
     if (command === "execute-selected-block") {
       const selectionState = editorState.getSelection();
-      const newState = createLinkEntity(editorState, selectionState);
-      this.onChange(newState);
+
+      // Split selection into content boxes
+      const anchorKey = selectionState.getAnchorKey();
+      const currentContent = editorState.getCurrentContent();
+      const currentContentBlock = currentContent.getBlockForKey(anchorKey);
+      const entityKey = currentContentBlock.getEntityAt(0);
+
+      // If entity already exists:
+      if (entityKey) {
+        // Modify entity metadata
+        const { data } = currentContent.getEntity(entityKey);
+        currentContent.replaceEntityData(entityKey, {
+          times: data.times + 1
+        })
+      }
+      // If entity doesn't exists:
+      else {
+        const newState = createExecBlockEntity(editorState, selectionState);
+        this.onChange(newState);
+      }
       return 'handled';
     }
     return 'not-handled';
@@ -229,7 +282,7 @@ export default class TextEditor extends React.Component {
  * @returns {*}
  * @constructor
  */
-function LinkSpan(props) {
+function LinkComponent(props) {
   const style = {
     color: "blue",
     textDecoration: "underline"
@@ -237,6 +290,29 @@ function LinkSpan(props) {
   return (
     <span {...lowerCasedProps(props)} style={style}>
       {props.children}
+    </span>
+  );
+}
+
+/**
+ *
+ * @param props
+ * @returns {*}
+ * @constructor
+ */
+function ExecBlockComponent(props) {
+  const style = {
+    background: "yellow",
+  };
+
+  // Get data
+  const { entityKey, contentState } = props;
+  const { data } = contentState.getEntity(entityKey);
+
+  return (
+    <span {...lowerCasedProps(props)} style={style}>
+      {props.children}
+      <span>{data.times}</span>
     </span>
   );
 }
