@@ -275,6 +275,24 @@ export default class TextEditor extends React.Component {
   }
 
   /**
+   * FORCE RE-RENDER EDITOR
+   * ==========================
+   * This function resets the editor state from
+   * a snapshot provided as an argument.
+   * This can be used to make sure that every decorator
+   * is rendered with the latest data.
+   * For example i don't know why, but after i update
+   * the data on an entity it takes some additional mouse events
+   * to fire before the decorator responsible for the entity to
+   * be re rendered.
+   */
+  forceReRenderEditor(editorState) {
+    this.setState({
+      editorState: EditorState.set(editorState, { decorator: compositeDecorator })
+    })
+  }
+
+  /**
    * RENDER
    * ============
    * @returns {*}
