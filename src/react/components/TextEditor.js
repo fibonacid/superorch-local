@@ -162,6 +162,7 @@ export default class TextEditor extends React.Component {
 
     // Event Handler Bindings
     this.onChange = this.onChange.bind(this);
+    this.handleKeyCommand = this.handleKeyCommand.bind(this);
   }
 
   /**
@@ -202,30 +203,51 @@ export default class TextEditor extends React.Component {
   handleKeyCommand(command, editorState) {
     // If a custom event has been invoked:
     if (command === "execute-selected-block") {
-      const selectionState = editorState.getSelection();
-
-      // Split selection into content boxes
-      const anchorKey = selectionState.getAnchorKey();
-      const currentContent = editorState.getCurrentContent();
-      const currentContentBlock = currentContent.getBlockForKey(anchorKey);
-      const entityKey = currentContentBlock.getEntityAt(0);
-
-      // If entity already exists:
-      if (entityKey) {
-        // Modify entity metadata
-        const { data } = currentContent.getEntity(entityKey);
-        currentContent.replaceEntityData(entityKey, {
-          times: data.times + 1
-        })
-      }
-      // If entity doesn't exists:
-      else {
-        const newState = createExecBlockEntity(editorState, selectionState);
-        this.onChange(newState);
-      }
+      this.onExecuteSelectedBlock(editorState);
       return 'handled';
     }
     return 'not-handled';
+  }
+
+
+
+  /**
+   * ======================================================
+   * ON EXECUTE SELECTED BLOCK
+   * ======================================================
+   * This method is an event handler for the command
+   * "execute-selected-block". When the command is
+   * intercepted by handleKeyCommand if the selection
+   * doesn't contain an entity it creates one of type EXEC_BLOCK,
+   * if it doesn't it updates it's metadata.
+   * @param editorState
+   */
+  onExecuteSelectedBlock(editorState) {
+    const selectionState = editorState.getSelection();
+
+    // Split selection into content boxes
+    const anchorKey = selectionState.getAnchorKey();
+    const currentContent = editorState.getCurrentContent();
+    const currentContentBlock = currentContent.getBlockForKey(anchorKey);
+    const entityKey = currentContentBlock.getEntityAt(0);
+
+    // If entity already exists:
+    if (entityKey) {
+      // Modify entity metadata
+      const { data } = currentContent.getEntity(entityKey);
+      const newContent = currentContent.mergeEntityData(entityKey, {
+        times: data.times + 1,
+        modified: true
+      });
+      const newState = EditorState.push(editorState, newContent, "change-block-data");
+      this.onChange(newState);
+
+    }
+    // If entity doesn't exists:
+    else {
+      const newState = createExecBlockEntity(editorState, selectionState);
+      this.onChange(newState);
+    }
   }
 
   /**
