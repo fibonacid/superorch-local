@@ -141,6 +141,17 @@ const compositeDecorator = new CompositeDecorator([
 ]);
 
 // ------------------------
+// Block Style
+// ------------------------
+
+function myBlockStyleFn(contentBlock) {
+  const type = contentBlock.getType();
+  if (type === 'blockquote') {
+    return 'superFancyBlockquote';
+  }
+}
+
+// ------------------------
 // Text Editor Component
 // ------------------------
 
@@ -311,6 +322,7 @@ export default class TextEditor extends React.Component {
           onChange={this.onChange}
           handleKeyCommand={this.handleKeyCommand}
           keyBindingFn={keyBindingFn}
+          blockStyleFn={this.blockStyleFn}
           readOnly={this.state.readOnly}
         />
       </StyledWrapper>
