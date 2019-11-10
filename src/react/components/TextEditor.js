@@ -242,6 +242,9 @@ export default class TextEditor extends React.Component {
       const newState = EditorState.push(editorState, newContent, "change-block-data");
       this.onChange(newState);
 
+      // Force decorators to be re rendered.
+      // todo: There might be a better way to achieve this
+      this.forceReRenderEditor(editorState);
     }
     // If entity doesn't exists:
     else {
