@@ -41,12 +41,7 @@ const keyBindingFn = (e) => {
 // Entities
 // ------------------------
 
-/**
- *
- * @param editorState
- * @param selectionState
- * @returns {EditorState}
- */
+
 function createLinkEntity(editorState, selectionState) {
   const contentState = editorState.getCurrentContent();
   const contentStateWithEntity = contentState.createEntity(
@@ -63,12 +58,14 @@ function createLinkEntity(editorState, selectionState) {
   return EditorState.push(editorState, contentStateWithLink);
 }
 
+
+
 function createExecBlockEntity(editorState, selectionState) {
   const contentState = editorState.getCurrentContent();
   const contentStateWithEntity = contentState.createEntity(
     'EXEC_BLOCK',
     'MUTABLE',
-    { times: 1 }
+    { times: 1, modified: false }
   );
   const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
   const contentStateWithLink = Modifier.applyEntity(
@@ -79,12 +76,8 @@ function createExecBlockEntity(editorState, selectionState) {
   return EditorState.push(editorState, contentStateWithLink);
 }
 
-/**
- *
- * @param contentBlock
- * @param callback
- * @param contentState
- */
+
+
 function findLinkEntities(contentBlock, callback, contentState) {
   contentBlock.findEntityRanges(
     (character) => {
@@ -96,14 +89,10 @@ function findLinkEntities(contentBlock, callback, contentState) {
     },
     callback,
   );
-};
+}
 
-/**
- *
- * @param contentBlock
- * @param callback
- * @param contentState
- */
+
+
 function findExecBlockEntities(contentBlock, callback, contentState) {
   contentBlock.findEntityRanges(
     (character) => {
@@ -115,10 +104,10 @@ function findExecBlockEntities(contentBlock, callback, contentState) {
     },
     callback,
   );
-};
+}
 
 // ------------------------
-// DECORATOR
+// Decorator
 // ------------------------
 
 const compositeDecorator = new CompositeDecorator([
