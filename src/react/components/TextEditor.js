@@ -257,10 +257,14 @@ export default class TextEditor extends React.Component {
    * needs to update it's internal data,
    * example: when user types some text
    * @param editorState
+   * @param callback
    */
-  onChange(editorState) {
+  onChange(editorState, callback) {
     // Update editor state
-    this.setState({editorState});
+    this.setState({editorState}, callback);
+
+    const changeType = editorState.getLastChangeType();
+    console.log(changeType);
 
     // Extrapolate raw contentState
     const contentState = editorState.getCurrentContent();
