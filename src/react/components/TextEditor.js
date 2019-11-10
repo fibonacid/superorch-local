@@ -185,18 +185,19 @@ export default class TextEditor extends React.Component {
       const newContent = convertFromRaw(JSON.parse(remote.input.value));
       const newState = EditorState.push(this.state.editorState, newContent, "change-block-data");
 
-      /*
       // Get previous selection
       const prevSelection = prevState.editorState.getSelection();
 
       // Override new selection with old one.
       // This is done because selection should be handled privately, so that
       // people can write at the same time without having the text anchor constantly moving around
-      const newStateWithoutSelection = EditorState.forceSelection(newState, prevSelection);
-       */
-
+      const newStateWithoutSelection = EditorState.set(newState, {
+        selection: prevSelection,
+        currentContent: newContent,
+      });
+      // Set local state
       this.setState({
-        editorState: newState
+        editorState: newStateWithoutSelection
       });
     }
   }
@@ -220,7 +221,12 @@ export default class TextEditor extends React.Component {
     return 'not-handled';
   }
 
-
+  textBot() {
+    const { editorState } = this.state;
+    return setTimeout(() => {
+      //editorState.
+    }, 2000)
+  }
 
   /**
    * ======================================================
