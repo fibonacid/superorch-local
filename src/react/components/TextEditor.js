@@ -362,13 +362,16 @@ function LinkComponent(props) {
  * @constructor
  */
 function ExecBlockComponent(props) {
-  const style = {
-    background: props.modified ? "red" : "yellow",
-  };
-
   // Get data
   const { entityKey, contentState } = props;
   const { data } = contentState.getEntity(entityKey);
+
+  const style = {
+    background: data.modified
+      ? "rgba(255, 0, 0, 0.5)"
+      : "rgba(255, 250, 81, 0.5)",
+    display: "block"
+  };
 
   return (
     <span {...lowerCasedProps(props)} style={style}>
