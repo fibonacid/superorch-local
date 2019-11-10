@@ -151,7 +151,8 @@ export default class TextEditor extends React.Component {
 
     // Initialize component state.
     this.state = {
-      editorState: EditorState.createEmpty(compositeDecorator)
+      editorState: EditorState.createEmpty(compositeDecorator),
+      readOnly: false
     };
 
     this.setDomEditorRef = ref => this.domEditor = ref;
@@ -263,6 +264,7 @@ export default class TextEditor extends React.Component {
           onChange={this.onChange}
           handleKeyCommand={this.handleKeyCommand}
           keyBindingFn={keyBindingFn}
+          readOnly={this.state.readOnly}
         />
       </StyledWrapper>
     )
