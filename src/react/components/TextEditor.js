@@ -330,7 +330,7 @@ function LinkComponent(props) {
  */
 function ExecBlockComponent(props) {
   const style = {
-    background: "yellow",
+    background: props.modified ? "red" : "yellow",
   };
 
   // Get data
