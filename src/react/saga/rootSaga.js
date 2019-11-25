@@ -5,8 +5,8 @@ import {textInputWatcher} from "./textInputSaga";
 
 export function* rootSaga(params) {
   yield all([
-    addMessageWatcher(params),
+    /*addMessageWatcher(params),
     textInputWatcher(params),
-    execTextWatcher(params)
+    execTextWatcher(params)*/
   ])
 }
