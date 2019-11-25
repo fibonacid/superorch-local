@@ -16,9 +16,10 @@ const StyledTitle = styled.h1`
 function Header(props) {
   return (
     <StyledContainer data-test={'HeaderComponent'}>
-      <StyledTitle data-test={'title'}>
-        {props.appName}
-      </StyledTitle>
+      {/*<StyledTitle data-test={'title'}>
+        {props.appName || "ColliderChat"}
+      </StyledTitle>*/}
+      <SocketSettings/>
     </StyledContainer>
   )
 }
