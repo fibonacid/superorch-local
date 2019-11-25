@@ -14,6 +14,7 @@ import SideBar from "./containers/SideBar";
 import Header from "./containers/Header";
 import TextEditor from "./containers/TextEditor";
 import StatusBar from "./containers/StatusBar";
+import SocketSettings from "./containers/SocketSettings";
 
 /* =============================================== */
 /*    REDUX                                        */
@@ -97,11 +98,11 @@ class App extends Component {
         <StyledContainer className="App">
             <GlobalStyle/>
             <Header />
-              <StyledWrapper>
+            <StyledWrapper>
               <SideBar />
               <TextEditor />
               <Notifications />
-              </StyledWrapper>
+            </StyledWrapper>
             <StatusBar />
           </StyledContainer>
       </Provider>
