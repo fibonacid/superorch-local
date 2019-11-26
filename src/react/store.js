@@ -10,10 +10,9 @@ import username from './utils/name'
 const sagaMiddleware = createSagaMiddleware();
 
 const reduxWebsocketMiddleware = reduxWebsocket({
-    prefix: "WEBSOCKET_",
-    reconnectInterval: 2000,
+    /*reconnectInterval: 10000,
     reconnectOnClose: true,
-    //onOpen: (socket) => {}
+    onOpen: (socket) => {}*/
 });
 
 export default function configureStore(preloadedState) {
