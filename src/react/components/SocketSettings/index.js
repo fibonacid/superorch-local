@@ -1,5 +1,5 @@
 import SocketSettings from "./SocketSettings";
-import {connect as connectSocket} from "@giantmachines/redux-websocket/dist";
+import {connect as connectSocket} from "@giantmachines/redux-websocket";
 import {connect} from "react-redux";
 
 const mapDispatchToProps = (dispatch) => ({
