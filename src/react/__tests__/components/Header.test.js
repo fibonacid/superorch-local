@@ -1,6 +1,6 @@
 import React from "react";
 import {shallow} from 'enzyme'
-import Header from "../../components/Header";
+import Header from "../../components/Header/Header";
 import {findByTestAttr} from "../../utils/testing";
 import toJson from "enzyme-to-json";
 

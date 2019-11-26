@@ -1,6 +1,6 @@
 import React from "react";
 import {shallow} from 'enzyme'
-import StatusBar from "../../components/StatusBar";
+import StatusBar from "../../components/StatusBar/StatusBar";
 import {findByTestAttr} from "../../utils/testing";
 import toJson from "enzyme-to-json";
 

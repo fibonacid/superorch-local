@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-import SideBar from "../components/SideBar";
+import SideBar from "./SideBar";
 
 const mapStateToProps = state => ({
   users: state.chat.users

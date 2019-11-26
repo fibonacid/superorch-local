@@ -1,6 +1,6 @@
 import React from "react";
 import {shallow} from 'enzyme'
-import Notifications from "../../components/Notifications";
+import Notifications from "../../components/Notifications/Notifications";
 import {findByTestAttr} from "../../utils/testing";
 import toJson from "enzyme-to-json";
 

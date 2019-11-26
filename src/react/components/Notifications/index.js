@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-import Notifications from "../components/Notifications";
+import Notifications from "./Notifications";
 
 const mapStateToProps = state => ({
   notifications: state.flash

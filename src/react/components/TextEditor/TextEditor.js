@@ -12,8 +12,8 @@ import {
   Modifier,
   RichUtils
 } from 'draft-js';
-import {findWithRegex, getSelectedBlocksList, getSelectedTextBlocks} from '../utils/draftjs';
-import {lowerCasedProps} from "../utils/common";
+import {findWithRegex, getSelectedBlocksList, getSelectedTextBlocks} from '../../utils/draftjs';
+import {lowerCasedProps} from "../../utils/common";
 
 
 // ----------------------

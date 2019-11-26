@@ -9,11 +9,11 @@ import normalize from "styled-normalize";
 import reset from "styled-reset";
 
 // Containers
-import Notifications from "./containers/Notifications";
-import SideBar from "./containers/SideBar";
-import Header from "./containers/Header";
-import TextEditor from "./containers/TextEditor";
-import StatusBar from "./containers/StatusBar";
+import Notifications from "./components/Notifications/index";
+import SideBar from "./components/SideBar/index";
+import Header from "./components/Header/index";
+import TextEditor from "./components/TextEditor/index";
+import StatusBar from "./components/StatusBar/index";
 
 /* =============================================== */
 /*    REDUX                                        */

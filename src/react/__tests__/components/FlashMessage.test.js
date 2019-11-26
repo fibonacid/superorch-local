@@ -1,6 +1,6 @@
 import React from "react";
 import {shallow} from 'enzyme'
-import FlashMessage from "../../components/FlashMessage";
+import FlashMessage from "../../components/FlashMessage/FlashMessage";
 import {findByTestAttr} from "../../utils/testing";
 import toJson from "enzyme-to-json";
 

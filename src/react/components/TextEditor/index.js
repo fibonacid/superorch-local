@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
-import {execText, textInput} from "../actions/actions";
-import TextEditor from "../components/TextEditor";
+import {execText, textInput} from "../../actions/actions";
+import TextEditor from "./TextEditor";
 
 const mapStateToProps = state => ({
   remote: {

@@ -1,5 +1,5 @@
 import React from "react";
-import TextEditor from "../../components/TextEditor";
+import TextEditor from "../../components/TextEditor/TextEditor";
 import {shallow} from 'enzyme'
 import {findByTestAttr} from "../../utils/testing";
 import toJson from "enzyme-to-json";

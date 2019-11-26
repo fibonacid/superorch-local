@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-import StatusBar from "../components/StatusBar";
+import StatusBar from "./StatusBar";
 
 const mapStateToProps = state => ({
   appName: state.app.name,
