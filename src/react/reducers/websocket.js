@@ -9,11 +9,10 @@ const initialState = {
 
 const websocket = (state=initialState, action) => {
   switch(action.type) {
-    case actionTypes.WEBSOCKET_CONNECT:
-      return {
-        ...state,
-        connected: true
-      };
+    case actionTypes.WEBSOCKET_OPEN:
+      return {...state, connected: true };
+    case actionTypes.WEBSOCKET_CLOSED:
+      return { ...state, connected: false };
     default:
       return state
   }
