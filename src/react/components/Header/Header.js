@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types';
-import SocketSettings from "../containers/SocketSettings";
+import SocketSettings from "../SocketSettings/SocketSettings";
 
 const StyledContainer = styled.div`
   font-size: 18px;

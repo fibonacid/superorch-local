@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {connect as connectSocket} from '@giantmachines/redux-websocket';
-import InputURL from "../components/InputURL";
+import InputURL from "../InputURL/InputURL";
 
 function SocketSettings(props) {
   return (
