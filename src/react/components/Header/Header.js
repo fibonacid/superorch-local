@@ -9,8 +9,7 @@ const StyledContainer = styled.div`
   padding: 5px;
   flex: 0 0 auto;
   display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-between;
+  justify-content: center;
 `;
 
 const StyledTitle = styled.h1`
@@ -20,10 +19,9 @@ const StyledTitle = styled.h1`
 function Header(props) {
   return (
     <StyledContainer data-test={'HeaderComponent'}>
-      {/*<StyledTitle data-test={'title'}>
+      <StyledTitle data-test={'title'}>
         {props.appName || "ColliderChat"}
-      </StyledTitle>*/}
-      <SocketSettings/>
+      </StyledTitle>
     </StyledContainer>
   )
 }
