@@ -2,11 +2,19 @@ import React from 'react'
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro'
 
-export const StyledContainer = styled.div`
+const StyledContainer = styled.div`
   padding: 5px;
-  text-align: right;
   font-size: 14px;
   flex: 0 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const StyledConnected = styled.span`
+  color: ${props => props.isConnected
+    ? "green" : "red"
+  }
 `;
 
 function StatusBar(props) {
@@ -16,14 +24,21 @@ function StatusBar(props) {
       data-test={'StatusBarComponent'} >
       <span data-test={'app-info'}>
         {appName} {appVersion}
-    </span>
+      </span>
+      <StyledConnected
+        isConnected={props.isConnected}>
+        { props.isConnected
+          ? "connected"
+          : "not connected" }
+      </StyledConnected>
     </StyledContainer>
   )
 }
 
 StatusBar.propTypes = {
-  appName: PropTypes.string,
-  appVersion: PropTypes.string
+  appName: PropTypes.string.isRequired,
+  appVersion: PropTypes.string.isRequired,
+  isConnected: PropTypes.bool.isRequired
 };
 
 export default StatusBar;
