@@ -7,6 +7,7 @@ import styled from 'styled-components/macro';
 import {createGlobalStyle} from "styled-components";
 import normalize from "styled-normalize";
 import reset from "styled-reset";
+import {connect as connectSocket} from '@giantmachines/redux-websocket';
 
 // Containers
 import Notifications from "./components/Notifications/index";
@@ -89,6 +90,9 @@ class App extends Component {
         ipcRenderer.removeAllListeners(channels.APP_INFO);
       });
     }
+    // Connect to websocket
+    const url = process.env.REACT_APP_SOCKET_URL;
+    store.dispatch(connectSocket(url));
   }
 
   render() {
