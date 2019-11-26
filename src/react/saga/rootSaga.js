@@ -1,8 +1,10 @@
-import {all, call} from "redux-saga/effects";
-import {sendUsernameSaga, sendUsernameWatcher} from "./sendUsername";
+import {all} from "redux-saga/effects";
+import {sendUsernameWatcher} from "./sendUsername";
+import {receiveMessageWatcher} from "./receiveMessage";
 
 export function* rootSaga() {
   yield all([
-    sendUsernameWatcher()
+    sendUsernameWatcher(),
+    receiveMessageWatcher()
   ])
 }
