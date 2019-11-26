@@ -90,6 +90,9 @@ class App extends Component {
         ipcRenderer.removeAllListeners(channels.APP_INFO);
       });
     }
+  }
+
+  componentDidMount() {
     // Connect to websocket
     const url = process.env.REACT_APP_SOCKET_URL;
     store.dispatch(connectSocket(url));
