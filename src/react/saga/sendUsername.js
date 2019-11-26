@@ -7,12 +7,10 @@ import {send} from '@giantmachines/redux-websocket';
  * Every time a connection is opened send your username to the server
  */
 export function* sendUsernameWatcher() {
-  console.log('sendUsernameWatcher');
   yield takeEvery(actionTypes.WEBSOCKET_OPEN, sendUsernameSaga);
 }
 
 export function* sendUsernameSaga(action) {
-  console.log('sendUsernameSaga');
   // Get username.
   const username = yield select(selectUsername);
   // Send it as a message
