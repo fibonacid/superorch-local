@@ -1,12 +1,11 @@
-import {documentReducer} from '../../reducers/documentReducer';
+import document, {initialState} from '../../reducers/chat/document';
 import {actionTypes} from "../../actions/actionTypes";
-import {initialState} from "../../reducers/documentReducer";
 import _ from 'lodash'
 
 describe('document (Reducer)', () => {
 
   it('Should return the initial state', () => {
-    const result = documentReducer(undefined, {type:"foo"});
+    const result = document(undefined, {type:"foo"});
     expect(result).toEqual(initialState);
   });
 
@@ -16,7 +15,7 @@ describe('document (Reducer)', () => {
       data: { message: 'foo' }
     };
     const expectedResult = _.merge({}, initialState, { shared: "foo" });
-    const result = documentReducer(undefined, action);
+    const result = document(undefined, action);
     expect(result).toEqual(expectedResult);
   });
 
@@ -29,7 +28,7 @@ describe('document (Reducer)', () => {
     const expectedResult = _.merge({}, initialState, {
       input: { value: 'foo', author: "pablo" }
     });
-    const result = documentReducer(undefined, action);
+    const result = document(undefined, action);
     expect(result).toEqual(expectedResult);
   });
 
@@ -42,7 +41,7 @@ describe('document (Reducer)', () => {
     const expectedResult = _.merge({}, initialState, {
       exec: { value: 'foo', author: "pablo" }
     });
-    const result = documentReducer(undefined, action);
+    const result = document(undefined, action);
     expect(result).toEqual(expectedResult);
   });
 

@@ -1,6 +1,6 @@
 import { applyMiddleware, createStore } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import { rootReducer } from './reducers/rootReducer'
+import rootReducer from './reducers/root'
 import createSagaMiddleware from 'redux-saga';
 import {rootSaga} from "./saga/rootSaga";
 import {setupSocket} from './socket/client';
@@ -22,12 +22,12 @@ export default function configureStore(preloadedState) {
         reduxWebsocketMiddleware,
         sagaMiddleware
     ];
-    const middlewareEnhancer = applyMiddleware(...middlewares)
+    const middlewareEnhancer = applyMiddleware(...middlewares);
 
     const enhancers = [middlewareEnhancer];
     const composedEnhancers = composeWithDevTools(...enhancers);
 
-    const store = createStore(rootReducer, preloadedState, composedEnhancers)
+    const store = createStore(rootReducer, preloadedState, composedEnhancers);
 
     sagaMiddleware.run(rootSaga);
 

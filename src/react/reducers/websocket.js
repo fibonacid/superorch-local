@@ -7,7 +7,7 @@ const initialState = {
   username
 };
 
-export const websocketReducer = (state=initialState, action) => {
+const websocket = (state=initialState, action) => {
   switch(action.type) {
     case actionTypes.WEBSOCKET_CONNECT:
       return {
@@ -18,3 +18,5 @@ export const websocketReducer = (state=initialState, action) => {
       return state
   }
 };
+
+export default websocket;

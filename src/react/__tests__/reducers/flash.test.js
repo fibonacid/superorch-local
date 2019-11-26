@@ -1,10 +1,10 @@
-import {flashReducer, flashTypes} from '../../reducers/flashReducer';
+import flash, {flashTypes} from '../../reducers/flash';
 import {actionTypes} from "../../actions/actionTypes";
 
 describe('flash (Reducer)', () => {
 
   it('Should return the initial state', () => {
-    const result = flashReducer(undefined, {type:"foo"});
+    const result = flash(undefined, {type:"foo"});
     expect(result).toEqual([]);
   });
 
@@ -16,7 +16,7 @@ describe('flash (Reducer)', () => {
     const expectedResult = [
       { message: 'foo', type: flashTypes.info }
     ];
-    const result = flashReducer(undefined, action);
+    const result = flash(undefined, action);
     expect(result).toEqual(expectedResult);
   });
 
@@ -33,7 +33,7 @@ describe('flash (Reducer)', () => {
         {message: 'foo', type: flashTypes.info },
         {message: 'other foo', type: flashTypes.info }
       ];
-      const result = flashReducer(prevState, action);
+      const result = flash(prevState, action);
       expect(result).toEqual(expectedResult);
     });
   });

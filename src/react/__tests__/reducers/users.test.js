@@ -1,10 +1,10 @@
-import {usersReducer} from '../../reducers/usersReducer';
+import users from '../../reducers/chat/users';
 import {actionTypes} from "../../actions/actionTypes";
 
 describe('users (Reducer)', () => {
 
   it('Should return the initial state', () => {
-    const result = usersReducer(undefined, {type:"foo"});
+    const result = users(undefined, {type:"foo"});
     expect(result).toEqual([]);
   });
 
@@ -14,7 +14,7 @@ describe('users (Reducer)', () => {
       users: ['Al', 'John', 'Jack']
     };
     const expectedResult = ['Al', 'John', 'Jack'];
-    const result = usersReducer(undefined, action);
+    const result = users(undefined, action);
     expect(result).toEqual(expectedResult);
   });
 
@@ -26,7 +26,7 @@ describe('users (Reducer)', () => {
       };
       const prevState = ['Al', 'John'];
       const expectedResult = ['Al', 'John', 'Jack'];
-      const result = usersReducer(prevState, action);
+      const result = users(prevState, action);
       expect(result).toEqual(expectedResult);
     });
   });

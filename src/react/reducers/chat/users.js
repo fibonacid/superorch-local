@@ -1,6 +1,6 @@
-import {actionTypes} from "../actions/actionTypes";
+import {actionTypes} from "../../actions/actionTypes";
 
-export const usersReducer = (state=[], action) => {
+const users = (state=[], action) => {
   switch(action.type) {
     case actionTypes.USER_LIST:
       return action.users;
@@ -8,3 +8,5 @@ export const usersReducer = (state=[], action) => {
       return state;
   }
 };
+
+export default users;

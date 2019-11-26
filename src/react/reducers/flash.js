@@ -6,7 +6,7 @@ export const flashTypes = {
   error: "error"
 };
 
-export const flashReducer = (state=[], action) => {
+const flash = (state=[], action) => {
   switch(action.type) {
     case actionTypes.FLASH_INFO:
       return [
@@ -27,6 +27,8 @@ export const flashReducer = (state=[], action) => {
       return state;
   }
 };
+
+export default flash;
 
 function createMessage({message}, flashType) {
   return { message, type: flashType }

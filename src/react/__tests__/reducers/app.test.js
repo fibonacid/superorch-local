@@ -1,4 +1,4 @@
-import {appReducer} from '../../reducers/appReducer';
+import app from '../../reducers/app';
 import {actionTypes} from "../../actions/actionTypes";
 
 describe('app (Reducer)', () => {
@@ -6,7 +6,7 @@ describe('app (Reducer)', () => {
   describe('when state is not populated', () => {
 
     it('Should return the initial state', () => {
-      const result = appReducer(undefined, {type:"foo"});
+      const result = app(undefined, {type:"foo"});
       expect(result).toEqual({});
     });
 
@@ -20,7 +20,7 @@ describe('app (Reducer)', () => {
         data
       };
       const expectedResult = data;
-      const result = appReducer(undefined, action);
+      const result = app(undefined, action);
       expect(result).toEqual(expectedResult);
     });
   });
@@ -42,7 +42,7 @@ describe('app (Reducer)', () => {
         ...state,
         ...data
       };
-      const result = appReducer(state, action);
+      const result = app(state, action);
       expect(result).toEqual(expectedResult);
     });
   });

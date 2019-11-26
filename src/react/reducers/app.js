@@ -1,6 +1,6 @@
 import {actionTypes} from "../actions/actionTypes";
 
-export const appReducer = (state={}, action) => {
+const app = (state={}, action) => {
   switch(action.type) {
     case actionTypes.APP_INFO:
       return {
@@ -11,3 +11,5 @@ export const appReducer = (state={}, action) => {
       return state;
   }
 };
+
+export default app;

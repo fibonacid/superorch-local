@@ -1,11 +1,11 @@
-import {actionTypes} from "../actions/actionTypes";
+import {actionTypes} from "../../actions/actionTypes";
 
 export const initialState = {
   input: { value: "", author: "" },
   exec: { value: "", author: "" }
 };
 
-export const documentReducer = (state=initialState, action) => {
+const document = (state=initialState, action) => {
   switch(action.type) {
     case actionTypes.MESSAGE_RECEIVED:
         return {
@@ -32,3 +32,5 @@ export const documentReducer = (state=initialState, action) => {
       return state;
   }
 };
+
+export default document;
