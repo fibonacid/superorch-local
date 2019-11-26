@@ -1,12 +1,9 @@
 import {all} from "redux-saga/effects";
-import {addMessageWatcher} from "./addMessageSaga";
-import {execTextWatcher} from "./execTextSaga";
-import {textInputWatcher} from "./textInputSaga";
+import {sendUsernameWatcher} from "./sendUsername";
 
-export function* rootSaga(params) {
+export function* rootSaga() {
+  console.log('rootSaga');
   yield all([
-    /*addMessageWatcher(params),
-    textInputWatcher(params),
-    execTextWatcher(params)*/
+    sendUsernameWatcher
   ])
 }
