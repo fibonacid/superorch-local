@@ -3,7 +3,7 @@ import base from "./base";
 import chat from "./chat/index";
 import app from "./app";
 import flash from "./flash";
-import websocket from "./websocket";
+import websocket, * as fromWebsocket from "./websocket";
 
 const root = combineReducers({
     base,
@@ -14,3 +14,10 @@ const root = combineReducers({
 });
 
 export default root;
+
+/* ----------------
+ *    Selectors
+ * ---------------- */
+
+export const selectUsername = state =>
+  fromWebsocket.selectUsername(state.websocket);
