@@ -3,14 +3,23 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import { rootReducer } from './reducers/rootReducer'
 import createSagaMiddleware from 'redux-saga';
 import {rootSaga} from "./saga/rootSaga";
-import {setupSocket} from './socket/client'
+import {setupSocket} from './socket/client';
+import reduxWebsocket from "@giantmachines/redux-websocket";
 import username from './utils/name'
 
 const sagaMiddleware = createSagaMiddleware();
 
+const reduxWebsocketMiddleware = reduxWebsocket({
+    prefix: "WEBSOCKET_",
+    reconnectInterval: 2000,
+    reconnectOnClose: true,
+    //onOpen: (socket) => {}
+});
+
 export default function configureStore(preloadedState) {
 
     const middlewares = [
+        reduxWebsocketMiddleware,
         sagaMiddleware
     ];
     const middlewareEnhancer = applyMiddleware(...middlewares)
@@ -20,10 +29,7 @@ export default function configureStore(preloadedState) {
 
     const store = createStore(rootReducer, preloadedState, composedEnhancers)
 
-    // Create WebSocket client
-    const socket = setupSocket(store.dispatch, username);
-
-    sagaMiddleware.run(rootSaga, {socket, username});
+    sagaMiddleware.run(rootSaga);
 
     return store
 }
