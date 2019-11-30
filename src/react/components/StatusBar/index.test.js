@@ -1,5 +1,5 @@
 import React from "react";
-import Notifications from '../../containers/Notifications';
+import StatusBar from './StatusBar';
 import {Provider} from "react-redux";
 import {shallow} from "enzyme";
 import { createMockStore } from 'redux-test-utils';
@@ -10,7 +10,7 @@ beforeEach(() => {
   const store = createMockStore(initialState);
   wrapper = shallow(
     <Provider store={store}>
-      <Notifications/>
+      <StatusBar/>
     </Provider>
   );
 });
@@ -20,7 +20,7 @@ afterEach(() => {
 });
 
 
-describe('Notifications Container', () => {
+describe('StatusBar (Container)', () => {
   it("Should render without errors", () => {
     expect(wrapper).toBeDefined();
   });

@@ -1,30 +1,27 @@
 import React from "react";
 import {shallow} from 'enzyme'
-import Notifications from "../../components/Notifications/Notifications";
+import SideBar from "./SideBar";
 import {findByTestAttr} from "../../utils/testing";
 import toJson from "enzyme-to-json";
 
 const setUp = (props={}) => {
-  return shallow(<Notifications {...props} />);
+  return shallow(<SideBar {...props} />);
 };
 
-describe('Notifications Component', () => {
+describe('SideBar Component', () => {
 
   describe('When has props', () => {
     let wrapper;
     beforeEach(() => {
       wrapper = setUp({
-       notifications: [
-         { message: "First Message", type: "TEST" },
-         { message: "Second Message", type: "TEST" }
-       ]
+        users: [{ name: "Al" },{ name: "John" }]
       })
     });
     afterEach(() => {
       wrapper.unmount();
     });
     it('Should renderer without errors', () => {
-      const component = findByTestAttr(wrapper, 'NotificationsComponent');
+      const component = findByTestAttr(wrapper, 'SideBarComponent');
       expect(component.length).toBe(1);
     });
   });

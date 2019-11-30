@@ -1,5 +1,5 @@
 import React from "react";
-import Header from '../../containers/Header';
+import Notifications from './Notifications';
 import {Provider} from "react-redux";
 import {shallow} from "enzyme";
 import { createMockStore } from 'redux-test-utils';
@@ -10,7 +10,7 @@ beforeEach(() => {
   const store = createMockStore(initialState);
   wrapper = shallow(
     <Provider store={store}>
-      <Header/>
+      <Notifications/>
     </Provider>
   );
 });
@@ -20,10 +20,8 @@ afterEach(() => {
 });
 
 
-describe('Header (Container)', () => {
+describe('Notifications Container', () => {
   it("Should render without errors", () => {
     expect(wrapper).toBeDefined();
   });
-
-  it("Should have prop appName set", () => {}).todo()
 });

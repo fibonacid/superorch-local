@@ -1,5 +1,5 @@
 import React from "react";
-import TextEditor from '../../containers/TextEditor';
+import SideBar from './SideBar';
 import {Provider} from "react-redux";
 import {shallow} from "enzyme";
 import { createMockStore } from 'redux-test-utils';
@@ -10,7 +10,7 @@ beforeEach(() => {
   const store = createMockStore(initialState);
   wrapper = shallow(
     <Provider store={store}>
-      <TextEditor/>
+      <SideBar/>
     </Provider>
   );
 });
@@ -20,7 +20,7 @@ afterEach(() => {
 });
 
 
-describe('TextEditor (Container)', () => {
+describe('SideBar (Container)', () => {
   it("Should render without errors", () => {
     expect(wrapper).toBeDefined();
   });

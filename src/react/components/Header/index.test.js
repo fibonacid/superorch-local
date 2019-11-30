@@ -1,5 +1,5 @@
 import React from "react";
-import StatusBar from '../../containers/StatusBar';
+import Header from './Header';
 import {Provider} from "react-redux";
 import {shallow} from "enzyme";
 import { createMockStore } from 'redux-test-utils';
@@ -10,7 +10,7 @@ beforeEach(() => {
   const store = createMockStore(initialState);
   wrapper = shallow(
     <Provider store={store}>
-      <StatusBar/>
+      <Header/>
     </Provider>
   );
 });
@@ -20,8 +20,10 @@ afterEach(() => {
 });
 
 
-describe('StatusBar (Container)', () => {
+describe('Header (Container)', () => {
   it("Should render without errors", () => {
     expect(wrapper).toBeDefined();
   });
+
+  it("Should have prop appName set", () => {}).todo()
 });
