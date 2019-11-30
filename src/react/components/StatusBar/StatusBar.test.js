@@ -15,7 +15,8 @@ describe('StatusBar Component', () => {
     beforeEach(() => {
       wrapper = setUp({
         appName: "testApp",
-        appVersion: "0.0.0.test"
+        appVersion: "0.0.0.test",
+        isConnected: false
       })
     });
     afterEach(() => {
