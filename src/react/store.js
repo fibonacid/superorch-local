@@ -3,7 +3,6 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import rootReducer from './reducers/root'
 import createSagaMiddleware from 'redux-saga';
 import {rootSaga} from "./saga/rootSaga";
-import {setupSocket} from './socket/client';
 import reduxWebsocket from "@giantmachines/redux-websocket";
 import username from './utils/name'
 
