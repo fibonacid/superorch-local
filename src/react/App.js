@@ -84,9 +84,17 @@ class App extends Component {
 
   constructor(props) {
     super(props);
+
     if(ipcRenderer) {
+      // Request app info.
       ipcRenderer.send(channels.APP_INFO);
+      // When request response arrives:
       ipcRenderer.on(channels.APP_INFO, (event, arg) => {
+        // Send data to the store.
+        store.dispatch(appInfo({
+          name: arg.appName,
+          version: arg.appVersion
+        }));
         ipcRenderer.removeAllListeners(channels.APP_INFO);
       });
     }
