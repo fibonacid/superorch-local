@@ -45,17 +45,7 @@ export const textInput = (data) => ({
   data
 });
 
-export const textInputReceived = (data) => ({
-  type: actionTypes.TEXT_INPUT_RECEIVED,
-  data
-});
-
-export const execText = (data) => ({
-  type: actionTypes.EXEC_TEXT,
-  data
-});
-
-export const execTextReceived = (data) => ({
-  type: actionTypes.EXEC_TEXT_RECEIVED,
+export const pushDocument = (data) => ({
+  type: actionTypes.PUSH_DOCUMENT,
   data
 });
