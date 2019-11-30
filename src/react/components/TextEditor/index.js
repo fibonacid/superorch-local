@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {execText, textInput} from "../../actions/actions";
+import {pushDocument} from "../../actions/actions";
 import TextEditor from "./TextEditor";
 
 const mapStateToProps = state => ({
@@ -9,8 +9,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  textInput: (data) => dispatch(textInput(data)),
-  execText: (data) => dispatch(execText(data))
+  textInput: (data) => dispatch(pushDocument(data)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TextEditor);
