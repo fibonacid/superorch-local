@@ -1,6 +1,6 @@
 import {actionTypes} from "../actions/actionTypes";
-import {takeEvery, select, put} from "redux-saga/effects";
-import {populateUserList} from "../actions/actions";
+import {takeEvery, put} from "redux-saga/effects";
+import {populateUserList} from "../actions/usersActions";
 
 /**
  * Every time a connection is opened send your username to the server
