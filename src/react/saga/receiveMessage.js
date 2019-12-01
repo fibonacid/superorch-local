@@ -21,5 +21,7 @@ export function* receiveMessageSaga(action) {
     case 'DOCUMENT_UPDATE':
       yield put(updateDocument(data.data));
       break;
+    default:
+      break;
   }
 }

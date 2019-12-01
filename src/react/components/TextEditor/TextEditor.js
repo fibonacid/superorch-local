@@ -1,6 +1,5 @@
 import React from "react";
 import styled from 'styled-components';
-import _ from 'lodash';
 import {
   convertToRaw,
   convertFromRaw,
@@ -9,8 +8,7 @@ import {
   getDefaultKeyBinding,
   CompositeDecorator,
   KeyBindingUtil,
-  Modifier,
-  RichUtils
+  Modifier
 } from 'draft-js';
 import {lowerCasedProps} from "../../utils/common";
 
