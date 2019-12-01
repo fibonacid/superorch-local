@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import {Provider} from "react-redux";
-import configureStore from "./store";
-import { channels } from '../shared/constants';
-import {appInfo, flashInfo, textInput} from "./actions/actions";
 import styled from 'styled-components/macro';
-import {createGlobalStyle} from "styled-components";
 import normalize from "styled-normalize";
 import reset from "styled-reset";
+import configureStore from "./store";
 import {connect as connectSocket} from '@giantmachines/redux-websocket';
+import { channels } from '../shared/constants';
+import {flashInfo} from "./actions/flashActions";
+import {appInfo} from "./actions/appInfo";
 
-// Containers
+// Components
+import {createGlobalStyle} from "styled-components";
 import Notifications from "./components/Notifications/index";
 import SideBar from "./components/SideBar/index";
 import Header from "./components/Header/index";
