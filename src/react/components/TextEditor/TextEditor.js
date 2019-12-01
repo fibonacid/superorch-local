@@ -177,11 +177,11 @@ export default class TextEditor extends React.Component {
    * @param snapshot
    */
   componentDidUpdate(prevProps, prevState, snapshot) {
-    const { remote } = this.props;
+    const { document } = this.props;
     // If remote document has changed:
-    if (prevProps.remote.input.value !== remote.input.value) {
+    if (prevProps.document.state !== document.state) {
       // Update editorState with new content
-      const newContent = convertFromRaw(JSON.parse(remote.input.value));
+      const newContent = convertFromRaw(JSON.parse(document.state));
       const newState = EditorState.push(this.state.editorState, newContent, "change-block-data");
 
       // Get previous selection

@@ -3,11 +3,7 @@ import TextEditor from "./TextEditor";
 import {sendDocument} from "../../actions/sendDocument";
 
 const mapStateToProps = state => ({
-  remote: {
-    input: {
-      value: ""
-    }
-  }
+  document: state.chat.document
 });
 
 const mapDispatchToProps = dispatch => ({
