@@ -36,8 +36,8 @@ function StatusBar(props) {
 }
 
 StatusBar.propTypes = {
-  appName: PropTypes.string.isRequired,
-  appVersion: PropTypes.string.isRequired,
+  appName: PropTypes.string,
+  appVersion: PropTypes.string,
   isConnected: PropTypes.bool.isRequired
 };
 
