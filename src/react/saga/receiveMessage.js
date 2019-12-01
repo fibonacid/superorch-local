@@ -16,8 +16,10 @@ export function* receiveMessageSaga(action) {
 
   switch(data.type) {
     case 'USER_LIST':
-      yield put(populateUserList(data.users))
+      yield put(populateUserList(data.users));
+      break;
     case 'PULL_DOCUMENT':
       yield put(updateDocument(data.data));
+      break;
   }
 }
