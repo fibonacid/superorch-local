@@ -4,15 +4,10 @@ import rootReducer from './reducers/root'
 import createSagaMiddleware from 'redux-saga';
 import {rootSaga} from "./saga/rootSaga";
 import reduxWebsocket from "@giantmachines/redux-websocket";
-import username from './utils/name'
 
 const sagaMiddleware = createSagaMiddleware();
 
-const reduxWebsocketMiddleware = reduxWebsocket({
-    /*reconnectInterval: 10000,
-    reconnectOnClose: true,
-    onOpen: (socket) => {}*/
-});
+const reduxWebsocketMiddleware = reduxWebsocket({});
 
 export default function configureStore(preloadedState) {
 
