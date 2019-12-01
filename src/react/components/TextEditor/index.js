@@ -1,10 +1,11 @@
 import {connect} from 'react-redux';
-import {pushDocument} from "../../actions/actions";
 import TextEditor from "./TextEditor";
 
 const mapStateToProps = state => ({
   remote: {
-    ...state.chat.document
+    input: {
+      value: ""
+    }
   }
 });
 
