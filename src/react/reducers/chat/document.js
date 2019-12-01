@@ -7,27 +7,8 @@ export const initialState = {
 
 const document = (state=initialState, action) => {
   switch(action.type) {
-    case actionTypes.MESSAGE_RECEIVED:
-        return {
-          ...state,
-          shared: action.data.message
-        };
-    case actionTypes.TEXT_INPUT_RECEIVED:
-      return {
-        ...state,
-        input: {
-          value: action.data.value,
-          author: action.data.author
-        }
-      };
-    case actionTypes.EXEC_TEXT_RECEIVED:
-      return {
-        ...state,
-        exec: {
-          value: action.data.value,
-          author: action.data.author
-        }
-      };
+    case actionTypes.UPDATE_DOCUMENT:
+      return state;
     default:
       return state;
   }
