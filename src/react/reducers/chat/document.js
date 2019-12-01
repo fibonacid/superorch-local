@@ -1,14 +1,11 @@
 import {actionTypes} from "../../actions/actionTypes";
 
-export const initialState = {
-  pushedBy: undefined,
-  state: {}
-};
+export const initialState = {};
 
 const document = (state=initialState, action) => {
   switch(action.type) {
     case actionTypes.UPDATE_DOCUMENT:
-      return state;
+      return action.data;
     default:
       return state;
   }
