@@ -9,6 +9,9 @@ export function* sendDocumentWatcher() {
 export function* sendDocumentSaga(action) {
   // Send it as a message
   yield put(send({
-    type: "PUSH_DOCUMENT"
+    type: "PUSH_DOCUMENT",
+    data: {
+      state: action.data
+    }
   }))
 }
