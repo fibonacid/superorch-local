@@ -1,8 +1,8 @@
 import {actionTypes} from "../../actions/actionTypes";
 
 export const initialState = {
-  input: { value: "", author: "" },
-  exec: { value: "", author: "" }
+  pushedBy: undefined,
+  state: {}
 };
 
 const document = (state=initialState, action) => {
