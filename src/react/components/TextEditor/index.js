@@ -9,7 +9,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  textInput: (data) => dispatch(pushDocument(data)),
+  textInput: (data) => dispatch(null),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TextEditor);
