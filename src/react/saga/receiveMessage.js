@@ -15,10 +15,10 @@ export function* receiveMessageSaga(action) {
   let data = JSON.parse(message);
 
   switch(data.type) {
-    case 'USER_LIST':
+    case 'USER_LIST_UPDATE':
       yield put(populateUserList(data.users));
       break;
-    case 'PULL_DOCUMENT':
+    case 'DOCUMENT_UPDATE':
       yield put(updateDocument(data.data));
       break;
   }
