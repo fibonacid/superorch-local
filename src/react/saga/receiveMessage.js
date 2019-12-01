@@ -1,5 +1,6 @@
 import {actionTypes} from "../actions/actionTypes";
 import {takeEvery, select, put} from "redux-saga/effects";
+import {populateUserList} from "../actions/actions";
 
 /**
  * Every time a connection is opened send your username to the server
@@ -14,6 +15,8 @@ export function* receiveMessageSaga(action) {
 
   switch(data.type) {
     case 'USER_LIST':
-      console.log('USER_LIST message');
+      yield put(populateUserList(data.users))
+    case 'PULL_DOCUMENT':
+      console.log('PULL_DOCUMENT');
   }
 }
