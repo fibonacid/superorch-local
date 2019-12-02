@@ -126,3 +126,16 @@ autoUpdater.on('update-downloaded', () => {
   // Send notification to react.
   mainWindow.webContents.send('update_downloaded');
 });
+
+/* =====================================================
+ *   SUPERCOLLIDER SERVER
+ * =====================================================
+ *
+ *
+ */
+
+const sc = require("supercolliderjs");
+
+sc.server.boot().then(async server => {
+
+}, console.error);
