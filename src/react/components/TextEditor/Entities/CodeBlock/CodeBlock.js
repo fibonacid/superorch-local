@@ -1,24 +1,47 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { lowerCasedProps } from "../../../../utils/common";
+import gsap, { Power1 } from "gsap";
 
+/**
+ *
+ * @param el
+ */
+function blink(el) {
+  let timeline = gsap.timeline();
+  timeline.set(el, {
+    backgroundColor: `rgb(255, 134, 31)`,
+    duration: 0.0
+  });
+  timeline.to(el, {
+    backgroundColor: `rgba(255, 205, 16, 0.0)`,
+    ease: Power1.easeIn,
+    duration: 0.3
+  });
+}
+
+/**
+ *
+ * @param props
+ * @returns {*}
+ * @constructor
+ */
 function CodeBlockEntity(props) {
   // Get data
   const { entityKey, contentState } = props;
   const { data } = contentState.getEntity(entityKey);
 
-  const style = {
-    background: data.modified
-      ? "rgba(255, 0, 0, 0.5)"
-      : "rgba(255, 250, 81, 0.5)",
-    display: "block"
-  };
+  const containerRef = useRef();
 
-  console.log(props);
+  // Every time the execution command is invoked
+  useEffect(() => {
+    console.log("times has changed", data.times);
+    // Launch animation
+    blink(containerRef.current);
+  }, [data.times]);
 
   return (
-    <span {...lowerCasedProps(props)} style={style}>
+    <span ref={containerRef} {...lowerCasedProps(props)}>
       {props.children}
-      <span>{data.times}</span>
     </span>
   );
 }
