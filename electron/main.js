@@ -3,7 +3,7 @@ const path = require("path");
 const url = require("url");
 const { channels } = require("../src/shared/constants");
 const { autoUpdater } = require("electron-updater");
-const { bootServer } = require("../src/shared/supercollider-server");
+const { bootServer } = require("./run-scsynth");
 
 let mainWindow;
 
