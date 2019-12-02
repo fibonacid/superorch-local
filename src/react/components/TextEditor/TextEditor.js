@@ -1,6 +1,5 @@
 import React from "react";
-import styled from 'styled-components';
-import _ from 'lodash';
+import styled from "styled-components";
 import {
   convertToRaw,
   convertFromRaw,
@@ -8,19 +7,19 @@ import {
   EditorState,
   getDefaultKeyBinding,
   CompositeDecorator,
-  KeyBindingUtil,
-  Modifier,
-  RichUtils
-} from 'draft-js';
-import {lowerCasedProps} from "../../utils/common";
+  KeyBindingUtil
+} from "draft-js";
 
+import LinkEntity from "./Entities/Link/Link";
+import CodeBlockEntity from "./Entities/CodeBlock/CodeBlock";
+import { createCodeBlockEntity } from "./Entities/CodeBlock";
 
 // ----------------------
 // Styled Components
 // ----------------------
 
 const StyledWrapper = styled.div`
-   flex: 1;
+  flex: 1;
 `;
 
 // -----------------------
@@ -29,9 +28,9 @@ const StyledWrapper = styled.div`
 
 const { hasCommandModifier } = KeyBindingUtil;
 
-const keyBindingFn = (e) => {
+const keyBindingFn = e => {
   if (e.keyCode === 13 /* `CR` key */ && hasCommandModifier(e)) {
-    return 'execute-selected-block';
+    return "execute-selected-block";
   }
   return getDefaultKeyBinding(e);
 };
@@ -40,69 +39,14 @@ const keyBindingFn = (e) => {
 // Entities
 // ------------------------
 
-
-function createLinkEntity(editorState, selectionState) {
-  const contentState = editorState.getCurrentContent();
-  const contentStateWithEntity = contentState.createEntity(
-    'LINK',
-    'MUTABLE',
-    {url: 'http://www.zombo.com'}
-  );
-  const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
-  const contentStateWithLink = Modifier.applyEntity(
-    contentStateWithEntity,
-    selectionState,
-    entityKey
-  );
-  return EditorState.push(editorState, contentStateWithLink);
-}
-
-
-
-function createExecBlockEntity(editorState, selectionState) {
-  const contentState = editorState.getCurrentContent();
-  const contentStateWithEntity = contentState.createEntity(
-    'EXEC_BLOCK',
-    'MUTABLE',
-    { times: 1, modified: false }
-  );
-  const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
-  const contentStateWithLink = Modifier.applyEntity(
-    contentStateWithEntity,
-    selectionState,
-    entityKey
-  );
-  return EditorState.push(editorState, contentStateWithLink);
-}
-
-
-
-function findLinkEntities(contentBlock, callback, contentState) {
-  contentBlock.findEntityRanges(
-    (character) => {
-      const entityKey = character.getEntity();
-      return (
-        entityKey !== null &&
-        contentState.getEntity(entityKey).getType() === 'LINK'
-      );
-    },
-    callback,
-  );
-}
-
-
-
-function findExecBlockEntities(contentBlock, callback, contentState) {
-  contentBlock.findEntityRanges(
-    (character) => {
-      const entityKey = character.getEntity();
-      return (
-        entityKey !== null &&
-        contentState.getEntity(entityKey).getType() === 'EXEC_BLOCK'
-      );
-    },
-    callback,
-  );
+function findEntities(entityType, contentBlock, callback, contentState) {
+  contentBlock.findEntityRanges(character => {
+    const entityKey = character.getEntity();
+    return (
+      entityKey !== null &&
+      contentState.getEntity(entityKey).getType() === entityType
+    );
+  }, callback);
 }
 
 // ------------------------
@@ -111,20 +55,14 @@ function findExecBlockEntities(contentBlock, callback, contentState) {
 
 const compositeDecorator = new CompositeDecorator([
   {
-    strategy: (
-      contentBlock,
-      callback,
-      contentState
-    ) => findLinkEntities(contentBlock, callback, contentState),
-    component: LinkComponent,
+    strategy: (contentBlock, callback, contentState) =>
+      findEntities("LINK", contentBlock, callback, contentState),
+    component: LinkEntity
   },
   {
-    strategy: (
-      contentBlock,
-      callback,
-      contentState
-    ) => findExecBlockEntities(contentBlock, callback, contentState),
-    component: ExecBlockComponent,
+    strategy: (contentBlock, callback, contentState) =>
+      findEntities("CODE_BLOCK", contentBlock, callback, contentState),
+    component: CodeBlockEntity
   }
 ]);
 
@@ -134,8 +72,8 @@ const compositeDecorator = new CompositeDecorator([
 
 function myBlockStyleFn(contentBlock) {
   const type = contentBlock.getType();
-  if (type === 'blockquote') {
-    return 'superFancyBlockquote';
+  if (type === "blockquote") {
+    return "superFancyBlockquote";
   }
 }
 
@@ -144,7 +82,6 @@ function myBlockStyleFn(contentBlock) {
 // ------------------------
 
 export default class TextEditor extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -154,7 +91,7 @@ export default class TextEditor extends React.Component {
       readOnly: false
     };
 
-    this.setDomEditorRef = ref => this.domEditor = ref;
+    this.setDomEditorRef = ref => (this.domEditor = ref);
 
     // This function forces the editor to be focused.
     this.focus = () => this.domEditor.focus();
@@ -182,7 +119,11 @@ export default class TextEditor extends React.Component {
     if (prevProps.document.state !== document.state) {
       // Update editorState with new content
       const newContent = convertFromRaw(JSON.parse(document.state));
-      const newState = EditorState.push(this.state.editorState, newContent, "change-block-data");
+      const newState = EditorState.push(
+        this.state.editorState,
+        newContent,
+        "change-block-data"
+      );
 
       // Get previous selection
       const prevSelection = prevState.editorState.getSelection();
@@ -192,7 +133,7 @@ export default class TextEditor extends React.Component {
       // people can write at the same time without having the text anchor constantly moving around
       const newStateWithoutSelection = EditorState.set(newState, {
         selection: prevSelection,
-        currentContent: newContent,
+        currentContent: newContent
       });
       // Set local state
       this.setState({
@@ -200,7 +141,6 @@ export default class TextEditor extends React.Component {
       });
     }
   }
-
 
   /**
    * HANDLE KEY COMMAND
@@ -215,16 +155,16 @@ export default class TextEditor extends React.Component {
     // If a custom event has been invoked:
     if (command === "execute-selected-block") {
       this.onExecuteSelectedBlock(editorState);
-      return 'handled';
+      return "handled";
     }
-    return 'not-handled';
+    return "not-handled";
   }
 
   textBot() {
     const { editorState } = this.state;
     return setTimeout(() => {
       //editorState.
-    }, 2000)
+    }, 2000);
   }
 
   /**
@@ -255,7 +195,11 @@ export default class TextEditor extends React.Component {
         times: data.times + 1,
         modified: true
       });
-      const newState = EditorState.push(editorState, newContent, "change-block-data");
+      const newState = EditorState.push(
+        editorState,
+        newContent,
+        "change-block-data"
+      );
       this.onChange(newState);
 
       // Force decorators to be re rendered.
@@ -264,9 +208,11 @@ export default class TextEditor extends React.Component {
     }
     // If entity doesn't exists:
     else {
-      const newState = createExecBlockEntity(editorState, selectionState);
+      const newState = createCodeBlockEntity(editorState, selectionState);
       this.onChange(newState);
     }
+
+    console.log("execute-selected-block");
   }
 
   /**
@@ -280,10 +226,10 @@ export default class TextEditor extends React.Component {
    */
   onChange(editorState, callback) {
     // Update editor state
-    this.setState({editorState}, callback);
+    this.setState({ editorState }, callback);
 
     const changeType = editorState.getLastChangeType();
-    console.log(changeType);
+    //console.log(changeType);
 
     // Extrapolate raw contentState
     const contentState = editorState.getCurrentContent();
@@ -307,8 +253,10 @@ export default class TextEditor extends React.Component {
    */
   forceReRenderEditor(editorState) {
     this.setState({
-      editorState: EditorState.set(editorState, { decorator: compositeDecorator })
-    })
+      editorState: EditorState.set(editorState, {
+        decorator: compositeDecorator
+      })
+    });
   }
 
   /**
@@ -318,9 +266,7 @@ export default class TextEditor extends React.Component {
    */
   render() {
     return (
-      <StyledWrapper
-        data-test={"TextEditorComponent"}
-        onClick={this.focus} >
+      <StyledWrapper data-test={"TextEditorComponent"} onClick={this.focus}>
         <Editor
           ref={this.setDomEditorRef}
           editorState={this.state.editorState}
@@ -331,57 +277,6 @@ export default class TextEditor extends React.Component {
           readOnly={this.state.readOnly}
         />
       </StyledWrapper>
-    )
+    );
   }
-}
-
-
-
-// ------------------------
-// Decorator Components
-// ------------------------
-
-/**
- * SIGNED SPAN
- * ================
- * @param props
- * @returns {*}
- * @constructor
- */
-function LinkComponent(props) {
-  const style = {
-    color: "blue",
-    textDecoration: "underline"
-  };
-  return (
-    <span {...lowerCasedProps(props)} style={style}>
-      {props.children}
-    </span>
-  );
-}
-
-/**
- *
- * @param props
- * @returns {*}
- * @constructor
- */
-function ExecBlockComponent(props) {
-  // Get data
-  const { entityKey, contentState } = props;
-  const { data } = contentState.getEntity(entityKey);
-
-  const style = {
-    background: data.modified
-      ? "rgba(255, 0, 0, 0.5)"
-      : "rgba(255, 250, 81, 0.5)",
-    display: "block"
-  };
-
-  return (
-    <span {...lowerCasedProps(props)} style={style}>
-      {props.children}
-      <span>{data.times}</span>
-    </span>
-  );
 }
