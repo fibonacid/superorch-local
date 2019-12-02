@@ -36,9 +36,12 @@
     "enzyme-adapter-react-16": "^1.15.1",
     "enzyme-to-json": "^3.4.3",
     "foreman": "^3.0.1",
+    "husky": "^3.1.0",
     "jest-enzyme": "^7.1.2",
     "jest-prop-type-error": "^1.1.0",
     "jest-styled-components": "^6.3.3",
+    "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1",
     "react-app-rewired": "^2.1.4",
     "react-scripts": "^3.2.0",
     "redux-devtools-extension": "^2.13.8",
@@ -95,5 +98,10 @@
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   }
 }
