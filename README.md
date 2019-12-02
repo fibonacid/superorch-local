@@ -1,4 +1,4 @@
-# colliderchat-client [![Build Status](https://travis-ci.org/lorenzorivosecchi/colliderchat.svg?branch=master)](https://travis-ci.org/lorenzorivosecchi/colliderchat)
+# colliderchat-client [![Build Status](https://travis-ci.org/lorenzorivosecchi/colliderchat-client.svg?branch=master)](https://travis-ci.org/lorenzorivosecchi/colliderchat-client)
 
 Work in Progress 
 
