@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components/macro'
-import PropTypes from 'prop-types';
+import React from "react";
+import styled from "styled-components/macro";
+import URLBar from "../URLBar/index";
 
 const StyledContainer = styled.div`
   font-size: 18px;
@@ -12,21 +12,15 @@ const StyledContainer = styled.div`
 `;
 
 const StyledTitle = styled.h1`
-  /*text-align: center;*/ 
+  /*text-align: center;*/
 `;
 
 function Header(props) {
   return (
-    <StyledContainer data-test={'HeaderComponent'}>
-      <StyledTitle data-test={'title'}>
-        {props.appName || "ColliderChat"}
-      </StyledTitle>
+    <StyledContainer data-test={"HeaderComponent"}>
+      <URLBar />
     </StyledContainer>
-  )
+  );
 }
-
-Header.propTypes = {
-  appName: PropTypes.string
-};
 
 export default Header;
