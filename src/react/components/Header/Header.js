@@ -5,7 +5,7 @@ import URLBar from "../URLBar/index";
 const StyledContainer = styled.div`
   font-size: 18px;
   font-weight: bold;
-  padding: 5px;
+  padding: 8px;
   flex: 0 0 auto;
   display: flex;
   justify-content: center;
