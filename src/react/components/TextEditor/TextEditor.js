@@ -211,8 +211,6 @@ export default class TextEditor extends React.Component {
       const newState = createCodeBlockEntity(editorState, selectionState);
       this.onChange(newState);
     }
-
-    console.log("execute-selected-block");
   }
 
   /**
