@@ -30,15 +30,18 @@
   },
   "devDependencies": {
     "babel-plugin-module-resolver": "^3.2.0",
-    "electron": "^1.7.9",
+    "electron": "^7.1.2",
     "electron-builder": "^21.1.1",
     "electron-devtools-installer": "^2.2.4",
     "enzyme-adapter-react-16": "^1.15.1",
     "enzyme-to-json": "^3.4.3",
     "foreman": "^3.0.1",
+    "husky": "^3.1.0",
     "jest-enzyme": "^7.1.2",
     "jest-prop-type-error": "^1.1.0",
     "jest-styled-components": "^6.3.3",
+    "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1",
     "react-app-rewired": "^2.1.4",
     "react-scripts": "^3.2.0",
     "redux-devtools-extension": "^2.13.8",
@@ -51,8 +54,10 @@
     "diff": "^4.0.1",
     "dotenv": "^8.2.0",
     "draft-js": "^0.11.0",
+    "draftjs-utils": "^0.9.4",
     "electron-updater": "^4.2.0",
     "enzyme": "^3.10.0",
+    "gsap": "^3.0.1",
     "immutable": "^4.0.0-rc.12",
     "lodash": "^4.17.15",
     "prop-types": "^15.7.2",
@@ -66,6 +71,7 @@
     "styled-components": "^4.4.0",
     "styled-normalize": "^8.0.6",
     "styled-reset": "^4.0.3",
+    "supercolliderjs": "^1.0.0-beta.1",
     "ws": "^7.2.0"
   },
   "browserslist": {
@@ -94,5 +100,10 @@
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   }
 }
