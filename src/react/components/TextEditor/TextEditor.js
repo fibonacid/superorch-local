@@ -13,6 +13,7 @@ import {
 import LinkEntity from "./Entities/Link/Link";
 import CodeBlockEntity from "./Entities/CodeBlock/CodeBlock";
 import { createCodeBlockEntity } from "./Entities/CodeBlock";
+import { getSelectionText } from "draftjs-utils";
 
 // ----------------------
 // Styled Components
@@ -181,6 +182,12 @@ export default class TextEditor extends React.Component {
   onExecuteSelectedBlock(editorState) {
     // Get current selection
     const selectionState = editorState.getSelection();
+    // Get current content
+    const currentContent = editorState.getCurrentContent();
+
+    // Get whole selected text
+    const selectionText = getSelectionText(editorState);
+    console.log(selectionText);
 
     // Split selection into content boxes
     const anchorKey = selectionState.getAnchorKey();
