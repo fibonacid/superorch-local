@@ -13,5 +13,5 @@ export function createCodeBlockEntity(editorState, selectionState) {
     selectionState,
     entityKey
   );
-  return EditorState.push(editorState, contentStateWithLink);
+  return EditorState.push(editorState, contentStateWithLink, "apply-entity");
 }
