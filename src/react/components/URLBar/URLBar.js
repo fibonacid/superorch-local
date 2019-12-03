@@ -2,9 +2,13 @@ import React, { useState, useEffect } from "react";
 import styled, { keyframes, css } from "styled-components";
 import { resetInput } from "../../utils/styles";
 import { IconContext } from "react-icons";
-import { IoMdRefresh, IoMdCheckmark, IoMdClose } from "react-icons/io";
+import { IoMdRefresh } from "react-icons/io";
 
 const StyledContainer = styled.div`
+  width: 100%;
+  max-width: 250px;
+  display: flex;
+  align-items: center;
   border: solid 1px black;
   border-radius: 5px;
   ${props =>
@@ -22,10 +26,10 @@ const StyledContainer = styled.div`
 const StyledInput = styled.input`
   ${resetInput}
   border: none;
-  width: 200px;
   text-indent: 10px;
-  font-size: 18px;
-  line-height: 1.5;
+  font-size: 15px;
+  line-height: 1.75;
+  flex: 1;
 `;
 
 const rotate = keyframes`
@@ -88,14 +92,3 @@ function URLBar(props) {
 }
 
 export default URLBar;
-
-/*
-          {!modified && props.isConnected && !props.isLoading && (
-            <StyledSuccess color={"green"} />
-          )}
-          {!modified && !props.isConnected && !props.isLoading && (
-            <StyledError color={"red"} onClick={handleReconnect} />
-          )}
-
-
- */
