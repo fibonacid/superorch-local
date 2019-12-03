@@ -1,20 +1,39 @@
-import username from '../utils/name';
-import {actionTypes} from "../actions/actionTypes";
+import username from "../utils/name";
+import { actionTypes } from "../actions/actionTypes";
 
 const initialState = {
   url: "ws://localhost:8989",
-  connected: false,
+  isConnected: false,
+  isTryingToConnect: false,
   username
 };
 
-const websocket = (state=initialState, action) => {
-  switch(action.type) {
+const websocket = (state = initialState, action) => {
+  switch (action.type) {
     case actionTypes.WEBSOCKET_OPEN:
-      return {...state, connected: true };
+      return {
+        ...state,
+        isConnected: true,
+        isTryingToConnect: false
+      };
     case actionTypes.WEBSOCKET_CLOSED:
-      return { ...state, connected: false };
+      return {
+        ...state,
+        isConnected: false,
+        isTryingToConnect: false
+      };
+    case actionTypes.WEBSOCKET_CONNECT:
+      return {
+        ...state,
+        isTryingToConnect: true
+      };
+    case actionTypes.WEBSOCKET_BEGIN_RECONNECT:
+      return {
+        ...state,
+        isTryingToConnect: true
+      };
     default:
-      return state
+      return state;
   }
 };
 
