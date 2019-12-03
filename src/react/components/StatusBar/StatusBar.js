@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
+import { IoMdRadioButtonOn } from "react-icons/io";
 
 const StyledContainer = styled.div`
   padding: 5px;
@@ -11,8 +12,8 @@ const StyledContainer = styled.div`
   align-items: center;
 `;
 
-const StyledConnected = styled.span`
-  color: ${props => (props.isConnected ? "green" : "red")};
+const StyledCircle = styled(IoMdRadioButtonOn)`
+  vertical-align: middle;
 `;
 
 function StatusBar(props) {
@@ -22,9 +23,7 @@ function StatusBar(props) {
       <span data-test={"app-info"}>
         {appName} {appVersion}
       </span>
-      <StyledConnected isConnected={props.isConnected}>
-        {props.isConnected ? "connected" : "not connected"}
-      </StyledConnected>
+      <StyledCircle color={props.isConnected ? "green" : "red"} />
     </StyledContainer>
   );
 }
