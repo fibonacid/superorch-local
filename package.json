@@ -54,6 +54,7 @@
     "diff": "^4.0.1",
     "dotenv": "^8.2.0",
     "draft-js": "^0.11.0",
+    "draftjs-utils": "^0.9.4",
     "electron-updater": "^4.2.0",
     "enzyme": "^3.10.0",
     "gsap": "^3.0.1",

@@ -4008,6 +4008,11 @@ draft-js@^0.11.0:
     immutable "~3.7.4"
     object-assign "^4.1.0"
 
+draftjs-utils@^0.9.4:
+  version "0.9.4"
+  resolved "https://registry.yarnpkg.com/draftjs-utils/-/draftjs-utils-0.9.4.tgz#976c61aa133dbbbfedd65ae1dd6627d7b98c6f08"
+  integrity sha512-KYjABSbGpJrwrwmxVj5UhfV37MF/p0QRxKIyL+/+QOaJ8J9z1FBKxkblThbpR0nJi9lxPQWGg+gh+v0dAsSCCg==
+
 dryadic@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/dryadic/-/dryadic-1.0.0.tgz#2b255b26db5161b9c79e68263f82c8e9670b1fe2"
