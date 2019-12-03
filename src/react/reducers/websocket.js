@@ -25,6 +25,7 @@ const websocket = (state = initialState, action) => {
     case actionTypes.WEBSOCKET_CONNECT:
       return {
         ...state,
+        url: action.payload.url,
         isTryingToConnect: true
       };
     case actionTypes.WEBSOCKET_BEGIN_RECONNECT:
