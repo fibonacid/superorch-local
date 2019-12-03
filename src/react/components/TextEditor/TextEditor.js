@@ -22,6 +22,8 @@ import { getSelectionText, getSelectionEntity } from "draftjs-utils";
 const StyledWrapper = styled.div`
   flex: 1;
   overflow-y: auto;
+  font-family: monospace;
+  padding: 5px;
 `;
 
 // -----------------------
