@@ -7,6 +7,16 @@ import { IoMdRefresh, IoMdCheckmark, IoMdClose } from "react-icons/io";
 const StyledContainer = styled.div`
   border: solid 1px black;
   border-radius: 5px;
+  ${props =>
+    props.error &&
+    css`
+      box-shadow: inset 0px 0px 0px 2px rgba(255, 0, 0);
+    `};
+  ${props =>
+    props.success &&
+    css`
+      box-shadow: inset 0px 0px 0px 2px rgba(0, 255, 0);
+    `};
 `;
 
 const StyledInput = styled.input`
@@ -15,7 +25,7 @@ const StyledInput = styled.input`
   width: 200px;
   text-indent: 10px;
   font-size: 18px;
-  line-height: 1.2;
+  line-height: 1.5;
 `;
 
 const rotate = keyframes`
@@ -23,26 +33,15 @@ const rotate = keyframes`
   100% { transform: rotate(360deg) }
 `;
 
-const StyledWrapper = styled.div`
-  margin-right: 5px;
-  display: inline-block;
-`;
-
 const StyledLoading = styled(IoMdRefresh)`
   cursor: pointer;
   animation: 0.5s ${rotate} linear infinite;
+  margin-right: 5px;
 `;
 
 const StyledRefresh = styled(IoMdRefresh)`
   cursor: pointer;
-`;
-
-const StyledSuccess = styled(IoMdCheckmark)`
-  cursor: normal;
-`;
-
-const StyledError = styled(IoMdClose)`
-  cursor: pointer;
+  margin-right: 5px;
 `;
 
 /**
@@ -65,7 +64,11 @@ function URLBar(props) {
   }
 
   return (
-    <StyledContainer data-test={"InputUrlComponent"}>
+    <StyledContainer
+      data-test={"InputUrlComponent"}
+      success={props.isConnected && !modified}
+      error={!props.isConnected && !modified}
+    >
       <StyledInput
         data-test={"input"}
         type="text"
@@ -74,19 +77,25 @@ function URLBar(props) {
         value={url}
       />
       <IconContext.Provider value={{ style: { verticalAlign: "middle" } }}>
-        <StyledWrapper>
-          {modified && <StyledRefresh onClick={handleReconnect} />}
-          {!modified && props.isLoading && <StyledLoading />}
-          {!modified && props.isConnected && !props.isLoading && (
-            <StyledSuccess color={"green"} />
-          )}
-          {!modified && !props.isConnected && !props.isLoading && (
-            <StyledError color={"red"} onClick={handleReconnect} />
-          )}
-        </StyledWrapper>
+        {props.isLoading ? (
+          <StyledLoading />
+        ) : (
+          <StyledRefresh onClick={handleReconnect} />
+        )}
       </IconContext.Provider>
     </StyledContainer>
   );
 }
 
 export default URLBar;
+
+/*
+          {!modified && props.isConnected && !props.isLoading && (
+            <StyledSuccess color={"green"} />
+          )}
+          {!modified && !props.isConnected && !props.isLoading && (
+            <StyledError color={"red"} onClick={handleReconnect} />
+          )}
+
+
+ */
