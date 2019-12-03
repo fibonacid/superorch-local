@@ -180,7 +180,7 @@ export default class TextEditor extends React.Component {
 
     // Get whole selected text
     const selectionText = getSelectionText(editorState);
-    console.log(selectionText);
+    this.props.handleExecuteSelection(selectionText);
 
     // Get selected entity
     const entityKey = getSelectionEntity(editorState);
@@ -232,7 +232,7 @@ export default class TextEditor extends React.Component {
     const raw = convertToRaw(contentState);
 
     // And send it the socket server as a string
-    this.props.textInput(JSON.stringify(raw));
+    this.props.sendEditorState(JSON.stringify(raw));
   }
 
   /**
