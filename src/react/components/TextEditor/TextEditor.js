@@ -161,13 +161,6 @@ export default class TextEditor extends React.Component {
     return "not-handled";
   }
 
-  textBot() {
-    const { editorState } = this.state;
-    return setTimeout(() => {
-      //editorState.
-    }, 2000);
-  }
-
   /**
    * ======================================================
    * ON EXECUTE SELECTED BLOCK
