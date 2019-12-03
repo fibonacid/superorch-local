@@ -13,7 +13,7 @@ import {
 import LinkEntity from "./Entities/Link/Link";
 import CodeBlockEntity from "./Entities/CodeBlock/CodeBlock";
 import { createCodeBlockEntity } from "./Entities/CodeBlock";
-import { getSelectionText } from "draftjs-utils";
+import { getSelectionText, getSelectionEntity } from "draftjs-utils";
 
 // ----------------------
 // Styled Components
@@ -182,10 +182,8 @@ export default class TextEditor extends React.Component {
     const selectionText = getSelectionText(editorState);
     console.log(selectionText);
 
-    // Split selection into content boxes
-    const anchorKey = selectionState.getAnchorKey();
-    const currentContentBlock = currentContent.getBlockForKey(anchorKey);
-    const entityKey = currentContentBlock.getEntityAt(0);
+    // Get selected entity
+    const entityKey = getSelectionEntity(editorState);
 
     // If entity already exists:
     if (entityKey) {
