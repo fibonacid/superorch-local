@@ -179,11 +179,11 @@ export default class TextEditor extends React.Component {
    * @param editorState
    */
   onExecuteSelectedBlock(editorState) {
+    // Get current selection
     const selectionState = editorState.getSelection();
 
     // Split selection into content boxes
     const anchorKey = selectionState.getAnchorKey();
-    const currentContent = editorState.getCurrentContent();
     const currentContentBlock = currentContent.getBlockForKey(anchorKey);
     const entityKey = currentContentBlock.getEntityAt(0);
 
