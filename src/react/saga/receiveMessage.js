@@ -1,6 +1,6 @@
 import { actionTypes } from "../actions/actionTypes";
 import { takeEvery, put } from "redux-saga/effects";
-import { addUser, updateUser } from "../actions/usersActions";
+import { addUser, updateUser, userAccepted } from "../actions/usersActions";
 import { updateDocument } from "../actions/documentsActions";
 import { executeSCLangQuery } from "../actions/executeSclangQuery";
 
@@ -15,12 +15,14 @@ export function* receiveMessageSaga(action) {
   const { message } = action.payload;
   let data = JSON.parse(message);
 
+  console.log(data);
+
   switch (data.type) {
     case "ADD_USER":
       yield put(addUser(data.id, data.data));
       break;
     case "USER_ACCEPTED":
-      yield put(updateUser(-1, data.id));
+      yield put(userAccepted(data.id));
       break;
     case "UPDATE_USER":
       yield put(updateUser(data.id, data.data));
