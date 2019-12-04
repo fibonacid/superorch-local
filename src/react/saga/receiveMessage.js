@@ -19,6 +19,9 @@ export function* receiveMessageSaga(action) {
     case "ADD_USER":
       yield put(addUser(data.id, data.data));
       break;
+    case "USER_ACCEPTED":
+      yield put(updateUser(-1, data.id));
+      break;
     case "UPDATE_USER":
       yield put(updateUser(data.id, data.data));
       break;
