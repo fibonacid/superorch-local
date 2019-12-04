@@ -1,10 +1,10 @@
-import {combineReducers} from "redux";
+import { combineReducers } from "redux";
 import users from "./users";
-import document from "./document";
+import documents from "./documents";
 
 const chat = combineReducers({
   users,
-  document
+  documents: documents
 });
 
 export default chat;
