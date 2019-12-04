@@ -1,4 +1,4 @@
-import users from "../../reducers/chat/users";
+import users, { selectUser } from "../../reducers/chat/users";
 import { actionTypes } from "../../actions/actionTypes";
 
 describe("users (Reducer)", () => {
@@ -35,6 +35,31 @@ describe("users (Reducer)", () => {
         { id: 2, name: "bar" },
         { id: 3, name: "test" }
       ]);
+    });
+
+    it("Handles UPDATE_USER action", () => {
+      const result = users(state, {
+        type: actionTypes.UPDATE_USER,
+        id: 2,
+        data: { name: "test" }
+      });
+      expect(result).toEqual([
+        { id: 1, name: "foo" },
+        { id: 2, name: "test" }
+      ]);
+    });
+
+    it("Handles DELETE_USER action", () => {
+      const result = users(state, {
+        type: actionTypes.DELETE_USER,
+        id: 2
+      });
+      expect(result).toEqual([{ id: 1, name: "foo" }]);
+    });
+
+    it("Selects a specific user", () => {
+      const user = selectUser(state, 2);
+      expect(user).toEqual({ id: 2, name: "bar" });
     });
   });
 
