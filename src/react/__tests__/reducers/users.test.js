@@ -14,14 +14,14 @@ describe("users (Reducer)", () => {
         id: 1,
         data: { name: "test" }
       });
-      expect(result).toEqual([{ id: 1, name: "test" }]);
+      expect(result).toEqual([{ id: 1, name: "test", localId: 0 }]);
     });
   });
 
   describe("When state is already populated", () => {
     let state = [
-      { id: 1, name: "foo" },
-      { id: 2, name: "bar" }
+      { id: 1, name: "foo", localId: 0 },
+      { id: 2, name: "bar", localId: 1 }
     ];
 
     it("Handles ADD_USER action", () => {
@@ -31,9 +31,9 @@ describe("users (Reducer)", () => {
         data: { name: "test" }
       });
       expect(result).toEqual([
-        { id: 1, name: "foo" },
-        { id: 2, name: "bar" },
-        { id: 3, name: "test" }
+        { id: 1, name: "foo", localId: 0 },
+        { id: 2, name: "bar", localId: 1 },
+        { id: 3, name: "test", localId: 2 }
       ]);
     });
 
@@ -44,8 +44,8 @@ describe("users (Reducer)", () => {
         data: { name: "test" }
       });
       expect(result).toEqual([
-        { id: 1, name: "foo" },
-        { id: 2, name: "test" }
+        { id: 1, name: "foo", localId: 0 },
+        { id: 2, name: "test", localId: 1 }
       ]);
     });
 
@@ -54,35 +54,12 @@ describe("users (Reducer)", () => {
         type: actionTypes.DELETE_USER,
         id: 2
       });
-      expect(result).toEqual([{ id: 1, name: "foo" }]);
+      expect(result).toEqual([{ id: 1, name: "foo", localId: 0 }]);
     });
 
     it("Selects a specific user", () => {
       const user = selectUser(state, 2);
-      expect(user).toEqual({ id: 2, name: "bar" });
+      expect(user).toEqual({ id: 2, name: "bar", localId: 1 });
     });
   });
-
-  /*it('Should handle USER_LIST', () => {
-    const action = {
-      type: actionTypes.USER_LIST,
-      users: ['Al', 'John', 'Jack']
-    };
-    const expectedResult = ['Al', 'John', 'Jack'];
-    const result = users(undefined, action);
-    expect(result).toEqual(expectedResult);
-  });
-
-  describe('when state is already populated', () => {
-    it('Should handle USER_LIST', () => {
-      const action = {
-        type: actionTypes.USER_LIST,
-        users: ['Al', 'John', 'Jack']
-      };
-      const prevState = ['Al', 'John'];
-      const expectedResult = ['Al', 'John', 'Jack'];
-      const result = users(prevState, action);
-      expect(result).toEqual(expectedResult);
-    });
-  });*/
 });
