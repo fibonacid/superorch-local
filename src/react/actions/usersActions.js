@@ -12,6 +12,11 @@ export const updateUser = (id, data) => ({
   data
 });
 
+export const deleteUser = id => ({
+  type: actionTypes.DELETE_USER,
+  id
+});
+
 export const populateUserList = users => ({
   type: actionTypes.USER_LIST,
   users
