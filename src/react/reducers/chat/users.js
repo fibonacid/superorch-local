@@ -23,6 +23,9 @@ const users = (state = initialState, action) => {
     case actionTypes.DELETE_USER:
       return state.filter(user => user.id !== action.id);
 
+    case actionTypes.USER_LIST:
+      return action.users;
+
     default:
       return state;
   }
