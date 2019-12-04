@@ -19,33 +19,41 @@ describe("documents (Reducer)", () => {
   });
 
   describe("When state is already populated", () => {
+    let initialState = [
+      { id: 1, state: "" },
+      { id: 2, state: "" }
+    ];
+
     it("Handles ADD_DOCUMENT action", () => {
-      const result = documents([{ id: 1, state: "" }], {
+      const result = documents(initialState, {
         type: actionTypes.ADD_DOCUMENT,
-        id: 2
+        id: 3
       });
       expect(result).toEqual([
         { id: 1, state: "" },
-        { id: 2, state: "" }
+        { id: 2, state: "" },
+        { id: 3, state: "" }
       ]);
     });
 
     it("Handles UPDATE_DOCUMENT action", () => {
-      const result = documents(
-        [
-          { id: 1, state: "" },
-          { id: 2, state: "" }
-        ],
-        {
-          type: actionTypes.UPDATE_DOCUMENT,
-          id: 2,
-          data: { state: "foo" }
-        }
-      );
+      const result = documents(initialState, {
+        type: actionTypes.UPDATE_DOCUMENT,
+        id: 2,
+        data: { state: "foo" }
+      });
       expect(result).toEqual([
         { id: 1, state: "" },
         { id: 2, state: "foo" }
       ]);
+    });
+
+    it("Handles DELETE_DOCUMENT action", () => {
+      const result = documents(initialState, {
+        type: actionTypes.DELETE_DOCUMENT,
+        id: 2
+      });
+      expect(result).toEqual([{ id: 1, state: "" }]);
     });
   });
 });

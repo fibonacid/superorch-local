@@ -17,7 +17,7 @@ const documents = (state = initialState, action) => {
       );
 
     case actionTypes.DELETE_DOCUMENT:
-      return _.remove(state, document => document.id === action.id);
+      return state.filter(document => document.id !== action.id);
 
     default:
       return state;
