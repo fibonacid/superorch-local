@@ -6,7 +6,25 @@ const initialState = [];
 const users = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.ADD_USER:
-      return [...state, { id: action.id, ...action.data }];
+      return [
+        ...state,
+        {
+          localId: state.length,
+          id: action.id,
+          ...action.data
+        }
+      ];
+
+    case actionTypes.USER_ACCEPTED:
+      // Modify data of user with id === -1
+      return state.map(user =>
+        user.localId === 0
+          ? {
+              ...user,
+              id: action.newId
+            }
+          : user
+      );
 
     case actionTypes.UPDATE_USER:
       // Modify data of user with same id.
