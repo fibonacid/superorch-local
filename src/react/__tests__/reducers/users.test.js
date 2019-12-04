@@ -1,4 +1,7 @@
-import users, { selectUser } from "../../reducers/chat/users";
+import users, {
+  selectUser,
+  selectUserByLocalId
+} from "../../reducers/chat/users";
 import { actionTypes } from "../../actions/actionTypes";
 
 describe("users (Reducer)", () => {
@@ -59,6 +62,11 @@ describe("users (Reducer)", () => {
 
     it("Selects a specific user", () => {
       const user = selectUser(state, 2);
+      expect(user).toEqual({ id: 2, name: "bar", localId: 1 });
+    });
+
+    it("Selects a specific user by local id", () => {
+      const user = selectUserByLocalId(state, 1);
       expect(user).toEqual({ id: 2, name: "bar", localId: 1 });
     });
   });
