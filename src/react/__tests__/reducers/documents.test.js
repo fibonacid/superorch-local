@@ -1,4 +1,7 @@
-import documents, { initialState } from "../../reducers/chat/documents";
+import documents, {
+  initialState,
+  selectDocument
+} from "../../reducers/chat/documents";
 import { actionTypes } from "../../actions/actionTypes";
 
 describe("documents (Reducer)", () => {
@@ -19,13 +22,13 @@ describe("documents (Reducer)", () => {
   });
 
   describe("When state is already populated", () => {
-    let initialState = [
+    const state = [
       { id: 1, state: "" },
       { id: 2, state: "" }
     ];
 
     it("Handles ADD_DOCUMENT action", () => {
-      const result = documents(initialState, {
+      const result = documents(state, {
         type: actionTypes.ADD_DOCUMENT,
         id: 3
       });
@@ -37,7 +40,7 @@ describe("documents (Reducer)", () => {
     });
 
     it("Handles UPDATE_DOCUMENT action", () => {
-      const result = documents(initialState, {
+      const result = documents(state, {
         type: actionTypes.UPDATE_DOCUMENT,
         id: 2,
         data: { state: "foo" }
@@ -49,11 +52,16 @@ describe("documents (Reducer)", () => {
     });
 
     it("Handles DELETE_DOCUMENT action", () => {
-      const result = documents(initialState, {
+      const result = documents(state, {
         type: actionTypes.DELETE_DOCUMENT,
         id: 2
       });
       expect(result).toEqual([{ id: 1, state: "" }]);
+    });
+
+    it("Selects a specific document", () => {
+      const document = selectDocument(state, 2);
+      expect(document).toEqual({ id: 2, state: "" });
     });
   });
 });

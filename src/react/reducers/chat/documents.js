@@ -25,3 +25,6 @@ const documents = (state = initialState, action) => {
 };
 
 export default documents;
+
+export const selectDocument = (state, id) =>
+  state.find(document => document.id === id);
