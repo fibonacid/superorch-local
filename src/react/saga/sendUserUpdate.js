@@ -10,14 +10,12 @@ export function* sendUserUpdateWatcher() {
 }
 
 export function* sendUserUpdateSaga(action) {
-  if (action.localId === 0) {
-    // Send it as a message
-    yield put(
-      send({
-        type: "UPDATE_USER",
-        userId: action.id,
-        data: action.data
-      })
-    );
-  }
+  // Send it as a message
+  yield put(
+    send({
+      type: "UPDATE_USER",
+      userId: action.id,
+      data: action.data
+    })
+  );
 }
