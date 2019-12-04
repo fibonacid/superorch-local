@@ -1,7 +1,6 @@
 import { put, select, takeLatest } from "redux-saga/effects";
 import { actionTypes } from "../actions/actionTypes";
-import { send } from "@giantmachines/redux-websocket/dist";
-import { selectUser } from "../reducers/root";
+import { selectUserByLocalId, selectUsers } from "../reducers/root";
 
 export function* userAcceptedWatcher(action) {
   yield takeLatest(actionTypes.USER_ACCEPTED, userAcceptedSaga);
@@ -9,7 +8,9 @@ export function* userAcceptedWatcher(action) {
 
 export function* userAcceptedSaga() {
   // Get username.
-  const user = yield select(state => selectUser(state, -1));
+  const users = yield select(state => selectUsers(state));
+  const user = yield select(state => selectUserByLocalId(state, 0));
+
   // Send it as a message
   yield put(
     send({
