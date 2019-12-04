@@ -6,7 +6,7 @@ const initialState = {
   isConnected: false,
   isTryingToConnect: false,
   username,
-  userId: null
+  userId: 0
 };
 
 const websocket = (state = initialState, action) => {
