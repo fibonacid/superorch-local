@@ -126,7 +126,7 @@ class App extends Component {
           <Header />
           <StyledWrapper>
             <SideBar />
-            <TextEditor />
+            {/*<TextEditor />*/}
             <Notifications />
           </StyledWrapper>
           <StatusBar />
