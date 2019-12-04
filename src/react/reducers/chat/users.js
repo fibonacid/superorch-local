@@ -9,7 +9,6 @@ const users = (state = initialState, action) => {
       return [
         ...state,
         {
-          localId: state.length,
           id: action.id,
           ...action.data
         }
