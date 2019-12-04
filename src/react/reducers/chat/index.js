@@ -11,4 +11,12 @@ export default chat;
 
 export const selectUsers = state => state.users;
 
-export const selectUser = (state, id) => fromUsers.selectUser(state, id);
+export const selectUser = (state, id) => {
+  const users = selectUsers(state);
+  return fromUsers.selectUser(users, id);
+};
+
+export const selectUserByLocalId = (state, localId) => {
+  const users = selectUsers(state);
+  return fromUsers.selectUserByLocalId(users, localId);
+};

@@ -42,4 +42,7 @@ const users = (state = initialState, action) => {
 
 export default users;
 
-export const selectUser = (state, id) => state.find(user => user.id === id);
+export const selectUser = (users, id) => users.find(user => user.id === id);
+
+export const selectUserByLocalId = (users, localId) =>
+  users.find(user => user.localId === localId);
