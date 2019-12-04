@@ -28,8 +28,7 @@ export function* receiveMessageSaga(action) {
       yield put(addUser(data.id, data.data));
       break;
     case "USER_ACCEPTED":
-      yield put(userAccepted(data.id));
-      yield put(populateUserList(data.data.users));
+      yield put(userAccepted(data.id, data.data));
       break;
     case "USER_UPDATED":
       yield put(updateUser(data.id, data.data));
