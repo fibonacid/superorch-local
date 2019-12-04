@@ -5,10 +5,10 @@ export const addDocument = id => ({
   id
 });
 
-export const updateDocument = (id, state) => ({
+export const updateDocument = (id, data) => ({
   type: actionTypes.UPDATE_DOCUMENT,
   id,
-  state
+  data
 });
 
 export const deleteDocument = id => ({
