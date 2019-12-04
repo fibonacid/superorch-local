@@ -1,6 +1,11 @@
 import { actionTypes } from "../actions/actionTypes";
 import { takeEvery, put } from "redux-saga/effects";
-import { addUser, updateUser, userAccepted } from "../actions/usersActions";
+import {
+  addUser,
+  deleteUser,
+  updateUser,
+  userAccepted
+} from "../actions/usersActions";
 import { updateDocument } from "../actions/documentsActions";
 import { executeSCLangQuery } from "../actions/executeSclangQuery";
 
@@ -26,6 +31,9 @@ export function* receiveMessageSaga(action) {
       break;
     case "UPDATE_USER":
       yield put(updateUser(data.id, data.data));
+      break;
+    case "DELETE_USER":
+      yield put(deleteUser(data.id));
       break;
     case "DOCUMENT_UPDATE":
       yield put(updateDocument(data.data));
