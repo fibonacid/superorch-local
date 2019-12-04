@@ -8,6 +8,7 @@ import { connect as connectSocket } from "@giantmachines/redux-websocket";
 import { channels } from "../shared/constants";
 import { flashInfo } from "./actions/flashActions";
 import { appInfo } from "./actions/appInfo";
+import name from "./utils/name";
 
 // Components
 import { createGlobalStyle } from "styled-components";
@@ -16,6 +17,7 @@ import SideBar from "./components/SideBar/index";
 import Header from "./components/Header/index";
 import TextEditor from "./components/TextEditor/index";
 import StatusBar from "./components/StatusBar/index";
+import { addUser } from "./actions/usersActions";
 
 /* =============================================== */
 /*    REDUX                                        */
@@ -105,6 +107,9 @@ class App extends Component {
   }
 
   componentDidMount() {
+    // Create user
+    store.dispatch(addUser(-1, { name }));
+
     // Connect to websocket
     const url = process.env.REACT_APP_SOCKET_URL;
     store.dispatch(connectSocket(url));
