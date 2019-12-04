@@ -22,7 +22,7 @@ export const populateUserList = users => ({
   users
 });
 
-export const userAccepted = newId => ({
+export const userAccepted = userId => ({
   type: actionTypes.USER_ACCEPTED,
-  newId
+  userId
 });
