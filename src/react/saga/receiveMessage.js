@@ -1,7 +1,7 @@
 import { actionTypes } from "../actions/actionTypes";
 import { takeEvery, put } from "redux-saga/effects";
 import { populateUserList } from "../actions/usersActions";
-import { updateDocument } from "../actions/updateDocument";
+import { updateDocument } from "../actions/documentsActions";
 import { executeSCLangQuery } from "../actions/executeSclangQuery";
 
 /**
