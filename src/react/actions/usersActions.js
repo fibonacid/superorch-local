@@ -16,3 +16,8 @@ export const populateUserList = users => ({
   type: actionTypes.USER_LIST,
   users
 });
+
+export const userAccepted = newId => ({
+  type: actionTypes.USER_ACCEPTED,
+  newId
+});
