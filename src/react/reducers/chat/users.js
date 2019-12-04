@@ -15,17 +15,6 @@ const users = (state = initialState, action) => {
         }
       ];
 
-    case actionTypes.USER_ACCEPTED:
-      // Modify data of user with id === -1
-      return state.map(user =>
-        user.localId === 0
-          ? {
-              ...user,
-              id: action.newId
-            }
-          : user
-      );
-
     case actionTypes.UPDATE_USER:
       // Modify data of user with same id.
       return state.map(user =>
