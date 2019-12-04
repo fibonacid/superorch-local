@@ -24,4 +24,7 @@ export const selectUsername = state =>
 
 export const selectUsers = state => fromChat.selectUsers(state.chat);
 
-export const selectUser = (state, id) => fromChat.selectUser(state, id);
+export const selectUser = (state, id) => fromChat.selectUser(state.chat, id);
+
+export const selectUserByLocalId = (state, localId) =>
+  fromChat.selectUserByLocalId(state.chat, localId);
