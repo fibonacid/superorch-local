@@ -22,7 +22,8 @@ export const populateUserList = users => ({
   users
 });
 
-export const userAccepted = userId => ({
+export const userAccepted = (newId, data) => ({
   type: actionTypes.USER_ACCEPTED,
-  userId
+  newId,
+  data
 });
