@@ -5,7 +5,8 @@ const initialState = {
   url: "ws://localhost:8989",
   isConnected: false,
   isTryingToConnect: false,
-  username
+  username,
+  userId: null
 };
 
 const websocket = (state = initialState, action) => {
@@ -32,6 +33,11 @@ const websocket = (state = initialState, action) => {
       return {
         ...state,
         isTryingToConnect: true
+      };
+    case actionTypes.USER_ACCEPTED:
+      return {
+        ...state,
+        userId: action.userId
       };
     default:
       return state;
