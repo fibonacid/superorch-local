@@ -3,6 +3,7 @@ import { takeEvery, put } from "redux-saga/effects";
 import {
   addUser,
   deleteUser,
+  populateUserList,
   updateUser,
   userAccepted
 } from "../actions/usersActions";
@@ -28,6 +29,7 @@ export function* receiveMessageSaga(action) {
       break;
     case "USER_ACCEPTED":
       yield put(userAccepted(data.id));
+      yield put(populateUserList(data.data.users));
       break;
     case "USER_UPDATED":
       yield put(updateUser(data.id, data.data));
