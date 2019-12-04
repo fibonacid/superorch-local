@@ -23,16 +23,16 @@ export function* receiveMessageSaga(action) {
   console.log(data);
 
   switch (data.type) {
-    case "ADD_USER":
+    case "USER_ADDED":
       yield put(addUser(data.id, data.data));
       break;
     case "USER_ACCEPTED":
       yield put(userAccepted(data.id));
       break;
-    case "UPDATE_USER":
+    case "USER_UPDATED":
       yield put(updateUser(data.id, data.data));
       break;
-    case "DELETE_USER":
+    case "USER_DELETED":
       yield put(deleteUser(data.id));
       break;
     case "DOCUMENT_UPDATE":
