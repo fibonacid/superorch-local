@@ -9,10 +9,12 @@ const documents = (state = initialState, action) => {
       return [...state, { id: action.id, state: "" }];
 
     case actionTypes.UPDATE_DOCUMENT:
-      return state.splice(_.findIndex(state, { id: action.id }), {
-        id: action.id,
-        state: action.state
-      });
+      // Modify data of user with same id.
+      return state.map(document =>
+        document.id === action.id
+          ? _.merge({}, document, { ...action.data })
+          : document
+      );
 
     case actionTypes.DELETE_DOCUMENT:
       return _.remove(state, document => document.id === action.id);

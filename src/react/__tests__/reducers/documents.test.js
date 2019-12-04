@@ -19,7 +19,7 @@ describe("documents (Reducer)", () => {
   });
 
   describe("When state is already populated", () => {
-    it("Handles ADD_DOCUMENT_ACTION", () => {
+    it("Handles ADD_DOCUMENT action", () => {
       const result = documents([{ id: 1, state: "" }], {
         type: actionTypes.ADD_DOCUMENT,
         id: 2
@@ -27,6 +27,24 @@ describe("documents (Reducer)", () => {
       expect(result).toEqual([
         { id: 1, state: "" },
         { id: 2, state: "" }
+      ]);
+    });
+
+    it("Handles UPDATE_DOCUMENT action", () => {
+      const result = documents(
+        [
+          { id: 1, state: "" },
+          { id: 2, state: "" }
+        ],
+        {
+          type: actionTypes.UPDATE_DOCUMENT,
+          id: 2,
+          data: { state: "foo" }
+        }
+      );
+      expect(result).toEqual([
+        { id: 1, state: "" },
+        { id: 2, state: "foo" }
       ]);
     });
   });
