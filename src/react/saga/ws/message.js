@@ -2,6 +2,7 @@ import { actionTypes } from "../../actions/actionTypes";
 import { takeLatest, select, put } from "redux-saga/effects";
 import { updateUser } from "../../actions/updateUser";
 import { updateMyUserId } from "../../actions/updateMyUserId";
+import { wsGetUserList } from "../../actions/ws/getUserList";
 
 export function* wsMessageWatcher() {
   yield takeLatest(actionTypes.WS_MESSAGE, wsMessageSaga);
@@ -18,7 +19,8 @@ export function* wsMessageSaga({ payload }) {
       yield put(updateUser(myUserId, { id: message.userId }));
       // Update the record inside base reducer.
       yield put(updateMyUserId(message.userId));
-      break;
+      // Finally ask for a user new list
+      return yield put(wsGetUserList());
 
     case actionTypes.WS_CREATE_USER_ERROR:
       console.error(message.error);
