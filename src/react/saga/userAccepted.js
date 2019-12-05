@@ -1,19 +1,33 @@
 import { actionTypes } from "../actions/actionTypes";
-import { take, put, select } from "redux-saga/effects";
+import { takeLatest, put, select, call } from "redux-saga/effects";
 import { populateUserList, updateUser } from "../actions/usersActions";
+import { selectUser } from "../reducers/root";
+import { sendUserUpdateSaga } from "./sendUserUpdate";
+import _ from "lodash";
 
 export function* userAcceptedWatcher() {
-  console.log("userAcceptedWatcher");
-  yield take(actionTypes.USER_ACCEPTED, userAcceptedSaga);
+  yield takeLatest(actionTypes.USER_ACCEPTED, userAcceptedSaga);
 }
 
 export function* userAcceptedSaga(action) {
-  console.log("userAcceptedSaga");
-
   const { newId, data } = action;
 
-  const oldId = yield select(state => state.websocket.userId);
-  yield put(updateUser(oldId, { id: newId }));
+  const myUser = yield select(state => selectUser(state, -1));
+  const updatedUser = { ...myUser, id: newId };
 
-  yield put(populateUserList(data.data.users));
+  // Update received list with personal data
+  const newUserList = data.users.map(user =>
+    // If it's my personal user:
+    user.id === newId
+      ? /* Update the id but keep the rest of the data. */
+        updatedUser
+      : /* Else: keep user as it is. */
+        user
+  );
+
+  // Store new user list
+  yield put(populateUserList(newUserList));
+
+  // update user on the server
+  yield call(sendUserUpdateSaga, updateUser(newId, _.omit(updatedUser, "id")));
 }
