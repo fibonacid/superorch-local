@@ -1,5 +1,5 @@
 import {actionTypes} from "../../actions/actionTypes";
-import {flashError, flashInfo, flashWarning} from "../../actions/flashActions";
+import {flashError, flashInfo, flashWarning} from "../../actions/flashMessage";
 
 describe('flashInfo (Action)', () => {
   it('works', () => {

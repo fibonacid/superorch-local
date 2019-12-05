@@ -1,5 +1,9 @@
 export const actionTypes = {
-  APP_INFO: "APP_INFO",
+  // ====================================================
+  //    INTERNAL ACTIONS
+  // ====================================================
+
+  INIT_APP_INFO: "INIT_APP_INFO",
 
   FLASH_INFO: "FLASH_INFO",
   FLASH_WARNING: "FLASH_WARNING",
@@ -8,8 +12,7 @@ export const actionTypes = {
   ADD_USER: "ADD_USER",
   UPDATE_USER: "UPDATE_USER",
   DELETE_USER: "DELETE_USER",
-  USER_ACCEPTED: "USER_ACCEPTED",
-  USER_LIST: "USER_LIST",
+  REPLACE_USER_LIST: "REPLACE_USER_LIST",
 
   ADD_DOCUMENT: "ADD_DOCUMENT",
   UPDATE_DOCUMENT: "UPDATE_DOCUMENT",

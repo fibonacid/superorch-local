@@ -1,5 +1,5 @@
 import { actionTypes } from "../../actions/actionTypes";
-import { addUser } from "../../actions/usersActions";
+import { addUser } from "../../actions/addUser";
 
 describe("addUser (Action)", () => {
   it("works", () => {
