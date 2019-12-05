@@ -1,22 +1,15 @@
-import name from "../utils/name";
 import { actionTypes } from "../actions/actionTypes";
 
 export const initialState = {
-  defaultUser: {
-    id: 0,
-    name
-  }
+  myUserId: 0
 };
 
 const base = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.SWAP_USER_ID:
+    case actionTypes.UPDATE_MY_USER_ID:
       return {
         ...state,
-        defaultUser: {
-          ...state.defaultUser,
-          id: action.newId
-        }
+        myUserId: action.newId
       };
     default:
       return state;
@@ -24,5 +17,3 @@ const base = (state = initialState, action) => {
 };
 
 export default base;
-
-export const selectDefaultUser = state => state.defaultUser;
