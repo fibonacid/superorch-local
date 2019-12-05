@@ -6,8 +6,8 @@ import reset from "styled-reset";
 import configureStore from "./store";
 import { connect as connectSocket } from "@giantmachines/redux-websocket";
 import { channels } from "../shared/constants";
-import { flashInfo } from "./actions/flashActions";
-import { appInfo } from "./actions/appInfo";
+import { flashInfo } from "./actions/flash";
+import { initAppInfo } from "./actions/initAppInfo";
 import name from "./utils/name";
 
 // Components
@@ -17,7 +17,7 @@ import SideBar from "./components/SideBar/index";
 import Header from "./components/Header/index";
 import TextEditor from "./components/TextEditor/index";
 import StatusBar from "./components/StatusBar/index";
-import { addUser } from "./actions/usersActions";
+import { addUser } from "./actions/addUser";
 import { INITIAL_USER_ID } from "./utils/constants";
 
 /* =============================================== */
@@ -97,7 +97,7 @@ class App extends Component {
       ipcRenderer.on(channels.APP_INFO, (event, arg) => {
         // Send data to the store.
         store.dispatch(
-          appInfo({
+          initAppInfo({
             name: arg.appName,
             version: arg.appVersion
           })
