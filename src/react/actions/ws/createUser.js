@@ -1,7 +1,8 @@
 import { actionTypes } from "../actionTypes";
 
-export const wsCreateUser = () => ({
-  type: actionTypes.WS_CREATE_USER
+export const wsCreateUser = user => ({
+  type: actionTypes.WS_CREATE_USER,
+  user
 });
 
 export const wsCreateUserSuccess = userId => ({

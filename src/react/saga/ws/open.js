@@ -1,9 +1,10 @@
 // A connection is made and the server has stored an id for the client
 
 import { actionTypes } from "../../actions/actionTypes";
-import { takeLatest, put } from "redux-saga/effects";
+import { takeLatest, put, select } from "redux-saga/effects";
 import { wsCreateUser } from "../../actions/ws/createUser";
 import { send } from "@giantmachines/redux-websocket";
+import { selectUser } from "../../reducers/root";
 
 // Every time
 export function* wsOpenWatcher() {
@@ -11,5 +12,9 @@ export function* wsOpenWatcher() {
 }
 
 export function* wsOpenSaga() {
-  yield put(send(wsCreateUser()));
+  // Retrieve default user.
+  const { myUserId } = yield select(state => state.base);
+  const user = yield select(state => selectUser(state, myUserId));
+  // Send it to the server.
+  yield put(send(wsCreateUser(user)));
 }
