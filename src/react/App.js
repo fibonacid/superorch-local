@@ -116,7 +116,9 @@ class App extends Component {
     store.dispatch(connectSocket(url));
 
     // Request start of SuperCollider server
-    ipcRenderer.send(channels.START_SUPERCOLLIDER);
+    if (ipcRenderer) {
+      ipcRenderer.send(channels.START_SUPERCOLLIDER);
+    }
   }
 
   render() {
