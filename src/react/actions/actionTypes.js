@@ -4,6 +4,7 @@ export const actionTypes = {
   // ====================================================
 
   INIT_APP_INFO: "INIT_APP_INFO",
+  UPDATE_MY_USER_ID: "UPDATE_MY_USER_ID",
 
   FLASH_INFO: "FLASH_INFO",
   FLASH_WARNING: "FLASH_WARNING",
