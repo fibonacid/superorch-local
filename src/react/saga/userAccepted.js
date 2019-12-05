@@ -1,9 +1,10 @@
+import _ from "lodash";
+import { INITIAL_USER_ID } from "../utils/constants";
 import { actionTypes } from "../actions/actionTypes";
 import { takeLatest, put, select, call } from "redux-saga/effects";
 import { populateUserList, updateUser } from "../actions/usersActions";
 import { selectUser } from "../reducers/root";
 import { sendUserUpdateSaga } from "./sendUserUpdate";
-import _ from "lodash";
 
 export function* userAcceptedWatcher() {
   yield takeLatest(actionTypes.USER_ACCEPTED, userAcceptedSaga);
@@ -12,7 +13,7 @@ export function* userAcceptedWatcher() {
 export function* userAcceptedSaga(action) {
   const { newId, data } = action;
 
-  const myUser = yield select(state => selectUser(state, -1));
+  const myUser = yield select(state => selectUser(state, INITIAL_USER_ID));
   const updatedUser = { ...myUser, id: newId };
 
   // Update received list with personal data

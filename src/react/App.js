@@ -18,6 +18,7 @@ import Header from "./components/Header/index";
 import TextEditor from "./components/TextEditor/index";
 import StatusBar from "./components/StatusBar/index";
 import { addUser } from "./actions/usersActions";
+import { INITIAL_USER_ID } from "./utils/constants";
 
 /* =============================================== */
 /*    REDUX                                        */
@@ -108,7 +109,7 @@ class App extends Component {
 
   componentDidMount() {
     // Create user
-    store.dispatch(addUser(null, { name }));
+    store.dispatch(addUser(INITIAL_USER_ID, { name }));
 
     // Connect to websocket
     const url = process.env.REACT_APP_SOCKET_URL;
