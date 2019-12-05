@@ -1,6 +1,7 @@
 import { all } from "redux-saga/effects";
-import { wsOpenWatcher } from "./wsOpen";
+import { wsOpenWatcher } from "./ws/open";
+import { wsMessageWatcher } from "./ws/message";
 
 export function* root() {
-  yield all([wsOpenWatcher()]);
+  yield all([wsOpenWatcher(), wsMessageWatcher()]);
 }
