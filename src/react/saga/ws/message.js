@@ -1,10 +1,7 @@
 import { actionTypes } from "../../actions/actionTypes";
-import { takeLatest, put, call } from "redux-saga/effects";
-import {
-  wsCreateUserError,
-  wsCreateUserSuccess
-} from "../../actions/ws/createUser";
-import { swapUserId } from "./swapUserId";
+import { takeLatest, select, put } from "redux-saga/effects";
+import { updateUser } from "../../actions/updateUser";
+import { updateMyUserId } from "../../actions/updateMyUserId";
 
 export function* wsMessageWatcher() {
   yield takeLatest(actionTypes.WS_MESSAGE, wsMessageSaga);
@@ -14,8 +11,17 @@ export function* wsMessageSaga({ payload }) {
   const message = JSON.parse(payload.message);
   switch (message.type) {
     case actionTypes.WS_CREATE_USER_SUCCESS:
-      return yield call(swapUserId, message.userId);
+      // Get default user id
+      const { myUserId } = yield select(state => state.base);
+      // Swap it with new one:
+      // Update the record in the users reducer.
+      yield put(updateUser(myUserId, { id: message.userId }));
+      // Update the record inside base reducer.
+      yield put(updateMyUserId(message.userId));
+      break;
+
     case actionTypes.WS_CREATE_USER_ERROR:
-      return yield put(wsCreateUserError(message.error));
+      console.error(message.error);
+      break;
   }
 }
