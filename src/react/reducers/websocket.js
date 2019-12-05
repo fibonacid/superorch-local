@@ -6,7 +6,7 @@ const initialState = {
   isConnected: false,
   isTryingToConnect: false,
   username,
-  userId: 0
+  userId: null
 };
 
 const websocket = (state = initialState, action) => {
@@ -33,11 +33,6 @@ const websocket = (state = initialState, action) => {
       return {
         ...state,
         isTryingToConnect: true
-      };
-    case actionTypes.USER_ACCEPTED:
-      return {
-        ...state,
-        userId: action.userId
       };
     default:
       return state;
