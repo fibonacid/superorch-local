@@ -15,7 +15,6 @@ const users = (state = initialState, action) => {
       ];
 
     case actionTypes.UPDATE_USER:
-      console.log(action, state);
       // Modify data of user with same id.
       return state.map(user =>
         user.id === action.id
