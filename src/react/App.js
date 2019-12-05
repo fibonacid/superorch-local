@@ -110,8 +110,8 @@ class App extends Component {
 
   componentDidMount() {
     // Create user
-    const user = selectDefaultUser(store.getState());
-    store.dispatch(addUser(user.id, { ...user }));
+    const { myUserId } = store.getState().base;
+    store.dispatch(addUser(myUserId, { name }));
 
     // Connect to websocket
     const url = process.env.REACT_APP_SOCKET_URL;
