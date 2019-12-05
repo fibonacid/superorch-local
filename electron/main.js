@@ -4,6 +4,7 @@ const url = require("url");
 const { channels } = require("../src/shared/constants");
 const { autoUpdater } = require("electron-updater");
 const { bootServer } = require("./run-scsynth");
+const { bootInterpreter } = require("./run-sclang");
 
 let mainWindow;
 
@@ -130,8 +131,9 @@ ipcMain.on("restart_app", () => {
 });
 
 // When react launch the start_supercollider event
-ipcMain.on("start_supercollider", () => {
-  bootServer();
+ipcMain.on("start_supercollider", async () => {
+  //bootServer();
+  bootInterpreter();
 });
 
 // When react launch the stop_supercollider event
