@@ -3,10 +3,10 @@ import { takeLatest, put, race, take, delay } from "redux-saga/effects";
 import { send } from "@giantmachines/redux-websocket";
 import {
   wsGetUserList,
+  wsGetUserListError,
   wsGetUserListSuccess,
   wsGetUserListTimeout
 } from "../../actions/ws/getUserList";
-import { replaceUserList } from "../../actions/replaceUserList";
 
 export function* wsGetUserListWatcher() {
   yield takeLatest(actionTypes.WS_GET_USER_LIST, wsGetUserListSaga);
@@ -25,12 +25,12 @@ export function* wsGetUserListSaga() {
 
   // If request completed successfully:
   if (result) {
-    //console.log(result);
-    yield put(replaceUserList(result.userList));
+    yield put(wsGetUserListSuccess(result.userList));
   }
   // If request raised an error on the server:
   else if (error) {
     console.error(error);
+    yield put(wsGetUserListError(error));
   }
   // If request took to long to complete
   else if (timeout) {

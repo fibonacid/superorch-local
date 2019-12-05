@@ -28,9 +28,8 @@ const users = (state = initialState, action) => {
     case actionTypes.DELETE_USER:
       return state.filter(user => user.id !== action.id);
 
-    case actionTypes.REPLACE_USER_LIST:
-      console.log(action.users);
-      return action.users;
+    case actionTypes.WS_GET_USER_LIST_SUCCESS:
+      return action.userList;
 
     default:
       return state;
