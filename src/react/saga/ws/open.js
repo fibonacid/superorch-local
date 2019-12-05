@@ -3,7 +3,6 @@
 import { actionTypes } from "../../actions/actionTypes";
 import { takeLatest, put, select } from "redux-saga/effects";
 import { wsCreateUser } from "../../actions/ws/createUser";
-import { send } from "@giantmachines/redux-websocket";
 import { selectUser } from "../../reducers/root";
 
 // Every time
@@ -16,5 +15,5 @@ export function* wsOpenSaga() {
   const { myUserId } = yield select(state => state.base);
   const user = yield select(state => selectUser(state, myUserId));
   // Send it to the server.
-  yield put(send(wsCreateUser(user)));
+  yield put(wsCreateUser(user));
 }

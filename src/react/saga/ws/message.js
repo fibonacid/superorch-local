@@ -1,12 +1,13 @@
 import { actionTypes } from "../../actions/actionTypes";
-import { takeLatest, select, put } from "redux-saga/effects";
-import { updateUser } from "../../actions/updateUser";
-import { updateMyUserId } from "../../actions/updateMyUserId";
+import { takeLatest, put } from "redux-saga/effects";
 import {
-  wsGetUserList,
   wsGetUserListError,
   wsGetUserListSuccess
 } from "../../actions/ws/getUserList";
+import {
+  wsCreateUserError,
+  wsCreateUserSuccess
+} from "../../actions/ws/createUser";
 
 export function* wsMessageWatcher() {
   yield takeLatest(actionTypes.WS_MESSAGE, wsMessageSaga);
@@ -16,19 +17,10 @@ export function* wsMessageSaga({ payload }) {
   const message = JSON.parse(payload.message);
   switch (message.type) {
     case actionTypes.WS_CREATE_USER_SUCCESS:
-      // Get default user id
-      const { myUserId } = yield select(state => state.base);
-      // Swap it with new one:
-      // Update the record in the users reducer.
-      yield put(updateUser(myUserId, { id: message.userId }));
-      // Update the record inside base reducer.
-      yield put(updateMyUserId(message.userId));
-      // Finally ask for a user new list
-      return yield put(wsGetUserList());
+      return yield put(wsCreateUserSuccess(message.userId));
 
     case actionTypes.WS_CREATE_USER_ERROR:
-      console.error(message.error);
-      break;
+      return yield put(wsCreateUserError(message.error));
 
     case actionTypes.WS_GET_USER_LIST_SUCCESS:
       return yield put(wsGetUserListSuccess(message.userList));
