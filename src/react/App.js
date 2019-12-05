@@ -6,7 +6,7 @@ import reset from "styled-reset";
 import configureStore from "./store";
 import { connect as connectSocket } from "@giantmachines/redux-websocket";
 import { channels } from "../shared/constants";
-import { flashInfo } from "./actions/flash";
+import { flashInfo } from "./actions/flashMessage";
 import { initAppInfo } from "./actions/initAppInfo";
 import name from "./utils/name";
 
