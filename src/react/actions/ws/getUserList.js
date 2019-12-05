@@ -13,3 +13,8 @@ export const wsGetUserListError = error => ({
   type: actionTypes.WS_GET_USER_LIST_ERROR,
   error
 });
+
+export const wsGetUserListTimeout = message => ({
+  type: actionTypes.WS_GET_USER_LIST_TIMEOUT,
+  message
+});
