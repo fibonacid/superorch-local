@@ -1,22 +1,20 @@
-import app from '../../reducers/app';
-import {actionTypes} from "../../actions/actionTypes";
+import app from "../../reducers/app";
+import { actionTypes } from "../../actions/actionTypes";
 
-describe('app (Reducer)', () => {
-
-  describe('when state is not populated', () => {
-
-    it('Should return the initial state', () => {
-      const result = app(undefined, {type:"foo"});
+describe("app (Reducer)", () => {
+  describe("when state is not populated", () => {
+    it("Should return the initial state", () => {
+      const result = app(undefined, { type: "foo" });
       expect(result).toEqual({});
     });
 
-    it('Should handle APP_INFO', () => {
+    it("Should handle APP_INFO", () => {
       const data = {
-        name: 'Test',
+        name: "Test",
         version: "1.0"
       };
       const action = {
-        type: actionTypes.APP_INFO,
+        type: actionTypes.INIT_APP_INFO,
         data
       };
       const expectedResult = data;
@@ -25,17 +23,17 @@ describe('app (Reducer)', () => {
     });
   });
 
-  describe('when state is already populated', () => {
-    it('Should handle APP_INFO', () => {
+  describe("when state is already populated", () => {
+    it("Should handle APP_INFO", () => {
       const state = {
-        name: 'Test',
+        name: "Test",
         version: "1.0"
       };
       const data = {
-        foo: 'bar'
+        foo: "bar"
       };
       const action = {
-        type: actionTypes.APP_INFO,
+        type: actionTypes.INIT_APP_INFO,
         data
       };
       const expectedResult = {
