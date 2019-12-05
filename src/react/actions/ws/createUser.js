@@ -14,3 +14,8 @@ export const wsCreateUserError = error => ({
   type: actionTypes.WS_CREATE_USER_ERROR,
   error
 });
+
+export const wsCreateUserTimeout = message => ({
+  type: actionTypes.WS_CREATE_USER_ERROR,
+  message
+});
