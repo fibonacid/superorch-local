@@ -4,7 +4,7 @@ import {
   wsCreateUserError,
   wsCreateUserSuccess
 } from "../../actions/ws/createUser";
-import { wsCreateUserSuccessSaga } from "./createUserSuccess";
+import { swapUserId } from "./swapUserId";
 
 export function* wsMessageWatcher() {
   yield takeLatest(actionTypes.WS_MESSAGE, wsMessageSaga);
@@ -14,10 +14,7 @@ export function* wsMessageSaga({ payload }) {
   const message = JSON.parse(payload.message);
   switch (message.type) {
     case actionTypes.WS_CREATE_USER_SUCCESS:
-      return yield call(
-        wsCreateUserSuccessSaga,
-        wsCreateUserSuccess(message.userId)
-      );
+      return yield call(swapUserId, message.userId);
     case actionTypes.WS_CREATE_USER_ERROR:
       return yield put(wsCreateUserError(message.error));
   }
