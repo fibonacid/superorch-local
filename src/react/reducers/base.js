@@ -1,4 +1,11 @@
-export const initialState = {};
+import name from "../utils/name";
+
+export const initialState = {
+  defaultUser: {
+    id: 0,
+    name
+  }
+};
 
 const base = (state = initialState, action) => {
   switch (action.type) {
@@ -8,3 +15,5 @@ const base = (state = initialState, action) => {
 };
 
 export default base;
+
+export const selectDefaultUser = state => state.defaultUser;

@@ -1,10 +1,9 @@
 import { select, put } from "redux-saga/effects";
 import { updateUser } from "../../actions/updateUser";
+import { selectDefaultUser } from "../../reducers/root";
 
 export function* swapUserId(newId) {
-  const myUserId = yield select(
-    state => state.websocket.userId // todo: change path for this
-  );
+  const { id } = yield select(state => selectDefaultUser(state));
 
-  yield put(updateUser(myUserId, { id: newId }));
+  yield put(updateUser(id, { id: newId }));
 }

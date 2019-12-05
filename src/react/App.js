@@ -19,6 +19,7 @@ import TextEditor from "./components/TextEditor/index";
 import StatusBar from "./components/StatusBar/index";
 import { addUser } from "./actions/addUser";
 import { INITIAL_USER_ID } from "./utils/constants";
+import { selectDefaultUser } from "./reducers/root";
 
 /* =============================================== */
 /*    REDUX                                        */
@@ -109,7 +110,8 @@ class App extends Component {
 
   componentDidMount() {
     // Create user
-    store.dispatch(addUser(INITIAL_USER_ID, { name }));
+    const user = selectDefaultUser(store.getState());
+    store.dispatch(addUser(user.id, { ...user }));
 
     // Connect to websocket
     const url = process.env.REACT_APP_SOCKET_URL;

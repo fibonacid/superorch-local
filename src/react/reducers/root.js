@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import base from "./base";
+import base, * as fromBase from "./base";
 import chat, * as fromChat from "./chat/index";
 import app from "./app";
 import flash from "./flash";
@@ -28,3 +28,6 @@ export const selectUser = (state, id) => fromChat.selectUser(state.chat, id);
 
 export const selectUserByLocalId = (state, localId) =>
   fromChat.selectUserByLocalId(state.chat, localId);
+
+export const selectDefaultUser = state =>
+  fromBase.selectDefaultUser(state.base);

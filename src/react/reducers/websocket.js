@@ -1,13 +1,9 @@
-import username from "../utils/name";
 import { actionTypes } from "../actions/actionTypes";
-import { INITIAL_USER_ID } from "../utils/constants";
 
 const initialState = {
   url: "ws://localhost:8989",
   isConnected: false,
-  isTryingToConnect: false,
-  username,
-  userId: INITIAL_USER_ID
+  isTryingToConnect: false
 };
 
 const websocket = (state = initialState, action) => {
