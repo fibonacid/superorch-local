@@ -5,6 +5,7 @@ import { wsCreateUser } from "../../actions/ws/createUser";
 import { updateUser } from "../../actions/updateUser";
 import { updateMyUserId } from "../../actions/updateMyUserId";
 import { wsGetUserList } from "../../actions/ws/getUserList";
+import { wsCreateDocument } from "../../actions/ws/createDocument";
 
 export function* wsCreateUserWatcher() {
   yield takeLatest(actionTypes.WS_CREATE_USER, wsCreateUserSaga);
@@ -25,13 +26,20 @@ export function* wsCreateUserSaga(action) {
   if (result) {
     // Get default user id
     const { myUserId } = yield select(state => state.base);
+
     // Swap it with new one:
+
     // Update the record in the users reducer.
     yield put(updateUser(myUserId, { id: result.userId }));
     // Update the record inside base reducer.
     yield put(updateMyUserId(result.userId));
     // Finally ask for a new user list
     yield put(wsGetUserList());
+
+    // Now: create a document
+    // ------------------------------
+    // todo: this should be optional
+    yield put(wsCreateDocument());
   }
   // If request raised an error on the server:
   else if (error) {
