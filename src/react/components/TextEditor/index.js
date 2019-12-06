@@ -3,11 +3,11 @@ import TextEditor from "./TextEditor";
 //import { sendDocument } from "../../actions/sendDocument";
 //import { sendSCLangQuery } from "../../actions/sendSCLangQuery";
 
-const mapStateToProps = state => ({
-  document: state.chat.document
-});
+const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
+  handleExecuteSelection: () => {},
+  sendEditorState: () => {}
   /*handleExecuteSelection: text => {
     dispatch(sendSCLangQuery(text));
   },
