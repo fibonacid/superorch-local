@@ -9,6 +9,8 @@ import {
   wsCreateUserSuccess
 } from "../../actions/ws/createUser";
 import { addUser } from "../../actions/addUser";
+import { deleteUser } from "../../actions/deleteUser";
+import { updateUser } from "../../actions/updateUser";
 
 export function* wsMessageWatcher() {
   yield takeLatest(actionTypes.WS_MESSAGE, wsMessageSaga);
@@ -31,5 +33,11 @@ export function* wsMessageSaga({ payload }) {
 
     case actionTypes.WS_USER_JOINED:
       return yield put(addUser(message.user.id, message.user));
+
+    case actionTypes.WS_USER_LEFT:
+      return yield put(deleteUser(message.userId));
+
+    case actionTypes.WS_USER_UPDATE:
+      return yield put(updateUser(message.userId, message["diff"]));
   }
 }
