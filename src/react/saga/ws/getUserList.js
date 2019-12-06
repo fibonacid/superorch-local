@@ -17,18 +17,13 @@ export function* wsGetUserListSaga() {
   yield put(send(wsGetUserList()));
 
   // Wait for an error or success message
-  const { result, error, timeout } = yield race({
-    result: take(actionTypes.WS_GET_USER_LIST_SUCCESS),
+  const { error, timeout } = yield race({
     error: take(actionTypes.WS_GET_USER_LIST_ERROR),
     timeout: delay(2000, `Request took too long to complete`)
   });
 
-  // If request completed successfully:
-  if (result) {
-    yield put(wsGetUserListSuccess(result.userList));
-  }
   // If request raised an error on the server:
-  else if (error) {
+  if (error) {
     console.error(error);
     yield put(wsGetUserListError(error));
   }
