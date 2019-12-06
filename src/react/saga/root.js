@@ -5,6 +5,7 @@ import { wsGetUserListWatcher } from "./ws/getUserList";
 import { wsCreateUserWatcher } from "./ws/createUser";
 import { wsUpdateUserWatcher } from "./ws/updateUser";
 import { wsCreateDocumentWatcher } from "./ws/createDocument";
+import { wsUpdateDocumentWatcher } from "./ws/updateDocument";
 
 export function* root() {
   yield all([
@@ -13,6 +14,7 @@ export function* root() {
     wsGetUserListWatcher(),
     wsCreateUserWatcher(),
     wsCreateDocumentWatcher(),
-    wsUpdateUserWatcher()
+    wsUpdateUserWatcher(),
+    wsUpdateDocumentWatcher()
   ]);
 }
