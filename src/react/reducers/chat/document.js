@@ -12,5 +12,7 @@ export default function document(state = initialState, action) {
         ...state,
         ...action.data
       };
+    default:
+      return state;
   }
 }
