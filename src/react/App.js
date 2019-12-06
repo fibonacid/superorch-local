@@ -121,13 +121,6 @@ class App extends Component {
     if (ipcRenderer) {
       ipcRenderer.send(channels.START_SUPERCOLLIDER);
     }
-
-    // todo: remove
-    setInterval(() => {
-      const name = new Chance().first();
-      const { myUserId } = store.getState().base;
-      store.dispatch(updateUser(myUserId, { name }));
-    }, 1000);
   }
 
   render() {
