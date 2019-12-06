@@ -1,4 +1,4 @@
-import { takeLatest, put } from "redux-saga/effects";
+import { takeLatest, select, put } from "redux-saga/effects";
 import { actionTypes } from "../../actions/actionTypes";
 import { send } from "@giantmachines/redux-websocket";
 import { wsUserUpdate } from "../../actions/ws/userUpdate";
@@ -8,5 +8,11 @@ export function* wsUpdateUserWatcher() {
 }
 
 export function* wsUpdateUserSaga(action) {
-  yield put(send(wsUserUpdate(action.id, action.data)));
+  // Check if user it's the default one before
+  // sending an update to the server, otherwise
+  // an infinite loop is triggered.
+  const { myUserId } = yield select(state => state.base);
+  if (action.id === myUserId) {
+    yield put(send(wsUserUpdate(action.id, action.data)));
+  }
 }
