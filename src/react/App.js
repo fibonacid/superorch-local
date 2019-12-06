@@ -9,17 +9,17 @@ import { channels } from "../shared/constants";
 import { flashInfo } from "./actions/flashMessage";
 import { initAppInfo } from "./actions/initAppInfo";
 import name from "./utils/name";
+import Chance from "chance";
 
 // Components
 import { createGlobalStyle } from "styled-components";
 import Notifications from "./components/Notifications/index";
 import SideBar from "./components/SideBar/index";
 import Header from "./components/Header/index";
-import TextEditor from "./components/TextEditor/index";
+//import TextEditor from "./components/TextEditor/index";
 import StatusBar from "./components/StatusBar/index";
 import { addUser } from "./actions/addUser";
-import { INITIAL_USER_ID } from "./utils/constants";
-import { selectDefaultUser } from "./reducers/root";
+import { updateUser } from "./actions/updateUser";
 
 /* =============================================== */
 /*    REDUX                                        */
@@ -121,6 +121,13 @@ class App extends Component {
     if (ipcRenderer) {
       ipcRenderer.send(channels.START_SUPERCOLLIDER);
     }
+
+    // todo: remove
+    setInterval(() => {
+      const name = new Chance().first();
+      const { myUserId } = store.getState().base;
+      store.dispatch(updateUser(myUserId, { name }));
+    }, 1000);
   }
 
   render() {
