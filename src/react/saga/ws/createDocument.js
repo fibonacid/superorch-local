@@ -9,11 +9,12 @@ export function* wsCreateDocumentWatcher() {
 }
 
 export function* wsCreateDocumentSaga(action) {
-  const document = yield select(state => state.document);
-
   // If document is undefined
-  if (!document) {
+  if (!action.document) {
     // Exit immediately
+    console.warn(
+      "wsCreateDocumentSaga terminated because document id undefined"
+    );
     return null;
   }
 

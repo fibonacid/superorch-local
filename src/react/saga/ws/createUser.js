@@ -39,7 +39,8 @@ export function* wsCreateUserSaga(action) {
     // Now: create a document
     // ------------------------------
     // todo: this should be optional
-    yield put(wsCreateDocument());
+    const document = yield select(state => state.chat.document);
+    yield put(wsCreateDocument(document));
   }
   // If request raised an error on the server:
   else if (error) {

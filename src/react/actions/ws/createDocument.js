@@ -1,7 +1,8 @@
 import { actionTypes } from "../actionTypes";
 
-export const wsCreateDocument = () => ({
-  type: actionTypes.WS_CREATE_DOCUMENT
+export const wsCreateDocument = document => ({
+  type: actionTypes.WS_CREATE_DOCUMENT,
+  document
 });
 
 export const wsCreateDocumentSuccess = documentId => ({
