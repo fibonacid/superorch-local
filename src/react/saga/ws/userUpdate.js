@@ -3,11 +3,11 @@ import { actionTypes } from "../../actions/actionTypes";
 import { send } from "@giantmachines/redux-websocket";
 import { wsUserUpdate } from "../../actions/ws/userUpdate";
 
-export function* wsUpdateUserWatcher() {
-  yield takeLatest(actionTypes.UPDATE_USER, wsUpdateUserSaga);
+export function* wsUserUpdateWatcher() {
+  yield takeLatest(actionTypes.UPDATE_USER, wsUserUpdateSaga);
 }
 
-export function* wsUpdateUserSaga(action) {
+export function* wsUserUpdateSaga(action) {
   // Check if user it's the default one before
   // sending an update to the server, otherwise
   // an infinite loop is triggered.
