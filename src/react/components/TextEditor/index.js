@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import TextEditor from "./TextEditor";
+import { updateDocument } from "../../actions/updateDocument";
 //import { sendDocument } from "../../actions/sendDocument";
 //import { sendSCLangQuery } from "../../actions/sendSCLangQuery";
 
@@ -7,7 +8,12 @@ const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
   handleExecuteSelection: () => {},
-  sendEditorState: () => {}
+  sendEditorState: data =>
+    dispatch(
+      updateDocument({
+        content: data
+      })
+    )
   /*handleExecuteSelection: text => {
     dispatch(sendSCLangQuery(text));
   },

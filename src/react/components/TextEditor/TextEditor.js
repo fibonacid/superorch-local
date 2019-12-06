@@ -186,7 +186,7 @@ export default class TextEditor extends React.Component {
     // Update editor state
     this.setState({ editorState }, callback);
 
-    /*const changeType = editorState.getLastChangeType();
+    const changeType = editorState.getLastChangeType();
     //console.log(changeType);
 
     // Extrapolate raw contentState
@@ -194,7 +194,7 @@ export default class TextEditor extends React.Component {
     const raw = convertToRaw(contentState);
 
     // And send it the socket server as a string
-    this.props.sendEditorState(JSON.stringify(raw));*/
+    this.props.sendEditorState(JSON.stringify(raw));
   }
 
   /**
