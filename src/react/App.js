@@ -9,17 +9,15 @@ import { channels } from "../shared/constants";
 import { flashInfo } from "./actions/flashMessage";
 import { initAppInfo } from "./actions/initAppInfo";
 import name from "./utils/name";
-import Chance from "chance";
 
 // Components
 import { createGlobalStyle } from "styled-components";
 import Notifications from "./components/Notifications/index";
 import SideBar from "./components/SideBar/index";
 import Header from "./components/Header/index";
-//import TextEditor from "./components/TextEditor/index";
+import TextEditor from "./components/TextEditor/index";
 import StatusBar from "./components/StatusBar/index";
 import { addUser } from "./actions/addUser";
-import { updateUser } from "./actions/updateUser";
 
 /* =============================================== */
 /*    REDUX                                        */
@@ -131,7 +129,7 @@ class App extends Component {
           <Header />
           <StyledWrapper>
             <SideBar />
-            {/*<TextEditor />*/}
+            <TextEditor />
             <Notifications />
           </StyledWrapper>
           <StatusBar />
