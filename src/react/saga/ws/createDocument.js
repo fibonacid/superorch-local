@@ -9,6 +9,14 @@ export function* wsCreateDocumentWatcher() {
 }
 
 export function* wsCreateDocumentSaga(action) {
+  const document = yield select(state => state.document);
+
+  // If document is undefined
+  if (!document) {
+    // Exit immediately
+    return null;
+  }
+
   // Request a new document list
   yield put(send(wsCreateDocument(action.document)));
 
