@@ -10,7 +10,7 @@ export default function document(state = initialState, action) {
     case actionTypes.UPDATE_DOCUMENT:
       return {
         ...state,
-        ...action.data
+        ...action.document
       };
     default:
       return state;
