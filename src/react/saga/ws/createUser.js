@@ -1,12 +1,7 @@
 import { actionTypes } from "../../actions/actionTypes";
 import { takeLatest, put, race, take, delay, select } from "redux-saga/effects";
 import { send } from "@giantmachines/redux-websocket";
-import {
-  wsCreateUser,
-  wsCreateUserError,
-  wsCreateUserSuccess,
-  wsCreateUserTimeout
-} from "../../actions/ws/createUser";
+import { wsCreateUser } from "../../actions/ws/createUser";
 import { updateUser } from "../../actions/updateUser";
 import { updateMyUserId } from "../../actions/updateMyUserId";
 import { wsGetUserList } from "../../actions/ws/getUserList";
@@ -41,11 +36,9 @@ export function* wsCreateUserSaga(action) {
   // If request raised an error on the server:
   else if (error) {
     console.error(error);
-    yield put(wsCreateUserError(error));
   }
   // If request took to long to complete
   else if (timeout) {
     console.log(timeout);
-    yield put(wsCreateUserTimeout(timeout));
   }
 }
