@@ -14,10 +14,13 @@ const mapDispatchToProps = dispatch => ({
         content: data
       })
     )
-  /*handleExecuteSelection: text => {
-    dispatch(sendSCLangQuery(text));
-  },
-  sendEditorState: data => dispatch(sendDocument(data))*/
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TextEditor);
+
+/*
+handleExecuteSelection: text => {
+  dispatch(sendSCLangQuery(text));
+},
+sendEditorState: data => dispatch(sendDocument(data))
+*/
