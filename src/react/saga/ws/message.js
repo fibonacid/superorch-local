@@ -8,6 +8,7 @@ import {
   wsCreateUserError,
   wsCreateUserSuccess
 } from "../../actions/ws/createUser";
+import { addUser } from "../../actions/addUser";
 
 export function* wsMessageWatcher() {
   yield takeLatest(actionTypes.WS_MESSAGE, wsMessageSaga);
@@ -27,5 +28,8 @@ export function* wsMessageSaga({ payload }) {
 
     case actionTypes.WS_GET_USER_LIST_ERROR:
       return yield put(wsGetUserListError(message.error));
+
+    case actionTypes.WS_USER_JOINED:
+      return yield put(addUser(message.user.id, message.user));
   }
 }
