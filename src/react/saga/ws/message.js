@@ -11,6 +11,10 @@ import {
 import { addUser } from "../../actions/addUser";
 import { deleteUser } from "../../actions/deleteUser";
 import { updateUser } from "../../actions/updateUser";
+import {
+  wsCreateDocumentError,
+  wsCreateDocumentSuccess
+} from "../../actions/ws/createDocument";
 
 export function* wsMessageWatcher() {
   yield takeLatest(actionTypes.WS_MESSAGE, wsMessageSaga);
@@ -24,6 +28,12 @@ export function* wsMessageSaga({ payload }) {
 
     case actionTypes.WS_CREATE_USER_ERROR:
       return yield put(wsCreateUserError(message.error));
+
+    case actionTypes.WS_CREATE_DOCUMENT_SUCCESS:
+      return yield put(wsCreateDocumentSuccess(message.documentId));
+
+    case actionTypes.WS_CREATE_DOCUMENT_ERROR:
+      return yield put(wsCreateDocumentError(message.error));
 
     case actionTypes.WS_GET_USER_LIST_SUCCESS:
       return yield put(wsGetUserListSuccess(message.userList));
