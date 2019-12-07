@@ -3,8 +3,9 @@ import { wsOpenWatcher } from "./ws/open";
 import { wsMessageWatcher } from "./ws/message";
 import { wsGetUserListWatcher } from "./ws/getUserList";
 import { wsCreateUserWatcher } from "./ws/createUser";
-import { wsUpdateUserWatcher } from "./ws/updateUser";
+import { wsUserUpdateWatcher } from "./ws/userUpdate";
 import { wsCreateDocumentWatcher } from "./ws/createDocument";
+import { wsDocumentUpdateWatcher } from "./ws/documentUpdate";
 
 export function* root() {
   yield all([
@@ -13,6 +14,7 @@ export function* root() {
     wsGetUserListWatcher(),
     wsCreateUserWatcher(),
     wsCreateDocumentWatcher(),
-    wsUpdateUserWatcher()
+    wsUserUpdateWatcher(),
+    wsDocumentUpdateWatcher()
   ]);
 }

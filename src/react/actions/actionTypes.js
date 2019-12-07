@@ -42,7 +42,6 @@ export const actionTypes = {
 
   WS_USER_JOINED: "WS::USER_JOINED",
   WS_USER_LEFT: "WS::USER_LEFT",
-  WS_USER_UPDATE: "WS::USER_UPDATE",
 
   // Client dispatched action types:
 
@@ -53,5 +52,7 @@ export const actionTypes = {
   WS_CREATE_USER: "WS::CREATE_USER",
   WS_GET_USER_LIST: "WS::GET_USER_LIST",
   WS_CREATE_DOCUMENT: "WS::CREATE_DOCUMENT",
-  WS_UPDATE_DOCUMENT: "WS::UPDATE_DOCUMENT"
+
+  WS_USER_UPDATE: "WS::USER_UPDATE",
+  WS_DOCUMENT_UPDATE: "WS::DOCUMENT_UPDATE"
 };
