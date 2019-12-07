@@ -6,6 +6,11 @@ export const initialState = {
 
 const base = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.DIGEST_APP_CREDITS:
+      return {
+        ...state,
+        ...action.data
+      };
     case actionTypes.UPDATE_MY_USER_ID:
       return {
         ...state,
