@@ -3,7 +3,7 @@ export const actionTypes = {
   //    INTERNAL ACTIONS
   // ====================================================
 
-  INIT_APP_INFO: "INIT_APP_INFO",
+  DIGEST_APP_CREDITS: "DIGEST_APP_CREDITS",
   UPDATE_MY_USER_ID: "UPDATE_MY_USER_ID",
 
   ADD_USER: "ADD_USER",
