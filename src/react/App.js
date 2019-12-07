@@ -12,7 +12,6 @@ import name from "./utils/name";
 
 // Components
 import { createGlobalStyle } from "styled-components";
-import Notifications from "./components/Notifications/index";
 import SideBar from "./components/SideBar/index";
 import Header from "./components/Header/index";
 import TextEditor from "./components/TextEditor/index";
@@ -130,7 +129,6 @@ class App extends Component {
           <StyledWrapper>
             <SideBar />
             <TextEditor />
-            <Notifications />
           </StyledWrapper>
           <StatusBar />
         </StyledContainer>
