@@ -15,6 +15,6 @@ export const wsCreateDocumentError = error => ({
 });
 
 export const wsCreateDocumentTimeout = message => ({
-  type: actionTypes.WS_CREATE_DOCUMENT_ERROR,
+  type: actionTypes.WS_CREATE_DOCUMENT_TIMEOUT,
   message
 });
