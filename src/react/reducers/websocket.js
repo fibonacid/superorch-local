@@ -37,9 +37,3 @@ const websocket = (state = initialState, action) => {
 };
 
 export default websocket;
-
-/* ----------------
- *    Selectors
- * ---------------- */
-
-export const selectUsername = state => state.username;
