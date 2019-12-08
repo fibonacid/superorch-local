@@ -16,6 +16,7 @@ import TextEditor from "./components/TextEditor/index";
 import StatusBar from "./components/StatusBar/index";
 import { addUser } from "./actions/addUser";
 import { digestAppCredits } from "./actions/digestAppCredits";
+import { addScQuery } from "./actions/addScQuery";
 
 /* =============================================== */
 /*    REDUX                                        */
@@ -112,6 +113,11 @@ class App extends Component {
     // Connect to websocket
     const url = process.env.REACT_APP_SOCKET_URL;
     store.dispatch(connectSocket(url));
+
+    // todo: remove
+    setInterval(() => {
+      store.dispatch(addScQuery(0, { value: "hello" }));
+    }, 10000);
 
     // Request start of SuperCollider server
     if (ipcRenderer) {
