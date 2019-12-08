@@ -1,5 +1,5 @@
 import { actionTypes } from "../../actions/actionTypes";
-import { takeLatest, put } from "redux-saga/effects";
+import { takeLatest, put, select } from "redux-saga/effects";
 import {
   wsGetUserListError,
   wsGetUserListSuccess
@@ -20,12 +20,21 @@ import {
   wsCreateScQuerySuccess
 } from "../../actions/ws/createScQuery";
 import { updateScQuery } from "../../actions/updateScQuery";
-import { addScQuery } from "../../actions/addScQuery";
+import { wsScQueryShipped } from "../../actions/ws/scQueryShipped";
 
+/**
+ *
+ * @returns {IterableIterator<ForkEffect>}
+ */
 export function* wsMessageWatcher() {
   yield takeLatest(actionTypes.WS_MESSAGE, wsMessageSaga);
 }
 
+/**
+ *
+ * @param payload
+ * @returns {IterableIterator<PutEffect<{data: *, id: *, type: *}>|PutEffect<{scQueryId, diff, type}>|PutEffect<{id, type}>|*|PutEffect<{documentId, type}>|PutEffect<{type, error}>|PutEffect<{type, userId}>|PutEffect<{data, id, type}>|SelectEffect|PutEffect<{userList, type}>>}
+ */
 export function* wsMessageSaga({ payload }) {
   const message = JSON.parse(payload.message);
   switch (message.type) {
@@ -65,7 +74,7 @@ export function* wsMessageSaga({ payload }) {
       return yield put(updateUser(message.userId, message["diff"]));
 
     case actionTypes.WS_SC_QUERY_SHIPPED:
-      return yield put(addScQuery(message.scQuery.id, message.scQuery));
+      return yield put(wsScQueryShipped(message.scQuery));
 
     case actionTypes.WS_SC_QUERY_UPDATE:
       return yield put(updateScQuery(message.scQueryId, message["diff"]));
