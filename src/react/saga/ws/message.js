@@ -19,6 +19,8 @@ import {
   wsCreateScQueryError,
   wsCreateScQuerySuccess
 } from "../../actions/ws/createScQuery";
+import { updateScQuery } from "../../actions/updateScQuery";
+import { addScQuery } from "../../actions/addScQuery";
 
 export function* wsMessageWatcher() {
   yield takeLatest(actionTypes.WS_MESSAGE, wsMessageSaga);
@@ -61,5 +63,11 @@ export function* wsMessageSaga({ payload }) {
 
     case actionTypes.WS_USER_UPDATE:
       return yield put(updateUser(message.userId, message["diff"]));
+
+    case actionTypes.WS_SC_QUERY_SHIPPED:
+      return yield put(addScQuery(message.scQuery.id, message.scQuery));
+
+    case actionTypes.WS_SC_QUERY_UPDATE:
+      return yield put(updateScQuery(message.scQueryId, message["diff"]));
   }
 }
