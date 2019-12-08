@@ -35,13 +35,13 @@ if (ipcRenderer) {
   ipcRenderer.on("update_available", () => {
     ipcRenderer.removeAllListeners("update_available");
     let message = "A new update is available. Downloading now...";
-    store.dispatch(flashInfo(message));
+    console.info(message);
   });
   ipcRenderer.on("update_downloaded", () => {
     ipcRenderer.removeAllListeners("update_downloaded");
     let message =
       "Update Downloaded. It will be installed on restart. Restart now?";
-    store.dispatch(flashInfo(message));
+    console.info(message);
   });
 }
 
