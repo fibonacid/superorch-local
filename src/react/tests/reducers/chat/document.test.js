@@ -1,5 +1,5 @@
-import reducer from "../../reducers/chat/document";
-import { actionTypes } from "../../actions/actionTypes";
+import reducer from "../../../reducers/chat/document";
+import { actionTypes } from "../../../actions/actionTypes";
 
 describe("document reducer", () => {
   it("should return the initial state", () => {
