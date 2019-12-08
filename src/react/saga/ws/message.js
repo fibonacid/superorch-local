@@ -15,6 +15,10 @@ import {
   wsCreateDocumentError,
   wsCreateDocumentSuccess
 } from "../../actions/ws/createDocument";
+import {
+  wsCreateScQueryError,
+  wsCreateScQuerySuccess
+} from "../../actions/ws/createScQuery";
 
 export function* wsMessageWatcher() {
   yield takeLatest(actionTypes.WS_MESSAGE, wsMessageSaga);
@@ -34,6 +38,12 @@ export function* wsMessageSaga({ payload }) {
 
     case actionTypes.WS_CREATE_DOCUMENT_ERROR:
       return yield put(wsCreateDocumentError(message.error));
+
+    case actionTypes.WS_CREATE_SC_QUERY_SUCCESS:
+      return yield put(wsCreateScQuerySuccess(message.scQueryId));
+
+    case actionTypes.WS_CREATE_SC_QUERY_ERROR:
+      return yield put(wsCreateScQueryError(message.error));
 
     case actionTypes.WS_GET_USER_LIST_SUCCESS:
       return yield put(wsGetUserListSuccess(message.userList));
