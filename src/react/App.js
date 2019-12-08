@@ -115,9 +115,12 @@ class App extends Component {
     store.dispatch(connectSocket(url));
 
     // todo: remove
-    setInterval(() => {
+    //setInterval(() => {
+    //}, 10000);
+
+    window.addEventListener("click", () => {
       store.dispatch(addScQuery(0, { value: "hello" }));
-    }, 10000);
+    });
 
     // Request start of SuperCollider server
     if (ipcRenderer) {
