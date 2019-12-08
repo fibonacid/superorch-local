@@ -21,5 +21,5 @@ export const selectUsers = state => fromChat.selectUsers(state.chat);
 
 export const selectUser = (state, id) => fromChat.selectUser(state.chat, id);
 
-export const selectUserByLocalId = (state, localId) =>
-  fromChat.selectUserByLocalId(state.chat, localId);
+export const selectScQuery = (state, id) =>
+  fromChat.selectScQuery(state.chat, id);
