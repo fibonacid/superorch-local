@@ -114,14 +114,6 @@ class App extends Component {
     const url = process.env.REACT_APP_SOCKET_URL;
     store.dispatch(connectSocket(url));
 
-    // todo: remove
-    //setInterval(() => {
-    //}, 10000);
-
-    window.addEventListener("click", () => {
-      store.dispatch(addScQuery(0, { value: "hello" }));
-    });
-
     // Request start of SuperCollider server
     if (ipcRenderer) {
       ipcRenderer.send(channels.START_SUPERCOLLIDER);

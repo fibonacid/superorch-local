@@ -1,13 +1,18 @@
 import { connect } from "react-redux";
 import TextEditor from "./TextEditor";
 import { updateDocument } from "../../actions/updateDocument";
-//import { sendDocument } from "../../actions/sendDocument";
-//import { sendSCLangQuery } from "../../actions/sendSCLangQuery";
+import { addScQuery } from "../../actions/addScQuery";
 
 const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
-  handleExecuteSelection: () => {},
+  handleExecuteSelection: text => {
+    dispatch(
+      addScQuery(0, {
+        value: text
+      })
+    );
+  },
   sendEditorState: data =>
     dispatch(
       updateDocument({
@@ -17,10 +22,3 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TextEditor);
-
-/*
-handleExecuteSelection: text => {
-  dispatch(sendSCLangQuery(text));
-},
-sendEditorState: data => dispatch(sendDocument(data))
-*/
