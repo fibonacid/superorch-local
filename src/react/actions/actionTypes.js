@@ -51,6 +51,8 @@ export const actionTypes = {
 
   WS_USER_JOINED: "WS::USER_JOINED",
   WS_USER_LEFT: "WS::USER_LEFT",
+  WS_SC_QUERY_SHIPPED: "WS::SC_QUERY_SHIPPED",
+  WS_SC_QUERY_UPDATE: "WS::SC_QUERY_UPDATE",
 
   // Client dispatched action types:
 
