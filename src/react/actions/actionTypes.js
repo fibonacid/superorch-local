@@ -13,6 +13,10 @@ export const actionTypes = {
 
   UPDATE_DOCUMENT: "UPDATE_DOCUMENT",
 
+  ADD_SC_QUERY: "ADD_QUERY",
+  UPDATE_SC_QUERY: "UPDATE_SC_QUERY",
+  DELETE_SC_QUERY: "DELETE_SC_QUERY",
+
   // ====================================================
   //    WEBSOCKET ACTIONS
   // ====================================================
