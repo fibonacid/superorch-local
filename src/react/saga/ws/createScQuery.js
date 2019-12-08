@@ -1,14 +1,11 @@
 import { actionTypes } from "../../actions/actionTypes";
-import { takeLatest, put, race, take, delay } from "redux-saga/effects";
+import { put, race, take, delay } from "redux-saga/effects";
 import { send } from "@giantmachines/redux-websocket";
 import { wsCreateScQuery } from "../../actions/ws/createScQuery";
-
-export function* wsCreateScQueryWatcher() {
-  yield takeLatest(actionTypes.WS_CREATE_SC_QUERY, wsCreateScQuerySaga);
-}
+import { updateScQuery } from "../../actions/updateScQuery";
 
 export function* wsCreateScQuerySaga(action) {
-  yield put(send(wsCreateScQuery(action.scQuery)));
+  yield put(send(wsCreateScQuery(action.data)));
 
   // Wait for an error or success message
   const { result, error, timeout } = yield race({
@@ -19,7 +16,7 @@ export function* wsCreateScQuerySaga(action) {
 
   // If request completed successfully:
   if (result) {
-    console.log("Hurray !", result);
+    yield put(updateScQuery(action.id, result["diff"]));
   }
   // If request raised an error on the server:
   else if (error) {
