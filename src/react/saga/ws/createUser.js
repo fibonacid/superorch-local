@@ -6,6 +6,7 @@ import { updateUser } from "../../actions/updateUser";
 import { updateMyUserId } from "../../actions/updateMyUserId";
 import { wsGetUserList } from "../../actions/ws/getUserList";
 import { wsCreateDocument } from "../../actions/ws/createDocument";
+import { wsCreateScQuerySaga } from "./createScQuery";
 
 export function* wsCreateUserWatcher() {
   yield takeLatest(actionTypes.WS_CREATE_USER, wsCreateUserSaga);
@@ -35,6 +36,10 @@ export function* wsCreateUserSaga(action) {
     yield put(updateMyUserId(result.userId));
     // Finally ask for a new user list
     yield put(wsGetUserList());
+
+    // Now that the user has been created you can allow creating
+    // supercollider queries on the server.
+    yield takeLatest(actionTypes.ADD_SC_QUERY, wsCreateScQuerySaga);
 
     // Now: create a document
     // ------------------------------
