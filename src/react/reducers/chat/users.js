@@ -1,9 +1,6 @@
 import { actionTypes } from "../../actions/actionTypes";
-import _ from "lodash";
 
-const initialState = [];
-
-const users = (state = initialState, action) => {
+const users = (state = [], action) => {
   switch (action.type) {
     case actionTypes.ADD_USER:
       return [
@@ -39,6 +36,3 @@ const users = (state = initialState, action) => {
 export default users;
 
 export const selectUser = (users, id) => users.find(user => user.id === id);
-
-export const selectUserByLocalId = (users, localId) =>
-  users.find(user => user.localId === localId);
