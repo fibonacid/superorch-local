@@ -2,8 +2,8 @@ import { connect } from "react-redux";
 import StatusBar from "./StatusBar";
 
 const mapStateToProps = state => ({
-  appName: state.app.name,
-  appVersion: state.app.version,
+  appName: state.base.name,
+  appVersion: state.base.version,
   isConnected: state.websocket.isConnected
 });
 
