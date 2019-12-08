@@ -1,13 +1,11 @@
 import { combineReducers } from "redux";
 import base, * as fromBase from "./base";
 import chat, * as fromChat from "./chat/index";
-import app from "./app";
 import websocket, * as fromWebsocket from "./websocket";
 
 const root = combineReducers({
   base,
   chat,
-  app,
   websocket
 });
 
