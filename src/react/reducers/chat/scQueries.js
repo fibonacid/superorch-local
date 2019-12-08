@@ -11,6 +11,9 @@ const scQueries = (state = [], action) => {
         }
       ];
 
+    case actionTypes.WS_SC_QUERY_SHIPPED:
+      return [...state, { ...action.scQuery }];
+
     case actionTypes.UPDATE_SC_QUERY:
       // Modify data of scQuery with same id.
       return state.map(scQuery =>
