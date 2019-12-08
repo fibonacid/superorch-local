@@ -19,9 +19,11 @@ describe("wsCreateScQuery action", () => {
 describe("wsCreateScQuerySuccess action", () => {
   it("should create an action to communicate that the request failed", () => {
     const scQueryId = 0;
-    expect(wsCreateScQuerySuccess(scQueryId)).toEqual({
+    const diff = {};
+    expect(wsCreateScQuerySuccess(scQueryId, diff)).toEqual({
       type: actionTypes.WS_CREATE_SC_QUERY_SUCCESS,
-      scQueryId
+      scQueryId,
+      diff
     });
   });
 });

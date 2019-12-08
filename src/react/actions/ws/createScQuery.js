@@ -5,9 +5,10 @@ export const wsCreateScQuery = scQuery => ({
   scQuery
 });
 
-export const wsCreateScQuerySuccess = scQueryId => ({
+export const wsCreateScQuerySuccess = (scQueryId, diff) => ({
   type: actionTypes.WS_CREATE_SC_QUERY_SUCCESS,
-  scQueryId
+  scQueryId,
+  diff
 });
 
 export const wsCreateScQueryError = error => ({

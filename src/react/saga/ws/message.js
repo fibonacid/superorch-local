@@ -40,7 +40,9 @@ export function* wsMessageSaga({ payload }) {
       return yield put(wsCreateDocumentError(message.error));
 
     case actionTypes.WS_CREATE_SC_QUERY_SUCCESS:
-      return yield put(wsCreateScQuerySuccess(message.scQueryId));
+      return yield put(
+        wsCreateScQuerySuccess(message.scQueryId, message["diff"])
+      );
 
     case actionTypes.WS_CREATE_SC_QUERY_ERROR:
       return yield put(wsCreateScQueryError(message.error));
