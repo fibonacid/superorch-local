@@ -8,9 +8,9 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
-  url: state.websocket.url,
-  isConnected: state.websocket.isConnected,
-  isLoading: state.websocket.isTryingToConnect
+  url: state.wsclient.url,
+  isConnected: state.wsclient.isConnected,
+  isLoading: state.wsclient.isTryingToConnect
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(URLBar);

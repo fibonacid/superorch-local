@@ -4,7 +4,7 @@ import StatusBar from "./StatusBar";
 const mapStateToProps = state => ({
   appName: state.base.name,
   appVersion: state.base.version,
-  isConnected: state.websocket.isConnected
+  isConnected: state.wsclient.isConnected
 });
 
 export default connect(mapStateToProps, null)(StatusBar);
