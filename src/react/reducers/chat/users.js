@@ -4,6 +4,7 @@ export default function users(state = [], action) {
   switch (action.type) {
     case actionTypes.S_CREATE_USER:
     case actionTypes.C_CREATE_USER:
+    case actionTypes.B_USER_JOINED:
       return [
         ...state,
         {
@@ -14,6 +15,7 @@ export default function users(state = [], action) {
 
     case actionTypes.C_UPDATE_USER:
     case actionTypes.S_UPDATE_USER:
+    case actionTypes.B_USER_UPDATE:
       // Modify data of user with same id.
       return state.map(user =>
         user.id === action.userId
@@ -26,6 +28,7 @@ export default function users(state = [], action) {
 
     case actionTypes.C_DELETE_USER:
     case actionTypes.S_DELETE_USER:
+    case actionTypes.B_USER_LEFT:
       // Delete user with the given id.
       return state.filter(user => user.id !== action.userId);
 
