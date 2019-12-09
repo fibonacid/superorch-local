@@ -11,7 +11,7 @@ const chat = combineReducers({
   scQueries
 });
 
-export default root;
+export default chat;
 
 export const selectClient = (state, id) =>
   fromClients.selectClient(state.clients, id);

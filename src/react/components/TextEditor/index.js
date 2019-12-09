@@ -1,21 +1,22 @@
 import { connect } from "react-redux";
 import TextEditor from "./TextEditor";
-import { updateDocument } from "../../actions/updateDocument";
-import { addScQuery } from "../../actions/addScQuery";
+import { updateDocument } from "../../actions/crudDocuments";
+import { createScQuery } from "../../actions/crudScQueries";
 
 const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
   handleExecuteSelection: text => {
     dispatch(
-      addScQuery(0, {
+      createScQuery(0, {
         value: text
       })
     );
   },
   sendEditorState: data =>
     dispatch(
-      updateDocument({
+      /* todo: keep track of myDocument */
+      updateDocument(0, {
         content: data
       })
     )
