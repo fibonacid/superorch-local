@@ -1,7 +1,7 @@
 import { actionTypes } from "../actions/actionTypes";
 
 export const initialState = {
-  myUserId: undefined
+  myUserId: 0
 };
 
 const base = (state = initialState, action) => {

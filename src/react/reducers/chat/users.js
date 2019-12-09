@@ -1,6 +1,9 @@
 import { actionTypes } from "../../actions/actionTypes";
+import name from "../../utils/name";
 
-export default function users(state = [], action) {
+const initialState = [{ id: 0, name }];
+
+export default function users(state = initialState, action) {
   switch (action.type) {
     case actionTypes.S_CREATE_USER:
     case actionTypes.C_CREATE_USER:
