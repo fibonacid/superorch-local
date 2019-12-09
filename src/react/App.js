@@ -101,6 +101,15 @@ class App extends Component {
         );
         ipcRenderer.removeAllListeners(channels.APP_INFO);
       });
+      ipcRenderer.on(channels.WEBSOCKET_OPEN, (event, arg) => {
+        console.log(event, arg);
+      });
+      ipcRenderer.on(channels.WEBSOCKET_OPEN, (event, arg) => {
+        console.log(event, arg);
+      });
+      ipcRenderer.on(channels.WEBSOCKET_OPEN, (event, arg) => {
+        console.log(event, arg);
+      });
     }
   }
 
@@ -116,6 +125,7 @@ class App extends Component {
     // Request start of SuperCollider server
     if (ipcRenderer) {
       ipcRenderer.send(channels.START_SUPERCOLLIDER);
+      ipcRenderer.send(channels.START_WS_SERVER);
     }
   }
 
