@@ -8,15 +8,17 @@ import { connect as connectSocket } from "@giantmachines/redux-websocket";
 import { channels } from "../shared/constants";
 import name from "./utils/name";
 
+import { digestAppCredits } from "./actions/digestAppCredits";
+import { c_createUser } from "./actions/client/crudUsers";
+import { s_createClient } from "./actions/server/crudClients";
+import { s_message } from "./actions/server/message";
+
 // Components
 import { createGlobalStyle } from "styled-components";
 import SideBar from "./components/SideBar/index";
 import Header from "./components/Header/index";
 import TextEditor from "./components/TextEditor/index";
 import StatusBar from "./components/StatusBar/index";
-import { c_createUser } from "./actions/client/crudUsers";
-import { digestAppCredits } from "./actions/digestAppCredits";
-import { s_createClient } from "./actions/server/crudClients";
 import Tmp from "./components/Tmp";
 
 /* =============================================== */
@@ -110,7 +112,7 @@ class App extends Component {
         console.log(event, arg);
       });
       ipcRenderer.on(channels.WEBSOCKET_MESSAGE, (event, arg) => {
-        console.log(event, arg);
+        store.dispatch(s_message(arg.clientId, arg.message));
       });
     }
   }
