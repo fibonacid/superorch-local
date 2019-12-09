@@ -1,6 +1,7 @@
 import { actionTypes } from "../actions/actionTypes";
 
 export const initialState = {
+  name: "colliderchat",
   myUserId: 0
 };
 
