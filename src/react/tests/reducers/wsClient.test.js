@@ -10,10 +10,10 @@ describe("websocket reducer", () => {
     });
   });
 
-  it("should handle WS_OPEN", () => {
+  it("should handle C_OPEN", () => {
     expect(
       reducer(undefined, {
-        type: actionTypes.WS_OPEN
+        type: actionTypes.C_OPEN
       })
     ).toEqual({
       url: "ws://localhost:8989",
@@ -22,10 +22,10 @@ describe("websocket reducer", () => {
     });
   });
 
-  it("should handle WS_CLOSED", () => {
+  it("should handle C_CLOSED", () => {
     expect(
       reducer(undefined, {
-        type: actionTypes.WS_CLOSED
+        type: actionTypes.C_CLOSED
       })
     ).toEqual({
       url: "ws://localhost:8989",
@@ -34,10 +34,10 @@ describe("websocket reducer", () => {
     });
   });
 
-  it("should handle WS_CONNECT", () => {
+  it("should handle C_CONNECT", () => {
     expect(
       reducer(undefined, {
-        type: actionTypes.WS_CONNECT,
+        type: actionTypes.C_CONNECT,
         payload: { url: "ws://test:8989" }
       })
     ).toEqual({
@@ -47,10 +47,10 @@ describe("websocket reducer", () => {
     });
   });
 
-  it("should handle WS_BEGIN_RECONNECT", () => {
+  it("should handle C_BEGIN_RECONNECT", () => {
     expect(
       reducer(undefined, {
-        type: actionTypes.WS_BEGIN_RECONNECT
+        type: actionTypes.C_BEGIN_RECONNECT
       })
     ).toEqual({
       url: "ws://localhost:8989",
