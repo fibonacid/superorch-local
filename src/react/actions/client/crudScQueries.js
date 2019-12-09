@@ -14,5 +14,5 @@ export const c_updateScQuery = (scQueryId, scQueryData) => ({
 
 export const c_deleteScQuery = scQueryId => ({
   type: actionTypes.C_DELETE_SC_QUERY,
-  id
+  scQueryId
 });
