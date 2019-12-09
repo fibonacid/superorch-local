@@ -1,9 +1,8 @@
 import { actionTypes } from "./actionTypes";
 
-export const createScQuery = (id, data) => ({
+export const createScQuery = scQuery => ({
   type: actionTypes.CREATE_SC_QUERY,
-  id,
-  data
+  scQuery
 });
 
 export const updateScQuery = (id, data) => ({

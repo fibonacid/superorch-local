@@ -1,9 +1,8 @@
 import { actionTypes } from "./actionTypes";
 
-export const createUser = (id, data) => ({
+export const createUser = user => ({
   type: actionTypes.CREATE_USER,
-  id,
-  data
+  user
 });
 
 export const updateUser = (id, data) => ({
