@@ -2,6 +2,7 @@ const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
 const url = require("url");
 const { channels } = require("../src/shared/constants");
+const { launchWSServer } = require("../src/server");
 const { autoUpdater } = require("electron-updater");
 const { bootServer } = require("./run-scsynth");
 const { bootInterpreter } = require("./run-sclang");
@@ -138,3 +139,19 @@ ipcMain.on("start_supercollider", async () => {
 
 // When react launch the stop_supercollider event
 ipcMain.on("stop_supercollider", () => {});
+
+let wsServer;
+
+ipcMain.on(channels.START_WS_SERVER, event => {
+  wsServer = launchWSServer({
+    onOpen: clientId => {
+      event.sender.send(channels.WEBSOCKET_OPEN, clientId);
+    },
+    onClose: (clientId, description) => {
+      event.sender.send(channels.WEBSOCKET_CLOSED, clientId, description);
+    },
+    onMessage: (clientId, message) => {
+      event.sender.send(channels.WEBSOCKET_MESSAGE, clientId, message);
+    }
+  });
+});
