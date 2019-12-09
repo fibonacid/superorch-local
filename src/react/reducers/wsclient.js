@@ -2,11 +2,12 @@ import { actionTypes } from "../actions/actionTypes";
 
 const initialState = {
   url: "ws://localhost:8989",
+  isLoggedIn: false,
   isConnected: false,
   isTryingToConnect: false
 };
 
-const wsClient = (state = initialState, action) => {
+const wsclient = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.C_OPEN:
       return {
@@ -36,4 +37,4 @@ const wsClient = (state = initialState, action) => {
   }
 };
 
-export default wsClient;
+export default wsclient;

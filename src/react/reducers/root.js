@@ -1,12 +1,14 @@
 import { combineReducers } from "redux";
 import base from "./base";
 import chat, * as fromChat from "./chat/index";
-import wsClient from "./wsClient";
+import wsclient from "./wsclient";
+import wsserver from "./wsserver";
 
 const root = combineReducers({
   base,
   chat,
-  websocket: wsClient
+  wsclient,
+  wsserver
 });
 
 export default root;
