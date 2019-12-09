@@ -15,9 +15,10 @@ export default root;
  *    Selectors
  * ---------------- */
 
-export const selectUsers = state => fromChat.selectUsers(state.chat);
+export const selectDocument = (state, id) => fromChat.selectDocument(state.chat, id);
+
+export const selectClient = (state, id) => fromChat.selectClient(state.chat, id);
 
 export const selectUser = (state, id) => fromChat.selectUser(state.chat, id);
 
-export const selectScQuery = (state, id) =>
-  fromChat.selectScQuery(state.chat, id);
+export const selectScQuery = (state, id) => fromChat.selectScQuery(state.chat, id);

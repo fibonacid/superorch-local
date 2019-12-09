@@ -1,10 +1,16 @@
 export const actionTypes = {
+
   // ====================================================
   //    INTERNAL ACTIONS
   // ====================================================
 
   DIGEST_APP_CREDITS: "DIGEST_APP_CREDITS",
   UPDATE_MY_USER_ID: "UPDATE_MY_USER_ID",
+
+  CREATE_CLIENT: "CREATE_CLIENT",
+  UPDATE_CLIENT: "UPDATE_CLIENT",
+  DELETE_CLIENT: "DELETE_CLIENT",
+  DESTROY_CLIENT: "DESTROY_CLIENT",
 
   ADD_USER: "ADD_USER",
   UPDATE_USER: "UPDATE_USER",
