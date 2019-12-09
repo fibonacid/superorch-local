@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import base from "./base";
 import chat, * as fromChat from "./chat/index";
-import wsClient from "./websocket";
+import wsClient from "./wsClient";
 
 const root = combineReducers({
   base,
