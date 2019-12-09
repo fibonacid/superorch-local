@@ -1,11 +1,11 @@
 import { combineReducers } from "redux";
 import users, * as fromUsers from "./users";
-import document from "./document";
+import documents from "./documents";
 import scQueries, * as fromScQueries from "./scQueries";
 
 const chat = combineReducers({
   users,
-  document,
+  documents,
   scQueries
 });
 
