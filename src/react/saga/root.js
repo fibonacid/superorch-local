@@ -1,12 +1,7 @@
 import { all } from "redux-saga/effects";
-import { s_messageWatcher } from "./server/message";
-import { c_messageWatcher } from "./client/message";
+import { clientSagas } from "./client";
+import { serverSagas } from "./server";
 
 export function* root() {
-  yield all([
-    // Server
-    s_messageWatcher(),
-    // Client
-    c_messageWatcher()
-  ]);
+  yield all([clientSagas(), serverSagas()]);
 }
