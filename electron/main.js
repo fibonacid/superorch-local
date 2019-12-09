@@ -143,23 +143,27 @@ ipcMain.on("stop_supercollider", () => {});
 let wsServer;
 
 ipcMain.on(channels.START_WS_SERVER, event => {
-  wsServer = launchWSServer({
-    onOpen: clientId => {
-      event.sender.send(channels.WEBSOCKET_OPEN, {
-        clientId
-      });
-    },
-    onClose: (clientId, description) => {
-      event.sender.send(channels.WEBSOCKET_CLOSED, {
-        clientId,
-        description
-      });
-    },
-    onMessage: (clientId, message) => {
-      event.sender.send(channels.WEBSOCKET_MESSAGE, {
-        clientId,
-        message
-      });
-    }
-  });
+  try {
+    wsServer = launchWSServer({
+      onOpen: clientId => {
+        event.sender.send(channels.WEBSOCKET_OPEN, {
+          clientId
+        });
+      },
+      onClose: (clientId, description) => {
+        event.sender.send(channels.WEBSOCKET_CLOSED, {
+          clientId,
+          description
+        });
+      },
+      onMessage: (clientId, message) => {
+        event.sender.send(channels.WEBSOCKET_MESSAGE, {
+          clientId,
+          message
+        });
+      }
+    });
+  } catch (error) {
+    console.error(error.message);
+  }
 });
