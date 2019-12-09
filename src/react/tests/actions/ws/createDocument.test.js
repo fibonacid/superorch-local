@@ -4,7 +4,7 @@ import {
   wsCreateDocumentError,
   wsCreateDocumentSuccess,
   wsCreateDocumentTimeout
-} from "../../../actions/ws/createDocument";
+} from "../../../actions/client/createDocument";
 
 describe("wsCreateDocument action", () => {
   it("should create an action to request the creation of a new document on the server", () => {

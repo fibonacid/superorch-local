@@ -1,5 +1,5 @@
 import { actionTypes } from "../../../actions/actionTypes";
-import { wsScQueryUpdate } from "../../../actions/ws/scQueryUpdate";
+import { wsScQueryUpdate } from "../../../actions/client/scQueryUpdate";
 
 describe("wsScQueryUpdate action", () => {
   it("should create an action to communicate that a supercollider query has been updated", () => {

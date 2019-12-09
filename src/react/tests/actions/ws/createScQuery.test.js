@@ -4,7 +4,7 @@ import {
   wsCreateScQueryError,
   wsCreateScQuerySuccess,
   wsCreateScQueryTimeout
-} from "../../../actions/ws/CreateScQuery";
+} from "../../../actions/client/CreateScQuery";
 
 describe("wsCreateScQuery action", () => {
   it("should create an action to request the creation of a new scQuery on the server", () => {

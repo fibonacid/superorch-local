@@ -4,7 +4,7 @@ import {
   wsCreateUserError,
   wsCreateUserSuccess,
   wsCreateUserTimeout
-} from "../../../actions/ws/createUser";
+} from "../../../actions/client/createUser";
 
 describe("wsCreateUser action", () => {
   it("should create an action to request the creation of a new USER on the server", () => {

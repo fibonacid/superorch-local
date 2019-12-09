@@ -4,7 +4,7 @@ import {
   wsGetUserListError,
   wsGetUserListSuccess,
   wsGetUserListTimeout
-} from "../../../actions/ws/getUserList";
+} from "../../../actions/client/getUserList";
 
 describe("wsGetUserList action", () => {
   it("should create an action to request a user list from the server", () => {
