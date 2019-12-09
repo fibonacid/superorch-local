@@ -1,5 +1,4 @@
 export const actionTypes = {
-
   // ====================================================
   //    INTERNAL ACTIONS
   // ====================================================
@@ -12,16 +11,17 @@ export const actionTypes = {
   DELETE_CLIENT: "DELETE_CLIENT",
   DESTROY_CLIENT: "DESTROY_CLIENT",
 
-  ADD_USER: "ADD_USER",
+  CREATE_USER: "CREATE_USER",
   UPDATE_USER: "UPDATE_USER",
   DELETE_USER: "DELETE_USER",
+  DESTROY_USER: "DESTROY_USER",
   REPLACE_USER_LIST: "REPLACE_USER_LIST",
 
   CREATE_DOCUMENT: "CREATE_DOCUMENT",
   UPDATE_DOCUMENT: "UPDATE_DOCUMENT",
   DELETE_DOCUMENT: "DELETE_DOCUMENT",
 
-  ADD_SC_QUERY: "ADD_SC_QUERY",
+  CREATE_SC_QUERY: "CREATE_SC_QUERY",
   UPDATE_SC_QUERY: "UPDATE_SC_QUERY",
   DELETE_SC_QUERY: "DELETE_SC_QUERY",
 
