@@ -1,21 +1,21 @@
-import reducer, { selectUser } from "../../../reducers/chat/users";
+import reducer, { selectDocument } from "../../../reducers/chat/documents";
 import { actionTypes } from "../../../actions/actionTypes";
 
-describe("users reducer", () => {
+describe("documents reducer", () => {
   it("should return the initial state", () => {
     expect(reducer(undefined, {})).toEqual([]);
   });
 
-  it("should handle CREATE_USER", () => {
+  it("should handle CREATE_DOCUMENT", () => {
     expect(
       reducer([], {
-        type: actionTypes.CREATE_USER,
-        user: { id: 0 }
+        type: actionTypes.CREATE_DOCUMENT,
+        document: { id: 0 }
       })
     ).toEqual([{ id: 0 }]);
   });
 
-  it("should handle UPDATE_USER", () => {
+  it("should handle UPDATE_DOCUMENT", () => {
     expect(
       reducer(
         [
@@ -23,7 +23,7 @@ describe("users reducer", () => {
           { id: 1, modified: false }
         ],
         {
-          type: actionTypes.UPDATE_USER,
+          type: actionTypes.UPDATE_DOCUMENT,
           id: 0,
           data: { modified: true }
         }
@@ -34,18 +34,18 @@ describe("users reducer", () => {
     ]);
   });
 
-  it("should handle DELETE_USER", () => {
+  it("should handle DELETE_DOCUMENT", () => {
     expect(
       reducer([{ id: 0 }, { id: 1 }], {
-        type: actionTypes.DELETE_USER,
+        type: actionTypes.DELETE_DOCUMENT,
         id: 1
       })
     ).toEqual([{ id: 0 }]);
   });
 });
 
-describe("selectUser", () => {
-  it("should select a user by id", () => {
-    expect(selectUser([{ id: 0 }, { id: 1 }], 1)).toEqual({ id: 1 });
+describe("selectDocument", () => {
+  it("should select a document by id", () => {
+    expect(selectDocument([{ id: 0 }, { id: 1 }], 1)).toEqual({ id: 1 });
   });
 });

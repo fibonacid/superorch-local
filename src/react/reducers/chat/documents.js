@@ -1,4 +1,4 @@
-import { actionTypes } from "../actions/actionTypes";
+import { actionTypes } from "../../actions/actionTypes";
 import _ from "lodash";
 
 export const initialState = [];

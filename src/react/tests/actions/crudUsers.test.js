@@ -8,12 +8,10 @@ import {
 
 describe("createUser action", () => {
   it("should create an action to create a new user", () => {
-    const id = 0;
-    const data = {};
-    expect(createUser(id, data)).toEqual({
+    const user = {};
+    expect(createUser(user)).toEqual({
       type: actionTypes.CREATE_USER,
-      id,
-      data
+      user
     });
   });
 });

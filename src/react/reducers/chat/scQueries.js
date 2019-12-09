@@ -1,39 +1,25 @@
 import { actionTypes } from "../../actions/actionTypes";
+import _ from "lodash";
 
-const scQueries = (state = [], action) => {
+export default function scQueries(state = [], action) {
   switch (action.type) {
-    case actionTypes.ADD_SC_QUERY:
-      return [
-        ...state,
-        {
-          id: action.id,
-          ...action.data
-        }
-      ];
-
-    case actionTypes.WS_SC_QUERY_SHIPPED:
-      return [...state, { ...action.scQuery }];
+    case actionTypes.CREATE_SC_QUERY:
+      return [...state, action.scQuery];
 
     case actionTypes.UPDATE_SC_QUERY:
-      // Modify data of scQuery with same id.
+      // Modify data of user with same id.
       return state.map(scQuery =>
-        scQuery.id === action.id
-          ? {
-              ...scQuery,
-              ...action.data
-            }
-          : scQuery
+        scQuery.id === action.id ? _.merge({}, scQuery, action.data) : scQuery
       );
 
     case actionTypes.DELETE_SC_QUERY:
+      // Delete scQuery with the given id.
       return state.filter(scQuery => scQuery.id !== action.id);
 
     default:
       return state;
   }
-};
+}
 
-export default scQueries;
-
-export const selectScQuery = (scQueries, id) =>
-  scQueries.find(scQuery => scQuery.id === id);
+export const selectScQuery = (state, id) =>
+  _.find(state, scQuery => scQuery.id === id);

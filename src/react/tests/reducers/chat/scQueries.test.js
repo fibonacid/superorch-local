@@ -1,4 +1,4 @@
-import reducer from "../../../reducers/chat/scQueries";
+import reducer, { selectScQuery } from "../../../reducers/chat/scQueries";
 import { actionTypes } from "../../../actions/actionTypes";
 
 describe("scQueries reducer", () => {
@@ -6,46 +6,46 @@ describe("scQueries reducer", () => {
     expect(reducer(undefined, {})).toEqual([]);
   });
 
-  it("should handle ADD_SC_QUERY", () => {
-    const id = 1;
-    const data = { name: "bar" };
+  it("should handle CREATE_SC_QUERY", () => {
     expect(
-      reducer([{ id: 0, name: "foo" }], {
-        type: actionTypes.ADD_SC_QUERY,
-        id,
-        data
+      reducer([], {
+        type: actionTypes.CREATE_SC_QUERY,
+        scQuery: { id: 0 }
       })
-    );
+    ).toEqual([{ id: 0 }]);
   });
 
   it("should handle UPDATE_SC_QUERY", () => {
-    const id = 0;
-    const data = { name: "foo" };
     expect(
       reducer(
         [
-          { id: 0, name: "" },
-          { id: 1, name: "" }
+          { id: 0, modified: false },
+          { id: 1, modified: false }
         ],
         {
           type: actionTypes.UPDATE_SC_QUERY,
-          id,
-          data
+          id: 0,
+          data: { modified: true }
         }
       )
     ).toEqual([
-      { id: 0, name: "foo" },
-      { id: 1, name: "" }
+      { id: 0, modified: true },
+      { id: 1, modified: false }
     ]);
   });
 
   it("should handle DELETE_SC_QUERY", () => {
-    const id = 0;
     expect(
       reducer([{ id: 0 }, { id: 1 }], {
         type: actionTypes.DELETE_SC_QUERY,
-        id
+        id: 1
       })
-    ).toEqual([{ id: 1 }]);
+    ).toEqual([{ id: 0 }]);
+  });
+});
+
+describe("selectScQuery", () => {
+  it("should select a supercollider query by id", () => {
+    expect(selectScQuery([{ id: 0 }, { id: 1 }], 1)).toEqual({ id: 1 });
   });
 });

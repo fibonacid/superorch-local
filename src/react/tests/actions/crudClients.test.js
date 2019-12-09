@@ -1,6 +1,6 @@
 import { actionTypes } from "../../actions/actionTypes";
-import { createClient } from "../../actions/createClient";
 import {
+  createClient,
   deleteClient,
   destroyClient,
   updateClient
