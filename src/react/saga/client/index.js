@@ -1,3 +1,4 @@
+import { all } from "redux-saga/effects";
 import { c_messageWatcher } from "./message";
 import { c_loginRequestWatcher } from "./loginRequest";
 
