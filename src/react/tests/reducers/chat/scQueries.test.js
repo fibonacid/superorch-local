@@ -10,18 +10,20 @@ describe("scQueries reducer", () => {
     expect(
       reducer([], {
         type: actionTypes.C_CREATE_SC_QUERY,
-        scQuery: { id: 0 }
+        scQueryId: 0,
+        scQueryData: { foo: "bar" }
       })
-    ).toEqual([{ id: 0 }]);
+    ).toEqual([{ id: 0, foo: "bar" }]);
   });
 
   it("should handle S_CREATE_SC_QUERY", () => {
     expect(
       reducer([], {
         type: actionTypes.S_CREATE_SC_QUERY,
-        scQuery: { id: 0 }
+        scQueryId: 0,
+        scQueryData: { foo: "bar" }
       })
-    ).toEqual([{ id: 0 }]);
+    ).toEqual([{ id: 0, foo: "bar" }]);
   });
 
   it("should handle C_UPDATE_SC_QUERY", () => {
@@ -33,8 +35,8 @@ describe("scQueries reducer", () => {
         ],
         {
           type: actionTypes.C_UPDATE_SC_QUERY,
-          id: 0,
-          data: { modified: true }
+          scQueryId: 0,
+          scQueryData: { modified: true }
         }
       )
     ).toEqual([
@@ -51,9 +53,9 @@ describe("scQueries reducer", () => {
           { id: 1, modified: false }
         ],
         {
-          type: actionTypes.S_UPDATE_SC_QUERY,
-          id: 0,
-          data: { modified: true }
+          type: actionTypes.C_UPDATE_SC_QUERY,
+          scQueryId: 0,
+          scQueryData: { modified: true }
         }
       )
     ).toEqual([
@@ -66,7 +68,7 @@ describe("scQueries reducer", () => {
     expect(
       reducer([{ id: 0 }, { id: 1 }], {
         type: actionTypes.C_DELETE_SC_QUERY,
-        id: 1
+        scQueryId: 1
       })
     ).toEqual([{ id: 0 }]);
   });
@@ -75,7 +77,7 @@ describe("scQueries reducer", () => {
     expect(
       reducer([{ id: 0 }, { id: 1 }], {
         type: actionTypes.S_DELETE_SC_QUERY,
-        id: 1
+        scQueryId: 1
       })
     ).toEqual([{ id: 0 }]);
   });

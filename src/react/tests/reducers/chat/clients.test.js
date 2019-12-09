@@ -39,7 +39,7 @@ describe("clients reducer", () => {
     expect(
       reducer([{ id: 0 }, { id: 1 }], {
         type: actionTypes.S_DELETE_CLIENT,
-        id: 1
+        clientId: 1
       })
     ).toEqual([{ id: 0 }]);
   });

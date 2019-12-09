@@ -18,7 +18,7 @@ describe("base reducer", () => {
         }
       })
     ).toEqual({
-      myUserId: 0,
+      myUserId: undefined,
       name: "test",
       version: "0.0.0"
     });

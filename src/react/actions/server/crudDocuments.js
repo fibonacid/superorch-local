@@ -8,7 +8,7 @@ export const s_createDocument = (documentId, documentData) => ({
 
 export const s_deleteDocument = documentId => ({
   type: actionTypes.S_DELETE_DOCUMENT,
-  id
+  documentId
 });
 
 export const s_updateDocument = (documentId, documentData) => ({

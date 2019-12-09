@@ -6,27 +6,27 @@ const initialState = {
   isTryingToConnect: false
 };
 
-const websocket = (state = initialState, action) => {
+const wsClient = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.WS_OPEN:
+    case actionTypes.C_OPEN:
       return {
         ...state,
         isConnected: true,
         isTryingToConnect: false
       };
-    case actionTypes.WS_CLOSED:
+    case actionTypes.C_CLOSED:
       return {
         ...state,
         isConnected: false,
         isTryingToConnect: false
       };
-    case actionTypes.WS_CONNECT:
+    case actionTypes.C_CONNECT:
       return {
         ...state,
         url: action.payload.url,
         isTryingToConnect: true
       };
-    case actionTypes.WS_BEGIN_RECONNECT:
+    case actionTypes.C_BEGIN_RECONNECT:
       return {
         ...state,
         isTryingToConnect: true
@@ -36,4 +36,4 @@ const websocket = (state = initialState, action) => {
   }
 };
 
-export default websocket;
+export default wsClient;

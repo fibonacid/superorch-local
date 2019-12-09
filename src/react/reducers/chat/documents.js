@@ -7,7 +7,8 @@ import { actionTypes } from "../../actions/actionTypes";
  */
 const documents = (state = [], action) => {
   switch (action.type) {
-    case actionTypes.C_CREATE_DOCUMENT || actionTypes.S_CREATE_DOCUMENT:
+    case actionTypes.C_CREATE_DOCUMENT:
+    case actionTypes.S_CREATE_DOCUMENT:
       return [
         ...state,
         {
@@ -16,7 +17,8 @@ const documents = (state = [], action) => {
         }
       ];
 
-    case actionTypes.C_UPDATE_DOCUMENT || actionTypes.S_UPDATE_DOCUMENT:
+    case actionTypes.C_UPDATE_DOCUMENT:
+    case actionTypes.S_UPDATE_DOCUMENT:
       // Modify data of document with same id.
       return state.map(document =>
         document.id === action.documentId
@@ -27,7 +29,8 @@ const documents = (state = [], action) => {
           : document
       );
 
-    case actionTypes.C_DELETE_DOCUMENT || actionTypes.S_DELETE_DOCUMENT:
+    case actionTypes.C_DELETE_DOCUMENT:
+    case actionTypes.S_DELETE_DOCUMENT:
       return state.filter(document => document.id !== action.documentId);
 
     default:

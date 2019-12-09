@@ -1,7 +1,7 @@
-import reducer from "../../reducers/websocket";
+import reducer from "../../reducers/wsClient";
 import { actionTypes } from "../../actions/actionTypes";
 
-describe("websocket reducer", () => {
+describe("wsClient reducer", () => {
   it("should return the initial state", () => {
     expect(reducer(undefined, {})).toEqual({
       url: "ws://localhost:8989",

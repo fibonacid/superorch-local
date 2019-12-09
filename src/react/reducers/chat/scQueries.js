@@ -3,7 +3,8 @@ import _ from "lodash";
 
 export default function scQueries(state = [], action) {
   switch (action.type) {
-    case actionTypes.C_CREATE_SC_QUERY || actionTypes.S_CREATE_SC_QUERY:
+    case actionTypes.C_CREATE_SC_QUERY:
+    case actionTypes.S_CREATE_SC_QUERY:
       return [
         ...state,
         {
@@ -12,7 +13,8 @@ export default function scQueries(state = [], action) {
         }
       ];
 
-    case actionTypes.C_UPDATE_SC_QUERY || actionTypes.S_UPDATE_SC_QUERY:
+    case actionTypes.C_UPDATE_SC_QUERY:
+    case actionTypes.S_UPDATE_SC_QUERY:
       // Modify data of user with same id.
       return state.map(scQuery =>
         scQuery.id === action.scQueryId
@@ -23,7 +25,8 @@ export default function scQueries(state = [], action) {
           : scQuery
       );
 
-    case actionTypes.C_DELETE_SC_QUERY || actionTypes.S_DELETE_SC_QUERY:
+    case actionTypes.C_DELETE_SC_QUERY:
+    case actionTypes.S_DELETE_SC_QUERY:
       // Delete scQuery with the given id.
       return state.filter(scQuery => scQuery.id !== action.scQueryId);
 
