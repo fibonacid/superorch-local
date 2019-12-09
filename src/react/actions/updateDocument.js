@@ -1,6 +1,12 @@
 import { actionTypes } from "./actionTypes";
 
-export const updateDocument = document => ({
+/**
+ * @param id
+ * @param data
+ * @returns {{data: *, id: *, type: *}}
+ */
+export const updateDocument = (id, data) => ({
   type: actionTypes.UPDATE_DOCUMENT,
-  document
+  id,
+  data
 });
