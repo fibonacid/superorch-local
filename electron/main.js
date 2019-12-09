@@ -145,13 +145,21 @@ let wsServer;
 ipcMain.on(channels.START_WS_SERVER, event => {
   wsServer = launchWSServer({
     onOpen: clientId => {
-      event.sender.send(channels.WEBSOCKET_OPEN, clientId);
+      event.sender.send(channels.WEBSOCKET_OPEN, {
+        clientId
+      });
     },
     onClose: (clientId, description) => {
-      event.sender.send(channels.WEBSOCKET_CLOSED, clientId, description);
+      event.sender.send(channels.WEBSOCKET_CLOSED, {
+        clientId,
+        description
+      });
     },
     onMessage: (clientId, message) => {
-      event.sender.send(channels.WEBSOCKET_MESSAGE, clientId, message);
+      event.sender.send(channels.WEBSOCKET_MESSAGE, {
+        clientId,
+        message
+      });
     }
   });
 });
