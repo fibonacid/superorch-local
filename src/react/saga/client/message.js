@@ -6,5 +6,7 @@ export function* c_messageWatcher() {
 }
 
 export function* c_messageSaga(action) {
-  console.log("c_messageSaga", action);
+  console.log("c_messageSaga", {
+    message: { ...action }
+  });
 }
