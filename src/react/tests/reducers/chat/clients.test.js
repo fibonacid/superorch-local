@@ -6,16 +6,17 @@ describe("clients reducer", () => {
     expect(reducer(undefined, {})).toEqual([]);
   });
 
-  it("should handle CREATE_CLIENT", () => {
+  it("should handle S_CREATE_CLIENT", () => {
     expect(
       reducer([], {
-        type: actionTypes.CREATE_CLIENT,
-        client: { id: 0 }
+        type: actionTypes.S_CREATE_CLIENT,
+        clientId: 0,
+        clientData: { foo: "bar" }
       })
-    ).toEqual([{ id: 0 }]);
+    ).toEqual([{ id: 0, foo: "bar" }]);
   });
 
-  it("should handle UPDATE_CLIENT", () => {
+  it("should handle S_UPDATE_CLIENT", () => {
     expect(
       reducer(
         [
@@ -23,9 +24,9 @@ describe("clients reducer", () => {
           { id: 1, modified: false }
         ],
         {
-          type: actionTypes.UPDATE_CLIENT,
-          id: 0,
-          data: { modified: true }
+          type: actionTypes.S_UPDATE_CLIENT,
+          clientId: 0,
+          clientData: { modified: true }
         }
       )
     ).toEqual([
@@ -34,10 +35,10 @@ describe("clients reducer", () => {
     ]);
   });
 
-  it("should handle DELETE_CLIENT", () => {
+  it("should handle S_DELETE_CLIENT", () => {
     expect(
       reducer([{ id: 0 }, { id: 1 }], {
-        type: actionTypes.DELETE_CLIENT,
+        type: actionTypes.S_DELETE_CLIENT,
         id: 1
       })
     ).toEqual([{ id: 0 }]);

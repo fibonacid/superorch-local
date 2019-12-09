@@ -25,7 +25,7 @@ describe("c_deleteDocument action", () => {
       type: actionTypes.C_DELETE_DOCUMENT,
       documentId
     };
-    expect(c_deleteDocument(id)).toEqual(expectedAction);
+    expect(c_deleteDocument(documentId)).toEqual(expectedAction);
   });
 });
 

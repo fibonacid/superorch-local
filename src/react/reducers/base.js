@@ -1,8 +1,7 @@
 import { actionTypes } from "../actions/actionTypes";
 
 export const initialState = {
-  name: "colliderchat",
-  myUserId: 0
+  myUserId: undefined
 };
 
 const base = (state = initialState, action) => {
@@ -12,7 +11,7 @@ const base = (state = initialState, action) => {
         ...state,
         ...action.data
       };
-    case actionTypes.UPDATE_MY_USER_ID:
+    case actionTypes.C_UPDATE_MY_USER_ID:
       return {
         ...state,
         myUserId: action.newId

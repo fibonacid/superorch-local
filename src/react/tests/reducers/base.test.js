@@ -4,7 +4,7 @@ import { actionTypes } from "../../actions/actionTypes";
 describe("base reducer", () => {
   it("should return the initial state", () => {
     expect(reducer(undefined, {})).toEqual({
-      myUserId: 0
+      myUserId: undefined
     });
   });
 

@@ -3,18 +3,29 @@ import _ from "lodash";
 
 export default function clients(state = [], action) {
   switch (action.type) {
-    case actionTypes.CREATE_CLIENT:
-      return [...state, action.client];
+    case actionTypes.S_CREATE_CLIENT:
+      return [
+        ...state,
+        {
+          id: action.clientId,
+          ...action.clientData
+        }
+      ];
 
-    case actionTypes.UPDATE_CLIENT:
+    case actionTypes.S_UPDATE_CLIENT:
       // Modify data of client with same id.
       return state.map(client =>
-        client.id === action.id ? _.merge({}, client, action.data) : client
+        client.id === action.clientId
+          ? {
+              ...client,
+              ...action.clientData
+            }
+          : client
       );
 
-    case actionTypes.DELETE_CLIENT:
+    case actionTypes.S_DELETE_CLIENT:
       // Delete client with the given id.
-      return state.filter(client => client.id !== action.id);
+      return state.filter(client => client.id !== action.clientId);
 
     default:
       return state;
