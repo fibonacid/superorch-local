@@ -16,6 +16,7 @@ import TextEditor from "./components/TextEditor/index";
 import StatusBar from "./components/StatusBar/index";
 import { c_createUser } from "./actions/client/crudUsers";
 import { digestAppCredits } from "./actions/digestAppCredits";
+import { s_createClient } from "./actions/server/crudClients";
 
 /* =============================================== */
 /*    REDUX                                        */
@@ -102,12 +103,12 @@ class App extends Component {
         ipcRenderer.removeAllListeners(channels.APP_INFO);
       });
       ipcRenderer.on(channels.WEBSOCKET_OPEN, (event, arg) => {
+        store.dispatch(s_createClient(arg.clientId, arg.clientData));
+      });
+      ipcRenderer.on(channels.WEBSOCKET_CLOSED, (event, arg) => {
         console.log(event, arg);
       });
-      ipcRenderer.on(channels.WEBSOCKET_OPEN, (event, arg) => {
-        console.log(event, arg);
-      });
-      ipcRenderer.on(channels.WEBSOCKET_OPEN, (event, arg) => {
+      ipcRenderer.on(channels.WEBSOCKET_MESSAGE, (event, arg) => {
         console.log(event, arg);
       });
     }
@@ -124,7 +125,7 @@ class App extends Component {
 
     // Request start of SuperCollider server
     if (ipcRenderer) {
-      ipcRenderer.send(channels.START_SUPERCOLLIDER);
+      //ipcRenderer.send(channels.START_SUPERCOLLIDER);
       ipcRenderer.send(channels.START_WS_SERVER);
     }
   }
