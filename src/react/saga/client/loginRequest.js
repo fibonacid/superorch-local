@@ -8,7 +8,7 @@ export function* c_loginRequestWatcher() {
 }
 
 export function* c_loginRequestSaga(action) {
-  const { myUserId } = yield select(state => state.base);
+  const { myUserId } = yield select(state => state.wsclient);
   const userData = yield select(state => selectUser(state, myUserId));
 
   const message = {

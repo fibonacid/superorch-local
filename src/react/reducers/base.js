@@ -1,8 +1,6 @@
 import { actionTypes } from "../actions/actionTypes";
 
-export const initialState = {
-  myUserId: 0
-};
+export const initialState = {};
 
 const base = (state = initialState, action) => {
   switch (action.type) {
@@ -10,11 +8,6 @@ const base = (state = initialState, action) => {
       return {
         ...state,
         ...action.data
-      };
-    case actionTypes.C_UPDATE_MY_USER_ID:
-      return {
-        ...state,
-        myUserId: action.newId
       };
     default:
       return state;

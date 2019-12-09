@@ -4,7 +4,8 @@ const initialState = {
   url: "ws://localhost:8989",
   isLoggedIn: false,
   isConnected: false,
-  isTryingToConnect: false
+  isTryingToConnect: false,
+  myUserId: 0
 };
 
 const wsclient = (state = initialState, action) => {
@@ -31,6 +32,11 @@ const wsclient = (state = initialState, action) => {
       return {
         ...state,
         isTryingToConnect: true
+      };
+    case actionTypes.C_UPDATE_MY_USER_ID:
+      return {
+        ...state,
+        myUserId: action.newId
       };
     default:
       return state;
