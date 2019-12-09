@@ -4,7 +4,7 @@ import {
   deleteUser,
   destroyUser,
   updateUser
-} from "../../actions/crudUsers";
+} from "../../actions/client/crudUsers";
 
 describe("createUser action", () => {
   it("should create an action to create a new user", () => {
