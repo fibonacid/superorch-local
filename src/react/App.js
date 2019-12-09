@@ -14,7 +14,7 @@ import SideBar from "./components/SideBar/index";
 import Header from "./components/Header/index";
 import TextEditor from "./components/TextEditor/index";
 import StatusBar from "./components/StatusBar/index";
-import { createUser } from "./actions/crudUsers";
+import { c_createUser } from "./actions/client/crudUsers";
 import { digestAppCredits } from "./actions/digestAppCredits";
 
 /* =============================================== */
@@ -107,7 +107,7 @@ class App extends Component {
   componentDidMount() {
     // Create user
     const { myUserId } = store.getState().base;
-    store.dispatch(createUser({ id: myUserId, name }));
+    store.dispatch(c_createUser({ id: myUserId, name }));
 
     // Connect to websocket
     const url = process.env.REACT_APP_SOCKET_URL;
