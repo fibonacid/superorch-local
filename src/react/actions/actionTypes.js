@@ -39,7 +39,7 @@ export const actionTypes = {
 
   B_USER_JOINED: "B::USER_JOINED",
   B_USER_LEFT: "B::USER_LEFT",
-  B_USER_UPDATED: "B::USER_UPDATED",
+  B_USER_UPDATE: "B::USER_UPDATE",
 
   // todo: add other broadcast action types
 
