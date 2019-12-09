@@ -3,18 +3,29 @@ import _ from "lodash";
 
 export default function scQueries(state = [], action) {
   switch (action.type) {
-    case actionTypes.CREATE_SC_QUERY:
-      return [...state, action.scQuery];
+    case actionTypes.C_CREATE_SC_QUERY || actionTypes.S_CREATE_SC_QUERY:
+      return [
+        ...state,
+        {
+          id: action.scQueryId,
+          ...action.scQueryData
+        }
+      ];
 
-    case actionTypes.UPDATE_SC_QUERY:
+    case actionTypes.C_UPDATE_SC_QUERY || actionTypes.S_UPDATE_SC_QUERY:
       // Modify data of user with same id.
       return state.map(scQuery =>
-        scQuery.id === action.id ? _.merge({}, scQuery, action.data) : scQuery
+        scQuery.id === action.scQueryId
+          ? {
+              ...scQuery,
+              ...action.scQueryData
+            }
+          : scQuery
       );
 
-    case actionTypes.DELETE_SC_QUERY:
+    case actionTypes.C_DELETE_SC_QUERY || actionTypes.S_DELETE_SC_QUERY:
       // Delete scQuery with the given id.
-      return state.filter(scQuery => scQuery.id !== action.id);
+      return state.filter(scQuery => scQuery.id !== action.scQueryId);
 
     default:
       return state;
