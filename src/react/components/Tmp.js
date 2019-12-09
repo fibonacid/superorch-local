@@ -13,8 +13,8 @@ function Tmp(props) {
 }
 
 const mapDispatchToProps = dispatch => ({
-  login: () => dispatch(c_loginRequest({ name: "foo" })),
-  logout: () => dispatch(c_logoutRequest(0))
+  login: () => dispatch(c_loginRequest()),
+  logout: () => dispatch(c_logoutRequest())
 });
 
 export default connect(null, mapDispatchToProps)(Tmp);
