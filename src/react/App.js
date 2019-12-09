@@ -17,6 +17,7 @@ import StatusBar from "./components/StatusBar/index";
 import { c_createUser } from "./actions/client/crudUsers";
 import { digestAppCredits } from "./actions/digestAppCredits";
 import { s_createClient } from "./actions/server/crudClients";
+import Tmp from "./components/Tmp";
 
 /* =============================================== */
 /*    REDUX                                        */
@@ -136,6 +137,7 @@ class App extends Component {
         <StyledContainer className="App">
           <GlobalStyle />
           <Header />
+          <Tmp />
           <StyledWrapper>
             <SideBar />
             <TextEditor />
