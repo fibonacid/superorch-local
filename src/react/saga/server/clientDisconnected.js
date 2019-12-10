@@ -12,12 +12,12 @@ export function* clientDisconnectedWatcher() {
 export function* clientDisconnectedSaga(action) {
   // Get associated user
   const client = yield select(state => selectClient(state, action.clientId));
-  const user = yield select(state => selectUser(state, client.id));
+  const user = yield select(state => selectUser(state, client.userId));
 
   // If user exists:
   if (user) {
     // Broadcast a user left action
-    yield put(s_broadcast(b_userLeft(user.id)));
+    yield put(s_broadcast(action.clientId, b_userLeft(user.id)));
   }
 
   // Delete client record in the store
