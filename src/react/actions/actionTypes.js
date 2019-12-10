@@ -6,6 +6,8 @@ export const actionTypes = {
   // ====================================================
 
   S_MESSAGE: "S::MESSAGE",
+  S_TRANSMIT: "S::TRANSMIT",
+  S_BROADCAST: "S::BROADCAST",
 
   // request responses
   S_LOGIN_SUCCESS: "S::LOGIN_SUCCESS",
