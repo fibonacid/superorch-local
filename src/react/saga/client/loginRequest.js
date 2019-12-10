@@ -2,8 +2,11 @@ import { actionTypes } from "../../actions/actionTypes";
 import { takeLatest, put, select, race, take, delay } from "redux-saga/effects";
 import { send } from "@giantmachines/redux-websocket";
 import { selectUser } from "../../reducers/root";
-import { c_updateUser } from "../../actions/client/crudUsers";
-import { c_updateMyUserId } from "../../actions/client/updateMyUserId";
+import {
+  c_loginError,
+  c_loginSuccess,
+  c_loginTimeout
+} from "../../actions/client/loginRequest";
 
 export function* c_loginRequestWatcher() {
   yield takeLatest(actionTypes.C_LOGIN_REQUEST, c_loginRequestSaga);
@@ -29,15 +32,10 @@ export function* c_loginRequestSaga(action) {
   });
 
   if (result) {
-    // Get default user id
-    const { myUserId } = yield select(state => state.wsclient);
-    // Update default user
-    yield put(c_updateUser(myUserId, { id: result.userId }));
-    // Update myUserId variable
-    yield put(c_updateMyUserId(result.userId));
+    yield put(c_loginSuccess(result.userId, `logged in`));
   } else if (error) {
-    console.error(error);
+    yield put(c_loginError(error));
   } else if (timeout) {
-    console.error(timeout);
+    yield put(c_loginTimeout(timeout));
   }
 }
