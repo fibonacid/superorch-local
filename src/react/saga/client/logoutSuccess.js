@@ -8,6 +8,7 @@ export function* c_logoutSuccessWatcher() {
 }
 
 export function* c_logoutSuccessSaga(action) {
+  console.log("logged out");
   // Get default user id
   const users = yield select(state => selectUsers(state));
   const { myUserId } = yield select(state => state.wsclient);
