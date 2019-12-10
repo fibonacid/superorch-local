@@ -90,8 +90,8 @@ app.on("window-all-closed", function() {
 });
 
 // Before app quits
-app.on('before-quit', function() {
-  if(wsServer) {
+app.on("before-quit", function() {
+  if (wsServer) {
     // Destroy WebSocket server
     wsServer.close();
   }
@@ -102,7 +102,7 @@ app.on("activate", function() {
   // If there is at least one window open:
   if (mainWindow === null || process.env["NODE_ENV"] === "development") {
     // Create another window
-    createWindow();
+    //createWindow();
   }
 });
 
@@ -147,8 +147,6 @@ ipcMain.on("start_supercollider", async () => {
 
 // When react launch the stop_supercollider event
 ipcMain.on("stop_supercollider", () => {});
-
-let wsServer;
 
 ipcMain.on(channels.START_WS_SERVER, event => {
   try {
