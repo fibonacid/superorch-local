@@ -38,6 +38,16 @@ const wsclient = (state = initialState, action) => {
         ...state,
         myUserId: action.newId
       };
+    case actionTypes.C_LOGIN_SUCCESS:
+      return {
+        ...state,
+        isLoggedIn: true
+      };
+    case actionTypes.C_LOGOUT_SUCCESS:
+      return {
+        ...state,
+        isLoggedIn: false
+      };
     default:
       return state;
   }
