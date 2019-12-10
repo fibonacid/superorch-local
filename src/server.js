@@ -8,7 +8,7 @@ const WebSocket = require("ws");
  */
 function launchWSServer(options) {
   const server = new WebSocket.Server({
-    port: process.env["SOCKET_PORT"] || 8989
+    port: options.port || 8989
   });
 
   let counter = 100;
