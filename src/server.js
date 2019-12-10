@@ -37,6 +37,8 @@ function launchWSServer(options) {
       options.onMessage && options.onMessage(id, message);
     });
   });
+
+  return server;
 }
 
 /**
@@ -50,7 +52,7 @@ function launchWSServer(options) {
  * @param message
  */
 function broadcast(server, clientId, message) {
-  const socket = getSocketByClientId(clientId);
+  const socket = getSocketByClientId(server, clientId);
   console.log([clientId, "message broadcasted"]);
   console.group();
   server.clients.forEach(client => {
@@ -64,13 +66,18 @@ function broadcast(server, clientId, message) {
 /**
  * TRANSMIT
  * ===========================================
+ * @param server
  * @param clientId
  * @param message
  */
-function transmit(clientId, message) {
-  const socket = getSocketByClientId(clientId);
-  socket.send(JSON.stringify(message));
-  console.log([clientId, "message transmitted"]);
+function transmit(server, clientId, message) {
+  const socket = getSocketByClientId(server, clientId);
+  if (socket) {
+    socket.send(JSON.stringify(message));
+    console.log([clientId, "message transmitted"]);
+  } else {
+    console.error("socket is undefined");
+  }
 }
 
 /**
@@ -80,7 +87,11 @@ function transmit(clientId, message) {
  * @returns {*}
  */
 function getSocketByClientId(server, clientId) {
-  return server.clients.find(client => client.clientId === clientId);
+  return server.clients.forEach(client => {
+    if (client.clientId === clientId) {
+      return client;
+    }
+  });
 }
 
 module.exports = {

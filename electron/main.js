@@ -165,25 +165,11 @@ ipcMain.on(channels.START_WS_SERVER, event => {
     });
 
     ipcMain.on(channels.WEBSOCKET_TRANSMIT, (event, args) => {
-      // todo: remove
-      console.log(channels.WEBSOCKET_TRANSMIT, args);
-
-      try {
-        transmit(args.clientId, args.message);
-      } catch (error) {
-        console.error(error);
-      }
+      transmit(wsServer, args.clientId, args.message);
     });
 
     ipcMain.on(channels.WEBSOCKET_BROADCAST, (event, args) => {
-      // todo: remove
-      console.log(channels.WEBSOCKET_TRANSMIT, args);
-
-      try {
-        broadcast(wsServer, args.clientId, args.message);
-      } catch (error) {
-        console.error(error);
-      }
+      broadcast(wsServer, args.clientId, args.message);
     });
   } catch (error) {
     console.error(error.message);
