@@ -4,7 +4,7 @@ const url = require("url");
 const { channels } = require("../src/shared/constants");
 const { launchWSServer, transmit, broadcast } = require("../src/server");
 const { autoUpdater } = require("electron-updater");
-const { bootInterpreter } = require("./run-sclang");
+const { bootInterpreter } = require("./supercollider");
 
 let mainWindow;
 
