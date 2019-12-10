@@ -1,8 +1,7 @@
 import { actionTypes } from "../actionTypes";
 
-export const c_logoutRequest = userId => ({
-  type: actionTypes.C_LOGOUT_REQUEST,
-  userId
+export const c_logoutRequest = () => ({
+  type: actionTypes.C_LOGOUT_REQUEST
 });
 
 export const c_logoutSuccess = message => ({
