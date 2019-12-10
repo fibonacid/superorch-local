@@ -1,5 +1,6 @@
 import { actionTypes } from "../../actions/actionTypes";
-import { takeLatest } from "redux-saga/effects";
+import { takeLatest, put } from "redux-saga/effects";
+import { c_replaceUserList } from "../../actions/client/crudUsers";
 
 export function* c_getUserListSuccessWatcher() {
   yield takeLatest(
@@ -8,4 +9,6 @@ export function* c_getUserListSuccessWatcher() {
   );
 }
 
-export function* c_getUserListSuccessSaga(action) {}
+export function* c_getUserListSuccessSaga(action) {
+  yield put(c_replaceUserList(action.userList));
+}
