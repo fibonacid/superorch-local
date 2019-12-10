@@ -6,10 +6,8 @@ import reset from "styled-reset";
 import configureStore from "./store";
 import { connect as connectSocket } from "@giantmachines/redux-websocket";
 import { channels } from "../shared/constants";
-import name from "./utils/name";
 
 import { digestAppCredits } from "./actions/digestAppCredits";
-import { c_createUser } from "./actions/client/crudUsers";
 import { s_createClient } from "./actions/server/crudClients";
 import { s_message } from "./actions/server/message";
 
