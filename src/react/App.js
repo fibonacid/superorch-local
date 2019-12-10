@@ -8,7 +8,6 @@ import { connect as connectSocket } from "@giantmachines/redux-websocket";
 import { channels } from "../shared/constants";
 
 import { digestAppCredits } from "./actions/digestAppCredits";
-import { s_createClient } from "./actions/server/crudClients";
 import { s_message } from "./actions/server/message";
 
 // Components
@@ -18,6 +17,8 @@ import Header from "./components/Header/index";
 import TextEditor from "./components/TextEditor/index";
 import StatusBar from "./components/StatusBar/index";
 import Tmp from "./components/Tmp";
+import { s_clientDisconnected } from "./actions/server/clientDisconnected";
+import { s_clientConnected } from "./actions/server/clientConnected";
 
 /* =============================================== */
 /*    REDUX                                        */
@@ -104,10 +105,10 @@ class App extends Component {
         ipcRenderer.removeAllListeners(channels.APP_INFO);
       });
       ipcRenderer.on(channels.WEBSOCKET_OPEN, (event, arg) => {
-        store.dispatch(s_createClient(arg.clientId, arg.clientData));
+        store.dispatch(s_clientConnected(arg.clientId, arg.clientData));
       });
       ipcRenderer.on(channels.WEBSOCKET_CLOSED, (event, arg) => {
-        console.log(event, arg);
+        store.dispatch(s_clientDisconnected(arg.clientId));
       });
       ipcRenderer.on(channels.WEBSOCKET_MESSAGE, (event, arg) => {
         store.dispatch(s_message(arg.clientId, arg.message));
