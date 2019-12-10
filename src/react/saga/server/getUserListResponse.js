@@ -4,9 +4,9 @@ import {
   s_getUserListSuccess
 } from "../../actions/server/getUserListResponse";
 import { s_transmit } from "../../actions/server/transmit";
-import { selectUsers } from "../../reducers/chat";
+import { selectUsers } from "../../reducers/root";
 
-export function* s_getUserListResponseSaga(userData, clientId) {
+export function* s_getUserListResponseSaga(clientId) {
   try {
     // Get list of users from state
     const userList = yield select(state => selectUsers(state));
@@ -16,5 +16,6 @@ export function* s_getUserListResponseSaga(userData, clientId) {
     // If there was an error:
     // Transmit error to the client that tried logging in.
     yield put(s_transmit(clientId, s_getUserListError(error)));
+    console.error(error);
   }
 }
