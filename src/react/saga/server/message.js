@@ -1,6 +1,6 @@
 import { actionTypes } from "../../actions/actionTypes";
 import { takeLatest, call } from "redux-saga/effects";
-import { s_createUserSaga } from "./createUserSaga";
+import { s_loginResponseSaga } from "./loginResponse";
 
 export function* s_messageWatcher() {
   yield takeLatest(actionTypes.S_MESSAGE, s_messageSaga);
@@ -15,6 +15,6 @@ export function* s_messageSaga(action) {
   // Handle actions embedded in the message
   switch (message.type) {
     case actionTypes.C_LOGIN_REQUEST:
-      return yield call(s_createUserSaga, message.userData, clientId);
+      return yield call(s_loginResponseSaga, message.userData, clientId);
   }
 }
