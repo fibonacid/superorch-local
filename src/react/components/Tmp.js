@@ -6,8 +6,12 @@ import { c_logoutRequest } from "../actions/client/logoutRequest";
 function Tmp(props) {
   return (
     <div>
-      <button onClick={props.login}>login</button>
-      <button onClick={props.logout}>logout</button>
+      <button onClick={props.login} disabled={props.isLoggedIn}>
+        login
+      </button>
+      <button onClick={props.logout} disabled={!props.isLoggedIn}>
+        logout
+      </button>
     </div>
   );
 }
@@ -17,4 +21,8 @@ const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(c_logoutRequest())
 });
 
-export default connect(null, mapDispatchToProps)(Tmp);
+const mapStateToProps = state => ({
+  isLoggedIn: state.wsclient.isLoggedIn
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Tmp);
