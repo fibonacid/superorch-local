@@ -43,6 +43,22 @@ describe("documents reducer", () => {
       })
     ).toEqual([{ id: 0 }]);
   });
+
+  it("should handle C_DESTROY_USER", () => {
+    const userId = 10;
+    expect(
+      reducer(
+        [
+          { id: 0, userId: 10 },
+          { id: 1, userId: 11 }
+        ],
+        {
+          type: actionTypes.C_DESTROY_USER,
+          userId
+        }
+      )
+    ).toEqual([{ id: 1, userId: 11 }]);
+  });
 });
 
 describe("selectDocument", () => {

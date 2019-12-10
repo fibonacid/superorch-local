@@ -30,6 +30,9 @@ const documents = (state = [], action) => {
     case actionTypes.C_DELETE_DOCUMENT:
       return state.filter(document => document.id !== action.documentId);
 
+    case actionTypes.C_DESTROY_USER:
+      return state.filter(document => document.userId !== action.userId);
+
     default:
       return state;
   }
