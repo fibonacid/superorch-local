@@ -1,12 +1,14 @@
-import reducer from "../../reducers/wsClient";
+import reducer from "../../reducers/wsclient";
 import { actionTypes } from "../../actions/actionTypes";
 
-describe("wsClient reducer", () => {
+describe("wsclient reducer", () => {
   it("should return the initial state", () => {
     expect(reducer(undefined, {})).toEqual({
       url: "ws://localhost:8989",
       isConnected: false,
-      isTryingToConnect: false
+      isTryingToConnect: false,
+      isLoggedIn: false,
+      myUserId: 0
     });
   });
 
@@ -15,8 +17,7 @@ describe("wsClient reducer", () => {
       reducer(undefined, {
         type: actionTypes.C_OPEN
       })
-    ).toEqual({
-      url: "ws://localhost:8989",
+    ).toMatchObject({
       isConnected: true,
       isTryingToConnect: false
     });
@@ -27,8 +28,7 @@ describe("wsClient reducer", () => {
       reducer(undefined, {
         type: actionTypes.C_CLOSED
       })
-    ).toEqual({
-      url: "ws://localhost:8989",
+    ).toMatchObject({
       isConnected: false,
       isTryingToConnect: false
     });
@@ -40,8 +40,7 @@ describe("wsClient reducer", () => {
         type: actionTypes.C_CONNECT,
         payload: { url: "ws://test:8989" }
       })
-    ).toEqual({
-      url: "ws://test:8989",
+    ).toMatchObject({
       isConnected: false,
       isTryingToConnect: true
     });
@@ -52,8 +51,7 @@ describe("wsClient reducer", () => {
       reducer(undefined, {
         type: actionTypes.C_BEGIN_RECONNECT
       })
-    ).toEqual({
-      url: "ws://localhost:8989",
+    ).toMatchObject({
       isConnected: false,
       isTryingToConnect: true
     });

@@ -1,9 +1,15 @@
 import reducer, { selectUser } from "../../../reducers/chat/users";
 import { actionTypes } from "../../../actions/actionTypes";
+import name from "../../../utils/name";
 
 describe("users reducer", () => {
   it("should return the initial state", () => {
-    expect(reducer(undefined, {})).toEqual([]);
+    expect(reducer(undefined, {})).toEqual([
+      {
+        id: 0,
+        name
+      }
+    ]);
   });
 
   it("should handle C_CREATE_USER", () => {
