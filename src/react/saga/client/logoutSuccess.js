@@ -1,6 +1,6 @@
-import { put, select, takeLatest } from "redux-saga/effects";
+import { put, select, takeLatest, all } from "redux-saga/effects";
 import { actionTypes } from "../../actions/actionTypes";
-import { c_destroyUser, c_updateUser } from "../../actions/client/crudUsers";
+import { c_destroyUser } from "../../actions/client/crudUsers";
 import { selectUsers } from "../../reducers/root";
 
 export function* c_logoutSuccessWatcher() {
@@ -12,10 +12,11 @@ export function* c_logoutSuccessSaga(action) {
   // Get default user id
   const users = yield select(state => selectUsers(state));
   const { myUserId } = yield select(state => state.wsclient);
-  // Update default user
-  users.forEach(function*(user) {
-    if (user.id !== myUserId) {
-      yield put(c_destroyUser(user.id));
-    }
-  });
+
+  // Delete all the user except the default one
+  yield all(
+    users
+      .filter(user => user.id !== myUserId)
+      .map(user => put(c_destroyUser(user.id)))
+  );
 }
