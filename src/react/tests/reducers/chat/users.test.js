@@ -79,6 +79,16 @@ describe("users reducer", () => {
     ).toEqual([{ id: 0 }]);
   });
 
+  it("should handle C_DESTROY_USER", () => {
+    const userId = 0;
+    expect(
+      reducer([{ id: 0 }, { id: 1 }], {
+        type: actionTypes.C_DESTROY_USER,
+        userId
+      })
+    ).toEqual([{ id: 1 }]);
+  });
+
   it("should handle B_USER_LEFT", () => {
     expect(
       reducer([{ id: 0 }, { id: 1 }], {
