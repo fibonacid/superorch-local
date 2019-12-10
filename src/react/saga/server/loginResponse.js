@@ -6,6 +6,7 @@ import {
 import { b_userJoined } from "../../actions/broadcast/userJoined";
 import { s_transmit } from "../../actions/server/transmit";
 import { s_broadcast } from "../../actions/server/broadcast";
+import { s_updateClient } from "../../actions/server/crudClients";
 
 let userCount = 0;
 
@@ -21,6 +22,9 @@ export function* s_loginResponseSaga(userData, clientId) {
   };
 
   try {
+    // Assign user to the client
+    yield put(s_updateClient(clientId, { userId: newUser.id }));
+
     // Transmit new user id to the client that tried logging in.
     yield put(s_transmit(clientId, s_loginSuccess(newUser.id)));
 
