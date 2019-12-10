@@ -11,6 +11,10 @@ import {
   s_logoutError,
   s_logoutSuccess
 } from "../../actions/server/logoutReponse";
+import {
+  s_getUserListError,
+  s_getUserListSuccess
+} from "../../actions/server/getUserListResponse";
 
 export function* c_messageWatcher() {
   yield takeLatest(actionTypes.C_MESSAGE, c_messageSaga);
@@ -34,6 +38,12 @@ export function* c_messageSaga({ payload }) {
       break;
     case actionTypes.S_LOGOUT_ERROR:
       yield put(s_logoutError(message.error));
+      break;
+    case actionTypes.S_GET_USER_LIST_SUCCESS:
+      yield put(s_getUserListSuccess(message.userList));
+      break;
+    case actionTypes.S_GET_USER_LIST_ERROR:
+      yield put(s_getUserListError(message.error));
       break;
     case actionTypes.B_USER_JOINED:
       yield put(b_userJoined(message.userId, message.userData));
