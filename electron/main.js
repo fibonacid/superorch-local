@@ -7,6 +7,7 @@ const { autoUpdater } = require("electron-updater");
 const { bootInterpreter } = require("./supercollider");
 
 let mainWindow;
+let wsServer;
 
 /**
  * INSTALL EXTENSIONS
@@ -85,6 +86,14 @@ app.on("window-all-closed", function() {
   if (process.platform !== "darwin") {
     // Quit application
     app.quit();
+  }
+});
+
+// Before app quits
+app.on('before-quit', function() {
+  if(wsServer) {
+    // Destroy WebSocket server
+    wsServer.close();
   }
 });
 
