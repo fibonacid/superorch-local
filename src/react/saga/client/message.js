@@ -20,7 +20,7 @@ export function* c_messageSaga({ payload }) {
   // Unpack message
   const message = JSON.parse(payload.message);
 
-  console.log(`message: ${message.type}`);
+  console.log(`client received a message: ${message.type}`);
 
   switch (message.type) {
     case actionTypes.S_LOGIN_SUCCESS:

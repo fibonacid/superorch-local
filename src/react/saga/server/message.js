@@ -12,6 +12,8 @@ export function* s_messageSaga(action) {
   const { clientId } = action;
   const message = JSON.parse(action.message);
 
+  console.log(`server received a message: ${message.type}`);
+
   // Handle actions embedded in the message
   switch (message.type) {
     case actionTypes.C_LOGIN_REQUEST:
