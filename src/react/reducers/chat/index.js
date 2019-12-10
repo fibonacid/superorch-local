@@ -16,6 +16,8 @@ export default chat;
 export const selectClient = (state, id) =>
   fromClients.selectClient(state.clients, id);
 
+export const selectUsers = state => state.users;
+
 export const selectUser = (state, id) => fromUsers.selectUser(state.users, id);
 
 export const selectDocument = (state, id) =>
