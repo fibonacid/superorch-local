@@ -6,7 +6,7 @@ export function* s_broadcastWatcher() {
   yield takeLatest(actionTypes.S_BROADCAST, s_broadcastSaga);
 }
 
-export function* s_broadcastSaga(clientId, message) {
+export function* s_broadcastSaga({ clientId, message }) {
   const { ipcRenderer } = window;
   if (ipcRenderer) {
     // Send to electron main process

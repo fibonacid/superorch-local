@@ -6,8 +6,9 @@ export function* s_transmitWatcher() {
   yield takeLatest(actionTypes.S_TRANSMIT, s_transmitSaga);
 }
 
-export function* s_transmitSaga(clientId, message) {
+export function* s_transmitSaga({ clientId, message }) {
   const { ipcRenderer } = window;
+
   if (ipcRenderer) {
     // Send to electron main process
     ipcRenderer.send(channels.WEBSOCKET_TRANSMIT, {
