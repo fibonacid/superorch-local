@@ -46,25 +46,31 @@ function launchWSServer(options) {
  * to all the connected clients except the one
  * that sent the message.
  * @param server
- * @param socket
+ * @param clientId
  * @param message
  */
-function broadcast(server, socket, message) {
+function broadcast(server, clientId, message) {
+  const socket = getSocketByClientId(clientId);
+  console.log([clientId, "message broadcasted"]);
+  console.group();
   server.clients.forEach(client => {
     if (client.readyState === WebSocket.OPEN && client !== socket) {
       client.send(JSON.stringify(message));
     }
   });
+  console.groupEnd();
 }
 
 /**
  * TRANSMIT
  * ===========================================
- * @param socket
+ * @param clientId
  * @param message
  */
-function transmit(socket, message) {
+function transmit(clientId, message) {
+  const socket = getSocketByClientId(clientId);
   socket.send(JSON.stringify(message));
+  console.log([clientId, "message transmitted"]);
 }
 
 /**
@@ -79,7 +85,6 @@ function getSocketByClientId(server, clientId) {
 
 module.exports = {
   launchWSServer,
-  getSocketByClientId,
   transmit,
   broadcast
 };

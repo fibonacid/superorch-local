@@ -2,14 +2,8 @@ const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
 const url = require("url");
 const { channels } = require("../src/shared/constants");
-const {
-  launchWSServer,
-  getSocketByClientId,
-  transmit,
-  broadcast
-} = require("../src/server");
+const { launchWSServer, transmit, broadcast } = require("../src/server");
 const { autoUpdater } = require("electron-updater");
-const { bootServer } = require("./run-scsynth");
 const { bootInterpreter } = require("./run-sclang");
 
 let mainWindow;
@@ -175,8 +169,7 @@ ipcMain.on(channels.START_WS_SERVER, event => {
 
 ipcMain.on(channels.WEBSOCKET_TRANSMIT, (event, args) => {
   try {
-    const socket = getSocketByClientId(wsServer, args.clientId);
-    transmit(socket, args.message);
+    transmit(args.clientId, args.message);
   } catch (error) {
     console.error(error);
   }
@@ -184,8 +177,7 @@ ipcMain.on(channels.WEBSOCKET_TRANSMIT, (event, args) => {
 
 ipcMain.on(channels.WEBSOCKET_BROADCAST, (event, args) => {
   try {
-    const socket = getSocketByClientId(wsServer, args.clientId);
-    broadcast(wsServer, socket, args.message);
+    broadcast(wsServer, args.clientId, args.message);
   } catch (error) {
     console.error(error);
   }
