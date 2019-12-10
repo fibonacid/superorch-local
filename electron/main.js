@@ -2,7 +2,7 @@ const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
 const url = require("url");
 const { channels } = require("../src/shared/constants");
-const { launchWSServer, transmit, broadcast } = require("../src/server");
+const { launchWSServer, transmit, broadcast } = require("./server");
 const { autoUpdater } = require("electron-updater");
 const { bootInterpreter } = require("./supercollider");
 
@@ -145,17 +145,21 @@ ipcMain.on(channels.START_WS_SERVER, event => {
   try {
     // Create server
     wsServer = launchWSServer({
+      // When client connects
       onOpen: clientId => {
         event.sender.send(channels.WEBSOCKET_OPEN, {
           clientId
         });
       },
+
+      // When client disconnects:
       onClose: (clientId, description) => {
         event.sender.send(channels.WEBSOCKET_CLOSED, {
           clientId,
           description
         });
       },
+      // When server received a message:
       onMessage: (clientId, message) => {
         event.sender.send(channels.WEBSOCKET_MESSAGE, {
           clientId,
@@ -164,10 +168,12 @@ ipcMain.on(channels.START_WS_SERVER, event => {
       }
     });
 
+    // When server wants to transmit a message:
     ipcMain.on(channels.WEBSOCKET_TRANSMIT, (event, args) => {
       transmit(wsServer, args.clientId, args.message);
     });
 
+    // When server wants to broadcast a message:
     ipcMain.on(channels.WEBSOCKET_BROADCAST, (event, args) => {
       broadcast(wsServer, args.clientId, args.message);
     });

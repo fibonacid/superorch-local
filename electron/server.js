@@ -76,7 +76,7 @@ function transmit(server, clientId, message) {
     socket.send(JSON.stringify(message));
     console.log([clientId, "message transmitted"]);
   } else {
-    console.error("socket is undefined");
+    console.error(`socket ${clientId} is undefined`);
   }
 }
 
@@ -87,11 +87,13 @@ function transmit(server, clientId, message) {
  * @returns {*}
  */
 function getSocketByClientId(server, clientId) {
-  return server.clients.forEach(client => {
+  let object = undefined;
+  server.clients.forEach(client => {
     if (client.clientId === clientId) {
-      return client;
+      object = client;
     }
   });
+  return object;
 }
 
 module.exports = {
