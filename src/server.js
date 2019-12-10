@@ -1,5 +1,11 @@
 const WebSocket = require("ws");
 
+/**
+ * LAUNCH WS SERVER
+ * ==================
+ *
+ * @param options
+ */
 function launchWSServer(options) {
   const server = new WebSocket.Server({
     port: process.env["SOCKET_PORT"] || 8989
@@ -16,7 +22,7 @@ function launchWSServer(options) {
     console.log([id, "connection open"]);
 
     // Attach id to socket instance
-    socket["userId"] = id;
+    socket["clientId"] = id;
     options.onOpen && options.onOpen(id);
 
     // When a client disconnects
@@ -33,6 +39,47 @@ function launchWSServer(options) {
   });
 }
 
+/**
+ * BROADCAST
+ * ===========================================
+ * This function is used to deliver a message
+ * to all the connected clients except the one
+ * that sent the message.
+ * @param server
+ * @param socket
+ * @param message
+ */
+function broadcast(server, socket, message) {
+  server.clients.forEach(client => {
+    if (client.readyState === WebSocket.OPEN && client !== socket) {
+      client.send(JSON.stringify(message));
+    }
+  });
+}
+
+/**
+ * TRANSMIT
+ * ===========================================
+ * @param socket
+ * @param message
+ */
+function transmit(socket, message) {
+  socket.send(JSON.stringify(message));
+}
+
+/**
+ *
+ * @param server
+ * @param clientId
+ * @returns {*}
+ */
+function getSocketByClientId(server, clientId) {
+  return server.clients.find(client => client.clientId === clientId);
+}
+
 module.exports = {
-  launchWSServer
+  launchWSServer,
+  getSocketByClientId,
+  transmit,
+  broadcast
 };
