@@ -143,6 +143,7 @@ let wsServer;
 
 ipcMain.on(channels.START_WS_SERVER, event => {
   try {
+    // Create server
     wsServer = launchWSServer({
       onOpen: clientId => {
         event.sender.send(channels.WEBSOCKET_OPEN, {
@@ -162,23 +163,29 @@ ipcMain.on(channels.START_WS_SERVER, event => {
         });
       }
     });
+
+    ipcMain.on(channels.WEBSOCKET_TRANSMIT, (event, args) => {
+      // todo: remove
+      console.log(channels.WEBSOCKET_TRANSMIT, args);
+
+      try {
+        transmit(args.clientId, args.message);
+      } catch (error) {
+        console.error(error);
+      }
+    });
+
+    ipcMain.on(channels.WEBSOCKET_BROADCAST, (event, args) => {
+      // todo: remove
+      console.log(channels.WEBSOCKET_TRANSMIT, args);
+
+      try {
+        broadcast(wsServer, args.clientId, args.message);
+      } catch (error) {
+        console.error(error);
+      }
+    });
   } catch (error) {
     console.error(error.message);
-  }
-});
-
-ipcMain.on(channels.WEBSOCKET_TRANSMIT, (event, args) => {
-  try {
-    transmit(args.clientId, args.message);
-  } catch (error) {
-    console.error(error);
-  }
-});
-
-ipcMain.on(channels.WEBSOCKET_BROADCAST, (event, args) => {
-  try {
-    broadcast(wsServer, args.clientId, args.message);
-  } catch (error) {
-    console.error(error);
   }
 });
