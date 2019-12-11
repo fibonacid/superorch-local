@@ -7,6 +7,10 @@ import {
   c_createDocumentSuccess,
   c_createDocumentTimeout
 } from "../../../actions/client/requests/createDocumentRequest";
+import {
+  c_addMyDocId,
+  c_removeMyDocId
+} from "../../../actions/client/updateMyDocIds";
 
 export function* c_createDocumentRequestWatcher() {
   yield takeLatest(
@@ -16,8 +20,6 @@ export function* c_createDocumentRequestWatcher() {
 }
 
 export function* c_createDocumentRequestSaga(action) {
-  console.log("c_createDocumentRequestSaga", action);
-
   // Send request
   yield put(send(c_createDocumentRequest(action.docData)));
 
@@ -29,6 +31,11 @@ export function* c_createDocumentRequestSaga(action) {
   });
 
   if (result) {
+    // Replace myDocId with new one:
+    yield put(c_removeMyDocId(action.docData.id));
+    yield put(c_addMyDocId(result.userId));
+
+    // Send success message
     yield put(c_createDocumentSuccess(result.userId, `logged in`));
   } else if (error) {
     yield put(c_createDocumentError(error));
