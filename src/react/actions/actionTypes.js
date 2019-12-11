@@ -31,22 +31,6 @@ export const actionTypes = {
   S_DELETE_CLIENT: "S::DELETE_CLIENT",
   S_DESTROY_CLIENT: "S::DESTROY_CLIENT",
 
-  // user reducer
-  S_CREATE_USER: "S::CREATE_USER",
-  S_UPDATE_USER: "S::UPDATE_USER",
-  S_DELETE_USER: "S::DELETE_USER",
-  S_DESTROY_USER: "S::DESTROY_USER",
-
-  // document reducer
-  S_CREATE_DOCUMENT: "S::CREATE_DOCUMENT",
-  S_UPDATE_DOCUMENT: "S::UPDATE_DOCUMENT",
-  S_DELETE_DOCUMENT: "S::DELETE_DOCUMENT",
-
-  // scQuery reducer
-  S_CREATE_SC_QUERY: "S::CREATE_SC_QUERY",
-  S_UPDATE_SC_QUERY: "S::UPDATE_SC_QUERY",
-  S_DELETE_SC_QUERY: "S::DELETE_SC_QUERY",
-
   // ====================================================
   //    Actions broadcasted by the Server
   // ====================================================
