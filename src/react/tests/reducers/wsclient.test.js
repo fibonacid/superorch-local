@@ -57,4 +57,15 @@ describe("wsclient reducer", () => {
       isTryingToConnect: true
     });
   });
+
+  it("should handle C_UPDATE_MY_USER_ID", () => {
+    expect(
+      reducer(undefined, {
+        type: actionTypes.C_UPDATE_MY_USER_ID,
+        userId: 99
+      })
+    ).toMatchObject({
+      myUserId: 99
+    });
+  });
 });
