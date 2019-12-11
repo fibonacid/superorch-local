@@ -1,4 +1,6 @@
 import { all } from "redux-saga/effects";
+import { c_updateUserWatcher } from "./updateUser";
+import { c_appendDocumentWatcher } from "./appendDocument";
 import { c_messageWatcher } from "./message";
 import { c_loginRequestWatcher } from "./requests/loginRequest";
 import { c_loginSuccessWatcher } from "./requests/loginSuccess";
@@ -8,10 +10,10 @@ import { c_getUserListSuccessWatcher } from "./requests/getUserListSuccess";
 import { c_getUserListRequestWatcher } from "./requests/getUserListRequest";
 import { c_updateUserDataRequestWatcher } from "./requests/updateUserDataRequest";
 import { c_updateUserDataSuccessWatcher } from "./requests/updateUserDataSuccess";
-import { c_updateUserWatcher } from "./updateUser";
 
 export function* clientSagas() {
   yield all([
+    c_appendDocumentWatcher(),
     c_messageWatcher(),
     c_updateUserWatcher(),
     // Requests
