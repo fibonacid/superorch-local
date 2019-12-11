@@ -9,5 +9,5 @@ export function* c_updateUserDataSuccessWatcher() {
 }
 
 export function* c_updateUserDataSuccessSaga(action) {
-  console.log("c_updateUserDataSuccessSaga", action);
+  console.log("user updated");
 }
