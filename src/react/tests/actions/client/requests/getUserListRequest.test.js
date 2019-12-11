@@ -1,10 +1,10 @@
-import { actionTypes } from "../../../actions/actionTypes";
+import { actionTypes } from "../../../../actions/actionTypes";
 import {
   c_getUserListError,
   c_getUserListRequest,
   c_getUserListSuccess,
   c_getUserListTimeout
-} from "../../../actions/client/getUserListRequest";
+} from "../../../../actions/client/requests/getUserListRequest";
 
 describe("c_getUserListRequest action", () => {
   it("should create an action to submit a getUserList request", () => {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { c_loginRequest } from "../actions/client/loginRequest";
-import { c_logoutRequest } from "../actions/client/logoutRequest";
+import { c_loginRequest } from "../actions/client/requests/loginRequest";
+import { c_logoutRequest } from "../actions/client/requests/logoutRequest";
 import { c_updateUser } from "../actions/client/crudUsers";
 
 function Tmp(props) {

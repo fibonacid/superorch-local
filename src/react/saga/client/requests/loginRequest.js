@@ -1,12 +1,12 @@
-import { actionTypes } from "../../actions/actionTypes";
+import { actionTypes } from "../../../actions/actionTypes";
 import { takeLatest, put, select, race, take, delay } from "redux-saga/effects";
 import { send } from "@giantmachines/redux-websocket";
-import { selectUser } from "../../reducers/root";
+import { selectUser } from "../../../reducers/root";
 import {
   c_loginError,
   c_loginSuccess,
   c_loginTimeout
-} from "../../actions/client/loginRequest";
+} from "../../../actions/client/requests/loginRequest";
 
 export function* c_loginRequestWatcher() {
   yield takeLatest(actionTypes.C_LOGIN_REQUEST, c_loginRequestSaga);

@@ -1,6 +1,6 @@
-import { actionTypes } from "../../actions/actionTypes";
+import { actionTypes } from "../../../actions/actionTypes";
 import { takeLatest, put } from "redux-saga/effects";
-import { c_replaceUserList } from "../../actions/client/crudUsers";
+import { c_replaceUserList } from "../../../actions/client/crudUsers";
 
 export function* c_getUserListSuccessWatcher() {
   yield takeLatest(

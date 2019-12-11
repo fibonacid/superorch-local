@@ -1,14 +1,10 @@
-import { actionTypes } from "../../../actions/actionTypes";
+import { actionTypes } from "../../../../actions/actionTypes";
 import {
   c_logoutError,
   c_logoutRequest,
   c_logoutSuccess,
   c_logoutTimeout
-} from "../../../actions/client/logoutRequest";
-import {
-  c_loginError,
-  c_loginSuccess
-} from "../../../actions/client/loginRequest";
+} from "../../../../actions/client/requests/logoutRequest";
 
 describe("c_logoutRequest action", () => {
   it("should create an action to submit a logout request", () => {

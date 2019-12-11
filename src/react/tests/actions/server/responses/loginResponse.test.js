@@ -1,8 +1,8 @@
-import { actionTypes } from "../../../actions/actionTypes";
+import { actionTypes } from "../../../../actions/actionTypes";
 import {
   s_loginSuccess,
   s_loginError
-} from "../../../actions/server/loginResponse";
+} from "../../../../actions/server/responses/loginResponse";
 
 describe("s_loginSuccess action", () => {
   it("should create an action to communicate that the request completed successfully", () => {

@@ -2,11 +2,11 @@ import { put, select } from "redux-saga/effects";
 import {
   s_logoutError,
   s_logoutSuccess
-} from "../../actions/server/logoutReponse";
-import { b_userLeft } from "../../actions/broadcast/userLeft";
-import { s_transmit } from "../../actions/server/transmit";
-import { s_broadcast } from "../../actions/server/broadcast";
-import { selectClient, selectUser } from "../../reducers/root";
+} from "../../../actions/server/responses/logoutReponse";
+import { b_userLeft } from "../../../actions/broadcast/userLeft";
+import { s_transmit } from "../../../actions/server/transmit";
+import { s_broadcast } from "../../../actions/server/broadcast";
+import { selectClient, selectUser } from "../../../reducers/root";
 
 export function* s_logoutResponseSaga(clientId) {
   try {

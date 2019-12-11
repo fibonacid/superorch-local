@@ -1,8 +1,8 @@
-import { actionTypes } from "../../../actions/actionTypes";
+import { actionTypes } from "../../../../actions/actionTypes";
 import {
   s_updateUserDataSuccess,
   s_updateUserDataError
-} from "../../../actions/server/updateUserDataResponse";
+} from "../../../../actions/server/responses/updateUserDataResponse";
 
 describe("s_updateUserDataSuccess action", () => {
   it("should create an action to communicate that the request completed successfully", () => {

@@ -1,4 +1,4 @@
-import { actionTypes } from "../../actions/actionTypes";
+import { actionTypes } from "../../../actions/actionTypes";
 import { takeLatest } from "redux-saga/effects";
 
 export function* c_updateUserDataSuccessWatcher() {

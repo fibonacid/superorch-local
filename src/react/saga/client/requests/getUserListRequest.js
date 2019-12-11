@@ -1,4 +1,4 @@
-import { actionTypes } from "../../actions/actionTypes";
+import { actionTypes } from "../../../actions/actionTypes";
 import { delay, put, race, take, takeLatest } from "redux-saga/effects";
 import { send } from "@giantmachines/redux-websocket/dist";
 import {
@@ -6,7 +6,7 @@ import {
   c_getUserListRequest,
   c_getUserListSuccess,
   c_getUserListTimeout
-} from "../../actions/client/getUserListRequest";
+} from "../../../actions/client/requests/getUserListRequest";
 
 export function* c_getUserListRequestWatcher() {
   yield takeLatest(
@@ -15,7 +15,7 @@ export function* c_getUserListRequestWatcher() {
   );
 }
 
-export function* c_getUserListRequestSaga(action) {
+export function* c_getUserListRequestSaga() {
   // Send request
   yield put(send(c_getUserListRequest()));
 

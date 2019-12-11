@@ -1,4 +1,4 @@
-import { actionTypes } from "../actionTypes";
+import { actionTypes } from "../../actionTypes";
 
 export const s_loginSuccess = userId => ({
   type: actionTypes.S_LOGIN_SUCCESS,

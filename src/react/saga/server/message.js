@@ -1,8 +1,8 @@
 import { actionTypes } from "../../actions/actionTypes";
 import { takeLatest, call } from "redux-saga/effects";
-import { s_loginResponseSaga } from "./loginResponse";
-import { s_logoutResponseSaga } from "./logoutResponse";
-import { s_getUserListResponseSaga } from "./getUserListResponse";
+import { s_loginResponseSaga } from "./responses/loginResponse";
+import { s_logoutResponseSaga } from "./responses/logoutResponse";
+import { s_getUserListResponseSaga } from "./responses/getUserListResponse";
 
 export function* s_messageWatcher() {
   yield takeLatest(actionTypes.S_MESSAGE, s_messageSaga);

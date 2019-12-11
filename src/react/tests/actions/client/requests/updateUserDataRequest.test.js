@@ -1,10 +1,10 @@
-import { actionTypes } from "../../../actions/actionTypes";
+import { actionTypes } from "../../../../actions/actionTypes";
 import {
   c_updateUserDataError,
   c_updateUserDataRequest,
   c_updateUserDataSuccess,
   c_updateUserDataTimeout
-} from "../../../actions/client/updateUserDataRequest";
+} from "../../../../actions/client/requests/updateUserDataRequest";
 
 describe("c_updateUserDataRequest action", () => {
   it("should create an action to submit a updateUser request", () => {

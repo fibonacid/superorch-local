@@ -1,8 +1,8 @@
 import { put, select, takeLatest } from "redux-saga/effects";
-import { actionTypes } from "../../actions/actionTypes";
-import { c_updateUser } from "../../actions/client/crudUsers";
-import { c_updateMyUserId } from "../../actions/client/updateMyUserId";
-import { c_getUserListRequest } from "../../actions/client/getUserListRequest";
+import { actionTypes } from "../../../actions/actionTypes";
+import { c_updateUser } from "../../../actions/client/crudUsers";
+import { c_updateMyUserId } from "../../../actions/client/updateMyUserId";
+import { c_getUserListRequest } from "../../../actions/client/requests/getUserListRequest";
 
 export function* c_loginSuccessWatcher() {
   yield takeLatest(actionTypes.C_LOGIN_SUCCESS, c_loginSuccessSaga);

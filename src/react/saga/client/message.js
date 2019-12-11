@@ -3,18 +3,18 @@ import { takeLatest, put } from "redux-saga/effects";
 import {
   s_loginError,
   s_loginSuccess
-} from "../../actions/server/loginResponse";
+} from "../../actions/server/responses/loginResponse";
 import { b_userJoined } from "../../actions/broadcast/userJoined";
 import { b_userLeft } from "../../actions/broadcast/userLeft";
 import { b_userUpdate } from "../../actions/broadcast/userUpdate";
 import {
   s_logoutError,
   s_logoutSuccess
-} from "../../actions/server/logoutReponse";
+} from "../../actions/server/responses/logoutReponse";
 import {
   s_getUserListError,
   s_getUserListSuccess
-} from "../../actions/server/getUserListResponse";
+} from "../../actions/server/responses/getUserListResponse";
 
 export function* c_messageWatcher() {
   yield takeLatest(actionTypes.C_MESSAGE, c_messageSaga);

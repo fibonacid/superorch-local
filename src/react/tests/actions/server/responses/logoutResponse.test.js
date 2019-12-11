@@ -1,8 +1,8 @@
-import { actionTypes } from "../../../actions/actionTypes";
+import { actionTypes } from "../../../../actions/actionTypes";
 import {
   s_logoutSuccess,
   s_logoutError
-} from "../../../actions/server/logoutReponse";
+} from "../../../../actions/server/responses/logoutReponse";
 
 describe("s_logoutSuccess action", () => {
   it("should create an action to communicate that the request completed successfully", () => {

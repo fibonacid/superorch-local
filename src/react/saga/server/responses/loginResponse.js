@@ -2,11 +2,11 @@ import { put } from "redux-saga/effects";
 import {
   s_loginError,
   s_loginSuccess
-} from "../../actions/server/loginResponse";
-import { b_userJoined } from "../../actions/broadcast/userJoined";
-import { s_transmit } from "../../actions/server/transmit";
-import { s_broadcast } from "../../actions/server/broadcast";
-import { s_updateClient } from "../../actions/server/crudClients";
+} from "../../../actions/server/responses/loginResponse";
+import { b_userJoined } from "../../../actions/broadcast/userJoined";
+import { s_transmit } from "../../../actions/server/transmit";
+import { s_broadcast } from "../../../actions/server/broadcast";
+import { s_updateClient } from "../../../actions/server/crudClients";
 
 let userCount = 0;
 

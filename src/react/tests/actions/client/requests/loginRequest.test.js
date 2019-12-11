@@ -1,10 +1,10 @@
-import { actionTypes } from "../../../actions/actionTypes";
+import { actionTypes } from "../../../../actions/actionTypes";
 import {
   c_loginError,
   c_loginRequest,
   c_loginSuccess,
   c_loginTimeout
-} from "../../../actions/client/loginRequest";
+} from "../../../../actions/client/requests/loginRequest";
 
 describe("c_loginRequest action", () => {
   it("should create an action to submit a login request", () => {

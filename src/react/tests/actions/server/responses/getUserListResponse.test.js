@@ -1,8 +1,8 @@
-import { actionTypes } from "../../../actions/actionTypes";
+import { actionTypes } from "../../../../actions/actionTypes";
 import {
   s_getUserListSuccess,
   s_getUserListError
-} from "../../../actions/server/getUserListResponse";
+} from "../../../../actions/server/responses/getUserListResponse";
 
 describe("s_getUserListSuccess action", () => {
   it("should create an action to communicate that the request completed successfully", () => {

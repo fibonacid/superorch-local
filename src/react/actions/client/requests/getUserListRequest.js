@@ -1,4 +1,4 @@
-import { actionTypes } from "../actionTypes";
+import { actionTypes } from "../../actionTypes";
 
 export const c_getUserListRequest = () => ({
   type: actionTypes.C_GET_USER_LIST_REQUEST

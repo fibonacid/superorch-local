@@ -2,9 +2,9 @@ import { put, select } from "redux-saga/effects";
 import {
   s_getUserListError,
   s_getUserListSuccess
-} from "../../actions/server/getUserListResponse";
-import { s_transmit } from "../../actions/server/transmit";
-import { selectUsers } from "../../reducers/root";
+} from "../../../actions/server/responses/getUserListResponse";
+import { s_transmit } from "../../../actions/server/transmit";
+import { selectUsers } from "../../../reducers/root";
 
 export function* s_getUserListResponseSaga(clientId) {
   try {
