@@ -37,7 +37,7 @@ const wsclient = (state = initialState, action) => {
     case actionTypes.C_UPDATE_MY_USER_ID:
       return {
         ...state,
-        myUserId: action.myUserId
+        myUserId: action.userId
       };
     case actionTypes.C_LOGIN_SUCCESS:
       return {
