@@ -19,6 +19,10 @@ import {
   s_updateUserDataError,
   s_updateUserDataSuccess
 } from "../../actions/server/responses/updateUserDataResponse";
+import {
+  s_createDocumentError,
+  s_createDocumentSuccess
+} from "../../actions/server/responses/createDocumentResponse";
 
 export function* c_messageWatcher() {
   yield takeLatest(actionTypes.C_MESSAGE, c_messageSaga);
@@ -32,37 +36,30 @@ export function* c_messageSaga({ payload }) {
 
   switch (message.type) {
     case actionTypes.S_LOGIN_SUCCESS:
-      yield put(s_loginSuccess(message.userId));
-      break;
+      return yield put(s_loginSuccess(message.userId));
     case actionTypes.S_LOGIN_ERROR:
-      yield put(s_loginError(message.error));
-      break;
+      return yield put(s_loginError(message.error));
     case actionTypes.S_LOGOUT_SUCCESS:
-      yield put(s_logoutSuccess());
-      break;
+      return yield put(s_logoutSuccess());
     case actionTypes.S_LOGOUT_ERROR:
-      yield put(s_logoutError(message.error));
-      break;
+      return yield put(s_logoutError(message.error));
     case actionTypes.S_GET_USER_LIST_SUCCESS:
-      yield put(s_getUserListSuccess(message.userList));
-      break;
+      return yield put(s_getUserListSuccess(message.userList));
     case actionTypes.S_GET_USER_LIST_ERROR:
-      yield put(s_getUserListError(message.error));
-      break;
+      return yield put(s_getUserListError(message.error));
     case actionTypes.S_UPDATE_USER_DATA_SUCCESS:
-      yield put(s_updateUserDataSuccess());
-      break;
+      return yield put(s_updateUserDataSuccess());
     case actionTypes.S_UPDATE_USER_DATA_ERROR:
-      yield put(s_updateUserDataError(message.error));
-      break;
+      return yield put(s_updateUserDataError(message.error));
+    case actionTypes.S_CREATE_DOCUMENT_SUCCESS:
+      return yield put(s_createDocumentSuccess(message.docId));
+    case actionTypes.S_CREATE_DOCUMENT_ERROR:
+      return yield put(s_createDocumentError(message));
     case actionTypes.B_USER_JOINED:
-      yield put(b_userJoined(message.userId, message.userData));
-      break;
+      return yield put(b_userJoined(message.userId, message.userData));
     case actionTypes.B_USER_UPDATE:
-      yield put(b_userUpdate(message.userId, message.userData));
-      break;
+      return yield put(b_userUpdate(message.userId, message.userData));
     case actionTypes.B_USER_LEFT:
-      yield put(b_userLeft(message.userId));
-      break;
+      return yield put(b_userLeft(message.userId));
   }
 }
