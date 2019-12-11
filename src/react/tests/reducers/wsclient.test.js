@@ -8,7 +8,8 @@ describe("wsclient reducer", () => {
       isConnected: false,
       isTryingToConnect: false,
       isLoggedIn: false,
-      myUserId: 0
+      myUserId: 0,
+      myDocIds: [0]
     });
   });
 

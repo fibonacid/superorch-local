@@ -5,7 +5,8 @@ const initialState = {
   isLoggedIn: false,
   isConnected: false,
   isTryingToConnect: false,
-  myUserId: 0
+  myUserId: 0,
+  myDocIds: [0]
 };
 
 const wsclient = (state = initialState, action) => {
