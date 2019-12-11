@@ -39,6 +39,16 @@ const wsclient = (state = initialState, action) => {
         ...state,
         myUserId: action.userId
       };
+    case actionTypes.C_ADD_MY_DOC_ID:
+      return {
+        ...state,
+        myDocIds: [...state.myDocIds, action.docId]
+      };
+    case actionTypes.C_REMOVE_MY_DOC_ID:
+      return {
+        ...state,
+        myDocIds: state.myDocIds.filter(id => id !== action.docId)
+      };
     case actionTypes.C_LOGIN_SUCCESS:
       return {
         ...state,

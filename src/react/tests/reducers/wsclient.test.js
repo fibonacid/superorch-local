@@ -68,4 +68,29 @@ describe("wsclient reducer", () => {
       myUserId: 99
     });
   });
+
+  it("should handle C_ADD_MY_DOC_ID", () => {
+    expect(
+      reducer(undefined, {
+        type: actionTypes.C_ADD_MY_DOC_ID,
+        docId: 99
+      })
+    ).toMatchObject({
+      myDocIds: [0, 99]
+    });
+  });
+
+  it("should handle C_REMOVE_MY_DOC_ID", () => {
+    expect(
+      reducer(
+        { myDocIds: [0, 1, 2] },
+        {
+          type: actionTypes.C_REMOVE_MY_DOC_ID,
+          docId: 1
+        }
+      )
+    ).toMatchObject({
+      myDocIds: [0, 2]
+    });
+  });
 });
