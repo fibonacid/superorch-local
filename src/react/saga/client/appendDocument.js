@@ -4,14 +4,13 @@ import { takeLatest, select, put } from "redux-saga/effects";
 import { selectDocuments } from "../../reducers/root";
 import { c_createDocument } from "../../actions/client/crudDocuments";
 import { c_addMyDocId } from "../../actions/client/updateMyDocIds";
+import { c_createDocumentRequest } from "../../actions/client/requests/createDocumentRequest";
 
 export function* c_appendDocumentWatcher() {
   yield takeLatest(actionTypes.C_APPEND_DOCUMENT, c_appendDocumentSaga);
 }
 
 export function* c_appendDocumentSaga(action) {
-  console.log("c_appendDocumentSaga", action);
-
   // Get documents
   const documents = yield select(state => selectDocuments(state));
 
@@ -28,4 +27,7 @@ export function* c_appendDocumentSaga(action) {
 
   // Add id to the myDocIds array
   yield put(c_addMyDocId(nextId));
+
+  // Send request to create document
+  yield put(c_createDocumentRequest(action.docData));
 }
