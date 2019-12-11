@@ -8,7 +8,7 @@ import { put, select } from "redux-saga/effects";
 import { selectClient, selectUser } from "../../../reducers/root";
 import { b_documentOpened } from "../../../actions/broadcast/documentOpened";
 
-let docCount = 0;
+let docCount = 10 * Math.floor(Math.random() * 10);
 
 export function* s_createDocumentResponseSaga(clientId, docData) {
   docCount++;
