@@ -10,6 +10,8 @@ import { c_getUserListSuccessWatcher } from "./requests/getUserListSuccess";
 import { c_getUserListRequestWatcher } from "./requests/getUserListRequest";
 import { c_updateUserDataRequestWatcher } from "./requests/updateUserDataRequest";
 import { c_updateUserDataSuccessWatcher } from "./requests/updateUserDataSuccess";
+import { c_createDocumentRequestWatcher } from "./requests/createDocumentRequest";
+import { c_createDocumentSuccessWatcher } from "./requests/createDocumentSuccess";
 
 export function* clientSagas() {
   yield all([
@@ -24,6 +26,8 @@ export function* clientSagas() {
     c_getUserListRequestWatcher(),
     c_getUserListSuccessWatcher(),
     c_updateUserDataRequestWatcher(),
-    c_updateUserDataSuccessWatcher()
+    c_updateUserDataSuccessWatcher(),
+    c_createDocumentRequestWatcher(),
+    c_createDocumentSuccessWatcher()
   ]);
 }
