@@ -8,10 +8,13 @@ import { c_getUserListSuccessWatcher } from "./requests/getUserListSuccess";
 import { c_getUserListRequestWatcher } from "./requests/getUserListRequest";
 import { c_updateUserDataRequestWatcher } from "./requests/updateUserDataRequest";
 import { c_updateUserDataSuccessWatcher } from "./requests/updateUserDataSuccess";
+import { c_updateUserWatcher } from "./updateUser";
 
 export function* clientSagas() {
   yield all([
     c_messageWatcher(),
+    c_updateUserWatcher(),
+    // Requests
     c_loginRequestWatcher(),
     c_loginSuccessWatcher(),
     c_logoutRequestWatcher(),
