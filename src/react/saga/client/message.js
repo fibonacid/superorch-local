@@ -15,6 +15,10 @@ import {
   s_getUserListError,
   s_getUserListSuccess
 } from "../../actions/server/responses/getUserListResponse";
+import {
+  s_updateUserDataError,
+  s_updateUserDataSuccess
+} from "../../actions/server/responses/updateUserDataResponse";
 
 export function* c_messageWatcher() {
   yield takeLatest(actionTypes.C_MESSAGE, c_messageSaga);
@@ -44,6 +48,12 @@ export function* c_messageSaga({ payload }) {
       break;
     case actionTypes.S_GET_USER_LIST_ERROR:
       yield put(s_getUserListError(message.error));
+      break;
+    case actionTypes.S_UPDATE_USER_DATA_SUCCESS:
+      yield put(s_updateUserDataSuccess());
+      break;
+    case actionTypes.S_UPDATE_USER_DATA_ERROR:
+      yield put(s_updateUserDataError(message.error));
       break;
     case actionTypes.B_USER_JOINED:
       yield put(b_userJoined(message.userId, message.userData));
