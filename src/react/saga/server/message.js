@@ -23,5 +23,7 @@ export function* s_messageSaga(action) {
       return yield call(s_logoutResponseSaga, clientId);
     case actionTypes.C_GET_USER_LIST_REQUEST:
       return yield call(s_getUserListResponseSaga, clientId);
+    case actionTypes.C_UPDATE_USER_DATA_REQUEST:
+      return yield call(s_updateUserDataResponseSaga, clientId, message.userData)
   }
 }
