@@ -17,6 +17,8 @@ export default root;
  *    Selectors
  * ---------------- */
 
+export const selectDocuments = state => fromChat.selectDocuments(state.chat);
+
 export const selectDocument = (state, id) =>
   fromChat.selectDocument(state.chat, id);
 
