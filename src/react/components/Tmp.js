@@ -42,7 +42,7 @@ const mapDispatchToProps = dispatch => ({
   login: () => dispatch(c_loginRequest()),
   logout: () => dispatch(c_logoutRequest()),
   updateUsername: (userId, name) => dispatch(c_updateUser(userId, { name })),
-  appendDocument: value => dispatch(c_appendDocument(value))
+  appendDocument: value => dispatch(c_appendDocument({ value }))
 });
 
 const mapStateToProps = state => ({
