@@ -1,3 +1,4 @@
+import _ from "lodash";
 import { actionTypes } from "../../actions/actionTypes";
 import { takeLatest, select } from "redux-saga/effects";
 import { selectDocuments } from "../../reducers/chat";
