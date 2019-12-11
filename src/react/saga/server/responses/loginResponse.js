@@ -10,7 +10,7 @@ import { s_updateClient } from "../../../actions/server/crudClients";
 
 let userCount = 0;
 
-export function* s_loginResponseSaga(userData, clientId) {
+export function* s_loginResponseSaga(clientId, userData) {
   // Update user count
   userCount++;
 
