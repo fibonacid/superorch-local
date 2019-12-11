@@ -1,7 +1,9 @@
 import { actionTypes } from "../actionTypes";
 
-export const c_updateUserRequest = () => ({
-  type: actionTypes.C_UPDATE_USER_REQUEST
+export const c_updateUserRequest = (userId, userData) => ({
+  type: actionTypes.C_UPDATE_USER_REQUEST,
+  userId,
+  userData
 });
 
 export const c_updateUserSuccess = message => ({
