@@ -29,5 +29,10 @@ export function* c_appendDocumentSaga(action) {
   yield put(c_addMyDocId(nextId));
 
   // Send request to create document
-  yield put(c_createDocumentRequest(action.docData));
+  yield put(
+    c_createDocumentRequest({
+      ...action.docData,
+      id: nextId
+    })
+  );
 }
