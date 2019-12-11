@@ -11,6 +11,7 @@ import {
   c_addMyDocId,
   c_removeMyDocId
 } from "../../../actions/client/updateMyDocIds";
+import { c_updateDocument } from "../../../actions/client/crudDocuments";
 
 export function* c_createDocumentRequestWatcher() {
   yield takeLatest(
@@ -32,11 +33,15 @@ export function* c_createDocumentRequestSaga(action) {
 
   if (result) {
     // Replace myDocId with new one:
-    yield put(c_removeMyDocId(action.docData.id));
-    yield put(c_addMyDocId(result.userId));
+    const oldId = action.docData.id;
+    yield put(c_removeMyDocId(oldId));
+    yield put(c_addMyDocId(result.docId));
+
+    // Update document with new id
+    yield put(c_updateDocument(oldId, { id: result.docId }));
 
     // Send success message
-    yield put(c_createDocumentSuccess(result.userId, `logged in`));
+    yield put(c_createDocumentSuccess(result.docId, `document created`));
   } else if (error) {
     yield put(c_createDocumentError(error));
   } else if (timeout) {
