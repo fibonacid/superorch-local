@@ -6,10 +6,10 @@ import {
 
 describe("s_createDocumentSuccess action", () => {
   it("should create an action to communicate that the request completed successfully", () => {
-    const userId = 0;
-    expect(s_createDocumentSuccess(userId)).toEqual({
+    const docId = 0;
+    expect(s_createDocumentSuccess(docId)).toEqual({
       type: actionTypes.S_CREATE_DOCUMENT_SUCCESS,
-      userId
+      docId
     });
   });
 });

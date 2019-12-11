@@ -1,8 +1,8 @@
 import { actionTypes } from "../../actionTypes";
 
-export const s_createDocumentSuccess = userId => ({
+export const s_createDocumentSuccess = docId => ({
   type: actionTypes.S_CREATE_DOCUMENT_SUCCESS,
-  userId
+  docId
 });
 
 export const s_createDocumentError = error => ({
