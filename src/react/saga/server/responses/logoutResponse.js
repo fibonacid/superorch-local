@@ -15,6 +15,10 @@ export function* s_logoutResponseSaga(clientId) {
     // Get associated user
     const user = yield select(state => selectUser(state, client.userId));
 
+    if (!user) {
+      throw new Error(`Client must be logged in to create a document`);
+    }
+
     // Transmit that the logout was successful
     yield put(s_transmit(clientId, s_logoutSuccess(user.id)));
 
@@ -24,6 +28,5 @@ export function* s_logoutResponseSaga(clientId) {
     // If there was an error:
     // Transmit error to the client that tried logging in.
     yield put(s_transmit(clientId, s_logoutError(error.message)));
-    console.error(error);
   }
 }

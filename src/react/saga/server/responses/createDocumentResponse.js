@@ -1,10 +1,10 @@
-import { s_transmit } from "../../../actions/server/transmit";
 import {
   s_createDocumentError,
   s_createDocumentSuccess
 } from "../../../actions/server/responses/createDocumentResponse";
 import { s_broadcast } from "../../../actions/server/broadcast";
-import { put, select } from "@redux-saga/core/effects";
+import { s_transmit } from "../../../actions/server/transmit";
+import { put, select } from "redux-saga/effects";
 import { selectClient, selectUser } from "../../../reducers/root";
 import { b_documentOpened } from "../../../actions/broadcast/documentOpened";
 
@@ -16,6 +16,10 @@ export function* s_createDocumentResponseSaga(clientId, docData) {
     // Get user associated with the client
     const client = yield select(state => selectClient(state, clientId));
     const user = yield select(state => selectUser(state, client.userId));
+
+    if (!user) {
+      throw new Error(`Client must be logged in to create a document`);
+    }
 
     const newDoc = {
       ...docData,
@@ -31,6 +35,5 @@ export function* s_createDocumentResponseSaga(clientId, docData) {
   } catch (error) {
     // Send error message
     yield s_transmit(clientId, s_createDocumentError(error));
-    console.error(error);
   }
 }
