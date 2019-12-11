@@ -6,6 +6,8 @@ import { c_logoutSuccessWatcher } from "./logoutSuccess";
 import { c_logoutRequestWatcher } from "./logoutRequest";
 import { c_getUserListSuccessWatcher } from "./getUserListSuccess";
 import { c_getUserListRequestWatcher } from "./getUserListRequest";
+import { c_updateUserDataRequestWatcher } from "./updateUserDataRequest";
+import { c_updateUserDataSuccessWatcher } from "./updateUserDataSuccess";
 
 export function* clientSagas() {
   yield all([
@@ -15,6 +17,8 @@ export function* clientSagas() {
     c_logoutRequestWatcher(),
     c_logoutSuccessWatcher(),
     c_getUserListRequestWatcher(),
-    c_getUserListSuccessWatcher()
+    c_getUserListSuccessWatcher(),
+    c_updateUserDataRequestWatcher(),
+    c_updateUserDataSuccessWatcher()
   ]);
 }
