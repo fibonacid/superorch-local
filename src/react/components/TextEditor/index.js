@@ -6,20 +6,22 @@ import { c_createScQuery } from "../../actions/client/crudScQueries";
 const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
-  handleExecuteSelection: text => {
-    dispatch(
-      c_createScQuery(0, {
-        value: text
-      })
-    );
-  },
-  sendEditorState: data =>
-    dispatch(
-      /* todo: keep track of myDocument */
-      c_updateDocument(0, {
-        content: data
-      })
-    )
+  handleExecuteSelection: () => {},
+  sendEditorState: () => {}
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TextEditor);
+
+/*handleExecuteSelection: text => {
+  dispatch(
+    c_createScQuery(0, {
+      value: text
+    })
+  );
+},
+sendEditorState: data =>
+  dispatch(
+    c_updateDocument(0, {
+      content: data
+    })
+  )*/
