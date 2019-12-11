@@ -32,3 +32,13 @@ export const c_updateDocument = (docId, docData) => ({
   docId,
   docData
 });
+
+/**
+ *
+ * @param docData
+ * @returns {{type: *, docData: *}}
+ */
+export const c_appendDocument = docData => ({
+  type: actionTypes.C_APPEND_DOCUMENT,
+  docData
+});
