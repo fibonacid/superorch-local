@@ -8,11 +8,9 @@ import {
 
 describe("c_updateUserRequest action", () => {
   it("should create an action to submit a updateUser request", () => {
-    const userId = 0;
     const userData = { foo: "bar" };
-    expect(c_updateUserRequest(userId, userData)).toEqual({
+    expect(c_updateUserRequest(userData)).toEqual({
       type: actionTypes.C_UPDATE_USER_REQUEST,
-      userId,
       userData
     });
   });
