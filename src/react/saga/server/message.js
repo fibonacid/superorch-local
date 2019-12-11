@@ -4,6 +4,7 @@ import { s_loginResponseSaga } from "./responses/loginResponse";
 import { s_logoutResponseSaga } from "./responses/logoutResponse";
 import { s_getUserListResponseSaga } from "./responses/getUserListResponse";
 import { s_updateUserDataResponseSaga } from "./responses/updateUserDataResponse";
+import { s_createDocumentResponseSaga } from "./responses/createDocumentResponse";
 
 export function* s_messageWatcher() {
   yield takeLatest(actionTypes.S_MESSAGE, s_messageSaga);
@@ -29,6 +30,12 @@ export function* s_messageSaga(action) {
         s_updateUserDataResponseSaga,
         clientId,
         message.userData
+      );
+    case actionTypes.C_CREATE_DOCUMENT_REQUEST:
+      return yield call(
+        s_createDocumentResponseSaga,
+        clientId,
+        message.docData
       );
   }
 }
