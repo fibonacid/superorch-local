@@ -7,37 +7,37 @@ import {
 
 describe("c_createDocument action", () => {
   it("should create an action to create a document", () => {
-    const documentId = 0;
-    const documentData = {};
+    const docId = 0;
+    const docData = {};
     const expectedAction = {
       type: actionTypes.C_CREATE_DOCUMENT,
-      documentId,
-      documentData
+      docId,
+      docData
     };
-    expect(c_createDocument(documentId, documentData)).toEqual(expectedAction);
+    expect(c_createDocument(docId, docData)).toEqual(expectedAction);
   });
 });
 
 describe("c_deleteDocument action", () => {
   it("should create an action to delete a document", () => {
-    const documentId = 0;
+    const docId = 0;
     const expectedAction = {
       type: actionTypes.C_DELETE_DOCUMENT,
-      documentId
+      docId
     };
-    expect(c_deleteDocument(documentId)).toEqual(expectedAction);
+    expect(c_deleteDocument(docId)).toEqual(expectedAction);
   });
 });
 
 describe("c_updateDocument action", () => {
   it("should create an action to update a user", () => {
-    const documentId = 0;
-    const documentData = {};
+    const docId = 0;
+    const docData = {};
     const expectedAction = {
       type: actionTypes.C_UPDATE_DOCUMENT,
-      documentId,
-      documentData
+      docId,
+      docData
     };
-    expect(c_updateDocument(documentId, documentData)).toEqual(expectedAction);
+    expect(c_updateDocument(docId, docData)).toEqual(expectedAction);
   });
 });

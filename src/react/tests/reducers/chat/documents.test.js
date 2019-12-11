@@ -3,17 +3,17 @@ import { actionTypes } from "../../../actions/actionTypes";
 
 describe("documents reducer", () => {
   it("should return the initial state", () => {
-    expect(reducer(undefined, {})).toEqual([]);
+    expect(reducer(undefined, {})).toEqual([{ id: 0, value: "" }]);
   });
 
   it("should handle C_CREATE_DOCUMENT", () => {
     expect(
       reducer([], {
         type: actionTypes.C_CREATE_DOCUMENT,
-        documentId: 0,
-        documentData: { foo: "bar" }
+        docId: 0,
+        docData: { foo: "bar" }
       })
-    ).toEqual([{ id: 0, foo: "bar" }]);
+    ).toMatchObject([{ id: 0, foo: "bar" }]);
   });
 
   it("should handle C_UPDATE_DOCUMENT", () => {
@@ -25,8 +25,8 @@ describe("documents reducer", () => {
         ],
         {
           type: actionTypes.C_UPDATE_DOCUMENT,
-          documentId: 0,
-          documentData: { modified: true }
+          docId: 0,
+          docData: { modified: true }
         }
       )
     ).toEqual([
@@ -39,7 +39,7 @@ describe("documents reducer", () => {
     expect(
       reducer([{ id: 0 }, { id: 1 }], {
         type: actionTypes.C_DELETE_DOCUMENT,
-        documentId: 1
+        docId: 1
       })
     ).toEqual([{ id: 0 }]);
   });

@@ -1,34 +1,36 @@
 import { actionTypes } from "../../actions/actionTypes";
 
+const initialState = [{ id: 0, value: "" }];
+
 /**
  * @param state
  * @param action
  * @returns {[]|*[]}
  */
-const documents = (state = [], action) => {
+const documents = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.C_CREATE_DOCUMENT:
       return [
         ...state,
         {
-          id: action.documentId,
-          ...action.documentData
+          id: action.docId,
+          ...action.docData
         }
       ];
 
     case actionTypes.C_UPDATE_DOCUMENT:
       // Modify data of document with same id.
       return state.map(document =>
-        document.id === action.documentId
+        document.id === action.docId
           ? {
               ...document,
-              ...action.documentData
+              ...action.docData
             }
           : document
       );
 
     case actionTypes.C_DELETE_DOCUMENT:
-      return state.filter(document => document.id !== action.documentId);
+      return state.filter(document => document.id !== action.docId);
 
     case actionTypes.C_DESTROY_USER:
       return state.filter(document => document.userId !== action.userId);

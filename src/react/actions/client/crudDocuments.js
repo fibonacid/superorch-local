@@ -2,33 +2,33 @@ import { actionTypes } from "../actionTypes";
 
 /**
  *
- * @param documentId
- * @param documentData
- * @returns {{documentId: *, type: *, documentData: *}}
+ * @param docId
+ * @param docData
+ * @returns {{docId: *, type: *, docData: *}}
  */
-export const c_createDocument = (documentId, documentData) => ({
+export const c_createDocument = (docId, docData) => ({
   type: actionTypes.C_CREATE_DOCUMENT,
-  documentId,
-  documentData
+  docId,
+  docData
 });
 
 /**
- * @param documentId
- * @returns {{documentId: object, type: *}}
+ * @param docId
+ * @returns {{docId: object, type: *}}
  */
-export const c_deleteDocument = documentId => ({
+export const c_deleteDocument = docId => ({
   type: actionTypes.C_DELETE_DOCUMENT,
-  documentId
+  docId
 });
 
 /**
  *
- * @param documentId
- * @param documentData
- * @returns {{documentId: *, type: *, documentData: *}}
+ * @param docId
+ * @param docData
+ * @returns {{docId: *, type: *, docData: *}}
  */
-export const c_updateDocument = (documentId, documentData) => ({
+export const c_updateDocument = (docId, docData) => ({
   type: actionTypes.C_UPDATE_DOCUMENT,
-  documentId,
-  documentData
+  docId,
+  docData
 });
