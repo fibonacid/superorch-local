@@ -2,9 +2,11 @@ import { combineReducers } from "redux";
 import base, * as fromBase from "./base";
 import client, * as fromClient from "./client";
 import server, * as fromServer from "./server";
+import flash from "./flash";
 
 const root = combineReducers({
   base,
+  flash,
   client,
   server
 });
