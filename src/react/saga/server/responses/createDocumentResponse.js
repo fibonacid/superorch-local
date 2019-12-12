@@ -31,7 +31,7 @@ export function* s_createDocumentResponseSaga(clientId, docData) {
     yield put(s_broadcast(clientId, b_documentOpened(newDoc.id, newDoc)));
 
     // Transmit success message
-    yield put(s_transmit(clientId, s_createDocumentSuccess(newDoc.id)));
+    yield put(s_transmit(clientId, s_createDocumentSuccess(newDoc.id, newDoc)));
   } catch (error) {
     // Send error message
     yield s_transmit(clientId, s_createDocumentError(error));

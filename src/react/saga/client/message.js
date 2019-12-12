@@ -59,7 +59,7 @@ export function* c_messageSaga({ payload }) {
     case actionTypes.S_UPDATE_USER_DATA_ERROR:
       return yield put(s_updateUserDataError(message.error));
     case actionTypes.S_CREATE_DOCUMENT_SUCCESS:
-      return yield put(s_createDocumentSuccess(message.docId));
+      return yield put(s_createDocumentSuccess(message.docId, message.docData));
     case actionTypes.S_CREATE_DOCUMENT_ERROR:
       return yield put(s_createDocumentError(message));
     case actionTypes.S_UPDATE_DOCUMENT_DATA_SUCCESS:
