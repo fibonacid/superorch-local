@@ -6,7 +6,7 @@ describe("selectDocument", () => {
     expect(
       selectDocument(
         {
-          chat: {
+          client: {
             documents: [{ id: 0 }, { id: 1 }]
           }
         },
@@ -21,7 +21,7 @@ describe("selectDocument", () => {
     expect(
       selectUser(
         {
-          chat: {
+          client: {
             users: [{ id: 0 }, { id: 1 }]
           }
         },
