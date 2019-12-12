@@ -30,9 +30,7 @@ function Tmp(props) {
       <div>
         <label>document</label>
         <input value={docValue} onChange={e => setDocValue(e.target.value)} />
-        <button onClick={() => props.appendDocument(docValue)}>
-          create document
-        </button>
+        <button onClick={() => props.appendDocument(docValue)}>submit</button>
       </div>
     </div>
   );
