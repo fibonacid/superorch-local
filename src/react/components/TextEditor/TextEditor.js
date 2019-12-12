@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import {
   convertToRaw,
-  convertFromRaw,
   Editor,
   EditorState,
   getDefaultKeyBinding,
@@ -74,12 +73,12 @@ const compositeDecorator = new CompositeDecorator([
 // Block Style
 // ------------------------
 
-function myBlockStyleFn(contentBlock) {
+/*function myBlockStyleFn(contentBlock) {
   const type = contentBlock.getType();
   if (type === "blockquote") {
     return "superFancyBlockquote";
   }
-}
+}*/
 
 // ------------------------
 // Text Editor Component
@@ -186,7 +185,7 @@ export default class TextEditor extends React.Component {
     // Update editor state
     this.setState({ editorState }, callback);
 
-    const changeType = editorState.getLastChangeType();
+    //const changeType = editorState.getLastChangeType();
     //console.log(changeType);
 
     // Extrapolate raw contentState
@@ -194,7 +193,7 @@ export default class TextEditor extends React.Component {
     const raw = convertToRaw(contentState);
 
     // And send it the socket server as a string
-    this.props.sendEditorState(JSON.stringify(raw));
+    this.props.sendEditorState(this.props.docId, JSON.stringify(raw));
   }
 
   /**
