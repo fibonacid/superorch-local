@@ -22,6 +22,11 @@ export function* s_messageSaga(action) {
 
     console.log(`server received a message: ${message.type}`);
 
+    // If it's a login request handle it and leave
+    if (actionTypes.C_LOGIN_REQUEST) {
+      return yield call(s_loginResponseSaga, clientId, message.userData);
+    }
+
     // Get user associated with the client
     const { userId } = yield select(state => selectClient(state, clientId));
     const user = yield select(state => selectUser(state, userId));
@@ -35,8 +40,6 @@ export function* s_messageSaga(action) {
 
     // Handle actions embedded in the message
     switch (message.type) {
-      case actionTypes.C_LOGIN_REQUEST:
-        return yield call(s_loginResponseSaga, clientId, message.userData);
       case actionTypes.C_LOGOUT_REQUEST:
         return yield call(s_logoutResponseSaga, clientId);
       case actionTypes.C_GET_USER_LIST_REQUEST:
