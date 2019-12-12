@@ -23,7 +23,7 @@ export function* s_messageSaga(action) {
     console.log(`server received a message: ${message.type}`);
 
     // If it's a login request handle it and leave
-    if (actionTypes.C_LOGIN_REQUEST) {
+    if (message.type === actionTypes.C_LOGIN_REQUEST) {
       return yield call(s_loginResponseSaga, clientId, message.userData);
     }
 
