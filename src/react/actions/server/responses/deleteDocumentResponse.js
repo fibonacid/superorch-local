@@ -4,7 +4,7 @@ export const s_deleteDocumentSuccess = () => ({
   type: actionTypes.S_DELETE_DOCUMENT_SUCCESS
 });
 
-export const s_deleteDocumentError = error => ({
+export const s_deleteDocumentError = (status, message) => ({
   type: actionTypes.S_DELETE_DOCUMENT_ERROR,
-  error
+  error: { status, message }
 });
