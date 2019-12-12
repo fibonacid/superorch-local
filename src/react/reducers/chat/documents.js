@@ -1,6 +1,6 @@
 import { actionTypes } from "../../actions/actionTypes";
 
-const initialState = [{ id: 0, value: "" }];
+const initialState = [{ id: 0, userId: 0, value: "" }];
 
 /**
  * @param state
