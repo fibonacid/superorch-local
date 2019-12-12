@@ -14,12 +14,14 @@ import { c_createDocumentRequestWatcher } from "./requests/createDocumentRequest
 import { c_createDocumentSuccessWatcher } from "./requests/createDocumentSuccess";
 import { c_updateDocumentDataRequestWatcher } from "./requests/updateDocumentDataRequest";
 import { c_updateDocumentDataSuccessWatcher } from "./requests/updateDocumentDataSuccess";
+import { c_updateDocumentWatcher } from "./updateDocument";
 
 export function* clientSagas() {
   yield all([
     c_appendDocumentWatcher(),
     c_messageWatcher(),
     c_updateUserWatcher(),
+    c_updateDocumentWatcher(),
     // Requests
     c_loginRequestWatcher(),
     c_loginSuccessWatcher(),
