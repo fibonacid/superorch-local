@@ -10,6 +10,7 @@ const initialState = [{ id: 0, value: "" }];
 const documents = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.C_CREATE_DOCUMENT:
+    case actionTypes.B_DOCUMENT_OPENED:
       return [
         ...state,
         {
@@ -19,6 +20,7 @@ const documents = (state = initialState, action) => {
       ];
 
     case actionTypes.C_UPDATE_DOCUMENT:
+    case actionTypes.B_DOCUMENT_UPDATE:
       // Modify data of document with same id.
       return state.map(document =>
         document.id === action.docId
@@ -30,6 +32,7 @@ const documents = (state = initialState, action) => {
       );
 
     case actionTypes.C_DELETE_DOCUMENT:
+    case actionTypes.B_DOCUMENT_CLOSED:
       return state.filter(document => document.id !== action.docId);
 
     case actionTypes.C_DESTROY_USER:
