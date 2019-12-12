@@ -30,6 +30,6 @@ export function* clientSagas() {
     c_updateUserDataRequestWatcher(),
     c_createDocumentRequestWatcher(),
     c_updateDocumentDataRequestWatcher(),
-    c_updateDocumentDataSuccessWatcher()
+    c_deleteDocumentRequestWatcher()
   ]);
 }
