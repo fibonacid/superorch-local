@@ -26,6 +26,10 @@ import {
 import { b_documentOpened } from "../../actions/broadcast/documentOpened";
 import { b_documentClosed } from "../../actions/broadcast/documentClosed";
 import { b_documentUpdate } from "../../actions/broadcast/documentUpdate";
+import {
+  s_updateDocumentDataError,
+  s_updateDocumentDataSuccess
+} from "../../actions/server/responses/updateDocumentDataResponse";
 
 export function* c_messageWatcher() {
   yield takeLatest(actionTypes.C_MESSAGE, c_messageSaga);
@@ -58,6 +62,10 @@ export function* c_messageSaga({ payload }) {
       return yield put(s_createDocumentSuccess(message.docId));
     case actionTypes.S_CREATE_DOCUMENT_ERROR:
       return yield put(s_createDocumentError(message));
+    case actionTypes.S_UPDATE_DOCUMENT_DATA_SUCCESS:
+      return yield put(s_updateDocumentDataSuccess());
+    case actionTypes.S_UPDATE_DOCUMENT_DATA_ERROR:
+      return yield put(s_updateDocumentDataError(message.error));
     case actionTypes.B_USER_JOINED:
       return yield put(b_userJoined(message.userId, message.userData));
     case actionTypes.B_USER_UPDATE:
