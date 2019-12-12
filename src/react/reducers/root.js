@@ -1,33 +1,66 @@
 import { combineReducers } from "redux";
-import base from "./base";
-import chat, * as fromChat from "./client";
-import client from "./client";
-import server from "./server";
+import base, * as fromBase from "./base";
+import client, * as fromClient from "./client";
+import server, * as fromServer from "./server";
 
 const root = combineReducers({
   base,
-  chat,
   client,
   server
 });
 
 export default root;
 
-/* ----------------
- *    Selectors
- * ---------------- */
+// Client selectors
+// ----------------
 
-export const selectDocuments = state => fromChat.selectDocuments(state.chat);
+/**
+ *
+ * @param state
+ */
+export const selectDocuments = state => fromClient.selectDocuments(state.chat);
 
+/**
+ * Selects a document by id.
+ *
+ * @param state
+ * @param id
+ */
 export const selectDocument = (state, id) =>
-  fromChat.selectDocument(state.chat, id);
+  fromClient.selectDocument(state.chat, id);
 
-export const selectClient = (state, id) =>
-  fromChat.selectClient(state.chat, id);
+/**
+ * Selects user list.
+ *
+ * @param state
+ */
+export const selectUsers = state => fromClient.selectUsers(state.chat);
 
-export const selectUsers = state => fromChat.selectUsers(state.chat);
+/**
+ * Selects user by id.
+ *
+ * @param state
+ * @param id
+ */
+export const selectUser = (state, id) => fromClient.selectUser(state.chat, id);
 
-export const selectUser = (state, id) => fromChat.selectUser(state.chat, id);
-
+/**
+ * Selects a supercollider query by id.
+ *
+ * @param state
+ * @param id
+ */
 export const selectScQuery = (state, id) =>
-  fromChat.selectScQuery(state.chat, id);
+  fromClient.selectScQuery(state.chat, id);
+
+// Server selectors
+// ----------------
+
+/**
+ * Select a client by id.
+ *
+ * @param state
+ * @param id
+ */
+export const selectClient = (state, id) =>
+  fromServer.selectClient(state.chat, id);
