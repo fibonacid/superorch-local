@@ -38,7 +38,12 @@ export function* c_createDocumentRequestSaga(action) {
     yield put(c_addMyDocId(result.docId));
 
     // Update document with new id
-    yield put(c_updateDocument(oldId, { id: result.docId }));
+    yield put(
+      c_updateDocument(oldId, {
+        id: result.docId,
+        ...result.docData
+      })
+    );
 
     // Send success message
     yield put(c_createDocumentSuccess(result.docId, `document created`));
