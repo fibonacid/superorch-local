@@ -27,14 +27,14 @@ export const selectDocuments = state => fromClient.selectDocuments(state.chat);
  * @param id
  */
 export const selectDocument = (state, id) =>
-  fromClient.selectDocument(state.chat, id);
+  fromClient.selectDocument(state.client, id);
 
 /**
  * Selects user list.
  *
  * @param state
  */
-export const selectUsers = state => fromClient.selectUsers(state.chat);
+export const selectUsers = state => fromClient.selectUsers(state.client);
 
 /**
  * Selects user by id.
@@ -42,7 +42,8 @@ export const selectUsers = state => fromClient.selectUsers(state.chat);
  * @param state
  * @param id
  */
-export const selectUser = (state, id) => fromClient.selectUser(state.chat, id);
+export const selectUser = (state, id) =>
+  fromClient.selectUser(state.client, id);
 
 /**
  * Selects a supercollider query by id.
@@ -51,7 +52,7 @@ export const selectUser = (state, id) => fromClient.selectUser(state.chat, id);
  * @param id
  */
 export const selectScQuery = (state, id) =>
-  fromClient.selectScQuery(state.chat, id);
+  fromClient.selectScQuery(state.client, id);
 
 // Server selectors
 // ----------------
@@ -63,4 +64,4 @@ export const selectScQuery = (state, id) =>
  * @param id
  */
 export const selectClient = (state, id) =>
-  fromServer.selectClient(state.chat, id);
+  fromServer.selectClient(state.client, id);
