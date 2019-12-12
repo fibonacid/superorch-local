@@ -7,7 +7,7 @@ import {
   selectScQuery,
   selectUser,
   selectUsers
-} from "../../../reducers/chat";
+} from "../../../reducers/client";
 
 describe("chat reducer", () => {
   it("should let you select the clients", () => {

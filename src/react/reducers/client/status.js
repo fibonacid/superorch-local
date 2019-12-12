@@ -1,4 +1,4 @@
-import { actionTypes } from "../actions/actionTypes";
+import { actionTypes } from "../../actions/actionTypes";
 
 const initialState = {
   url: "ws://localhost:8989",
@@ -9,7 +9,7 @@ const initialState = {
   myDocId: 0
 };
 
-const client = (state = initialState, action) => {
+const status = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.C_OPEN:
       return {
@@ -59,4 +59,4 @@ const client = (state = initialState, action) => {
   }
 };
 
-export default client;
+export default status;

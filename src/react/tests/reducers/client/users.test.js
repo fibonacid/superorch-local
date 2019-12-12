@@ -1,4 +1,4 @@
-import reducer, { selectUser } from "../../../reducers/chat/users";
+import reducer, { selectUser } from "../../../reducers/client/users";
 import { actionTypes } from "../../../actions/actionTypes";
 import name from "../../../utils/name";
 

@@ -1,17 +1,17 @@
 import { combineReducers } from "redux";
 import users, * as fromUsers from "./users";
 import documents, * as fromDocuments from "./documents";
-import clients, * as fromClients from "./clients";
+import clients, * as fromClients from "../server/clients";
 import scQueries, * as fromScQueries from "./scQueries";
 
-const chat = combineReducers({
+const client = combineReducers({
   clients,
   users,
   documents,
   scQueries
 });
 
-export default chat;
+export default client;
 
 export const selectClients = state => state.clients;
 

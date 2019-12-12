@@ -1,13 +1,13 @@
-import reducer from "../../reducers/client";
-import { actionTypes } from "../../actions/actionTypes";
+import reducer from "../../../reducers/client/status";
+import { actionTypes } from "../../../actions/actionTypes";
 
-describe("client reducer", () => {
+describe("status reducer", () => {
   it("should return the initial state", () => {
     expect(reducer(undefined, {})).toEqual({
       url: "ws://localhost:8989",
+      isLoggedIn: false,
       isConnected: false,
       isTryingToConnect: false,
-      isLoggedIn: false,
       myUserId: 0,
       myDocId: 0
     });

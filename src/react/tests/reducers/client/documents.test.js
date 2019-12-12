@@ -1,4 +1,4 @@
-import reducer, { selectDocument } from "../../../reducers/chat/documents";
+import reducer, { selectDocument } from "../../../reducers/client/documents";
 import { actionTypes } from "../../../actions/actionTypes";
 
 describe("documents reducer", () => {

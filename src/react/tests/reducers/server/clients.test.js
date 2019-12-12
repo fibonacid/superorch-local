@@ -1,4 +1,4 @@
-import reducer, { selectClient } from "../../../reducers/chat/clients";
+import reducer, { selectClient } from "../../../reducers/server/clients";
 import { actionTypes } from "../../../actions/actionTypes";
 
 describe("clients reducer", () => {

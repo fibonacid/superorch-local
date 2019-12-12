@@ -1,4 +1,4 @@
-import reducer, { selectScQuery } from "../../../reducers/chat/scQueries";
+import reducer, { selectScQuery } from "../../../reducers/client/scQueries";
 import { actionTypes } from "../../../actions/actionTypes";
 
 describe("scQueries reducer", () => {

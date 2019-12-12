@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import base from "./base";
-import chat, * as fromChat from "./chat/index";
+import chat, * as fromChat from "./client";
 import client from "./client";
 import server from "./server";
 
