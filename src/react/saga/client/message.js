@@ -72,10 +72,6 @@ export function* c_messageSaga({ payload }) {
       return yield put(b_userUpdate(message.userId, message.userData));
     case actionTypes.B_USER_LEFT:
       return yield put(b_userLeft(message.userId));
-    case actionTypes.B_DOCUMENT_OPENED:
-      return yield put(b_documentOpened(message.docId, message.docData));
-    case actionTypes.B_DOCUMENT_CLOSED:
-      return yield put(b_documentClosed(message.docId));
     case actionTypes.B_DOCUMENT_UPDATE:
       return yield put(b_documentUpdate(message.docId, message.docData));
   }
