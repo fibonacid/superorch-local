@@ -18,7 +18,8 @@ export default root;
  *
  * @param state
  */
-export const selectDocuments = state => fromClient.selectDocuments(state.chat);
+export const selectDocuments = state =>
+  fromClient.selectDocuments(state.client);
 
 /**
  * Selects a document by id.
@@ -64,4 +65,4 @@ export const selectScQuery = (state, id) =>
  * @param id
  */
 export const selectClient = (state, id) =>
-  fromServer.selectClient(state.client, id);
+  fromServer.selectClient(state.server, id);

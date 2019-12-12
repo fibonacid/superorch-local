@@ -8,7 +8,7 @@ export function* c_updateDocumentWatcher() {
 }
 
 export function* c_updateDocumentSaga(action) {
-  const { myUserId, isLoggedIn } = yield select(state => state.wsclient);
+  const { myUserId, isLoggedIn } = yield select(state => state.client.status);
   const document = yield select(state => selectDocument(state, action.docId));
 
   if (document) {

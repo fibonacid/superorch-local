@@ -8,7 +8,7 @@ export function* c_updateUserWatcher() {
 }
 
 export function* c_updateUserSaga(action) {
-  const { myUserId, isLoggedIn } = yield select(state => state.wsclient);
+  const { myUserId, isLoggedIn } = yield select(state => state.client.status);
   // if client is logged in and the user update involves the default user:
   if (isLoggedIn && action.userId === myUserId) {
     yield put(c_updateUserDataRequest(action.userData));
