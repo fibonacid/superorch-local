@@ -6,7 +6,7 @@ import { s_broadcast } from "../../../actions/server/broadcast";
 import { s_transmit } from "../../../actions/server/transmit";
 import { put, select } from "redux-saga/effects";
 import { selectClient, selectUser } from "../../../reducers/root";
-import { b_documentOpened } from "../../../actions/broadcast/documentOpened";
+import { b_documentCreated } from "../../../actions/broadcast/documentCreated";
 
 let docCount = 10 * Math.floor(Math.random() * 10);
 
@@ -28,7 +28,7 @@ export function* s_createDocumentResponseSaga(clientId, docData) {
     };
 
     // Broadcast new document
-    yield put(s_broadcast(clientId, b_documentOpened(newDoc.id, newDoc)));
+    yield put(s_broadcast(clientId, b_documentCreated(newDoc.id, newDoc)));
 
     // Transmit success message
     yield put(s_transmit(clientId, s_createDocumentSuccess(newDoc.id, newDoc)));
