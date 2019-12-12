@@ -16,6 +16,16 @@ describe("documents reducer", () => {
     ).toMatchObject([{ id: 0, foo: "bar" }]);
   });
 
+  it("should handle B_DOCUMENT_CREATED", () => {
+    expect(
+      reducer([], {
+        type: actionTypes.B_DOCUMENT_CREATED,
+        docId: 0,
+        docData: { foo: "bar" }
+      })
+    ).toMatchObject([{ id: 0, foo: "bar" }]);
+  });
+
   it("should handle C_UPDATE_DOCUMENT", () => {
     expect(
       reducer(
