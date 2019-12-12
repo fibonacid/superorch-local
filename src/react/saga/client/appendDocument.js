@@ -28,11 +28,16 @@ export function* c_appendDocumentSaga(action) {
   // Add id to the myDocIds array
   yield put(c_addMyDocId(nextId));
 
-  // Send request to create document
-  yield put(
-    c_createDocumentRequest({
-      ...action.docData,
-      id: nextId
-    })
-  );
+  const { isLoggedIn } = yield select(state => state.wsclient);
+
+  // If client isLoggedIn
+  if (isLoggedIn) {
+    // Send request to create document on the server
+    yield put(
+      c_createDocumentRequest({
+        ...action.docData,
+        id: nextId
+      })
+    );
+  }
 }
