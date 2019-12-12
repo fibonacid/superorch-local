@@ -9,7 +9,7 @@ const initialState = {
   myDocId: 0
 };
 
-const wsclient = (state = initialState, action) => {
+const client = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.C_OPEN:
       return {
@@ -59,4 +59,4 @@ const wsclient = (state = initialState, action) => {
   }
 };
 
-export default wsclient;
+export default client;

@@ -34,9 +34,9 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
-  isLoggedIn: state.wsclient.isLoggedIn,
-  myUserId: state.wsclient.myUserId,
-  myDocIds: state.wsclient.myDocIds
+  isLoggedIn: state.client.isLoggedIn,
+  myUserId: state.client.myUserId,
+  myDocIds: state.client.myDocIds
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tmp);

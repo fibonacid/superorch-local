@@ -1,7 +1,7 @@
-import reducer from "../../reducers/wsclient";
+import reducer from "../../reducers/client";
 import { actionTypes } from "../../actions/actionTypes";
 
-describe("wsclient reducer", () => {
+describe("client reducer", () => {
   it("should return the initial state", () => {
     expect(reducer(undefined, {})).toEqual({
       url: "ws://localhost:8989",

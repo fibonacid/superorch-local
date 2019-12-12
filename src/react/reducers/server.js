@@ -3,7 +3,7 @@ const initialState = {
   isOnline: false
 };
 
-export default function wsserver(state = initialState, action) {
+export default function server(state = initialState, action) {
   switch (action.type) {
     default:
       return state;

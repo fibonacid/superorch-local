@@ -11,7 +11,7 @@ export function* c_logoutSuccessSaga() {
   console.log("logged out");
   // Get default user id
   const users = yield select(state => selectUsers(state));
-  const { myUserId } = yield select(state => state.wsclient);
+  const { myUserId } = yield select(state => state.client);
 
   // Delete all the user except the default one
   yield all(

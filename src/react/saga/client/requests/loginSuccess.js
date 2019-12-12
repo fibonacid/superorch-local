@@ -13,7 +13,7 @@ export function* c_loginSuccessWatcher() {
 
 export function* c_loginSuccessSaga(action) {
   // Get default user id
-  const { myUserId } = yield select(state => state.wsclient);
+  const { myUserId } = yield select(state => state.client);
   // Update default user
   yield put(c_updateUser(myUserId, { id: action.userId }));
   // Update myUserId variable
