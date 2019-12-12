@@ -8,4 +8,6 @@ export function* c_createDocumentSuccessWatcher() {
   );
 }
 
-export function* c_createDocumentSuccessSaga(action) {}
+export function* c_createDocumentSuccessSaga(action) {
+  console.log(action.message);
+}
