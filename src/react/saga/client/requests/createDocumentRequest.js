@@ -1,5 +1,5 @@
 import { actionTypes } from "../../../actions/actionTypes";
-import { takeLatest, put, race, take, delay } from "redux-saga/effects";
+import { takeLatest, put, race, take, delay, select } from "redux-saga/effects";
 import { send } from "@giantmachines/redux-websocket";
 import {
   c_createDocumentError,
@@ -7,10 +7,7 @@ import {
   c_createDocumentSuccess,
   c_createDocumentTimeout
 } from "../../../actions/client/requests/createDocumentRequest";
-import {
-  c_addMyDocId,
-  c_removeMyDocId
-} from "../../../actions/client/updateMyDocIds";
+import { c_updateMyDocId } from "../../../actions/client/updateMyDocIds";
 import { c_updateDocument } from "../../../actions/client/crudDocuments";
 
 /**
@@ -42,13 +39,12 @@ export function* c_createDocumentRequestSaga(action) {
 
   if (result) {
     // Replace myDocId with new one:
-    const oldId = action.docData.id;
-    yield put(c_removeMyDocId(oldId));
-    yield put(c_addMyDocId(result.docId));
+    const { myDocId: oldDocId } = yield select(state => state.wsclient);
+    yield put(c_updateMyDocId(result.docId));
 
     // Update document with new id
     yield put(
-      c_updateDocument(oldId, {
+      c_updateDocument(oldDocId, {
         id: result.docId,
         ...result.docData
       })

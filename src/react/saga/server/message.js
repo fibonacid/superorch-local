@@ -10,7 +10,6 @@ import { s_updateDocumentDataResponseSaga } from "./responses/updateDocumentData
 import { selectClient } from "../../reducers/root";
 import { s_transmit } from "../../actions/server/transmit";
 import { s_messageError } from "../../actions/server/message";
-import { s_deleteDocumentResponseSaga } from "./responses/deleteDocumentResponse";
 
 export function* s_messageWatcher() {
   yield takeLatest(actionTypes.S_MESSAGE, s_messageSaga);
@@ -73,12 +72,6 @@ export function* s_messageSaga(action) {
           clientId,
           message.docId,
           message.docData
-        );
-      case actionTypes.C_DELETE_DOCUMENT_REQUEST:
-        return yield call(
-          s_deleteDocumentResponseSaga,
-          clientId,
-          message.docId
         );
     }
   } catch (error) {

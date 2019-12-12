@@ -30,10 +30,6 @@ import {
   s_updateDocumentDataError,
   s_updateDocumentDataSuccess
 } from "../../actions/server/responses/updateDocumentDataResponse";
-import {
-  s_deleteDocumentError,
-  s_deleteDocumentSuccess
-} from "../../actions/server/responses/deleteDocumentResponse";
 
 export function* c_messageWatcher() {
   yield takeLatest(actionTypes.C_MESSAGE, c_messageSaga);
@@ -70,10 +66,6 @@ export function* c_messageSaga({ payload }) {
       return yield put(s_updateDocumentDataSuccess());
     case actionTypes.S_UPDATE_DOCUMENT_DATA_ERROR:
       return yield put(s_updateDocumentDataError(message.error));
-    case actionTypes.S_DELETE_DOCUMENT_SUCCESS:
-      return yield put(s_deleteDocumentSuccess());
-    case actionTypes.S_DELETE_DOCUMENT_ERROR:
-      return yield put(s_deleteDocumentError(message.error));
     case actionTypes.B_USER_JOINED:
       return yield put(b_userJoined(message.userId, message.userData));
     case actionTypes.B_USER_UPDATE:

@@ -4,14 +4,13 @@ import { c_updateUser } from "../../../actions/client/crudUsers";
 import { c_updateMyUserId } from "../../../actions/client/updateMyUserId";
 import { c_getUserListRequest } from "../../../actions/client/requests/getUserListRequest";
 import { c_createDocumentRequest } from "../../../actions/client/requests/createDocumentRequest";
-import { selectDocuments } from "../../../reducers/root";
+import { selectDocument } from "../../../reducers/root";
 
 export function* c_loginSuccessWatcher() {
   yield takeLatest(actionTypes.C_LOGIN_SUCCESS, c_loginSuccessSaga);
 }
 
 export function* c_loginSuccessSaga(action) {
-  console.log(action.message);
   // Get default user id
   const { myUserId } = yield select(state => state.wsclient);
   // Update default user
@@ -23,13 +22,8 @@ export function* c_loginSuccessSaga(action) {
   yield put(c_getUserListRequest());
 
   // Send my documents
-  const { myDocIds } = yield select(state => state.wsclient);
-  const documents = yield select(state => selectDocuments(state));
+  const { myDocId } = yield select(state => state.wsclient);
+  const document = yield select(state => selectDocument(state, myDocId));
 
-  yield all(
-    documents
-      // Filter out documents owned by other users
-      .filter(document => myDocIds.indexOf(document.id) !== -1)
-      .map(document => put(c_createDocumentRequest(document)))
-  );
+  yield put(c_createDocumentRequest(document));
 }
