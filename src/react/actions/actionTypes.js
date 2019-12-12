@@ -46,6 +46,8 @@ export const actionTypes = {
   B_USER_JOINED: "B::USER_JOINED",
   B_USER_LEFT: "B::USER_LEFT",
   B_USER_UPDATE: "B::USER_UPDATE",
+
+  B_DOCUMENT_CREATED: "B::DOCUMENT_CREATED",
   B_DOCUMENT_UPDATE: "B::DOCUMENT_UPDATE",
 
   // ====================================================
