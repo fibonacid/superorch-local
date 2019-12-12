@@ -13,7 +13,7 @@ export function* c_loginSuccessWatcher() {
 
 export function* c_loginSuccessSaga(action) {
   // Get default user id
-  const { myUserId } = yield select(state => state.client);
+  const { myUserId, myDocId } = yield select(state => state.client.status);
   // Update default user
   yield put(c_updateUser(myUserId, { id: action.userId }));
   // Update myUserId variable
@@ -23,7 +23,6 @@ export function* c_loginSuccessSaga(action) {
   yield all([put(c_getUserListRequest()), put(c_getDocumentListRequest())]);
 
   // Send my documents
-  const { myDocId } = yield select(state => state.wsclient);
   const document = yield select(state => selectDocument(state, myDocId));
 
   yield put(c_createDocumentRequest(document));

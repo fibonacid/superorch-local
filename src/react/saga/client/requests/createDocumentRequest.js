@@ -39,7 +39,7 @@ export function* c_createDocumentRequestSaga(action) {
 
   if (result) {
     // Replace myDocId with new one:
-    const { myDocId: oldDocId } = yield select(state => state.wsclient);
+    const { myDocId: oldDocId } = yield select(state => state.client.status);
     yield put(c_updateMyDocId(result.docId));
 
     // Update document with new id

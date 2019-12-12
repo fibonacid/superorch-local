@@ -13,7 +13,7 @@ export function* c_logoutRequestWatcher() {
 }
 
 export function* c_logoutRequestSaga() {
-  const { myUserId } = yield select(state => state.client);
+  const { myUserId } = yield select(state => state.client.status);
 
   // Send request
   yield put(send(c_logoutRequest(myUserId)));

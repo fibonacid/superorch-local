@@ -13,7 +13,7 @@ export function* c_loginRequestWatcher() {
 }
 
 export function* c_loginRequestSaga(action) {
-  const { myUserId } = yield select(state => state.wsclient);
+  const { myUserId } = yield select(state => state.client.status);
   const userData = yield select(state => selectUser(state, myUserId));
 
   const message = {
