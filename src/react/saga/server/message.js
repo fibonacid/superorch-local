@@ -1,14 +1,15 @@
 import { actionTypes } from "../../actions/actionTypes";
+import { statusCodes } from "../../utils/constants";
 import { takeLatest, put, select, call } from "redux-saga/effects";
 import { s_loginResponseSaga } from "./responses/loginResponse";
 import { s_logoutResponseSaga } from "./responses/logoutResponse";
 import { s_getUserListResponseSaga } from "./responses/getUserListResponse";
 import { s_updateUserDataResponseSaga } from "./responses/updateUserDataResponse";
 import { s_createDocumentResponseSaga } from "./responses/createDocumentResponse";
+import { s_updateDocumentDataResponseSaga } from "./responses/updateDocumentDataResponse";
 import { selectClient } from "../../reducers/root";
 import { s_transmit } from "../../actions/server/transmit";
 import { s_messageError } from "../../actions/server/message";
-import { statusCodes } from "../../utils/constants";
 
 export function* s_messageWatcher() {
   yield takeLatest(actionTypes.S_MESSAGE, s_messageSaga);
@@ -63,6 +64,13 @@ export function* s_messageSaga(action) {
         return yield call(
           s_createDocumentResponseSaga,
           clientId,
+          message.docData
+        );
+      case actionTypes.C_UPDATE_DOCUMENT_DATA_REQUEST:
+        return yield call(
+          s_updateDocumentDataResponseSaga,
+          clientId,
+          message.docId,
           message.docData
         );
     }
