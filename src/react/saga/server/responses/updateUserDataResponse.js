@@ -1,18 +1,17 @@
-import _ from 'lodash';
-import {put, select} from "redux-saga/effects";
+import _ from "lodash";
+import { put, select } from "redux-saga/effects";
 import {
   s_updateUserDataError,
   s_updateUserDataSuccess
 } from "../../../actions/server/responses/updateUserDataResponse";
 import { s_transmit } from "../../../actions/server/transmit";
 import { s_broadcast } from "../../../actions/server/broadcast";
-import {selectClient, selectUser} from "../../../reducers/root";
-import {b_userUpdate} from "../../../actions/broadcast/userUpdate";
-
+import { selectClient, selectUser } from "../../../reducers/root";
+import { b_userUpdate } from "../../../actions/broadcast/userUpdate";
+import { statusCodes } from "../../../utils/constants";
 
 export function* s_updateUserDataResponseSaga(clientId, userData) {
   try {
-
     const newUserData = _.omit(userData, "id");
 
     // Get user associated with the client
@@ -24,10 +23,11 @@ export function* s_updateUserDataResponseSaga(clientId, userData) {
 
     // Transmit success message
     yield put(s_transmit(clientId, s_updateUserDataSuccess()));
-
   } catch (error) {
-
     // Transmit error message
-    yield put(s_transmit(clientId, s_updateUserDataError(error)));
+    yield put(
+      s_transmit(clientId, s_updateUserDataError(500, statusCodes[500]))
+    );
+    console.error(error);
   }
 }

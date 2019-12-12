@@ -4,7 +4,10 @@ export const s_updateUserDataSuccess = () => ({
   type: actionTypes.S_UPDATE_USER_DATA_SUCCESS
 });
 
-export const s_updateUserDataError = error => ({
+export const s_updateUserDataError = (status, message) => ({
   type: actionTypes.S_UPDATE_USER_DATA_ERROR,
-  error
+  error: {
+    status,
+    message
+  }
 });

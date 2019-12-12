@@ -1,3 +1,4 @@
+import { statusCodes } from "../../../../utils/constants";
 import { actionTypes } from "../../../../actions/actionTypes";
 import {
   s_updateUserDataSuccess,
@@ -14,10 +15,11 @@ describe("s_updateUserDataSuccess action", () => {
 
 describe("s_updateUserDataError action", () => {
   it("should create an action to communicate that the request raised some errors", () => {
-    const error = new Error();
-    expect(s_updateUserDataError(error)).toEqual({
+    const status = 400;
+    const message = statusCodes[400];
+    expect(s_updateUserDataError(status, message)).toEqual({
       type: actionTypes.S_UPDATE_USER_DATA_ERROR,
-      error
+      error: { status, message }
     });
   });
 });
