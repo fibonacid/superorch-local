@@ -10,6 +10,7 @@ const initialState = [{ id: 0, userId: 0, value: "" }];
 const documents = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.C_CREATE_DOCUMENT:
+    case actionTypes.B_DOCUMENT_CREATED:
       return [
         ...state,
         {
