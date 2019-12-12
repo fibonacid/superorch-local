@@ -35,10 +35,9 @@ export const c_updateDocument = (docId, docData) => ({
 
 /**
  *
- * @param docData
- * @returns {{type: *, docData: *}}
+ * @returns {{type: *}}
  */
-export const c_appendDocument = docData => ({
-  type: actionTypes.C_APPEND_DOCUMENT,
-  docData
+export const c_replaceDocumentList = docList => ({
+  type: actionTypes.C_REPLACE_DOCUMENT_LIST,
+  docList
 });

@@ -3,6 +3,7 @@ import {
   c_appendDocument,
   c_createDocument,
   c_deleteDocument,
+  c_replaceDocumentList,
   c_updateDocument
 } from "../../../actions/client/crudDocuments";
 
@@ -43,13 +44,13 @@ describe("c_updateDocument action", () => {
   });
 });
 
-describe("c_appendDocument action", () => {
-  it("should create an action to append a document to the list", () => {
-    const docData = {};
+describe("c_replaceDocumentList action", () => {
+  it("should create an action to replace the list of documents", () => {
+    const docList = [];
     const expectedAction = {
-      type: actionTypes.C_APPEND_DOCUMENT,
-      docData
+      type: actionTypes.C_REPLACE_DOCUMENT_LIST,
+      docList
     };
-    expect(c_appendDocument(docData)).toEqual(expectedAction);
+    expect(c_replaceDocumentList(docList)).toEqual(expectedAction);
   });
 });
