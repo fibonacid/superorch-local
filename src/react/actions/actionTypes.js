@@ -1,4 +1,7 @@
 export const actionTypes = {
+  ADD_FLASH_MESSAGE: "ADD_FLASH_MESSAGE",
+  REMOVE_FLASH_MESSAGE: "REMOVE_FLASH_MESSAGE",
+
   DIGEST_APP_CREDITS: "DIGEST_APP_CREDITS",
 
   // ====================================================
