@@ -16,9 +16,9 @@ export function* c_updateDocumentDataRequestWatcher() {
   );
 }
 
-export function* c_updateDocumentDataRequestSaga(action) {
+export function* c_updateDocumentDataRequestSaga({ docId, docData }) {
   // Send request
-  yield put(send(c_updateDocumentDataRequest(action.docData)));
+  yield put(send(c_updateDocumentDataRequest(docId, docData)));
 
   // start a race between sagas
   const { result, error, timeout } = yield race({

@@ -1,8 +1,9 @@
 import { actionTypes } from "../../actionTypes";
 
-export const c_updateDocumentDataRequest = userData => ({
+export const c_updateDocumentDataRequest = (docId, docData) => ({
   type: actionTypes.C_UPDATE_DOCUMENT_DATA_REQUEST,
-  userData
+  docId,
+  docData
 });
 
 export const c_updateDocumentDataSuccess = message => ({
