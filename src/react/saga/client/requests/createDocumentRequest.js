@@ -13,6 +13,10 @@ import {
 } from "../../../actions/client/updateMyDocIds";
 import { c_updateDocument } from "../../../actions/client/crudDocuments";
 
+/**
+ *
+ * @returns {IterableIterator<ForkEffect>}
+ */
 export function* c_createDocumentRequestWatcher() {
   yield takeLatest(
     actionTypes.C_CREATE_DOCUMENT_REQUEST,
@@ -20,6 +24,11 @@ export function* c_createDocumentRequestWatcher() {
   );
 }
 
+/**
+ *
+ * @param action
+ * @returns {IterableIterator<PutEffect<{type: *, message: *}>|PutEffect<BuiltAction<any>>|PutEffect<{docId, type}>|PutEffect<{type: *, error: *}>|PutEffect<{docId: *, type: *, message: *}>|PutEffect<{docId: *, type: *, docData: *}>|RaceEffect<<"TAKE", TakeEffectDescriptor> | <"CALL", CallEffectDescriptor>>>}
+ */
 export function* c_createDocumentRequestSaga(action) {
   // Send request
   yield put(send(c_createDocumentRequest(action.docData)));
