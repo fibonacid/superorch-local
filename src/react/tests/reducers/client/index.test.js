@@ -15,7 +15,7 @@ describe("client reducer", () => {
     ]);
   });
 
-  it("should let you select a user by ID", () => {
+  it("should let you select a user by id", () => {
     expect(selectUser({ users: [{ id: 0 }, { id: 1 }] }, 1)).toEqual({ id: 1 });
   });
 
@@ -26,7 +26,7 @@ describe("client reducer", () => {
     ]);
   });
 
-  it("should let you select a document by ID", () => {
+  it("should let you select a document by id", () => {
     expect(selectDocument({ documents: [{ id: 0 }, { id: 1 }] }, 1)).toEqual({
       id: 1
     });
@@ -39,7 +39,7 @@ describe("client reducer", () => {
     ]);
   });
 
-  it("should let you select a scQuery by ID", () => {
+  it("should let you select a scQuery by id", () => {
     expect(selectScQuery({ scQueries: [{ id: 0 }, { id: 1 }] }, 1)).toEqual({
       id: 1
     });
