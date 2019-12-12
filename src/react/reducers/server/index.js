@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import clients from "./clients";
+import clients, * as fromClients from "./clients";
 import status from "./status";
 
 const server = combineReducers({
@@ -8,3 +8,8 @@ const server = combineReducers({
 });
 
 export default server;
+
+export const selectClients = state => state.clients;
+
+export const selectClient = (state, id) =>
+  fromClients.selectClient(state.clients, id);

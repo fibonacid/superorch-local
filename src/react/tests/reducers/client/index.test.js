@@ -1,6 +1,4 @@
 import {
-  selectClient,
-  selectClients,
   selectDocument,
   selectDocuments,
   selectScQueries,
@@ -9,20 +7,7 @@ import {
   selectUsers
 } from "../../../reducers/client";
 
-describe("chat reducer", () => {
-  it("should let you select the clients", () => {
-    expect(selectClients({ clients: [{ id: 0 }, { id: 1 }] })).toEqual([
-      { id: 0 },
-      { id: 1 }
-    ]);
-  });
-
-  it("should let you select a client by ID", () => {
-    expect(selectClient({ clients: [{ id: 0 }, { id: 1 }] }, 1)).toEqual({
-      id: 1
-    });
-  });
-
+describe("client reducer", () => {
   it("should let you select the users", () => {
     expect(selectUsers({ users: [{ id: 0 }, { id: 1 }] })).toEqual([
       { id: 0 },
