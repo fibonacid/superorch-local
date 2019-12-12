@@ -96,8 +96,7 @@ export const actionTypes = {
 
   // Internal operations
   C_UPDATE_MY_USER_ID: "c::UPDATE_MY_USER_ID",
-  C_ADD_MY_DOC_ID: "C::ADD_MY_DOC_ID",
-  C_REMOVE_MY_DOC_ID: "C::REMOVE_MY_DOC_ID",
+  C_UPDATE_MY_DOC_ID: "C::UPDATE_MY_DOC_ID",
 
   // Users scaffold
   C_CREATE_USER: "C::CREATE_USER",

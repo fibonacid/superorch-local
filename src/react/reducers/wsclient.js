@@ -6,7 +6,7 @@ const initialState = {
   isConnected: false,
   isTryingToConnect: false,
   myUserId: 0,
-  myDocIds: [0]
+  myDocId: 0
 };
 
 const wsclient = (state = initialState, action) => {
@@ -39,15 +39,10 @@ const wsclient = (state = initialState, action) => {
         ...state,
         myUserId: action.userId
       };
-    case actionTypes.C_ADD_MY_DOC_ID:
+    case actionTypes.C_UPDATE_MY_DOC_ID:
       return {
         ...state,
-        myDocIds: [...state.myDocIds, action.docId]
-      };
-    case actionTypes.C_REMOVE_MY_DOC_ID:
-      return {
-        ...state,
-        myDocIds: state.myDocIds.filter(id => id !== action.docId)
+        myDocId: action.docId
       };
     case actionTypes.C_LOGIN_SUCCESS:
       return {

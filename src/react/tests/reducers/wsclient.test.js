@@ -9,7 +9,7 @@ describe("wsclient reducer", () => {
       isTryingToConnect: false,
       isLoggedIn: false,
       myUserId: 0,
-      myDocIds: [0]
+      myDocId: 0
     });
   });
 
@@ -69,28 +69,14 @@ describe("wsclient reducer", () => {
     });
   });
 
-  it("should handle C_ADD_MY_DOC_ID", () => {
+  it("should handle C_UPDATE_MY_DOC_ID", () => {
     expect(
       reducer(undefined, {
-        type: actionTypes.C_ADD_MY_DOC_ID,
+        type: actionTypes.C_UPDATE_MY_DOC_ID,
         docId: 99
       })
     ).toMatchObject({
-      myDocIds: [0, 99]
-    });
-  });
-
-  it("should handle C_REMOVE_MY_DOC_ID", () => {
-    expect(
-      reducer(
-        { myDocIds: [0, 1, 2] },
-        {
-          type: actionTypes.C_REMOVE_MY_DOC_ID,
-          docId: 1
-        }
-      )
-    ).toMatchObject({
-      myDocIds: [0, 2]
+      myDocId: 99
     });
   });
 });
