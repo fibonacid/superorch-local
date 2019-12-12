@@ -4,6 +4,7 @@ import { c_updateUser } from "../../../actions/client/crudUsers";
 import { c_updateMyUserId } from "../../../actions/client/updateMyUserId";
 import { c_getUserListRequest } from "../../../actions/client/requests/getUserListRequest";
 import { c_createDocumentRequest } from "../../../actions/client/requests/createDocumentRequest";
+import { c_getDocumentListRequest } from "../../../actions/client/requests/getDocumentListRequest";
 import { selectDocument } from "../../../reducers/root";
 
 export function* c_loginSuccessWatcher() {
@@ -18,8 +19,8 @@ export function* c_loginSuccessSaga(action) {
   // Update myUserId variable
   yield put(c_updateMyUserId(action.userId));
 
-  // Request a user list
-  yield put(c_getUserListRequest());
+  // Request user and document list
+  yield all([put(c_getUserListRequest()), put(c_getDocumentListRequest())]);
 
   // Send my documents
   const { myDocId } = yield select(state => state.wsclient);
