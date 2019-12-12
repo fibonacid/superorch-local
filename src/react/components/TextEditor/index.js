@@ -6,9 +6,9 @@ import { selectDocument } from "../../reducers/root";
 //import { c_createScQuery } from "../../actions/client/crudScQueries";
 
 const mapStateToProps = state => {
-  const { id: docId } = selectDocument(state, state.wsclient.myDocIds[0]);
+  const document = selectDocument(state, state.wsclient.myDocIds[0]);
   return {
-    docId
+    docId: document ? document.id : 0
   };
 };
 
