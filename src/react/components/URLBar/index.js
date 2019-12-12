@@ -8,7 +8,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
-  url: state.client.url,
+  url: state.client.status.url,
   isConnected: state.client.status.isConnected,
   isLoading: state.client.status.isTryingToConnect
 });
