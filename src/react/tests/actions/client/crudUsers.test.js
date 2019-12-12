@@ -3,6 +3,7 @@ import {
   c_createUser,
   c_deleteUser,
   c_destroyUser,
+  c_replaceUserList,
   c_updateUser
 } from "../../../actions/client/crudUsers";
 
@@ -48,5 +49,16 @@ describe("c_destroyUser action", () => {
       userId
     };
     expect(c_destroyUser(userId)).toEqual(expectedAction);
+  });
+});
+
+describe("c_replaceUserList action", () => {
+  it("should create an action to replace a list of users", () => {
+    const userList = {};
+    const expectedAction = {
+      type: actionTypes.C_REPLACE_USER_LIST,
+      userList
+    };
+    expect(c_replaceUserList(userList)).toEqual(expectedAction);
   });
 });
