@@ -22,17 +22,26 @@ export function* s_messageSaga(action) {
 
     console.log(`server received a message: ${message.type}`);
 
-    // If it's a login request handle it and leave
+    // Find out if client is logged in
+    const { isLoggedIn } = yield select(state => selectClient(state, clientId));
+
+    // If message is a login request:
     if (message.type === actionTypes.C_LOGIN_REQUEST) {
-      return yield call(s_loginResponseSaga, clientId, message.userData);
+      // If client is already logged in:
+      if (isLoggedIn) {
+        // Send an error message
+        yield put(s_messageError(400, `Already logged in`));
+      }
+      // Else, if client is not logged in
+      else {
+        // respond to request.
+        yield call(s_loginResponseSaga, clientId, message.userData);
+      }
     }
 
-    // Get user associated with the client
-    const { userId } = yield select(state => selectClient(state, clientId));
-    const user = yield select(state => selectUser(state, userId));
-
-    // If user is undefined then communication should be interrupted
-    if (!user) {
+    // If client is not logged in:
+    if (!isLoggedIn) {
+      // Send error message and leave.
       return yield put(
         s_transmit(clientId, s_messageError(400, `Log in is required`))
       );
