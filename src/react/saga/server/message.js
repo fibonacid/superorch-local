@@ -7,6 +7,7 @@ import { s_getUserListResponseSaga } from "./responses/getUserListResponse";
 import { s_updateUserDataResponseSaga } from "./responses/updateUserDataResponse";
 import { s_createDocumentResponseSaga } from "./responses/createDocumentResponse";
 import { s_updateDocumentDataResponseSaga } from "./responses/updateDocumentDataResponse";
+import { s_getDocumentListResponseSaga } from "./responses/getDocumentListResponse";
 import { selectClient } from "../../reducers/root";
 import { s_transmit } from "../../actions/server/transmit";
 import { s_messageError } from "../../actions/server/message";
@@ -74,7 +75,7 @@ export function* s_messageSaga(action) {
           message.docData
         );
       case actionTypes.C_GET_DOCUMENT_LIST_REQUEST:
-        return yield call(s_getUserListResponseSaga, clientId);
+        return yield call(s_getDocumentListResponseSaga, clientId);
     }
   } catch (error) {
     console.error(error);
