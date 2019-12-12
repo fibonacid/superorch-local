@@ -37,6 +37,9 @@ const documents = (state = initialState, action) => {
     case actionTypes.C_DESTROY_USER:
       return state.filter(document => document.userId !== action.userId);
 
+    case actionTypes.C_REPLACE_DOCUMENT_LIST:
+      return action.docList;
+
     default:
       return state;
   }

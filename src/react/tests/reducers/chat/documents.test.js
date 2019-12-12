@@ -73,6 +73,16 @@ describe("documents reducer", () => {
     ).toEqual([{ id: 0 }]);
   });
 
+  it("should handle C_REPLACE_DOCUMENT_LIST", () => {
+    const docList = [{ id: 10 }, { id: 11 }];
+    expect(
+      reducer([{ id: 1 }, { id: 2 }], {
+        type: actionTypes.C_REPLACE_DOCUMENT_LIST,
+        docList
+      })
+    ).toEqual(docList);
+  });
+
   it("should handle C_DESTROY_USER", () => {
     const userId = 10;
     expect(
