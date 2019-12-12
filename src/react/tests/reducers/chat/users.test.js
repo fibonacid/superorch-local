@@ -89,6 +89,16 @@ describe("users reducer", () => {
     ).toEqual([{ id: 1 }]);
   });
 
+  it("should handle C_REPLACE_USER_LIST", () => {
+    const userList = [{ id: 10 }, { id: 11 }];
+    expect(
+      reducer([{ id: 1 }, { id: 2 }], {
+        type: actionTypes.C_REPLACE_USER_LIST,
+        userList
+      })
+    ).toEqual(userList);
+  });
+
   it("should handle B_USER_LEFT", () => {
     expect(
       reducer([{ id: 0 }, { id: 1 }], {
