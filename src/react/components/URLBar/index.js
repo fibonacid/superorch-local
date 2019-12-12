@@ -9,8 +9,8 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => ({
   url: state.client.url,
-  isConnected: state.client.isConnected,
-  isLoading: state.client.isTryingToConnect
+  isConnected: state.client.status.isConnected,
+  isLoading: state.client.status.isTryingToConnect
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(URLBar);

@@ -34,9 +34,9 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
-  isLoggedIn: state.client.isLoggedIn,
-  myUserId: state.client.myUserId,
-  myDocIds: state.client.myDocIds
+  isLoggedIn: state.client.status.isLoggedIn,
+  myUserId: state.client.status.myUserId,
+  myDocIds: state.client.status.myDocIds
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tmp);

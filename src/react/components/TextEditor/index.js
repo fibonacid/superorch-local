@@ -4,7 +4,7 @@ import { c_updateDocument } from "../../actions/client/crudDocuments";
 //import { c_createScQuery } from "../../actions/client/crudScQueries";
 
 const mapStateToProps = state => ({
-  docId: state.client.myDocId
+  docId: state.client.status.myDocId
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -1,8 +1,9 @@
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 import SideBar from "./SideBar";
+import { selectUsers } from "../../reducers/root";
 
 const mapStateToProps = state => ({
-  users: state.chat.users
+  users: selectUsers(state)
 });
 
 export default connect(mapStateToProps, null)(SideBar);
