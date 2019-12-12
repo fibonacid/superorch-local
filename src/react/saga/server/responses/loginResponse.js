@@ -23,7 +23,9 @@ export function* s_loginResponseSaga(clientId, userData) {
 
   try {
     // Assign user to the client
-    yield put(s_updateClient(clientId, { userId: newUser.id }));
+    yield put(
+      s_updateClient(clientId, { userId: newUser.id, isLoggedIn: true })
+    );
 
     // Transmit new user id to the client that tried logging in.
     yield put(s_transmit(clientId, s_loginSuccess(newUser.id)));

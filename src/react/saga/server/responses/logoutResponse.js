@@ -7,6 +7,7 @@ import { b_userLeft } from "../../../actions/broadcast/userLeft";
 import { s_transmit } from "../../../actions/server/transmit";
 import { s_broadcast } from "../../../actions/server/broadcast";
 import { selectClient, selectUser } from "../../../reducers/root";
+import { s_updateClient } from "../../../actions/server/crudClients";
 
 export function* s_logoutResponseSaga(clientId) {
   try {
@@ -15,9 +16,7 @@ export function* s_logoutResponseSaga(clientId) {
     // Get associated user
     const user = yield select(state => selectUser(state, client.userId));
 
-    if (!user) {
-      throw new Error(`Client must be logged in to create a document`);
-    }
+    yield put(s_updateClient(clientId, { isLoggedIn: false }));
 
     // Transmit that the logout was successful
     yield put(s_transmit(clientId, s_logoutSuccess(user.id)));
