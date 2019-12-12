@@ -8,10 +8,12 @@ import {
 
 describe("c_updateDocumentDataRequest action", () => {
   it("should create an action to submit a updateDocument request", () => {
-    const userData = { foo: "bar" };
-    expect(c_updateDocumentDataRequest(userData)).toEqual({
+    const docId = 0;
+    const docData = { foo: "bar" };
+    expect(c_updateDocumentDataRequest(docId, docData)).toEqual({
       type: actionTypes.C_UPDATE_DOCUMENT_DATA_REQUEST,
-      userData
+      docId,
+      docData
     });
   });
 });
