@@ -13,6 +13,7 @@ import { c_createDocumentRequestWatcher } from "./requests/createDocumentRequest
 import { c_updateDocumentDataRequestWatcher } from "./requests/updateDocumentDataRequest";
 import { c_updateDocumentWatcher } from "./updateDocument";
 import { c_deleteDocumentRequestWatcher } from "./requests/deleteDocumentRequest";
+import { c_deleteDocumentWatcher } from "./deleteDocument";
 
 export function* clientSagas() {
   yield all([
@@ -20,6 +21,7 @@ export function* clientSagas() {
     c_messageWatcher(),
     c_updateUserWatcher(),
     c_updateDocumentWatcher(),
+    c_deleteDocumentWatcher(),
     // Requests
     c_loginRequestWatcher(),
     c_loginSuccessWatcher(),
