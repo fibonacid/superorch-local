@@ -11,6 +11,7 @@ import { c_updateUserDataRequestWatcher } from "./requests/updateUserDataRequest
 import { c_createDocumentRequestWatcher } from "./requests/createDocumentRequest";
 import { c_updateDocumentDataRequestWatcher } from "./requests/updateDocumentDataRequest";
 import { c_updateDocumentWatcher } from "./updateDocument";
+import { c_getDocumentListRequestWatcher } from "./requests/getDocumentListRequest";
 
 export function* clientSagas() {
   yield all([
@@ -26,6 +27,7 @@ export function* clientSagas() {
     c_getUserListSuccessWatcher(),
     c_updateUserDataRequestWatcher(),
     c_createDocumentRequestWatcher(),
-    c_updateDocumentDataRequestWatcher()
+    c_updateDocumentDataRequestWatcher(),
+    c_getDocumentListRequestWatcher()
   ]);
 }
