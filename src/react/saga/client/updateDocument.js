@@ -7,14 +7,15 @@ export function* c_updateDocumentWatcher() {
   yield takeLatest(actionTypes.C_UPDATE_DOCUMENT, c_updateDocumentSaga);
 }
 
-export function* c_updateDocumentSaga({ docId, docData }) {
+export function* c_updateDocumentSaga(action) {
   const { myUserId, isLoggedIn } = yield select(state => state.wsclient);
-  const document = yield select(state => selectDocument(state, docId));
+  const document = yield select(state => selectDocument(state, action.docId));
 
   if (document) {
     // if client is logged in and the document to update is owned by the user:
     if (isLoggedIn && myUserId === document.userId) {
-      yield put(c_updateDocumentDataRequest(docId, docData));
+      // send document update request.
+      yield put(c_updateDocumentDataRequest(action.docId, action.docData));
     }
   }
 }
