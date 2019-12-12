@@ -13,6 +13,7 @@ export function* c_appendDocumentWatcher() {
 export function* c_appendDocumentSaga(action) {
   // Get documents
   const documents = yield select(state => selectDocuments(state));
+  const { myUserId } = yield select(state => state.wsclient);
 
   let nextId = 0;
 
@@ -22,8 +23,14 @@ export function* c_appendDocumentSaga(action) {
     nextId = id + 1;
   }
 
+  const newData = {
+    ...action.docData,
+    id: nextId,
+    userId: myUserId
+  };
+
   // Store new document
-  yield put(c_createDocument(nextId, action.docData));
+  yield put(c_createDocument(nextId, newData));
 
   // Add id to the myDocIds array
   yield put(c_addMyDocId(nextId));
@@ -33,11 +40,6 @@ export function* c_appendDocumentSaga(action) {
   // If client isLoggedIn
   if (isLoggedIn) {
     // Send request to create document on the server
-    yield put(
-      c_createDocumentRequest({
-        ...action.docData,
-        id: nextId
-      })
-    );
+    yield put(c_createDocumentRequest(newData));
   }
 }
