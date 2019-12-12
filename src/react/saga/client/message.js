@@ -23,8 +23,7 @@ import {
   s_createDocumentError,
   s_createDocumentSuccess
 } from "../../actions/server/responses/createDocumentResponse";
-import { b_documentOpened } from "../../actions/broadcast/documentOpened";
-import { b_documentClosed } from "../../actions/broadcast/documentClosed";
+import { b_documentCreated } from "../../actions/broadcast/documentCreated";
 import { b_documentUpdate } from "../../actions/broadcast/documentUpdate";
 import {
   s_updateDocumentDataError,
@@ -72,6 +71,8 @@ export function* c_messageSaga({ payload }) {
       return yield put(b_userUpdate(message.userId, message.userData));
     case actionTypes.B_USER_LEFT:
       return yield put(b_userLeft(message.userId));
+    case actionTypes.B_DOCUMENT_CREATED:
+      return yield put(b_documentCreated(message.docId, message.docData));
     case actionTypes.B_DOCUMENT_UPDATE:
       return yield put(b_documentUpdate(message.docId, message.docData));
   }
