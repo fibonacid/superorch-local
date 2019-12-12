@@ -5,7 +5,7 @@ import { s_logoutResponseSaga } from "./responses/logoutResponse";
 import { s_getUserListResponseSaga } from "./responses/getUserListResponse";
 import { s_updateUserDataResponseSaga } from "./responses/updateUserDataResponse";
 import { s_createDocumentResponseSaga } from "./responses/createDocumentResponse";
-import { selectClient, selectUser } from "../../reducers/root";
+import { selectClient } from "../../reducers/root";
 import { s_transmit } from "../../actions/server/transmit";
 import { s_messageError } from "../../actions/server/message";
 import { statusCodes } from "../../utils/constants";
