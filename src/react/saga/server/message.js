@@ -73,6 +73,8 @@ export function* s_messageSaga(action) {
           message.docId,
           message.docData
         );
+      case actionTypes.C_GET_DOCUMENT_LIST_REQUEST:
+        return yield call(s_getUserListResponseSaga, clientId);
     }
   } catch (error) {
     console.error(error);
