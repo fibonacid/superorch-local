@@ -7,9 +7,9 @@ import {
 } from "../../../reducers/root";
 import { s_transmit } from "../../../actions/server/transmit";
 import {
-  s_updateUserDataError,
-  s_updateUserDataSuccess
-} from "../../../actions/server/responses/updateUserDataResponse";
+  s_updateDocumentDataError,
+  s_updateDocumentDataSuccess
+} from "../../../actions/server/responses/updateDocumentDataResponse";
 import { s_broadcast } from "../../../actions/server/broadcast";
 import { b_documentUpdate } from "../../../actions/broadcast/documentUpdate";
 
@@ -23,7 +23,7 @@ export function* s_updateDocumentDataResponseSaga(clientId, docId, docData) {
     // Check if document exists:
     if (!document) {
       return yield put(
-        s_transmit(s_updateUserDataError(400, `Document doesn't exist`))
+        s_transmit(s_updateDocumentDataError(400, `Document doesn't exist`))
       );
     }
 
@@ -31,7 +31,7 @@ export function* s_updateDocumentDataResponseSaga(clientId, docId, docData) {
     if (user.id !== document.userId) {
       return yield put(
         s_transmit(
-          s_updateUserDataError(
+          s_updateDocumentDataError(
             400,
             `You don't have the right permissions to update this document`
           )
@@ -46,10 +46,10 @@ export function* s_updateDocumentDataResponseSaga(clientId, docId, docData) {
     yield put(s_broadcast(clientId, b_documentUpdate(docId, newDocData)));
 
     // Transmit success message
-    yield put(s_transmit(clientId, s_updateUserDataSuccess()));
+    yield put(s_transmit(clientId, s_updateDocumentDataSuccess()));
   } catch (error) {
     // Transmit error message
-    yield put(s_transmit(clientId, s_updateUserDataError(500)));
+    yield put(s_transmit(clientId, s_updateDocumentDataError(500)));
     console.error(error);
   }
 }
