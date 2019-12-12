@@ -5,3 +5,11 @@ export const s_message = (clientId, message) => ({
   clientId,
   message
 });
+
+export const s_messageError = (status, message) => ({
+  type: actionTypes.S_MESSAGE_ERROR,
+  error: {
+    status,
+    message
+  }
+});
