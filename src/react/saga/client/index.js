@@ -9,12 +9,10 @@ import { c_logoutRequestWatcher } from "./requests/logoutRequest";
 import { c_getUserListSuccessWatcher } from "./requests/getUserListSuccess";
 import { c_getUserListRequestWatcher } from "./requests/getUserListRequest";
 import { c_updateUserDataRequestWatcher } from "./requests/updateUserDataRequest";
-import { c_updateUserDataSuccessWatcher } from "./requests/updateUserDataSuccess";
 import { c_createDocumentRequestWatcher } from "./requests/createDocumentRequest";
-import { c_createDocumentSuccessWatcher } from "./requests/createDocumentSuccess";
 import { c_updateDocumentDataRequestWatcher } from "./requests/updateDocumentDataRequest";
-import { c_updateDocumentDataSuccessWatcher } from "./requests/updateDocumentDataSuccess";
 import { c_updateDocumentWatcher } from "./updateDocument";
+import { c_deleteDocumentRequestWatcher } from "./requests/deleteDocumentRequest";
 
 export function* clientSagas() {
   yield all([
@@ -30,9 +28,7 @@ export function* clientSagas() {
     c_getUserListRequestWatcher(),
     c_getUserListSuccessWatcher(),
     c_updateUserDataRequestWatcher(),
-    c_updateUserDataSuccessWatcher(),
     c_createDocumentRequestWatcher(),
-    c_createDocumentSuccessWatcher(),
     c_updateDocumentDataRequestWatcher(),
     c_updateDocumentDataSuccessWatcher()
   ]);
