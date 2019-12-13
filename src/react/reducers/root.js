@@ -17,6 +17,7 @@ export default root;
 // ----------------
 
 /**
+ * Selects all documents
  *
  * @param state
  */
@@ -33,7 +34,7 @@ export const selectDocument = (state, id) =>
   fromClient.selectDocument(state.client, id);
 
 /**
- * Selects user list.
+ * Selects all users.
  *
  * @param state
  */
@@ -49,6 +50,14 @@ export const selectUser = (state, id) =>
   fromClient.selectUser(state.client, id);
 
 /**
+ * Selects all supercollider queies.
+ *
+ * @param state
+ */
+export const selectScQueries = state =>
+  fromClient.selectScQueries(state.client);
+
+/**
  * Selects a supercollider query by id.
  *
  * @param state
@@ -59,6 +68,8 @@ export const selectScQuery = (state, id) =>
 
 // Server selectors
 // ----------------
+
+export const selectClients = state => fromServer.selectClients(state.server);
 
 /**
  * Select a client by id.
