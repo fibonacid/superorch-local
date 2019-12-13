@@ -6,7 +6,8 @@ const initialState = {
   isConnected: false,
   isTryingToConnect: false,
   myUserId: 0,
-  myDocId: 0
+  myDocId: 0,
+  myScQueries: []
 };
 
 const status = (state = initialState, action) => {

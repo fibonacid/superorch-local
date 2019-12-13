@@ -9,7 +9,8 @@ describe("status reducer", () => {
       isConnected: false,
       isTryingToConnect: false,
       myUserId: 0,
-      myDocId: 0
+      myDocId: 0,
+      myScQueries: []
     });
   });
 
