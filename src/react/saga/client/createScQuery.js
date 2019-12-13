@@ -1,7 +1,7 @@
 import { actionTypes } from "../../actions/actionTypes";
 import { takeEvery, select, put } from "redux-saga/effects";
 import { c_createScQueryRequest } from "../../actions/client/requests/createScQueryRequest";
-import { c_execScCodeRequest } from "../../actions/client/requests/execScCodeRequest";
+import { c_execScQueryRequest } from "../../actions/client/requests/execScQueryRequest";
 
 export function* c_createScQueryWatcher() {
   yield takeEvery(actionTypes.C_CREATE_SC_QUERY, c_createScQuerySaga);
@@ -14,12 +14,10 @@ export function* c_createScQuerySaga(action) {
   );
 
   // Dispatch message to supercollider
-  const { input: scCode } = action.scqData;
-  yield put(c_execScCodeRequest(scCode));
+  yield put(c_execScQueryRequest(action.scqId));
 
   // If it's client not logged in:
   if (!isLoggedIn) {
-    // End task
     return null;
   }
 
