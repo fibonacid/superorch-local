@@ -33,6 +33,10 @@ import {
   s_getDocumentListError,
   s_getDocumentListSuccess
 } from "../../actions/server/responses/getDocumentListResponse";
+import {
+  s_createScQueryError,
+  s_createScQuerySuccess
+} from "../../actions/server/responses/createScQueryResponse";
 
 export function* c_messageWatcher() {
   yield takeLatest(actionTypes.C_MESSAGE, c_messageSaga);
@@ -73,6 +77,10 @@ export function* c_messageSaga({ payload }) {
       return yield put(s_getDocumentListSuccess(message.docList));
     case actionTypes.S_GET_DOCUMENT_LIST_ERROR:
       return yield put(s_getDocumentListError(message.error));
+    case actionTypes.S_CREATE_SC_QUERY_SUCCESS:
+      return yield put(s_createScQuerySuccess(message.scqId, message.scqData));
+    case actionTypes.S_CREATE_SC_QUERY_ERROR:
+      return yield put(s_createScQueryError(message.error));
     case actionTypes.B_USER_JOINED:
       return yield put(b_userJoined(message.userId, message.userData));
     case actionTypes.B_USER_UPDATE:
