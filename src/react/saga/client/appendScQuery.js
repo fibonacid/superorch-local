@@ -28,11 +28,4 @@ export function* c_appendScQuerySaga(action) {
     ),
     put(c_addMyScQueryId(nextId))
   ]);
-
-  const { isLoggedIn } = yield select(state => state.client.status);
-
-  // if client is logged in, send a request to the server
-  if (isLoggedIn) {
-    yield put(c_createScQueryRequest(action.userData));
-  }
 }
