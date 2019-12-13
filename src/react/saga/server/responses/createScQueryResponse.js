@@ -6,13 +6,15 @@ import {
 } from "../../../actions/server/responses/createScQueryResponse";
 import { selectUser } from "../../../reducers/client";
 import { selectClient } from "../../../reducers/root";
-import { put, select } from "redux-saga/effects";
+import { put, select, all } from "redux-saga/effects";
 import { s_broadcast } from "../../../actions/server/broadcast";
 import { b_scQueryCreated } from "../../../actions/broadcast/scQueryCreated";
 
 let scqCount = 10 * Math.floor(Math.random() * 10);
 
 export function* s_createScQueryResponseSaga(clientId, scqData) {
+  console.log("s_createScQueryResponseSaga", clientId, scqData);
+
   scqCount++;
   try {
     // Get user associated with the client
