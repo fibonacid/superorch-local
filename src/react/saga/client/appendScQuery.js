@@ -1,9 +1,8 @@
 import _ from "lodash";
 import { actionTypes } from "../../actions/actionTypes";
-import { takeEvery, select, put, all } from "redux-saga/effects";
+import { takeEvery, select, put } from "redux-saga/effects";
 import { selectScQueries } from "../../reducers/root";
 import { c_createScQuery } from "../../actions/client/crudScQueries";
-import { c_createScQueryRequest } from "../../actions/client/requests/createScQueryRequest";
 import { c_addMyScQueryId } from "../../actions/client/addMyScQueryId";
 
 export function* c_appendScQueryWatcher() {
@@ -18,14 +17,14 @@ export function* c_appendScQuerySaga(action) {
   const { id: maxId } = _.maxBy(scQueries, scQuery => scQuery.id) || { id: 0 };
   const nextId = 1 + maxId;
 
+  // Store id into client status
+  yield put(c_addMyScQueryId(nextId));
+
   // Dispatch an action to create a new scQuery
-  yield all([
-    put(
-      c_createScQuery(nextId, {
-        ...action.scqData,
-        id: nextId
-      })
-    ),
-    put(c_addMyScQueryId(nextId))
-  ]);
+  yield put(
+    c_createScQuery(nextId, {
+      ...action.scqData,
+      id: nextId
+    })
+  );
 }
