@@ -12,8 +12,6 @@ import { b_scQueryCreated } from "../../../actions/broadcast/scQueryCreated";
 let scqCount = 10 * Math.floor(Math.random() * 10);
 
 export function* s_createScQueryResponseSaga(clientId, scqData) {
-  console.log("s_createScQueryResponseSaga", clientId, scqData);
-
   scqCount++;
   try {
     // Get user associated with the client
