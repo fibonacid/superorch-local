@@ -1,9 +1,10 @@
 import _ from "lodash";
 import { actionTypes } from "../../actions/actionTypes";
-import { takeLatest, select, put } from "redux-saga/effects";
+import { takeLatest, select, put, all } from "redux-saga/effects";
 import { selectScQueries } from "../../reducers/client";
 import { c_createScQuery } from "../../actions/client/crudScQueries";
 import { c_createScQueryRequest } from "../../actions/client/requests/createScQueryRequest";
+import { c_addMyScQueryId } from "../../actions/client/addMyScQueryId";
 
 export function* c_appendScQueryWatcher() {
   yield takeLatest(actionTypes.C_APPEND_SC_QUERY, c_appendScQuerySaga);
@@ -18,12 +19,15 @@ export function* c_appendScQuerySaga(action) {
   const nextId = 1 + _.maxBy(scQueries, scQuery => scQuery.id);
 
   // Dispatch an action to create a new scQuery
-  yield put(
-    c_createScQuery(nextId, {
-      ...action.scqData,
-      id: nextId
-    })
-  );
+  yield all([
+    put(
+      c_createScQuery(nextId, {
+        ...action.scqData,
+        id: nextId
+      })
+    ),
+    put(c_addMyScQueryId(nextId))
+  ]);
 
   const { isLoggedIn } = yield select(state => state.client.status);
 
