@@ -1,8 +1,8 @@
 import { actionTypes } from "../../../actions/actionTypes";
-import { takeEvery, select } from "redux-saga/effects";
+import { takeEvery, select, put } from "redux-saga/effects";
 import { channels } from "../../../../shared/constants";
-//import {c_updateScQuery} from "../../../actions/client/crudScQueries";
 import { selectScQuery } from "../../../reducers/root";
+import { c_updateScQuery } from "../../../actions/client/crudScQueries";
 
 export function* c_execScQueryRequestWatcher() {
   yield takeEvery(
@@ -22,8 +22,7 @@ export function* c_execScQueryRequestSaga(action) {
       message: scQuery.input
     });
 
-    console.log(response);
-    console.log(action);
-    //yield put(c_updateScQuery())
+    // Store response into the scQuery
+    yield put(c_updateScQuery(action.scqId, { output: response }));
   }
 }
