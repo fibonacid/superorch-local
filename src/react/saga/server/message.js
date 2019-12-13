@@ -11,6 +11,7 @@ import { s_getDocumentListResponseSaga } from "./responses/getDocumentListRespon
 import { selectClient } from "../../reducers/root";
 import { s_transmit } from "../../actions/server/transmit";
 import { s_messageError } from "../../actions/server/message";
+import { s_createScQueryResponseSaga } from "./responses/createScQueryResponse";
 
 export function* s_messageWatcher() {
   yield takeLatest(actionTypes.S_MESSAGE, s_messageSaga);
@@ -76,6 +77,12 @@ export function* s_messageSaga(action) {
         );
       case actionTypes.C_GET_DOCUMENT_LIST_REQUEST:
         return yield call(s_getDocumentListResponseSaga, clientId);
+      case actionTypes.C_CREATE_SC_QUERY_REQUEST:
+        return yield call(
+          s_createScQueryResponseSaga,
+          clientId,
+          message.scqData
+        );
     }
   } catch (error) {
     console.error(error);
