@@ -16,7 +16,6 @@ export default function Console(props) {
       <ul>
         {props.queries.map((query, i) => (
           <React.Fragment key={i}>
-            <li>$ {query.input}</li>
             {query.output && <li>-> {query.output}</li>}
           </React.Fragment>
         ))}
