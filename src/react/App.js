@@ -123,7 +123,7 @@ class App extends Component {
 
     // Request start of SuperCollider server
     if (ipcRenderer) {
-      //ipcRenderer.send(channels.START_SUPERCOLLIDER);
+      ipcRenderer.send(channels.START_SUPERCOLLIDER);
       ipcRenderer.send(channels.START_WS_SERVER);
     }
   }
