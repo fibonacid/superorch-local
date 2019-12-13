@@ -9,14 +9,7 @@ const options = {
 
 function launchSuperCollider() {
   // Display info
-  return sc.lang.boot(options).then(
-    lang => {
-      // Up and ready for action
-      //console.log(lang);
-    },
-    // Error handler if it fails to start or fails to compile
-    error => console.error(error)
-  );
+  return sc.lang.boot(options);
 }
 
 module.exports = {
