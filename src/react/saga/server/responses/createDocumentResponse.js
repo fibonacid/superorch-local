@@ -17,10 +17,6 @@ export function* s_createDocumentResponseSaga(clientId, docData) {
     const client = yield select(state => selectClient(state, clientId));
     const user = yield select(state => selectUser(state, client.userId));
 
-    if (!user) {
-      throw new Error(`Client must be logged in to create a document`);
-    }
-
     const newDoc = {
       ...docData,
       id: docCount,
@@ -34,6 +30,6 @@ export function* s_createDocumentResponseSaga(clientId, docData) {
     yield put(s_transmit(clientId, s_createDocumentSuccess(newDoc.id, newDoc)));
   } catch (error) {
     // Send error message
-    yield s_transmit(clientId, s_createDocumentError(error));
+    yield put(s_transmit(clientId, s_createDocumentError(error)));
   }
 }
