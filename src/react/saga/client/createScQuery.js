@@ -8,4 +8,21 @@ export function* c_createScQueryWatcher() {
 
 export function* c_createScQuerySaga(action) {
   console.log("c_createScQuerySaga", action);
+
+  // Get data from client status
+  const { isLoggedIn, myScQueryIds } = yield select(
+    state => state.client.status
+  );
+
+  // If it's client not logged in:
+  if (!isLoggedIn) {
+    // End task
+    return null;
+  }
+
+  // If scQuery belongs to the user:
+  if (myScQueryIds.indexOf(action.scqId) !== -1) {
+    // dispatch server request
+    yield put(c_createScQueryRequest(action.scqData));
+  }
 }
