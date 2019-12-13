@@ -19,6 +19,7 @@ import StatusBar from "./components/StatusBar/index";
 import Tmp from "./components/Tmp";
 import { s_clientDisconnected } from "./actions/server/clientDisconnected";
 import { s_clientConnected } from "./actions/server/clientConnected";
+import Console from "./components/Console/index";
 
 /* =============================================== */
 /*    REDUX                                        */
@@ -137,7 +138,17 @@ class App extends Component {
           <Tmp />
           <StyledWrapper>
             <SideBar />
-            <TextEditor />
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                width: "100%",
+                maxWidth: "100%"
+              }}
+            >
+              <TextEditor />
+              <Console />
+            </div>
           </StyledWrapper>
           <StatusBar />
         </StyledContainer>
