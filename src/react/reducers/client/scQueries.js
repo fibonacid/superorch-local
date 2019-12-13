@@ -4,6 +4,7 @@ import _ from "lodash";
 export default function scQueries(state = [], action) {
   switch (action.type) {
     case actionTypes.C_CREATE_SC_QUERY:
+    case actionTypes.B_SC_QUERY_CREATED:
       return [
         ...state,
         {

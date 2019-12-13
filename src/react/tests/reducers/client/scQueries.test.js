@@ -16,6 +16,16 @@ describe("scQueries reducer", () => {
     ).toEqual([{ id: 0, foo: "bar" }]);
   });
 
+  it("should handle B_SC_QUERY_CREATED", () => {
+    expect(
+      reducer([], {
+        type: actionTypes.B_SC_QUERY_CREATED,
+        scqId: 0,
+        scqData: { foo: "bar" }
+      })
+    ).toEqual([{ id: 0, foo: "bar" }]);
+  });
+
   it("should handle C_UPDATE_SC_QUERY", () => {
     expect(
       reducer(
