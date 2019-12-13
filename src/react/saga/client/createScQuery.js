@@ -1,8 +1,9 @@
 import { actionTypes } from "../../actions/actionTypes";
-import { takeLatest } from "redux-saga/effects";
+import { takeEvery, select, put } from "redux-saga/effects";
+import { c_createScQueryRequest } from "../../actions/client/requests/createScQueryRequest";
 
 export function* c_createScQueryWatcher() {
-  yield takeLatest(actionTypes.C_CREATE_SC_QUERY, c_createScQuerySaga);
+  yield takeEvery(actionTypes.C_CREATE_SC_QUERY, c_createScQuerySaga);
 }
 
 export function* c_createScQuerySaga(action) {
