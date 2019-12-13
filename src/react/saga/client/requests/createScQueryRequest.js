@@ -1,5 +1,5 @@
 import { actionTypes } from "../../../actions/actionTypes";
-import { takeEvery, put, take, delay, race } from "redux-saga/effects";
+import { takeEvery, put, take, delay, race, all } from "redux-saga/effects";
 import { send } from "@giantmachines/redux-websocket";
 import {
   c_createScQueryError,
@@ -7,6 +7,8 @@ import {
   c_createScQuerySuccess,
   c_createScQueryTimeout
 } from "../../../actions/client/requests/createScQueryRequest";
+import { c_updateScQuery } from "../../../actions/client/crudScQueries";
+import { c_updateMyScQueryId } from "../../../actions/client/updateMyScQueryId";
 
 export function* c_createScQueryRequestWatcher() {
   yield takeEvery(
@@ -26,14 +28,14 @@ export function* c_createScQueryRequestSaga(action) {
   });
 
   if (result) {
-    console.log("success", result);
-    yield put(
-      c_createScQuerySuccess(
-        result.scqId,
-        result.scqData,
-        `supercollider query created`
-      )
-    );
+    // Updated scQuery id
+    yield all([
+      put(c_updateScQuery(action.scqId, result.scqData)),
+      put(c_updateMyScQueryId(action.scqId, result.scqId))
+    ]);
+
+    // Dispatch success message
+    yield put(c_createScQuerySuccess(`supercollider query created`));
   } else if (error) {
     console.error(error);
     yield put(c_createScQueryError(error));
