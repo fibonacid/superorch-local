@@ -13,6 +13,7 @@ import { c_updateDocumentDataRequestWatcher } from "./requests/updateDocumentDat
 import { c_updateDocumentWatcher } from "./updateDocument";
 import { c_getDocumentListRequestWatcher } from "./requests/getDocumentListRequest";
 import { c_appendScQueryWatcher } from "./appendScQuery";
+import { c_createScQueryWatcher } from "./createScQuery";
 
 export function* clientSagas() {
   yield all([
@@ -20,6 +21,7 @@ export function* clientSagas() {
     c_updateUserWatcher(),
     c_updateDocumentWatcher(),
     c_appendScQueryWatcher(),
+    c_createScQueryWatcher(),
     // Requests
     c_loginRequestWatcher(),
     c_loginSuccessWatcher(),
