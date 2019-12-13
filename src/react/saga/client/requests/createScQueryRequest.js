@@ -18,7 +18,7 @@ export function* c_createScQueryRequestWatcher() {
 }
 
 export function* c_createScQueryRequestSaga(action) {
-  yield put(send(c_createScQueryRequest(action.scqData)));
+  yield put(send(c_createScQueryRequest(action.scqId, action.scqData)));
 
   // start a race between sagas
   const { result, error, timeout } = yield race({
