@@ -1,14 +1,20 @@
 import { connect } from "react-redux";
 import TextEditor from "./TextEditor";
 import { c_updateDocument } from "../../actions/client/crudDocuments";
-//import { c_createScQuery } from "../../actions/client/crudScQueries";
+import { c_appendScQuery } from "../../actions/client/crudScQueries";
 
 const mapStateToProps = state => ({
   docId: state.client.status.myDocId
 });
 
 const mapDispatchToProps = dispatch => ({
-  handleExecuteSelection: () => {},
+  handleExecuteSelection: text => {
+    dispatch(
+      c_appendScQuery({
+        input: text
+      })
+    );
+  },
   sendEditorState: (id, data) =>
     dispatch(
       c_updateDocument(id, {
@@ -18,21 +24,3 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TextEditor);
-
-/*
-  const mapDispatchToProps = dispatch => ({
-    handleExecuteSelection: text => {
-      dispatch(
-        c_createScQuery(0, {
-          value: text
-        })
-      );
-    },
-    sendEditorState: data =>
-      dispatch(
-        c_updateDocument(0, {
-          content: data
-        })
-      )
-  });
-*/
