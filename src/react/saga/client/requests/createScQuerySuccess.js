@@ -9,5 +9,5 @@ export function* c_createScQuerySuccessWatcher() {
 }
 
 export function* c_createScQuerySuccessSaga(action) {
-  console.log("c_createScQuerySuccessSaga", action);
+  console.log("success", action.message);
 }
