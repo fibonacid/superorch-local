@@ -17,10 +17,12 @@ describe("c_createScQueryRequest action", () => {
 describe("c_createScQuerySuccess action", () => {
   it("should create an action to communicate that the request succeeded", () => {
     const scqId = 0;
+    const scqData = {};
     const message = "";
-    expect(c_createScQuerySuccess(scqId, message)).toEqual({
+    expect(c_createScQuerySuccess(scqId, scqData, message)).toEqual({
       type: actionTypes.C_CREATE_SC_QUERY_SUCCESS,
       scqId,
+      scqData,
       message
     });
   });
