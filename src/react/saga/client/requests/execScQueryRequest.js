@@ -23,6 +23,10 @@ export function* c_execScQueryRequestSaga(action) {
     });
 
     // Store response into the scQuery
-    yield put(c_updateScQuery(action.scqId, { output: response }));
+    yield put(
+      c_updateScQuery(action.scqId, {
+        output: JSON.stringify(response, null, 1)
+      })
+    );
   }
 }
