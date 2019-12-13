@@ -1,14 +1,13 @@
 import { actionTypes } from "../../actionTypes";
 
-export const c_createScQueryRequest = scqData => ({
+export const c_createScQueryRequest = (scqId, scqData) => ({
   type: actionTypes.C_CREATE_SC_QUERY_REQUEST,
+  scqId,
   scqData
 });
 
-export const c_createScQuerySuccess = (scqId, scqData, message) => ({
+export const c_createScQuerySuccess = message => ({
   type: actionTypes.C_CREATE_SC_QUERY_SUCCESS,
-  scqId,
-  scqData,
   message
 });
 

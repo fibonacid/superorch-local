@@ -8,21 +8,21 @@ import {
 
 describe("c_createScQueryRequest action", () => {
   it("should create an action to submit a createScQuery request", () => {
-    expect(c_createScQueryRequest()).toEqual({
-      type: actionTypes.C_CREATE_SC_QUERY_REQUEST
+    const scqId = 0;
+    const scqData = {};
+    expect(c_createScQueryRequest(scqId, scqData)).toEqual({
+      type: actionTypes.C_CREATE_SC_QUERY_REQUEST,
+      scqId,
+      scqData
     });
   });
 });
 
 describe("c_createScQuerySuccess action", () => {
   it("should create an action to communicate that the request succeeded", () => {
-    const scqId = 0;
-    const scqData = {};
     const message = "";
-    expect(c_createScQuerySuccess(scqId, scqData, message)).toEqual({
+    expect(c_createScQuerySuccess(message)).toEqual({
       type: actionTypes.C_CREATE_SC_QUERY_SUCCESS,
-      scqId,
-      scqData,
       message
     });
   });
