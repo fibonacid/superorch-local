@@ -4,8 +4,7 @@ import {
   s_createScQueryError,
   s_createScQuerySuccess
 } from "../../../actions/server/responses/createScQueryResponse";
-import { selectUser } from "../../../reducers/client";
-import { selectClient } from "../../../reducers/root";
+import { selectClient, selectUser } from "../../../reducers/root";
 import { put, select, all } from "redux-saga/effects";
 import { s_broadcast } from "../../../actions/server/broadcast";
 import { b_scQueryCreated } from "../../../actions/broadcast/scQueryCreated";
