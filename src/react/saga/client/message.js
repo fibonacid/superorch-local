@@ -37,6 +37,7 @@ import {
   s_createScQueryError,
   s_createScQuerySuccess
 } from "../../actions/server/responses/createScQueryResponse";
+import { b_scQueryCreated } from "../../actions/broadcast/scQueryCreated";
 
 export function* c_messageWatcher() {
   yield takeLatest(actionTypes.C_MESSAGE, c_messageSaga);
@@ -91,5 +92,7 @@ export function* c_messageSaga({ payload }) {
       return yield put(b_documentCreated(message.docId, message.docData));
     case actionTypes.B_DOCUMENT_UPDATE:
       return yield put(b_documentUpdate(message.docId, message.docData));
+    case actionTypes.B_SC_QUERY_CREATED:
+      return yield put(b_scQueryCreated(message.scqId, message.scqData));
   }
 }
