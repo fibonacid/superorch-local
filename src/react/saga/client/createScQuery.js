@@ -7,8 +7,6 @@ export function* c_createScQueryWatcher() {
 }
 
 export function* c_createScQuerySaga(action) {
-  console.log("c_createScQuerySaga", action);
-
   // Get data from client status
   const { isLoggedIn, myScQueryIds } = yield select(
     state => state.client.status
