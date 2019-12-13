@@ -155,6 +155,11 @@ ipcMain.on("start_supercollider", async () => {
   }
 });
 
+ipcMain.on(channels.SUPERCOLLIDER_MESSAGE, async (event, args) => {
+  const response = await sclang.interpret(args.message);
+  console.log(response);
+});
+
 // When react launch the stop_supercollider event
 ipcMain.on("stop_supercollider", () => {});
 
