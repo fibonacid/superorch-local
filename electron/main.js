@@ -3,11 +3,12 @@ const path = require("path");
 const url = require("url");
 const { channels } = require("../src/shared/constants");
 const { launchWSServer, transmit, broadcast } = require("./server");
+const { launchSuperCollider } = require("./supercollider");
 const { autoUpdater } = require("electron-updater");
-const { bootInterpreter } = require("./supercollider");
 
 let mainWindow;
 let wsServer;
+let sclang;
 
 /**
  * INSTALL EXTENSIONS
@@ -139,14 +140,27 @@ ipcMain.on("restart_app", () => {
   autoUpdater.quitAndInstall();
 });
 
+// =====================================================
+// SUPERCOLLIDER INTERPRETER
+// =====================================================
+
 // When react launch the start_supercollider event
 ipcMain.on("start_supercollider", async () => {
-  //bootServer();
-  bootInterpreter();
+  try {
+    sclang = await launchSuperCollider();
+    await sclang.interpret(`s = Server.default; s.boot;`);
+    console.log("supercollider booted");
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 // When react launch the stop_supercollider event
 ipcMain.on("stop_supercollider", () => {});
+
+// =====================================================
+// WEBSOCKET SERVER
+// =====================================================
 
 ipcMain.on(channels.START_WS_SERVER, event => {
   try {
