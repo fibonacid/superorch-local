@@ -10,6 +10,14 @@ let mainWindow;
 let wsServer;
 let sclang;
 
+/*
+ * This should prevent electron from displaying an error
+ * dialogue every time an error is raised
+ */
+process.on("uncaughtException", function(error) {
+  console.error(error);
+});
+
 /**
  * INSTALL EXTENSIONS
  * ==========================
@@ -56,7 +64,6 @@ function createWindow() {
   // Load index.html
   mainWindow.loadURL(startUrl);
 
-  mainWindow.loadURL(startUrl);
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
   // When the window is closed:
