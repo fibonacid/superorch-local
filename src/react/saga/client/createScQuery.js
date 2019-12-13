@@ -21,6 +21,6 @@ export function* c_createScQuerySaga(action) {
   // If scQuery belongs to the user:
   if (myScQueryIds.indexOf(action.scqId) !== -1) {
     // dispatch server request
-    yield put(c_createScQueryRequest(action.scqData));
+    yield put(c_createScQueryRequest(action.scqId, action.scqData));
   }
 }
