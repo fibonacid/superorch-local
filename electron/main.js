@@ -63,9 +63,8 @@ function createWindow() {
   });
   // Load index.html
   mainWindow.loadURL(startUrl);
-
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  //mainWindow.webContents.openDevTools();
   // When the window is closed:
   mainWindow.on("closed", function() {
     // Delete window.
