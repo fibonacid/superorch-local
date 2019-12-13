@@ -6,7 +6,7 @@ export const s_createScQuerySuccess = (scqId, scqData) => ({
   scqData
 });
 
-export const s_createScQueryError = error => ({
+export const s_createScQueryError = (status, message) => ({
   type: actionTypes.S_CREATE_SC_QUERY_ERROR,
-  error
+  error: { status, message }
 });

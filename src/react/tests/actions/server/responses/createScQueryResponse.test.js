@@ -3,6 +3,7 @@ import {
   s_createScQuerySuccess,
   s_createScQueryError
 } from "../../../../actions/server/responses/createScQueryResponse";
+import { statusCodes } from "../../../../utils/constants";
 
 describe("s_createScQuerySuccess action", () => {
   it("should create an action to communicate that the request completed successfully", () => {
@@ -18,10 +19,11 @@ describe("s_createScQuerySuccess action", () => {
 
 describe("s_createScQueryError action", () => {
   it("should create an action to communicate that the request raised some errors", () => {
-    const error = new Error();
-    expect(s_createScQueryError(error)).toEqual({
+    const status = 500;
+    const message = statusCodes[500];
+    expect(s_createScQueryError(status, message)).toEqual({
       type: actionTypes.S_CREATE_SC_QUERY_ERROR,
-      error
+      error: { status, message }
     });
   });
 });
