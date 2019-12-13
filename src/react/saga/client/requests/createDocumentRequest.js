@@ -7,7 +7,7 @@ import {
   c_createDocumentSuccess,
   c_createDocumentTimeout
 } from "../../../actions/client/requests/createDocumentRequest";
-import { c_updateMyDocId } from "../../../actions/client/updateMyDocIds";
+import { c_updateMyDocId } from "../../../actions/client/updateMyDocId";
 import { c_updateDocument } from "../../../actions/client/crudDocuments";
 
 /**
