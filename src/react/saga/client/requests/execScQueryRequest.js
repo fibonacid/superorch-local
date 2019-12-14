@@ -3,6 +3,7 @@ import { takeEvery, select, put } from "redux-saga/effects";
 import { channels } from "../../../../shared/constants";
 import { selectScQuery } from "../../../reducers/root";
 import { c_updateScQuery } from "../../../actions/client/crudScQueries";
+import { c_getScQueryRequest } from "../../../actions/client/requests/getScQueryRequest";
 
 export function* c_execScQueryRequestWatcher() {
   yield takeEvery(
@@ -13,6 +14,8 @@ export function* c_execScQueryRequestWatcher() {
 
 export function* c_execScQueryRequestSaga(action) {
   const { ipcRenderer } = window;
+
+  // If client runs on electron:
   if (ipcRenderer) {
     // Get query from the store
     const scQuery = yield select(state => selectScQuery(state, action.scqId));
@@ -28,5 +31,9 @@ export function* c_execScQueryRequestSaga(action) {
         output: JSON.stringify(response, null, 1)
       })
     );
+  } else {
+    // if client runs on a browser get the result
+    // of the supercollider query from the server.
+    yield put(c_getScQueryRequest(action.scqId));
   }
 }
