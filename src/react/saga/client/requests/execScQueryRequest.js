@@ -3,7 +3,7 @@ import { takeEvery, select, put } from "redux-saga/effects";
 import { channels } from "../../../../shared/constants";
 import { selectScQuery } from "../../../reducers/root";
 import { c_updateScQuery } from "../../../actions/client/crudScQueries";
-import { c_getScQueryRequest } from "../../../actions/client/requests/getScQueryRequest";
+import { c_getScQueryDataRequest } from "../../../actions/client/requests/getScQueryDataRequest";
 
 export function* c_execScQueryRequestWatcher() {
   yield takeEvery(
@@ -39,7 +39,7 @@ export function* c_execScQueryRequestSaga(action) {
     // If client is logged in:
     if (isLoggedIn) {
       // request scQuery from the server
-      yield put(c_getScQueryRequest(action.scqId));
+      yield put(c_getScQueryDataRequest(action.scqId));
     }
   }
 }
