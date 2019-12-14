@@ -34,6 +34,12 @@ export function* c_execScQueryRequestSaga(action) {
   } else {
     // if client runs on a browser get the result
     // of the supercollider query from the server.
-    yield put(c_getScQueryRequest(action.scqId));
+
+    const { isLoggedIn } = yield select(state => state.client.status);
+    // If client is logged in:
+    if (isLoggedIn) {
+      // request scQuery from the server
+      yield put(c_getScQueryRequest(action.scqId));
+    }
   }
 }
