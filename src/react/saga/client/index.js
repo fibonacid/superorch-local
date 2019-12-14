@@ -17,7 +17,7 @@ import { c_createScQueryWatcher } from "./createScQuery";
 import { c_createScQueryRequestWatcher } from "./requests/createScQueryRequest";
 import { c_createScQuerySuccessWatcher } from "./requests/createScQuerySuccess";
 import { c_execScQueryRequestWatcher } from "./requests/execScQueryRequest";
-import { c_getScQueryRequestWatcher } from "./requests/getScQueryRequest";
+import { c_getScQueryDataRequestWatcher } from "./requests/getScQueryDataRequest";
 
 export function* clientSagas() {
   yield all([
@@ -40,6 +40,6 @@ export function* clientSagas() {
     c_createScQueryRequestWatcher(),
     c_createScQuerySuccessWatcher(),
     c_execScQueryRequestWatcher(),
-    c_getScQueryRequestWatcher()
+    c_getScQueryDataRequestWatcher()
   ]);
 }
