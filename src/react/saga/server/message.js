@@ -12,6 +12,7 @@ import { selectClient } from "../../reducers/root";
 import { s_transmit } from "../../actions/server/transmit";
 import { s_messageError } from "../../actions/server/message";
 import { s_createScQueryResponseSaga } from "./responses/createScQueryResponse";
+import { s_getScQueryDataResponseSaga } from "./responses/getScQueryDataResponse";
 
 export function* s_messageWatcher() {
   yield takeLatest(actionTypes.S_MESSAGE, s_messageSaga);
@@ -82,6 +83,12 @@ export function* s_messageSaga(action) {
           s_createScQueryResponseSaga,
           clientId,
           message.scqData
+        );
+      case actionTypes.C_GET_SC_QUERY_DATA_REQUEST:
+        return yield call(
+          s_getScQueryDataResponseSaga,
+          clientId,
+          message.scqId
         );
     }
   } catch (error) {
