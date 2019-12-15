@@ -40,10 +40,10 @@ export function* s_updateScQueryDataResponseSaga(clientId, scqId, scqData) {
     }
 
     // Filter out ids
-    const newDocData = _.omit(scqData, ["id", "userId"]);
+    const newScQData = _.omit(scqData, ["id", "userId"]);
 
     // Broadcast scQuery update
-    yield put(s_broadcast(clientId, b_scQueryUpdate(scqId, newDocData)));
+    yield put(s_broadcast(clientId, b_scQueryUpdate(scqId, newScQData)));
 
     // Transmit success message
     yield put(s_transmit(clientId, s_updateScQueryDataSuccess()));
