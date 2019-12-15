@@ -13,6 +13,7 @@ import { s_transmit } from "../../actions/server/transmit";
 import { s_messageError } from "../../actions/server/message";
 import { s_createScQueryResponseSaga } from "./responses/createScQueryResponse";
 import { s_getScQueryDataResponseSaga } from "./responses/getScQueryDataResponse";
+import { s_updateScQueryDataResponseSaga } from "./responses/updateScQueryDataResponse";
 
 export function* s_messageWatcher() {
   yield takeLatest(actionTypes.S_MESSAGE, s_messageSaga);
@@ -89,6 +90,13 @@ export function* s_messageSaga(action) {
           s_getScQueryDataResponseSaga,
           clientId,
           message.scqId
+        );
+      case actionTypes.C_UPDATE_SC_QUERY_DATA_REQUEST:
+        return yield call(
+          s_updateScQueryDataResponseSaga,
+          clientId,
+          message.scqId,
+          message.scqData
         );
     }
   } catch (error) {
