@@ -15,10 +15,8 @@ import { c_getDocumentListRequestWatcher } from "./requests/getDocumentListReque
 import { c_appendScQueryWatcher } from "./appendScQuery";
 import { c_createScQueryWatcher } from "./createScQuery";
 import { c_createScQueryRequestWatcher } from "./requests/createScQueryRequest";
-import { c_createScQuerySuccessWatcher } from "./requests/createScQuerySuccess";
 import { c_execScQueryRequestWatcher } from "./requests/execScQueryRequest";
 import { c_getScQueryDataRequestWatcher } from "./requests/getScQueryDataRequest";
-import { c_getScQueryDataSuccessWatcher } from "./requests/getScQueryDataSuccess";
 import { c_updateScQueryDataRequestWatcher } from "./requests/updateScQueryDataRequest";
 
 export function* clientSagas() {
@@ -40,10 +38,8 @@ export function* clientSagas() {
     c_updateDocumentDataRequestWatcher(),
     c_getDocumentListRequestWatcher(),
     c_createScQueryRequestWatcher(),
-    c_createScQuerySuccessWatcher(),
     c_execScQueryRequestWatcher(),
     c_getScQueryDataRequestWatcher(),
-    c_getScQueryDataSuccessWatcher(),
     c_updateScQueryDataRequestWatcher()
   ]);
 }
