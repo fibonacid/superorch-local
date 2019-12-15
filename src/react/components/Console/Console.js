@@ -14,11 +14,15 @@ export default function Console(props) {
   return (
     <StyledContainer>
       <ul>
-        {props.queries.map((query, i) => (
-          <React.Fragment key={i}>
-            {query.output && <li>-> {query.output}</li>}
-          </React.Fragment>
-        ))}
+        {props.queries.map((query, i) => {
+          const user = props.users.find(user => user.id === query.userId);
+          return (
+            <li key={i}>
+              {user && <span>{user.name}~</span>}
+              <span>> {query.output}</span>
+            </li>
+          );
+        })}
       </ul>
     </StyledContainer>
   );
