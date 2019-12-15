@@ -14,6 +14,7 @@ export default function scQueries(state = [], action) {
       ];
 
     case actionTypes.C_UPDATE_SC_QUERY:
+    case actionTypes.B_SC_QUERY_UPDATE:
       // Modify data of user with same id.
       return state.map(scQuery =>
         scQuery.id === action.scqId
