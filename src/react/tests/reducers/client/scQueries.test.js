@@ -45,6 +45,25 @@ describe("scQueries reducer", () => {
     ]);
   });
 
+  it("should handle B_SC_QUERY_UPDATE", () => {
+    expect(
+      reducer(
+        [
+          { id: 0, modified: false },
+          { id: 1, modified: false }
+        ],
+        {
+          type: actionTypes.B_SC_QUERY_UPDATE,
+          scqId: 0,
+          scqData: { modified: true }
+        }
+      )
+    ).toEqual([
+      { id: 0, modified: true },
+      { id: 1, modified: false }
+    ]);
+  });
+
   it("should handle C_DELETE_SC_QUERY", () => {
     expect(
       reducer([{ id: 0 }, { id: 1 }], {
