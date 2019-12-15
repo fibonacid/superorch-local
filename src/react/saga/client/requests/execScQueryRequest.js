@@ -1,5 +1,5 @@
 import { actionTypes } from "../../../actions/actionTypes";
-import { takeEvery, select, put, take } from "redux-saga/effects";
+import { takeEvery, select, put } from "redux-saga/effects";
 import { channels } from "../../../../shared/constants";
 import { selectScQuery } from "../../../reducers/root";
 import { c_updateScQuery } from "../../../actions/client/crudScQueries";

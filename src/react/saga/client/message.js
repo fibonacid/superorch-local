@@ -115,5 +115,7 @@ export function* c_messageSaga({ payload }) {
       return yield put(b_scQueryCreated(message.scqId, message.scqData));
     case actionTypes.B_SC_QUERY_UPDATE:
       return yield put(b_scQueryUpdate(message.scqId, message.scqData));
+    default:
+      return null;
   }
 }

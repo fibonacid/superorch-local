@@ -98,6 +98,8 @@ export function* s_messageSaga(action) {
           message.scqId,
           message.scqData
         );
+      default:
+        return null;
     }
   } catch (error) {
     console.error(error);

@@ -10,7 +10,7 @@ export function* s_broadcastSaga({ clientId, message }) {
   const { ipcRenderer } = window;
   if (ipcRenderer) {
     // Send to electron main process
-    ipcRenderer.send(channels.WEBSOCKET_BROADCAST, {
+    yield ipcRenderer.send(channels.WEBSOCKET_BROADCAST, {
       clientId,
       message
     });

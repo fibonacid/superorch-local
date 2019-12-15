@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 import users, * as fromUsers from "./users";
 import documents, * as fromDocuments from "./documents";
 import scQueries, * as fromScQueries from "./scQueries";
-import status, * as fromStatus from "./status";
+import status from "./status";
 
 const client = combineReducers({
   status,

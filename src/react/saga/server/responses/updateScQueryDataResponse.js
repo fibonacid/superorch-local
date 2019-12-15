@@ -1,10 +1,6 @@
 import _ from "lodash";
 import { put, select } from "redux-saga/effects";
-import {
-  selectClient,
-  selectUser,
-  selectScQuery
-} from "../../../reducers/root";
+import { selectScQuery } from "../../../reducers/root";
 import { s_transmit } from "../../../actions/server/transmit";
 import {
   s_updateScQueryDataError,
