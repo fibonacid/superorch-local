@@ -95,7 +95,7 @@ class App extends Component {
     // Set base data
     store.dispatch(
       updateBaseData({
-        runsOnElectron: ipcRenderer && true
+        runsOnElectron: !!ipcRenderer
       })
     );
 
