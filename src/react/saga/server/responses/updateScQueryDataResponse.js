@@ -27,18 +27,6 @@ export function* s_updateScQueryDataResponseSaga(clientId, scqId, scqData) {
       );
     }
 
-    // Check if user owns the scQuery:
-    if (user.id !== scQuery.userId) {
-      return yield put(
-        s_transmit(
-          s_updateScQueryDataError(
-            400,
-            `You don't have the right permissions to update this scQuery`
-          )
-        )
-      );
-    }
-
     // Filter out ids
     const newScQData = _.omit(scqData, ["id", "userId"]);
 
