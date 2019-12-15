@@ -15,9 +15,7 @@ import { b_scQueryUpdate } from "../../../actions/broadcast/scQueryUpdate";
 
 export function* s_updateScQueryDataResponseSaga(clientId, scqId, scqData) {
   try {
-    // Get user associated with the client
-    const client = yield select(state => selectClient(state, clientId));
-    const user = yield select(state => selectUser(state, client.userId));
+    // Get query from the store
     const scQuery = yield select(state => selectScQuery(state, scqId));
 
     // Check if scQuery exists:
