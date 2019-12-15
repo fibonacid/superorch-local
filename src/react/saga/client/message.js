@@ -42,6 +42,11 @@ import {
   s_getScQueryDataError,
   s_getScQueryDataSuccess
 } from "../../actions/server/responses/getScQueryDataResponse";
+import { b_scQueryUpdate } from "../../actions/broadcast/scQueryUpdate";
+import {
+  s_updateScQueryDataError,
+  s_updateScQueryDataSuccess
+} from "../../actions/server/responses/updateScQueryDataResponse";
 
 export function* c_messageWatcher() {
   yield takeLatest(actionTypes.C_MESSAGE, c_messageSaga);
@@ -86,6 +91,12 @@ export function* c_messageSaga({ payload }) {
       return yield put(s_createScQuerySuccess(message.scqId, message.scqData));
     case actionTypes.S_CREATE_SC_QUERY_ERROR:
       return yield put(s_createScQueryError(message.error));
+    case actionTypes.S_UPDATE_SC_QUERY_DATA_SUCCESS:
+      return yield put(
+        s_updateScQueryDataSuccess(message.scqId, message.scqData)
+      );
+    case actionTypes.S_UPDATE_SC_QUERY_DATA_ERROR:
+      return yield put(s_updateScQueryDataError(message.error));
     case actionTypes.S_GET_SC_QUERY_DATA_SUCCESS:
       return yield put(s_getScQueryDataSuccess(message.scqData));
     case actionTypes.S_GET_SC_QUERY_DATA_ERROR:
@@ -102,5 +113,7 @@ export function* c_messageSaga({ payload }) {
       return yield put(b_documentUpdate(message.docId, message.docData));
     case actionTypes.B_SC_QUERY_CREATED:
       return yield put(b_scQueryCreated(message.scqId, message.scqData));
+    case actionTypes.B_SC_QUERY_UPDATE:
+      return yield put(b_scQueryUpdate(message.scqId, message.scqData));
   }
 }
