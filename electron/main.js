@@ -2,7 +2,7 @@ const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
 const url = require("url");
 const { channels } = require("../src/shared/constants");
-const { launchWSServer, transmit, broadcast } = require("./server");
+const { launchWSServer, transmit, broadcast } = require("./ws");
 const { launchSuperCollider } = require("./supercollider");
 const { autoUpdater } = require("electron-updater");
 
