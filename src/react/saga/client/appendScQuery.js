@@ -20,11 +20,14 @@ export function* c_appendScQuerySaga(action) {
   // Store id into client status
   yield put(c_addMyScQueryId(nextId));
 
+  const { myUserId } = yield select(state => state.client.status);
+
   // Dispatch an action to create a new scQuery
   yield put(
     c_createScQuery(nextId, {
       ...action.scqData,
-      id: nextId
+      id: nextId,
+      userId: myUserId
     })
   );
 }
