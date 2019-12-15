@@ -1,12 +1,13 @@
 {
-  "name": "colliderchat-client",
-  "version": "0.0.0",
+  "name": "superorch",
+  "description": "A supercollider IDE for laptop orchestras",
+  "version": "0.0.5",
   "private": true,
   "homepage": "./",
   "main": "electron/main.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lorenzorivosecchi/colliderchat-client.git"
+    "url": "https://github.com/lorenzorivosecchi/superorch.git"
   },
   "scripts": {
     "start": "export BROWSER=none && react-app-rewired start",
