@@ -3,7 +3,7 @@ const path = require("path");
 const url = require("url");
 const { channels } = require("../src/shared/constants");
 const { launchWSServer, transmit, broadcast } = require("./ws");
-const { launchSuperCollider } = require("./supercollider");
+const sc = require("supercolliderjs");
 const { autoUpdater } = require("electron-updater");
 
 let mainWindow;
@@ -153,7 +153,14 @@ ipcMain.on("restart_app", () => {
 // When react launch the start_supercollider event
 ipcMain.on("start_supercollider", async () => {
   try {
-    sclang = await launchSuperCollider();
+    // Boot supercollider interpreter
+    sclang = await sc.lang.boot({
+      // post verbose messages to console
+      //debug: true,
+      // echo all commands sent TO sclang to console
+      echo: true
+    });
+    // Boot supercollider sound server
     await sclang.interpret(`s = Server.default; s.boot;`);
     console.log("supercollider booted");
   } catch (error) {
