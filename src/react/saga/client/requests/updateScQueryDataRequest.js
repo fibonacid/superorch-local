@@ -15,9 +15,9 @@ export function* c_updateScQueryDataRequestWatcher() {
   );
 }
 
-export function* c_updateScQueryDataRequestSaga({ docId, docData }) {
+export function* c_updateScQueryDataRequestSaga({ scqId, scqData }) {
   // Send request
-  yield put(send(c_updateScQueryDataRequest(docId, docData)));
+  yield put(send(c_updateScQueryDataRequest(scqId, scqData)));
 
   // start a race between sagas
   const { result, error, timeout } = yield race({
@@ -28,7 +28,7 @@ export function* c_updateScQueryDataRequestSaga({ docId, docData }) {
 
   if (result) {
     // Send success message
-    yield put(c_updateScQueryDataSuccess(result.docId, `document updated`));
+    yield put(c_updateScQueryDataSuccess(result.scqId, `scQuery updated`));
   } else if (error) {
     yield put(c_updateScQueryDataError(error));
   } else if (timeout) {
