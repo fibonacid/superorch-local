@@ -2,8 +2,8 @@
 
 > A supercollider IDE for laptop orchestras
 
-[![Build Status](https://travis-ci.org/lorenzorivosecchi/colliderchat-client.svg?branch=master)](https://travis-ci.org/lorenzorivosecchi/colliderchat-client)
-[![codecov](https://codecov.io/gh/lorenzorivosecchi/colliderchat-client/branch/master/graph/badge.svg)](https://codecov.io/gh/lorenzorivosecchi/colliderchat-client)
+[![Build Status](https://travis-ci.org/lorenzorivosecchi/superorch.svg?branch=master)](https://travis-ci.org/lorenzorivosecchi/superorch)
+[![codecov](https://codecov.io/gh/lorenzorivosecchi/superorch/branch/master/graph/badge.svg)](https://codecov.io/gh/lorenzorivosecchi/superorch)
 
 This application provides a simple system to connect supercollider musicians over a local network.
 
