@@ -1,12 +1,13 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import {
   convertToRaw,
   Editor,
   EditorState,
   getDefaultKeyBinding,
   CompositeDecorator,
-  KeyBindingUtil
+  KeyBindingUtil,
+  convertFromRaw
 } from "draft-js";
 
 import LinkEntity from "./Entities/Link/Link";
@@ -23,6 +24,11 @@ const StyledWrapper = styled.div`
   overflow-y: auto;
   font-family: monospace;
   padding: 5px;
+  ${props =>
+    props.readOnly &&
+    css`
+      cursor: not-allowed;
+    `}
 `;
 
 // -----------------------
@@ -70,17 +76,6 @@ const compositeDecorator = new CompositeDecorator([
 ]);
 
 // ------------------------
-// Block Style
-// ------------------------
-
-/*function myBlockStyleFn(contentBlock) {
-  const type = contentBlock.getType();
-  if (type === "blockquote") {
-    return "superFancyBlockquote";
-  }
-}*/
-
-// ------------------------
 // Text Editor Component
 // ------------------------
 
@@ -90,8 +85,7 @@ export default class TextEditor extends React.Component {
 
     // Initialize component state.
     this.state = {
-      editorState: EditorState.createEmpty(compositeDecorator),
-      readOnly: false
+      editorState: EditorState.createEmpty(compositeDecorator)
     };
 
     this.setDomEditorRef = ref => (this.domEditor = ref);
@@ -102,6 +96,49 @@ export default class TextEditor extends React.Component {
     // Event Handler Bindings
     this.onChange = this.onChange.bind(this);
     this.handleKeyCommand = this.handleKeyCommand.bind(this);
+  }
+
+  /**
+   * COMPONENT DID UPDATE
+   * ==================================================
+   * This class is called every time the component
+   * needs to update it's internal state.
+   * Example: when setState is called or when its props
+   * change.
+   *
+   * @param prevProps
+   * @param prevState
+   * @param snapshot
+   */
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    const { document, readOnly } = this.props;
+
+    if (!document || !prevProps.document) {
+      return null;
+    }
+
+    // If remote document has changed:
+    if (
+      document.value !== "" &&
+      ((!readOnly && prevProps.document.id !== document.id) ||
+        (readOnly && prevProps.document.value !== document.value))
+    ) {
+      try {
+        // Update editorState with new content
+        const newContent = convertFromRaw(JSON.parse(document.value));
+        const newState = EditorState.push(
+          this.state.editorState,
+          newContent,
+          "change-block-data"
+        );
+        // Set local state
+        this.setState({
+          editorState: newState
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }
   }
 
   /**
@@ -193,7 +230,9 @@ export default class TextEditor extends React.Component {
     const raw = convertToRaw(contentState);
 
     // And send it the socket server as a string
-    this.props.sendEditorState(this.props.docId, JSON.stringify(raw));
+    if (this.props.document) {
+      this.props.sendEditorState(this.props.document.id, JSON.stringify(raw));
+    }
   }
 
   /**
@@ -223,7 +262,11 @@ export default class TextEditor extends React.Component {
    */
   render() {
     return (
-      <StyledWrapper data-test={"TextEditorComponent"} onClick={this.focus}>
+      <StyledWrapper
+        data-test={"TextEditorComponent"}
+        onClick={this.focus}
+        readOnly={this.props.readOnly}
+      >
         <Editor
           ref={this.setDomEditorRef}
           editorState={this.state.editorState}
@@ -231,7 +274,7 @@ export default class TextEditor extends React.Component {
           handleKeyCommand={this.handleKeyCommand}
           keyBindingFn={keyBindingFn}
           blockStyleFn={this.blockStyleFn}
-          readOnly={this.state.readOnly}
+          readOnly={this.props.readOnly}
         />
       </StyledWrapper>
     );

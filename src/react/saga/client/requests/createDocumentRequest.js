@@ -9,6 +9,7 @@ import {
 } from "../../../actions/client/requests/createDocumentRequest";
 import { c_updateMyDocId } from "../../../actions/client/updateMyDocId";
 import { c_updateDocument } from "../../../actions/client/crudDocuments";
+import { c_getDocumentListRequest } from "../../../actions/client/requests/getDocumentListRequest";
 
 /**
  *
@@ -49,6 +50,9 @@ export function* c_createDocumentRequestSaga(action) {
         ...result.docData
       })
     );
+
+    // Request  document list
+    yield put(c_getDocumentListRequest());
 
     // Send success message
     yield put(c_createDocumentSuccess(result.docId, `document created`));

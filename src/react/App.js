@@ -7,20 +7,20 @@ import configureStore from "./store";
 import { connect as connectSocket } from "@giantmachines/redux-websocket";
 import { channels } from "../shared/constants";
 
+// Actions
 import { digestAppCredits } from "./actions/digestAppCredits";
 import { s_message } from "./actions/server/message";
+import { s_clientDisconnected } from "./actions/server/clientDisconnected";
+import { s_clientConnected } from "./actions/server/clientConnected";
+import { updateBaseData } from "./actions/updateBaseData";
 
 // Components
 import { createGlobalStyle } from "styled-components";
 import SideBar from "./components/SideBar/index";
 import Header from "./components/Header/index";
-import TextEditor from "./components/TextEditor/index";
 import StatusBar from "./components/StatusBar/index";
-import Tmp from "./components/Tmp";
-import { s_clientDisconnected } from "./actions/server/clientDisconnected";
-import { s_clientConnected } from "./actions/server/clientConnected";
-import Console from "./components/Console/index";
-import { updateBaseData } from "./actions/updateBaseData";
+import MainBar from "./components/MainBar/MainBar";
+import { s_serverStarted } from "./actions/server/serverStarted";
 
 /* =============================================== */
 /*    REDUX                                        */
@@ -117,6 +117,10 @@ class App extends Component {
 
       // Websocket messages
       // ------------------
+      ipcRenderer.on(channels.WS_SERVER_STARTED, (event, arg) => {
+        store.dispatch(s_serverStarted(arg));
+      });
+
       ipcRenderer.on(channels.WEBSOCKET_OPEN, (event, arg) => {
         store.dispatch(s_clientConnected(arg.clientId, arg.clientData));
       });
@@ -147,20 +151,9 @@ class App extends Component {
         <StyledContainer className="App">
           <GlobalStyle />
           <Header />
-          <Tmp />
           <StyledWrapper>
             <SideBar />
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                width: "100%",
-                maxWidth: "100%"
-              }}
-            >
-              <TextEditor />
-              <Console />
-            </div>
+            <MainBar />
           </StyledWrapper>
           <StatusBar />
         </StyledContainer>

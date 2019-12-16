@@ -206,6 +206,13 @@ ipcMain.on(channels.START_WS_SERVER, event => {
       }
     });
 
+    const ip = require("ip");
+
+    event.sender.send(channels.WS_SERVER_STARTED, {
+      address: ip.address(),
+      port: wsServer.address().port
+    });
+
     // When server wants to transmit a message:
     ipcMain.on(channels.WEBSOCKET_TRANSMIT, (event, args) => {
       transmit(wsServer, args.clientId, args.message);
