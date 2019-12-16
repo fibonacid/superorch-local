@@ -1,5 +1,6 @@
 {
   "name": "superorch",
+  "version": "v0.1.4",
   "description": "A supercollider IDE for laptop orchestras",
   "private": true,
   "homepage": "./",
