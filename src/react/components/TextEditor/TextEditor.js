@@ -222,7 +222,6 @@ export default class TextEditor extends React.Component {
    * @returns {*}
    */
   render() {
-    const { user } = this.props;
     return (
       <StyledWrapper data-test={"TextEditorComponent"} onClick={this.focus}>
         <Editor

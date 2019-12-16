@@ -4,9 +4,6 @@ import { c_updateDocument } from "../../actions/client/crudDocuments";
 import { c_appendScQuery } from "../../actions/client/crudScQueries";
 
 const mapStateToProps = state => ({
-  user: state.client.users.find(
-    user => user.id === state.client.status.myUserId
-  ),
   docId: state.client.status.myDocId
 });
 
