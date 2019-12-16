@@ -19,14 +19,14 @@ export function* c_loginSuccessSaga(action) {
   yield put(c_updateUser(myUserId, { id: action.userId }));
   // Update myUserId variable
   yield put(c_updateMyUserId(action.userId));
-  // Display user on the frontEnd
-  yield put(displayUser(action.userId));
+
+  // Send my document
+  const document = yield select(state => selectDocument(state, myDocId));
+  yield put(c_createDocumentRequest(document));
 
   // Request user and document list
   yield all([put(c_getUserListRequest()), put(c_getDocumentListRequest())]);
 
-  // Send my documents
-  const document = yield select(state => selectDocument(state, myDocId));
-
-  yield put(c_createDocumentRequest(document));
+  // Finally display user on the frontEnd
+  yield put(displayUser(action.userId));
 }
