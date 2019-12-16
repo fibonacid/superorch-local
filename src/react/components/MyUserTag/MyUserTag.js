@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const StyledContainer = styled.div`
@@ -9,17 +9,32 @@ const StyledContainer = styled.div`
   align-items: center;
 `;
 
-const StyledUsername = styled.h2``;
-
-const StyledEdit = styled.span`
-  cursor: pointer;
-`;
-
 function MyUserTag(props) {
+  const [isEditable, setEditable] = useState(false);
+  const [userName, setUserName] = useState(props.user.name);
+
+  const handleDone = () => {
+    props.updateUsername(props.user.id, userName);
+    setEditable(!isEditable);
+  };
+
+  const handleEdit = () => {
+    setEditable(!isEditable);
+  };
+
   return (
     <StyledContainer>
-      <StyledUsername>Lorenzo</StyledUsername>
-      <StyledEdit>Edit</StyledEdit>
+      {isEditable ? (
+        <>
+          <input value={userName} onChange={e => setUserName(e.target.value)} />
+          <button onClick={handleDone}>Done</button>
+        </>
+      ) : (
+        <>
+          <span>{props.user.name}</span>
+          <button onClick={handleEdit}>Edit</button>
+        </>
+      )}
     </StyledContainer>
   );
 }
