@@ -8,14 +8,25 @@ const StyledList = styled.ul`
 const StyledListItem = styled.li`
   padding: 5px;
   border-bottom: solid 1px black;
+  display: flex;
+  font-size: 15px;
+  cursor: pointer;
 `;
 
 function UserList(props) {
+  const handleClick = ({ id: userId }) => {
+    console.log(userId);
+  };
+
   return (
     <StyledList data-test={"list"}>
       {props.users.map((user, i) => (
-        <StyledListItem data-test={"list-item"} key={i}>
-          {user.name}
+        <StyledListItem
+          key={i}
+          data-test={"list-item"}
+          onClick={() => handleClick(user)}
+        >
+          {user.id === props.myUserId ? "You" : user.name}
         </StyledListItem>
       ))}
     </StyledList>
