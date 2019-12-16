@@ -76,17 +76,6 @@ const compositeDecorator = new CompositeDecorator([
 ]);
 
 // ------------------------
-// Block Style
-// ------------------------
-
-/*function myBlockStyleFn(contentBlock) {
-  const type = contentBlock.getType();
-  if (type === "blockquote") {
-    return "superFancyBlockquote";
-  }
-}*/
-
-// ------------------------
 // Text Editor Component
 // ------------------------
 
@@ -122,14 +111,17 @@ export default class TextEditor extends React.Component {
    * @param snapshot
    */
   componentDidUpdate(prevProps, prevState, snapshot) {
-    const { document } = this.props;
+    const { document, readOnly } = this.props;
+
+    if (!document || !prevProps.document) {
+      return null;
+    }
 
     // If remote document has changed:
     if (
-      prevProps.document &&
-      document &&
-      (prevProps.document.value !== document.value ||
-        prevProps.document.id !== document.id)
+      document.value !== "" &&
+      ((!readOnly && prevProps.document.id !== document.id) ||
+        (readOnly && prevProps.document.value !== document.value))
     ) {
       try {
         // Update editorState with new content
@@ -139,20 +131,9 @@ export default class TextEditor extends React.Component {
           newContent,
           "change-block-data"
         );
-
-        // Get previous selection
-        const prevSelection = prevState.editorState.getSelection();
-
-        // Override new selection with old one.
-        // This is done because selection should be handled privately, so that
-        // people can write at the same time without having the text anchor constantly moving around
-        const newStateWithoutSelection = EditorState.set(newState, {
-          selection: prevSelection,
-          currentContent: newContent
-        });
         // Set local state
         this.setState({
-          editorState: newStateWithoutSelection
+          editorState: newState
         });
       } catch (error) {
         console.error(error);
@@ -249,7 +230,7 @@ export default class TextEditor extends React.Component {
     const raw = convertToRaw(contentState);
 
     // And send it the socket server as a string
-    if (this.props.document && !this.props.readOnly) {
+    if (this.props.document) {
       this.props.sendEditorState(this.props.document.id, JSON.stringify(raw));
     }
   }
