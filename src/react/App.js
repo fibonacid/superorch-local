@@ -16,7 +16,7 @@ import SideBar from "./components/SideBar/index";
 import Header from "./components/Header/index";
 import TextEditor from "./components/TextEditor/index";
 import StatusBar from "./components/StatusBar/index";
-import Tmp from "./components/Tmp";
+
 import { s_clientDisconnected } from "./actions/server/clientDisconnected";
 import { s_clientConnected } from "./actions/server/clientConnected";
 import Console from "./components/Console/index";
@@ -147,7 +147,6 @@ class App extends Component {
         <StyledContainer className="App">
           <GlobalStyle />
           <Header />
-          <Tmp />
           <StyledWrapper>
             <SideBar />
             <div
