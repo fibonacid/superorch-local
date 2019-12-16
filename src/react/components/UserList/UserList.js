@@ -15,7 +15,7 @@ function UserList(props) {
     <StyledList data-test={"list"}>
       {props.users.map((user, i) => (
         <StyledListItem data-test={"list-item"} key={i}>
-          {user.name} #{user.id}
+          {user.name}
         </StyledListItem>
       ))}
     </StyledList>
