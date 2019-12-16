@@ -9,7 +9,8 @@ describe("status reducer", () => {
       isConnected: false,
       isTryingToConnect: false,
       myUserId: 0,
-      myDocId: 0
+      myDocId: 0,
+      myScQueryIds: []
     });
   });
 
@@ -77,6 +78,50 @@ describe("status reducer", () => {
       })
     ).toMatchObject({
       myDocId: 99
+    });
+  });
+
+  it("should handle C_ADD_MY_SC_QUERY_ID", () => {
+    expect(
+      reducer(undefined, {
+        type: actionTypes.C_ADD_MY_SC_QUERY_ID,
+        scqId: 1
+      })
+    ).toMatchObject({
+      myScQueryIds: [1]
+    });
+  });
+
+  it("should handle C_UPDATE_MY_SC_QUERY_ID", () => {
+    expect(
+      reducer(
+        {
+          myScQueryIds: [1, 2]
+        },
+        {
+          type: actionTypes.C_UPDATE_MY_SC_QUERY_ID,
+          scqId: 1,
+          newId: 3
+        }
+      )
+    ).toMatchObject({
+      myScQueryIds: [3, 2]
+    });
+  });
+
+  it("should handle C_REMOVE_MY_SC_QUERY_ID", () => {
+    expect(
+      reducer(
+        {
+          myScQueryIds: [1, 2]
+        },
+        {
+          type: actionTypes.C_REMOVE_MY_SC_QUERY_ID,
+          scqId: 1
+        }
+      )
+    ).toMatchObject({
+      myScQueryIds: [2]
     });
   });
 });

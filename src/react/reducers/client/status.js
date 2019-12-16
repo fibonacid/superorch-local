@@ -6,7 +6,8 @@ const initialState = {
   isConnected: false,
   isTryingToConnect: false,
   myUserId: 0,
-  myDocId: 0
+  myDocId: 0,
+  myScQueryIds: []
 };
 
 const status = (state = initialState, action) => {
@@ -53,6 +54,23 @@ const status = (state = initialState, action) => {
       return {
         ...state,
         isLoggedIn: false
+      };
+    case actionTypes.C_ADD_MY_SC_QUERY_ID:
+      return {
+        ...state,
+        myScQueryIds: [...state.myScQueryIds, action.scqId]
+      };
+    case actionTypes.C_UPDATE_MY_SC_QUERY_ID:
+      return {
+        ...state,
+        myScQueryIds: state.myScQueryIds.map(scqId =>
+          action.scqId === scqId ? action.newId : scqId
+        )
+      };
+    case actionTypes.C_REMOVE_MY_SC_QUERY_ID:
+      return {
+        ...state,
+        myScQueryIds: state.myScQueryIds.filter(scqId => scqId !== action.scqId)
       };
     default:
       return state;

@@ -10,8 +10,18 @@ describe("scQueries reducer", () => {
     expect(
       reducer([], {
         type: actionTypes.C_CREATE_SC_QUERY,
-        scQueryId: 0,
-        scQueryData: { foo: "bar" }
+        scqId: 0,
+        scqData: { foo: "bar" }
+      })
+    ).toEqual([{ id: 0, foo: "bar" }]);
+  });
+
+  it("should handle B_SC_QUERY_CREATED", () => {
+    expect(
+      reducer([], {
+        type: actionTypes.B_SC_QUERY_CREATED,
+        scqId: 0,
+        scqData: { foo: "bar" }
       })
     ).toEqual([{ id: 0, foo: "bar" }]);
   });
@@ -25,8 +35,27 @@ describe("scQueries reducer", () => {
         ],
         {
           type: actionTypes.C_UPDATE_SC_QUERY,
-          scQueryId: 0,
-          scQueryData: { modified: true }
+          scqId: 0,
+          scqData: { modified: true }
+        }
+      )
+    ).toEqual([
+      { id: 0, modified: true },
+      { id: 1, modified: false }
+    ]);
+  });
+
+  it("should handle B_SC_QUERY_UPDATE", () => {
+    expect(
+      reducer(
+        [
+          { id: 0, modified: false },
+          { id: 1, modified: false }
+        ],
+        {
+          type: actionTypes.B_SC_QUERY_UPDATE,
+          scqId: 0,
+          scqData: { modified: true }
         }
       )
     ).toEqual([
@@ -39,7 +68,7 @@ describe("scQueries reducer", () => {
     expect(
       reducer([{ id: 0 }, { id: 1 }], {
         type: actionTypes.C_DELETE_SC_QUERY,
-        scQueryId: 1
+        scqId: 1
       })
     ).toEqual([{ id: 0 }]);
   });

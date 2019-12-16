@@ -6,30 +6,30 @@
  * @see https://medium.com/@johndyer24/building-a-production-electron-create-react-app-application-with-shared-code-using-electron-builder-c1f70f0e2649
  */
 
-const net = require('net');
-const port = process.env.PORT ? (process.env.PORT - 100) : 3000;
+const net = require("net");
+const port = process.env.PORT ? process.env.PORT - 100 : 3000;
 
 process.env.ELECTRON_START_URL = `http://localhost:${port}`;
 
 const client = new net.Socket();
 
 let startedElectron = false;
-const tryConnection = () => client.connect({port: port}, () => {
+const tryConnection = () =>
+  client.connect({ port: port }, () => {
     client.end();
-    if(!startedElectron) {
-      console.log('starting electron');
+    if (!startedElectron) {
+      console.log("starting electron");
       startedElectron = true;
-      const exec = require('child_process').exec;
-      const electron = exec('yarn run start:electron');
+      const exec = require("child_process").exec;
+      const electron = exec("yarn run start:electron");
       electron.stdout.on("data", function(data) {
         console.log("stdout: " + data.toString());
       });
     }
-  }
-);
+  });
 
 tryConnection();
 
-client.on('error', (error) => {
+client.on("error", error => {
   setTimeout(tryConnection, 1000);
 });

@@ -1,13 +1,22 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
 const url = require("url");
-const { channels } = require("../src/shared/constants");
-const { launchWSServer, transmit, broadcast } = require("./server");
+const { channels } = require("../shared/constants");
+const { launchWSServer, transmit, broadcast } = require("./ws");
+const sc = require("supercolliderjs");
 const { autoUpdater } = require("electron-updater");
-const { bootInterpreter } = require("./supercollider");
 
 let mainWindow;
 let wsServer;
+let sclang;
+
+/*
+ * This should prevent electron from displaying an error
+ * dialogue every time an error is raised
+ */
+process.on("uncaughtException", function(error) {
+  console.error(error);
+});
 
 /**
  * INSTALL EXTENSIONS
@@ -39,7 +48,7 @@ function createWindow() {
   const startUrl =
     process.env.ELECTRON_START_URL ||
     url.format({
-      pathname: path.join(__dirname, "../index.html"),
+      pathname: path.join(__dirname, "../../index.html"),
       protocol: "file:",
       slashes: true
     });
@@ -54,10 +63,8 @@ function createWindow() {
   });
   // Load index.html
   mainWindow.loadURL(startUrl);
-
-  mainWindow.loadURL(startUrl);
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  //mainWindow.webContents.openDevTools();
   // When the window is closed:
   mainWindow.on("closed", function() {
     // Delete window.
@@ -139,14 +146,38 @@ ipcMain.on("restart_app", () => {
   autoUpdater.quitAndInstall();
 });
 
+// =====================================================
+// SUPERCOLLIDER INTERPRETER
+// =====================================================
+
 // When react launch the start_supercollider event
 ipcMain.on("start_supercollider", async () => {
-  //bootServer();
-  bootInterpreter();
+  try {
+    // Boot supercollider interpreter
+    sclang = await sc.lang.boot({
+      // post verbose messages to console
+      //debug: true,
+      // echo all commands sent TO sclang to console
+      echo: true
+    });
+    // Boot supercollider sound server
+    await sclang.interpret(`s = Server.default; s.boot;`);
+    console.log("supercollider booted");
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+ipcMain.handle(channels.SUPERCOLLIDER_MESSAGE, async (event, args) => {
+  return await sclang.interpret(args.message);
 });
 
 // When react launch the stop_supercollider event
 ipcMain.on("stop_supercollider", () => {});
+
+// =====================================================
+// WEBSOCKET SERVER
+// =====================================================
 
 ipcMain.on(channels.START_WS_SERVER, event => {
   try {

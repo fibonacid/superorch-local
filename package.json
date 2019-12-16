@@ -1,24 +1,24 @@
 {
-  "name": "colliderchat-client",
-  "version": "0.0.0",
+  "name": "superorch",
+  "description": "A supercollider IDE for laptop orchestras",
   "private": true,
   "homepage": "./",
-  "main": "electron/main.js",
+  "main": "src/electron/main.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lorenzorivosecchi/colliderchat-client.git"
+    "url": "https://github.com/lorenzorivosecchi/superorch.git"
   },
   "scripts": {
-    "start": "export BROWSER=none && react-app-rewired start",
+    "start": "export BROWSER=none && react-scripts start",
     "start:electron": "export ELECTRON_START_URL=http://localhost:3000 && electron .",
     "dev": "NODE_ENV='development' nf start -p 3000",
-    "build": "react-app-rewired build",
-    "build:electron": "mkdir build/src && cp -r electron/. build/electron && cp -r src/shared/. build/src/shared",
-    "package": "electron-builder build --mac -c.extraMetadata.main=build/electron/main.js --publish never",
-    "deploy": "electron-builder build --mac --config=electron-builder.yml -c.extraMetadata.main=build/electron/main.js --publish always",
-    "test": "react-app-rewired test --env=jsdom",
-    "test:coverage": "react-app-rewired test --env=jsdom --coverage",
-    "test:update": "react-app-rewired test --env=jsdom --updateSnapshot",
+    "build": "react-scripts build",
+    "build:electron": "mkdir build/src && cp -r src/electron/. build/src/electron && cp -r src/shared/. build/src/shared",
+    "package": "electron-builder build --mac -c.extraMetadata.main=build/src/electron/main.js --publish never",
+    "deploy": "electron-builder build --mac --config=electron-builder.yml -c.extraMetadata.main=build/src/electron/main.js --publish always",
+    "test": "react-scripts test --env=jsdom",
+    "test:coverage": "react-scripts test --env=jsdom --coverage",
+    "test:update": "react-scripts test --env=jsdom --updateSnapshot",
     "eject": "react-scripts eject",
     "server": "node server/app.js"
   },
@@ -42,7 +42,6 @@
     "jest-styled-components": "^6.3.3",
     "prettier": "^1.19.1",
     "pretty-quick": "^2.0.1",
-    "react-app-rewired": "^2.1.4",
     "react-scripts": "^3.2.0",
     "redux-devtools-extension": "^2.13.8",
     "redux-saga-test-plan": "^4.0.0-rc.3",
@@ -51,7 +50,6 @@
   "dependencies": {
     "@giantmachines/redux-websocket": "^1.1.5",
     "chance": "^1.1.3",
-    "diff": "^4.0.1",
     "dotenv": "^8.2.0",
     "draft-js": "^0.11.0",
     "draftjs-utils": "^0.9.4",

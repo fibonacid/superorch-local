@@ -1,10 +1,12 @@
 import { combineReducers } from "redux";
-import base, * as fromBase from "./base";
+import base from "./base";
 import client, * as fromClient from "./client";
 import server, * as fromServer from "./server";
+import flash from "./flash";
 
 const root = combineReducers({
   base,
+  flash,
   client,
   server
 });
@@ -15,6 +17,7 @@ export default root;
 // ----------------
 
 /**
+ * Selects all documents
  *
  * @param state
  */
@@ -31,7 +34,7 @@ export const selectDocument = (state, id) =>
   fromClient.selectDocument(state.client, id);
 
 /**
- * Selects user list.
+ * Selects all users.
  *
  * @param state
  */
@@ -47,6 +50,14 @@ export const selectUser = (state, id) =>
   fromClient.selectUser(state.client, id);
 
 /**
+ * Selects all supercollider queies.
+ *
+ * @param state
+ */
+export const selectScQueries = state =>
+  fromClient.selectScQueries(state.client);
+
+/**
  * Selects a supercollider query by id.
  *
  * @param state
@@ -57,6 +68,8 @@ export const selectScQuery = (state, id) =>
 
 // Server selectors
 // ----------------
+
+export const selectClients = state => fromServer.selectClients(state.server);
 
 /**
  * Select a client by id.

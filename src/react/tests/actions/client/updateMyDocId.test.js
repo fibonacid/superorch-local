@@ -1,5 +1,5 @@
 import { actionTypes } from "../../../actions/actionTypes";
-import { c_updateMyDocId } from "../../../actions/client/updateMyDocIds";
+import { c_updateMyDocId } from "../../../actions/client/updateMyDocId";
 
 describe("c_addMyDocId action", () => {
   it("should create an action to add a new user id", () => {

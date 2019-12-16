@@ -1,18 +1,23 @@
 import { actionTypes } from "../actionTypes";
 
-export const c_createScQuery = (scQueryId, scQueryData) => ({
+export const c_createScQuery = (scqId, scqData) => ({
   type: actionTypes.C_CREATE_SC_QUERY,
-  scQueryId,
-  scQueryData
+  scqId,
+  scqData
 });
 
-export const c_updateScQuery = (scQueryId, scQueryData) => ({
+export const c_updateScQuery = (scqId, scqData) => ({
   type: actionTypes.C_UPDATE_SC_QUERY,
-  scQueryId,
-  scQueryData
+  scqId,
+  scqData
 });
 
-export const c_deleteScQuery = scQueryId => ({
+export const c_deleteScQuery = scqId => ({
   type: actionTypes.C_DELETE_SC_QUERY,
-  scQueryId
+  scqId
+});
+
+export const c_appendScQuery = scqData => ({
+  type: actionTypes.C_APPEND_SC_QUERY,
+  scqData
 });

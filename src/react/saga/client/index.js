@@ -12,12 +12,20 @@ import { c_createDocumentRequestWatcher } from "./requests/createDocumentRequest
 import { c_updateDocumentDataRequestWatcher } from "./requests/updateDocumentDataRequest";
 import { c_updateDocumentWatcher } from "./updateDocument";
 import { c_getDocumentListRequestWatcher } from "./requests/getDocumentListRequest";
+import { c_appendScQueryWatcher } from "./appendScQuery";
+import { c_createScQueryWatcher } from "./createScQuery";
+import { c_createScQueryRequestWatcher } from "./requests/createScQueryRequest";
+import { c_execScQueryRequestWatcher } from "./requests/execScQueryRequest";
+import { c_getScQueryDataRequestWatcher } from "./requests/getScQueryDataRequest";
+import { c_updateScQueryDataRequestWatcher } from "./requests/updateScQueryDataRequest";
 
 export function* clientSagas() {
   yield all([
     c_messageWatcher(),
     c_updateUserWatcher(),
     c_updateDocumentWatcher(),
+    c_appendScQueryWatcher(),
+    c_createScQueryWatcher(),
     // Requests
     c_loginRequestWatcher(),
     c_loginSuccessWatcher(),
@@ -28,6 +36,10 @@ export function* clientSagas() {
     c_updateUserDataRequestWatcher(),
     c_createDocumentRequestWatcher(),
     c_updateDocumentDataRequestWatcher(),
-    c_getDocumentListRequestWatcher()
+    c_getDocumentListRequestWatcher(),
+    c_createScQueryRequestWatcher(),
+    c_execScQueryRequestWatcher(),
+    c_getScQueryDataRequestWatcher(),
+    c_updateScQueryDataRequestWatcher()
   ]);
 }

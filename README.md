@@ -1,10 +1,37 @@
-# colliderchat-client
+# superorch
 
-[![Build Status](https://travis-ci.org/lorenzorivosecchi/colliderchat-client.svg?branch=master)](https://travis-ci.org/lorenzorivosecchi/colliderchat-client)[![codecov](https://codecov.io/gh/lorenzorivosecchi/colliderchat-client/branch/master/graph/badge.svg)](https://codecov.io/gh/lorenzorivosecchi/colliderchat-client)
+> A supercollider IDE for laptop orchestras
 
-A collaborative live coding platform for SuperCollider
+[![Build Status](https://travis-ci.org/lorenzorivosecchi/colliderchat-client.svg?branch=master)](https://travis-ci.org/lorenzorivosecchi/colliderchat-client)
+[![codecov](https://codecov.io/gh/lorenzorivosecchi/colliderchat-client/branch/master/graph/badge.svg)](https://codecov.io/gh/lorenzorivosecchi/colliderchat-client)
 
-### References
+This application provides a simple system to connect supercollider musicians over a local network.
 
-- [Building a production electron/create-react-app application with shared code using electron-builder](https://medium.com/@johndyer24/building-a-production-electron-create-react-app-application-with-shared-code-using-electron-builder-c1f70f0e2649)
-- [Creating and deploying an auto-updating Electron app for Mac and Windows using electron-builder](https://medium.com/@johndyer24/creating-and-deploying-an-auto-updating-electron-app-for-mac-and-windows-using-electron-builder-6a3982c0cee6)
+## Development setup
+
+First, install node modules:
+
+```sh
+yarn install
+```
+
+To run the development build:
+
+```sh
+yarn dev
+```
+
+To create a production build:
+
+```sh
+yarn build && yarn build:electron
+yarn package
+```
+
+## Contributing
+
+1. Fork it (<https://github.com/lorenzorivosecchi/superorch.git>)
+2. Create your feature branch (`git checkout -b feature/fooBar`)
+3. Commit your changes (`git commit -am 'Add some fooBar'`)
+4. Push to the branch (`git push origin feature/fooBar`)
+5. Create a new Pull Request

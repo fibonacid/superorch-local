@@ -11,10 +11,6 @@ const StyledContainer = styled.div`
   justify-content: center;
 `;
 
-const StyledTitle = styled.h1`
-  /*text-align: center;*/
-`;
-
 function Header(props) {
   return (
     <StyledContainer data-test={"HeaderComponent"}>

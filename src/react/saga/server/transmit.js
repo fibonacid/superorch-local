@@ -11,7 +11,7 @@ export function* s_transmitSaga({ clientId, message }) {
 
   if (ipcRenderer) {
     // Send to electron main process
-    ipcRenderer.send(channels.WEBSOCKET_TRANSMIT, {
+    yield ipcRenderer.send(channels.WEBSOCKET_TRANSMIT, {
       clientId,
       message
     });
