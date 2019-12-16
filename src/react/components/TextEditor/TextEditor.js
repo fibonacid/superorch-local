@@ -6,7 +6,8 @@ import {
   EditorState,
   getDefaultKeyBinding,
   CompositeDecorator,
-  KeyBindingUtil
+  KeyBindingUtil,
+  convertFromRaw
 } from "draft-js";
 
 import LinkEntity from "./Entities/Link/Link";
@@ -109,6 +110,52 @@ export default class TextEditor extends React.Component {
   }
 
   /**
+   * COMPONENT DID UPDATE
+   * ==================================================
+   * This class is called every time the component
+   * needs to update it's internal state.
+   * Example: when setState is called or when its props
+   * change.
+   *
+   * @param prevProps
+   * @param prevState
+   * @param snapshot
+   */
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    const { document } = this.props;
+    // If remote document has changed:
+    if (
+      this.props.readOnly &&
+      document &&
+      prevProps.document &&
+      prevProps.document.value !== document.value
+    ) {
+      // Update editorState with new content
+      const newContent = convertFromRaw(JSON.parse(document.value));
+      const newState = EditorState.push(
+        this.state.editorState,
+        newContent,
+        "change-block-data"
+      );
+
+      // Get previous selection
+      const prevSelection = prevState.editorState.getSelection();
+
+      // Override new selection with old one.
+      // This is done because selection should be handled privately, so that
+      // people can write at the same time without having the text anchor constantly moving around
+      const newStateWithoutSelection = EditorState.set(newState, {
+        selection: prevSelection,
+        currentContent: newContent
+      });
+      // Set local state
+      this.setState({
+        editorState: newStateWithoutSelection
+      });
+    }
+  }
+
+  /**
    * HANDLE KEY COMMAND
    * ==================================================
    * This function is called every time a key command
@@ -197,7 +244,9 @@ export default class TextEditor extends React.Component {
     const raw = convertToRaw(contentState);
 
     // And send it the socket server as a string
-    this.props.sendEditorState(this.props.docId, JSON.stringify(raw));
+    if (this.props.document && !this.props.readOnly) {
+      this.props.sendEditorState(this.props.document.id, JSON.stringify(raw));
+    }
   }
 
   /**
