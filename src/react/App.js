@@ -20,7 +20,7 @@ import SideBar from "./components/SideBar/index";
 import Header from "./components/Header/index";
 import StatusBar from "./components/StatusBar/index";
 import MainBar from "./components/MainBar/MainBar";
-import Console from "./components/Console/index";
+import { s_serverStarted } from "./actions/server/serverStarted";
 
 /* =============================================== */
 /*    REDUX                                        */
@@ -117,6 +117,10 @@ class App extends Component {
 
       // Websocket messages
       // ------------------
+      ipcRenderer.on(channels.WS_SERVER_STARTED, (event, arg) => {
+        store.dispatch(s_serverStarted(arg));
+      });
+
       ipcRenderer.on(channels.WEBSOCKET_OPEN, (event, arg) => {
         store.dispatch(s_clientConnected(arg.clientId, arg.clientData));
       });
