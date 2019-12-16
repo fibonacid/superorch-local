@@ -7,6 +7,7 @@ module.exports = {
     SUPERCOLLIDER_RESPONSE: "supercollider_response",
     // Websocket Server
     START_WS_SERVER: "start_ws_server",
+    WS_SERVER_STARTED: "ws_server_started",
     WEBSOCKET_OPEN: "websocket_open",
     WEBSOCKET_CLOSED: "websocket_closed",
     WEBSOCKET_MESSAGE: "websocket_message",
