@@ -39,4 +39,10 @@ function MyUserTag(props) {
   );
 }
 
+MyUserTag.defaultProps = {
+  user: {
+    name: "Anonymous"
+  }
+};
+
 export default MyUserTag;
