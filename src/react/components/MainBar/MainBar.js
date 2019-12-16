@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import MyUserTag from "../MyUserTag/index";
+import MyUserTag from "../UserTag/index";
 import TextEditor from "../TextEditor/index";
 import Console from "../Console/index";
 

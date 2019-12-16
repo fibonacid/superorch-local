@@ -9,7 +9,7 @@ const StyledContainer = styled.div`
   align-items: center;
 `;
 
-function MyUserTag(props) {
+function UserTag(props) {
   const [isEditable, setEditable] = useState(false);
   const [userName, setUserName] = useState(props.user.name);
 
@@ -39,10 +39,10 @@ function MyUserTag(props) {
   );
 }
 
-MyUserTag.defaultProps = {
+UserTag.defaultProps = {
   user: {
     name: "Anonymous"
   }
 };
 
-export default MyUserTag;
+export default UserTag;

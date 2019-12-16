@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import MyUserTag from "./MyUserTag";
+import UserTag from "./UserTag";
 import { selectUser } from "../../reducers/root";
 import { c_updateUser } from "../../actions/client/crudUsers";
 
@@ -11,4 +11,4 @@ const mapStateToProps = state => ({
   user: selectUser(state, state.client.status.myUserId)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyUserTag);
+export default connect(mapStateToProps, mapDispatchToProps)(UserTag);
