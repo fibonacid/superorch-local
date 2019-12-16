@@ -25,15 +25,6 @@ const StyledWrapper = styled.div`
   padding: 5px;
 `;
 
-const StyledHeader = styled.div`
-  font-family: sans-serif;
-  font-size: 18px;
-  text-align: center;
-  border-bottom: solid 1px black;
-  padding: 5px;
-  margin-bottom: 5px;
-`;
-
 // -----------------------
 // Key Binding Function
 // -----------------------
@@ -234,7 +225,6 @@ export default class TextEditor extends React.Component {
     const { user } = this.props;
     return (
       <StyledWrapper data-test={"TextEditorComponent"} onClick={this.focus}>
-        <StyledHeader>{user ? user.name : ""}</StyledHeader>
         <Editor
           ref={this.setDomEditorRef}
           editorState={this.state.editorState}
