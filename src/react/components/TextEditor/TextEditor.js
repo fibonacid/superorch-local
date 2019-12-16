@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import {
   convertToRaw,
   Editor,
@@ -23,6 +23,11 @@ const StyledWrapper = styled.div`
   overflow-y: auto;
   font-family: monospace;
   padding: 5px;
+  ${props =>
+    props.readOnly &&
+    css`
+      cursor: not-allowed;
+    `}
 `;
 
 // -----------------------
@@ -90,8 +95,7 @@ export default class TextEditor extends React.Component {
 
     // Initialize component state.
     this.state = {
-      editorState: EditorState.createEmpty(compositeDecorator),
-      readOnly: false
+      editorState: EditorState.createEmpty(compositeDecorator)
     };
 
     this.setDomEditorRef = ref => (this.domEditor = ref);
@@ -223,7 +227,11 @@ export default class TextEditor extends React.Component {
    */
   render() {
     return (
-      <StyledWrapper data-test={"TextEditorComponent"} onClick={this.focus}>
+      <StyledWrapper
+        data-test={"TextEditorComponent"}
+        onClick={this.focus}
+        readOnly={this.props.readOnly}
+      >
         <Editor
           ref={this.setDomEditorRef}
           editorState={this.state.editorState}
@@ -231,7 +239,7 @@ export default class TextEditor extends React.Component {
           handleKeyCommand={this.handleKeyCommand}
           keyBindingFn={keyBindingFn}
           blockStyleFn={this.blockStyleFn}
-          readOnly={this.state.readOnly}
+          readOnly={this.props.readOnly}
         />
       </StyledWrapper>
     );
