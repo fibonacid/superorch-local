@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React from "react";
 import styled from "styled-components";
 
@@ -18,9 +19,21 @@ function UserList(props) {
     props.displayUser(userId);
   };
 
+  let users = [];
+  let myUser = props.users.find(user => user.id === props.myUserId);
+
+  if (myUser) {
+    users.push(myUser);
+  }
+
+  let orderedUsers = [
+    ...users,
+    ...props.users.filter(user => user.id !== props.myUserId)
+  ];
+
   return (
     <StyledList data-test={"list"}>
-      {props.users.map((user, i) => (
+      {orderedUsers.map((user, i) => (
         <StyledListItem
           key={i}
           data-test={"list-item"}
