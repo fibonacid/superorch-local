@@ -7,11 +7,17 @@ const StyledList = styled.ul`
 `;
 
 const StyledListItem = styled.li`
-  padding: 5px;
+  padding: 8px 24px;
   border-bottom: solid 1px black;
   display: flex;
   font-size: 15px;
   cursor: pointer;
+  position: relative;
+`;
+
+const StyledArrow = styled.span`
+  position: absolute;
+  left: 8px;
 `;
 
 function UserList(props) {
@@ -39,7 +45,8 @@ function UserList(props) {
           data-test={"list-item"}
           onClick={() => handleClick(user)}
         >
-          {user.id === props.myUserId ? "You" : user.name}
+          <span>{user.id === props.myUserId ? "You" : user.name}</span>
+          {user.id === props.displayedUser && <StyledArrow>{">"}</StyledArrow>}
         </StyledListItem>
       ))}
     </StyledList>

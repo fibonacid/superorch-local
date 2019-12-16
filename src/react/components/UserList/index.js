@@ -8,6 +8,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
+  displayedUser: state.base.displayedUser,
   myUserId: state.client.status.myUserId,
   users: selectUsers(state)
 });
