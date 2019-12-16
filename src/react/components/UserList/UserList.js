@@ -15,7 +15,7 @@ const StyledListItem = styled.li`
 
 function UserList(props) {
   const handleClick = ({ id: userId }) => {
-    console.log(userId);
+    props.displayUser(userId);
   };
 
   return (
