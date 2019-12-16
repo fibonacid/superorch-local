@@ -8,7 +8,8 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
-  user: selectUser(state, state.client.status.myUserId)
+  myUserId: state.client.status.myUserId,
+  user: selectUser(state, state.base.displayedUser)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserTag);

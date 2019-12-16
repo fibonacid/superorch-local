@@ -32,7 +32,12 @@ function UserTag(props) {
       ) : (
         <>
           <span>{props.user.name}</span>
-          <button onClick={handleEdit}>Edit</button>
+          <button
+            disabled={props.user.id !== props.myUserId}
+            onClick={handleEdit}
+          >
+            Edit
+          </button>
         </>
       )}
     </StyledContainer>
