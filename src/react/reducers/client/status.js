@@ -1,7 +1,6 @@
 import { actionTypes } from "../../actions/actionTypes";
 
 const initialState = {
-  url: "ws://localhost:8989",
   isLoggedIn: false,
   isConnected: false,
   isTryingToConnect: false,
