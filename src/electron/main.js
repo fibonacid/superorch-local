@@ -95,14 +95,6 @@ app.on("window-all-closed", function() {
   }
 });
 
-// Before app quits
-app.on("before-quit", function() {
-  if (wsServer) {
-    // Destroy WebSocket server
-    wsServer.close();
-  }
-});
-
 // When the user try to relaunch the app:
 app.on("activate", function() {
   // If there is at least one window open:
@@ -211,7 +203,7 @@ ipcMain.on(channels.START_WS_SERVER, event => {
   };
 
   // Create http server with websockets
-  const {server, wss} = createServer({
+  const { server, wss } = createServer({
     handleSocketOpen,
     handleSocketClose,
     handleSocketMessage
