@@ -115,6 +115,9 @@ class App extends Component {
         ipcRenderer.removeAllListeners(channels.APP_INFO);
       });
 
+      ipcRenderer.send(channels.START_SUPERCOLLIDER);
+      ipcRenderer.send(channels.START_WS_SERVER);
+
       // Websocket messages
       // ------------------
       ipcRenderer.on(channels.WS_SERVER_STARTED, (event, arg) => {
@@ -130,18 +133,6 @@ class App extends Component {
       ipcRenderer.on(channels.WEBSOCKET_MESSAGE, (event, arg) => {
         store.dispatch(s_message(arg.clientId, arg.message));
       });
-    }
-  }
-
-  componentDidMount() {
-    // Connect to websocket
-    const url = process.env.REACT_APP_SOCKET_URL;
-    store.dispatch(connectSocket(url));
-
-    // Request start of SuperCollider server
-    if (ipcRenderer) {
-      ipcRenderer.send(channels.START_SUPERCOLLIDER);
-      ipcRenderer.send(channels.START_WS_SERVER);
     }
   }
 
