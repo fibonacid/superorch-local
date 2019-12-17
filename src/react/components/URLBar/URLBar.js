@@ -55,13 +55,18 @@ const StyledRefresh = styled(IoMdRefresh)`
  * @constructor
  */
 function URLBar(props) {
+  const [originalUrl] = useState(props.url);
   const [url, setUrl] = useState(props.url);
   const [modified, setModified] = useState(false);
 
   useEffect(() => {
-    setUrl(props.url);
     setModified(url !== props.url);
-  }, [url, props.url]);
+  }, [url]);
+
+  useEffect(() => {
+    setUrl(props.url);
+    setModified(true);
+  }, [props.url]);
 
   function handleReconnect() {
     props.connect(url);
@@ -76,6 +81,7 @@ function URLBar(props) {
       <StyledInput
         data-test={"input"}
         type="text"
+        placeholder={originalUrl}
         onChange={e => setUrl(e.target.value)}
         value={url}
       />
