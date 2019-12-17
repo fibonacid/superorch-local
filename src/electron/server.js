@@ -25,13 +25,14 @@ function createServer(options) {
   // Else, if app runs in production:
   else {
     // Serve react app from the files located
-    // inside the build folder:
+    // inside the asar archive
 
     // Include static assets
-    app.use("/static", express.static(path.join(__dirname, "../static")));
+    app.use("/static", express.static(path.join(__dirname, "/../../static")));
     // Respond with index.html
     app.get("/", function(req, res) {
-      res.sendFile(path.join(__dirname, "../index.html"));
+      //res.sendFile(path.join(__dirname, "./index.html"));
+      res.sendFile(path.join(__dirname, "/../../index.html"));
     });
   }
 
