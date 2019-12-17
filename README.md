@@ -7,9 +7,27 @@
 
 This application provides a simple system to connect supercollider musicians over a local network.
 
-## Development setup
+## Requirements
 
-First, install node modules:
+In order to produce any sound the app requires a copy of supercollider to be installed on the user machine. If you don't have it already, go to the official [download page](https://supercollider.github.io/download) and install a version of the software for your operating system.
+
+Make sure to place the application folder in the default location for your operating system, otherwise superorch won't be able to find it automatically.
+
+## Development
+
+Clone the repository:
+
+```sh
+git clone git@github.com:lorenzorivosecchi/superorch.git
+```
+
+Move inside the directory
+
+```sh
+cd superorch
+```
+
+Install the dependencies:
 
 ```sh
 yarn install
@@ -20,6 +38,18 @@ To run the development build:
 ```sh
 yarn dev
 ```
+
+If the install script notified you that it could not find sclang or scsynth
+then create a file called `.supercollider.yaml` and paste the following text.
+
+```yaml
+sclang: /your/path/of/choice/sclang
+scsynth: /your/path/of/choice/scsynth
+```
+
+Make sure to replace `/your/path/of/choice` with an actual path for the indicated binaries.
+
+## Production
 
 To create a production build:
 
