@@ -58,6 +58,13 @@ yarn build && yarn build:electron
 yarn package
 ```
 
+## To Do
+
+- Increase test coverage
+- Add optional password authentication
+- Add direct messaging between users
+- Prevent override of supercollider code across users
+
 ## Contributing
 
 1. Fork it (<https://github.com/lorenzorivosecchi/superorch.git>)
