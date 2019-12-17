@@ -12,17 +12,23 @@ const StyledContainer = styled.div`
 `;
 
 function StatusBar(props) {
-  const { appName, appVersion } = props;
-  const { address, port } = props.server;
+  const { appName, appVersion, server } = props;
+
+  const handleUrlClick = () => {
+    props.openExternalLink(server.url);
+  };
+
   return (
     <StyledContainer data-test={"StatusBarComponent"}>
       <span data-test={"app-info"}>
         {appName} {appVersion}
       </span>
-      {props.server.isRunning && address && port ? (
-        <a href={`http://${address}:${port}`}>Server online</a>
-      ) : (
+      {!server.isRunning ? (
         <span>Server offline</span>
+      ) : (
+        <a href="#" onClick={handleUrlClick}>
+          Server online
+        </a>
       )}
     </StyledContainer>
   );
