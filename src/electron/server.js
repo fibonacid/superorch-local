@@ -64,7 +64,7 @@ function createServer(options) {
     });
   });
 
-  return server;
+  return {server, wss};
 }
 
 /**

@@ -211,7 +211,7 @@ ipcMain.on(channels.START_WS_SERVER, event => {
   };
 
   // Create http server with websockets
-  const server = createServer({
+  const {server, wss} = createServer({
     handleSocketOpen,
     handleSocketClose,
     handleSocketMessage
@@ -220,6 +220,12 @@ ipcMain.on(channels.START_WS_SERVER, event => {
   // Activate server on port 8000
   server.listen(8000);
 
+  // Before app quits
+  app.on("before-quit", function() {
+    // Shut down server
+    server.close();
+  });
+
   event.sender.send(channels.WS_SERVER_STARTED, {
     address: require("ip").address(),
     port: server.address().port
@@ -227,11 +233,11 @@ ipcMain.on(channels.START_WS_SERVER, event => {
 
   // When server wants to transmit a message:
   ipcMain.on(channels.WEBSOCKET_TRANSMIT, (event, args) => {
-    transmit(server, args.clientId, args.message);
+    transmit(wss, args.clientId, args.message);
   });
 
   // When server wants to broadcast a message:
   ipcMain.on(channels.WEBSOCKET_BROADCAST, (event, args) => {
-    broadcast(server, args.clientId, args.message);
+    broadcast(wss, args.clientId, args.message);
   });
 });
