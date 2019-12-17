@@ -20,10 +20,7 @@ function StatusBar(props) {
         {appName} {appVersion}
       </span>
       {props.server.isRunning && address && port ? (
-        <div>
-          <span>Server online</span>
-          {address && port && <span> on {`ws://${address}:${port}`}</span>}
-        </div>
+        <a href={`http://${address}:${port}`}>Server online</a>
       ) : (
         <span>Server offline</span>
       )}
