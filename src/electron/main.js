@@ -215,7 +215,8 @@ ipcMain.on(channels.START_WS_SERVER, event => {
   });
 
   // Activate server on port 8000
-  server.listen(8000);
+  const port = process.env.SERVER_PORT || 8000;
+  server.listen(port);
 
   // Before app quits
   app.on("before-quit", function() {
