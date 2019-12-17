@@ -1,4 +1,5 @@
 import { actionTypes } from "../actions/actionTypes";
+import { channels } from "../../shared/constants";
 import { takeLatest } from "redux-saga/effects";
 
 export function* openExternalLinkWatcher() {
