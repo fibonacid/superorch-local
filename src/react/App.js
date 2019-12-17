@@ -122,6 +122,8 @@ class App extends Component {
       // ------------------
       ipcRenderer.on(channels.WS_SERVER_STARTED, (event, arg) => {
         store.dispatch(s_serverStarted(arg));
+        const { server } = store.getState();
+        store.dispatch(connectSocket(server.status.wsEndpoint));
       });
 
       ipcRenderer.on(channels.WEBSOCKET_OPEN, (event, arg) => {
@@ -133,6 +135,13 @@ class App extends Component {
       ipcRenderer.on(channels.WEBSOCKET_MESSAGE, (event, arg) => {
         store.dispatch(s_message(arg.clientId, arg.message));
       });
+    }
+  }
+
+  componentDidMount() {
+    if (!ipcRenderer) {
+      const port = process.env.SERVER_PORT || 8000;
+      store.dispatch(connectSocket(`ws://localhost:${port}`));
     }
   }
 
