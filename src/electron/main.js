@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require("electron");
+const { app, BrowserWindow, ipcMain, shell } = require("electron");
 const path = require("path");
 const url = require("url");
 const { channels } = require("../shared/constants");
@@ -129,6 +129,11 @@ ipcMain.on(channels.APP_INFO, event => {
     appName: app.getName(),
     appVersion: app.getVersion()
   });
+});
+
+// Open external link
+ipcMain.on(channels.OPEN_EXT_LINK, (event, arg) => {
+  shell.openExternal(arg).then(r => console.log(r));
 });
 
 // When react launch the restart_app event:
