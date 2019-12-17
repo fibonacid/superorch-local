@@ -11,8 +11,11 @@ const path = require("path");
 function createServer(options) {
   const app = express();
 
-  // If app runs in development mode:
-  if (process.env.NODE_ENV === "development") {
+  // If it's not a production environment
+  if (
+    process.env.NODE_ENV === "development" ||
+    process.env.NODE_ENV === "test"
+  ) {
     // Serve react app using a proxy connected to
     // the development server.
 
@@ -20,7 +23,7 @@ function createServer(options) {
     app.use("/", proxy(process.env.ELECTRON_START_URL));
   }
   // Else, if app runs in production:
-  else if (process.env.NODE_ENV === "production") {
+  else {
     // Serve react app from the files located
     // inside the build folder:
 
@@ -64,7 +67,7 @@ function createServer(options) {
     });
   });
 
-  return {server, wss};
+  return { server, wss };
 }
 
 /**
