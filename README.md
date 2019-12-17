@@ -58,6 +58,46 @@ yarn build && yarn build:electron
 yarn package
 ```
 
+If build fails for windows or linux targets you have to run electron builder on a virtual machine. This is how i managed to do it with docker.
+
+Firstly you will need to install docker on your machine.
+
+When docker is installed you can open a terminal and paste this comand:
+
+```sh
+docker run --rm -ti \
+ --env-file <(env | grep -iE 'DEBUG|NODE_|ELECTRON_|YARN_|NPM_|CI|CIRCLE|TRAVIS_TAG|TRAVIS|TRAVIS_REPO_|TRAVIS_BUILD_|TRAVIS_BRANCH|TRAVIS_PULL_REQUEST_|APPVEYOR_|CSC_|GH_|GITHUB_|BT_|AWS_|STRIP|BUILD_') \
+ --env ELECTRON_CACHE="/root/.cache/electron" \
+ --env ELECTRON_BUILDER_CACHE="/root/.cache/electron-builder" \
+ -v ${PWD}:/project \
+ -v ${PWD##*/}-node-modules:/project/node_modules \
+ -v ~/.cache/electron:/root/.cache/electron \
+ -v ~/.cache/electron-builder:/root/.cache/electron-builder \
+ electronuserland/builder:wine
+```
+
+If the command was successful you terminal prompt should display a text like this `root@b67354f23c46:/project#`.
+
+If that's the case you can go ahead and install the project dependencies.
+
+```sh
+yarn install
+```
+
+Then build the app and create the package
+
+```sh
+yarn build && yarn build:electron
+yarn package --win --linux
+```
+
+To deploy the package to github you have to expose your account token into the environment variables and then run:
+
+```sh
+export GH_TOKEN=123456789
+yarn deploy --win --linux -c.snap.publish=github
+```
+
 ## To Do
 
 - Increase test coverage
