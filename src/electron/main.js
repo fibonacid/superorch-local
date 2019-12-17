@@ -147,7 +147,7 @@ ipcMain.on("restart_app", () => {
 // =====================================================
 
 // When react launch the start_supercollider event
-ipcMain.on("start_supercollider", async () => {
+ipcMain.on(channels.START_SUPERCOLLIDER, async () => {
   try {
     // Boot supercollider interpreter
     sclang = await sc.lang.boot({
