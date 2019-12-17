@@ -123,4 +123,17 @@ describe("status reducer", () => {
       myScQueryIds: [2]
     });
   });
+
+  it("should handle S_SERVER_STARTED", () => {
+    const address = "127.0.0";
+    const port = 8000;
+    expect(
+      reducer(undefined, {
+        type: actionTypes.S_SERVER_STARTED,
+        data: { address, port }
+      })
+    ).toMatchObject({
+      url: `ws://${address}:${port}`
+    });
+  });
 });
