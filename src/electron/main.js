@@ -2,12 +2,11 @@ const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
 const url = require("url");
 const { channels } = require("../shared/constants");
-const { launchWSServer, transmit, broadcast } = require("./ws");
+const { createServer, transmit, broadcast } = require("./server");
 const sc = require("supercolliderjs");
 const { autoUpdater } = require("electron-updater");
 
 let mainWindow;
-let wsServer;
 let sclang;
 
 /*
@@ -179,50 +178,60 @@ ipcMain.on("stop_supercollider", () => {});
 // WEBSOCKET SERVER
 // =====================================================
 
+/**
+ *
+ */
 ipcMain.on(channels.START_WS_SERVER, event => {
-  try {
-    // Create server
-    wsServer = launchWSServer({
-      // When client connects
-      onOpen: clientId => {
-        event.sender.send(channels.WEBSOCKET_OPEN, {
-          clientId
-        });
-      },
+  console.log(channels.START_WS_SERVER);
 
-      // When client disconnects:
-      onClose: (clientId, description) => {
-        event.sender.send(channels.WEBSOCKET_CLOSED, {
-          clientId,
-          description
-        });
-      },
-      // When server received a message:
-      onMessage: (clientId, message) => {
-        event.sender.send(channels.WEBSOCKET_MESSAGE, {
-          clientId,
-          message
-        });
-      }
+  // When a socket connection is made:
+  // --------------------------------
+  const handleSocketOpen = clientId => {
+    event.sender.send(channels.WEBSOCKET_OPEN, {
+      clientId
     });
+  };
 
-    const ip = require("ip");
-
-    event.sender.send(channels.WS_SERVER_STARTED, {
-      address: ip.address(),
-      port: wsServer.address().port
+  // When a socket connection is lost
+  // --------------------------------
+  const handleSocketClose = (clientId, description) => {
+    event.sender.send(channels.WEBSOCKET_CLOSED, {
+      clientId,
+      description
     });
+  };
 
-    // When server wants to transmit a message:
-    ipcMain.on(channels.WEBSOCKET_TRANSMIT, (event, args) => {
-      transmit(wsServer, args.clientId, args.message);
+  // When a client sends a message
+  // --------------------------------
+  const handleSocketMessage = (clientId, message) => {
+    event.sender.send(channels.WEBSOCKET_MESSAGE, {
+      clientId,
+      message
     });
+  };
 
-    // When server wants to broadcast a message:
-    ipcMain.on(channels.WEBSOCKET_BROADCAST, (event, args) => {
-      broadcast(wsServer, args.clientId, args.message);
-    });
-  } catch (error) {
-    console.error(error.message);
-  }
+  // Create http server with websockets
+  const server = createServer({
+    handleSocketOpen,
+    handleSocketClose,
+    handleSocketMessage
+  });
+
+  // Activate server on port 8000
+  server.listen(8000);
+
+  event.sender.send(channels.WS_SERVER_STARTED, {
+    address: require("ip").address(),
+    port: server.address().port
+  });
+
+  // When server wants to transmit a message:
+  ipcMain.on(channels.WEBSOCKET_TRANSMIT, (event, args) => {
+    transmit(server, args.clientId, args.message);
+  });
+
+  // When server wants to broadcast a message:
+  ipcMain.on(channels.WEBSOCKET_BROADCAST, (event, args) => {
+    broadcast(server, args.clientId, args.message);
+  });
 });
