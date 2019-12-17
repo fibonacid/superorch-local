@@ -9,7 +9,7 @@ describe("status reducer", () => {
   });
 
   it("should handle S_SERVER_STARTED", () => {
-    const data = { foo: "bar" };
+    const data = { port: 8000, address: "127.0.0.1" };
     expect(
       reducer(undefined, {
         type: actionTypes.S_SERVER_STARTED,
@@ -17,7 +17,8 @@ describe("status reducer", () => {
       })
     ).toMatchObject({
       isRunning: true,
-      ...data
+      url: "http://127.0.0.1:8000",
+      wsEndpoint: "ws://127.0.0.1:8000"
     });
   });
 });

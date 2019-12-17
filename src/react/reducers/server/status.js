@@ -7,10 +7,12 @@ const initialState = {
 export default function status(state = initialState, action) {
   switch (action.type) {
     case actionTypes.S_SERVER_STARTED:
+      const { address, port } = action.data;
       return {
         ...state,
         isRunning: true,
-        ...action.data
+        url: `http://${address}:${port}`,
+        wsEndpoint: `ws://${address}:${port}`
       };
     default:
       return state;
