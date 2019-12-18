@@ -1,6 +1,6 @@
 import { channels } from "../../../shared/constants";
 import { actionTypes } from "../../actions/actionTypes";
-import { takeLatest } from "redux-saga/effects";
+import { takeLatest, call } from "redux-saga/effects";
 
 export function* s_transmitWatcher() {
   yield takeLatest(actionTypes.S_TRANSMIT, s_transmitSaga);
@@ -11,7 +11,7 @@ export function* s_transmitSaga({ clientId, message }) {
 
   if (ipcRenderer) {
     // Send to electron main process
-    yield ipcRenderer.send(channels.WEBSOCKET_TRANSMIT, {
+    yield call(ipcRenderer.send, channels.WEBSOCKET_TRANSMIT, {
       clientId,
       message
     });
