@@ -1,6 +1,13 @@
 import { actionTypes } from "../../actions/actionTypes";
 import { statusCodes } from "../../utils/constants";
-import { takeLatest, put, select, call } from "redux-saga/effects";
+import {
+  takeLatest,
+  put,
+  select,
+  call,
+  cancel,
+  take
+} from "redux-saga/effects";
 import { s_loginResponseSaga } from "./responses/loginResponse";
 import { s_logoutResponseSaga } from "./responses/logoutResponse";
 import { s_getUserListResponseSaga } from "./responses/getUserListResponse";
@@ -17,6 +24,9 @@ import { s_updateScQueryDataResponseSaga } from "./responses/updateScQueryDataRe
 
 export function* s_messageWatcher() {
   yield takeLatest(actionTypes.S_MESSAGE, s_messageSaga);
+
+  yield take(actionTypes.S_MESSAGE_ERROR);
+  yield cancel(s_messageSaga);
 }
 
 export function* s_messageSaga(action) {
@@ -47,7 +57,7 @@ export function* s_messageSaga(action) {
     // If client is not logged in:
     if (!isLoggedIn) {
       // Send error message and leave.
-      return yield put(
+      yield put(
         s_transmit(clientId, s_messageError(400, `Log in is required`))
       );
     }
