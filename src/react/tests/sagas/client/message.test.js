@@ -90,8 +90,50 @@ describe("c_messageWatcher", () => {
         .run()
     );
   });
-  it.skip("should handle message S_GET_USER_LIST_SUCCESS", () => {});
-  it.skip("should handle message S_GET_USER_LIST_ERROR", () => {});
+  it("should handle message S_GET_USER_LIST_SUCCESS", () => {
+    const userList = [{}, {}, {}, {}];
+    return (
+      expectSaga(c_messageWatcher)
+        .put({
+          type: actionTypes.S_GET_USER_LIST_SUCCESS,
+          userList
+        })
+        // Dispatch any actions that the saga will `take`.
+        .dispatch({
+          type: actionTypes.C_MESSAGE,
+          payload: {
+            message: JSON.stringify({
+              type: actionTypes.S_GET_USER_LIST_SUCCESS,
+              userList
+            })
+          }
+        })
+        // Start the test. Returns a Promise.
+        .run()
+    );
+  });
+  it("should handle message S_GET_USER_LIST_ERROR", () => {
+    const error = { status: 500, message: statusCodes[500] };
+    return (
+      expectSaga(c_messageWatcher)
+        .put({
+          type: actionTypes.S_GET_USER_LIST_ERROR,
+          error
+        })
+        // Dispatch any actions that the saga will `take`.
+        .dispatch({
+          type: actionTypes.C_MESSAGE,
+          payload: {
+            message: JSON.stringify({
+              type: actionTypes.S_GET_USER_LIST_ERROR,
+              error
+            })
+          }
+        })
+        // Start the test. Returns a Promise.
+        .run()
+    );
+  });
   it.skip("should handle message S_UPDATE_USER_DATA_SUCCESS", () => {});
   it.skip("should handle message S_UPDATE_USER_DATA_ERROR", () => {});
   it.skip("should handle message S_GET_DOCUMENT_LIST_SUCCESS", () => {});
