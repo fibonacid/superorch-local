@@ -5,11 +5,11 @@ import { selectUser, selectClient } from "../../reducers/root";
 import { s_broadcast } from "../../actions/server/broadcast";
 import { b_userLeft } from "../../actions/broadcast/userLeft";
 
-export function* clientDisconnectedWatcher() {
-  yield takeLatest(actionTypes.S_CLIENT_DISCONNECTED, clientDisconnectedSaga);
+export function* s_clientDisconnectedWatcher() {
+  yield takeLatest(actionTypes.S_CLIENT_DISCONNECTED, s_clientDisconnectedSaga);
 }
 
-export function* clientDisconnectedSaga(action) {
+export function* s_clientDisconnectedSaga(action) {
   // Get associated user
   const client = yield select(state => selectClient(state, action.clientId));
   const user = yield select(state => selectUser(state, client.userId));
