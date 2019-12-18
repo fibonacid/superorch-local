@@ -47,4 +47,47 @@ describe("c_messageWatcher", () => {
         .run()
     );
   });
+  it("should handle message S_LOGOUT_SUCCESS", () => {
+    return (
+      expectSaga(c_messageWatcher)
+        .put({
+          type: actionTypes.S_LOGOUT_SUCCESS,
+          userId: 0
+        })
+        // Dispatch any actions that the saga will `take`.
+        .dispatch({
+          type: actionTypes.C_MESSAGE,
+          payload: {
+            message: JSON.stringify({
+              type: actionTypes.S_LOGOUT_SUCCESS,
+              userId: 0
+            })
+          }
+        })
+        // Start the test. Returns a Promise.
+        .run()
+    );
+  });
+  it("should handle message S_LOGOUT_ERROR", () => {
+    const error = { status: 500, message: statusCodes[500] };
+    return (
+      expectSaga(c_messageWatcher)
+        .put({
+          type: actionTypes.S_LOGOUT_ERROR,
+          error
+        })
+        // Dispatch any actions that the saga will `take`.
+        .dispatch({
+          type: actionTypes.C_MESSAGE,
+          payload: {
+            message: JSON.stringify({
+              type: actionTypes.S_LOGOUT_ERROR,
+              error
+            })
+          }
+        })
+        // Start the test. Returns a Promise.
+        .run()
+    );
+  });
 });

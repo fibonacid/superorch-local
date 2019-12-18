@@ -64,7 +64,7 @@ export function* c_messageSaga({ payload }) {
     case actionTypes.S_LOGIN_ERROR:
       return yield put(s_loginError(message.error));
     case actionTypes.S_LOGOUT_SUCCESS:
-      return yield put(s_logoutSuccess());
+      return yield put(s_logoutSuccess(message.userId));
     case actionTypes.S_LOGOUT_ERROR:
       return yield put(s_logoutError(message.error));
     case actionTypes.S_GET_USER_LIST_SUCCESS:
