@@ -1,5 +1,5 @@
-import {takeLatest, put, race, take, delay} from "redux-saga/effects";
-import { send } from '@giantmachines/redux-websocket';
+import { takeLatest, put, race, take, delay } from "redux-saga/effects";
+import { send } from "@giantmachines/redux-websocket";
 import { actionTypes } from "../../../actions/actionTypes";
 import {
   c_getScQueryDataError,
@@ -8,7 +8,10 @@ import {
 } from "../../../actions/client/requests/getScQueryDataRequest";
 
 export function* c_getScQueryDataRequestWatcher() {
-  yield takeLatest(actionTypes.C_GET_SC_QUERY_DATA_REQUEST, c_getScQueryDataRequestSaga);
+  yield takeLatest(
+    actionTypes.C_GET_SC_QUERY_DATA_REQUEST,
+    c_getScQueryDataRequestSaga
+  );
 }
 
 export function* c_getScQueryDataRequestSaga(action) {
@@ -23,7 +26,9 @@ export function* c_getScQueryDataRequestSaga(action) {
   });
 
   if (result) {
-    yield put(c_getScQueryDataSuccess(result.scqData, `supercollider query received`));
+    yield put(
+      c_getScQueryDataSuccess(result.scqData, `supercollider query received`)
+    );
   } else if (error) {
     yield put(c_getScQueryDataError(error));
   } else if (timeout) {
