@@ -58,10 +58,9 @@ yarn build && yarn build:electron
 yarn package
 ```
 
-If build fails for windows or linux targets you have to run electron builder on a virtual machine. This is how i managed to do it with docker.
+If build fails for windows or linux targets you have to run electron-builder on a virtual machine. This is how to do it with docker.
 
-Firstly you will need to install docker on your machine.
-
+Firstly you will need to install [docker](https://hub.docker.com/?overlay=onboarding) on your machine.
 When docker is installed you can open a terminal and paste this comand:
 
 ```sh
