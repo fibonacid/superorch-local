@@ -90,4 +90,23 @@ describe("c_messageWatcher", () => {
         .run()
     );
   });
+  it.skip("should handle message S_GET_USER_LIST_SUCCESS", () => {});
+  it.skip("should handle message S_GET_USER_LIST_ERROR", () => {});
+  it.skip("should handle message S_UPDATE_USER_DATA_SUCCESS", () => {});
+  it.skip("should handle message S_UPDATE_USER_DATA_ERROR", () => {});
+  it.skip("should handle message S_GET_DOCUMENT_LIST_SUCCESS", () => {});
+  it.skip("should handle message S_GET_DOCUMENT_LIST_ERROR", () => {});
+  it.skip("should handle message S_CREATE_SC_QUERY_SUCCESS", () => {});
+  it.skip("should handle message S_CREATE_SC_QUERY_ERROR", () => {});
+  it.skip("should handle message S_UPDATE_SC_QUERY_DATA_SUCCESS", () => {});
+  it.skip("should handle message S_UPDATE_SC_QUERY_DATA_ERROR", () => {});
+  it.skip("should handle message S_GET_SC_QUERY_DATA_SUCCESS", () => {});
+  it.skip("should handle message S_GET_SC_QUERY_DATA_ERROR", () => {});
+  it.skip("should handle message B_USER_JOINED", () => {});
+  it.skip("should handle message B_USER_UPDATE", () => {});
+  it.skip("should handle message B_USER_LEFT", () => {});
+  it.skip("should handle message B_DOCUMENT_CREATED", () => {});
+  it.skip("should handle message B_DOCUMENT_UPDATED", () => {});
+  it.skip("should handle message B_SC_QUERY_CREATED", () => {});
+  it.skip("should handle message B_SC_QUERY_UPDATED", () => {});
 });
