@@ -8,14 +8,11 @@ export function* c_updateDocumentWatcher() {
 }
 
 export function* c_updateDocumentSaga(action) {
-  const { myUserId, isLoggedIn } = yield select(state => state.client.status);
-  const document = yield select(state => selectDocument(state, action.docId));
+  const { myDocId, isLoggedIn } = yield select(state => state.client.status);
 
-  if (document) {
-    // if client is logged in and the document to update is owned by the user:
-    if (isLoggedIn && myUserId === document.userId) {
-      // send document update request.
-      yield put(c_updateDocumentDataRequest(action.docId, action.docData));
-    }
+  // if client is logged in and the document to update is owned by the user:
+  if (isLoggedIn && myDocId === action.docId) {
+    // send document update request.
+    yield put(c_updateDocumentDataRequest(action.docId, action.docData));
   }
 }
