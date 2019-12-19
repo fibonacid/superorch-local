@@ -35,23 +35,21 @@ export function* s_messageSaga(action) {
       // If client is already logged in:
       if (isLoggedIn) {
         // Send an error message and leave.
-        return yield put(
-          s_transmit(clientId, s_messageError(400, `Already logged in`))
-        );
+        const message = s_messageError(400, `Already logged in`);
+        console.error(message.error);
+        return yield put(s_transmit(clientId, message));
       }
       // Else, if client is not logged in:
       else {
         // respond to request and leave.
         return yield call(s_loginResponseSaga, clientId, message.userData);
       }
-    }
-
-    // If client is not logged in:
-    if (!isLoggedIn) {
+    } else if (!isLoggedIn) {
+      // If client is not logged in:
       // Send error message and leave.
-      yield put(
-        s_transmit(clientId, s_messageError(400, `Log in is required`))
-      );
+      const message = s_messageError(400, `Log in is required`);
+      console.error(message.error);
+      return yield put(s_transmit(clientId, message));
     }
 
     // Handle actions embedded in the message
@@ -104,9 +102,8 @@ export function* s_messageSaga(action) {
         return null;
     }
   } catch (error) {
-    console.error(error);
-    yield put(
-      s_transmit(action.clientId, s_messageError(500, statusCodes[500]))
-    );
+    const message = s_messageError(500, statusCodes[500]);
+    console.error(message.error);
+    yield put(s_transmit(action.clientId, message));
   }
 }
