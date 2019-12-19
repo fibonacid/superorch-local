@@ -2,7 +2,6 @@ import { expectSaga } from "redux-saga-test-plan";
 import * as matchers from "redux-saga-test-plan/matchers";
 import { actionTypes } from "../../../actions/actionTypes";
 import { s_messageWatcher } from "../../../sagas/server/message";
-import { c_messageWatcher } from "../../../sagas/client/message";
 import { s_logoutResponseSaga } from "../../../sagas/server/responses/logoutResponse";
 import { s_getUserListResponseSaga } from "../../../sagas/server/responses/getUserListResponse";
 import { s_updateUserDataResponseSaga } from "../../../sagas/server/responses/updateUserDataResponse";
@@ -72,7 +71,6 @@ describe("s_messageWatcher", () => {
       );
     });
   });
-
   describe("when the user is logged in", () => {
     it("should send an error on message C_LOGIN_REQUEST", () => {
       return (
@@ -103,20 +101,23 @@ describe("s_messageWatcher", () => {
           .run()
       );
     });
-    it.skip("should handle message C_LOGOUT_REQUEST", () => {
+    it("should handle message C_LOGOUT_REQUEST", () => {
+      const clientId = 1;
       return (
-        expectSaga(c_messageWatcher)
+        expectSaga(s_messageWatcher)
           .withState({
             server: {
-              clients: [{ id: 1, isLoggedIn: true }]
+              clients: [{ id: clientId, isLoggedIn: true }]
             }
           })
+          // Provide a mock alternative for saga call
+          .provide([[matchers.call.fn(s_logoutResponseSaga), {}]])
           // Assert that a call effect will happen
-          .call(s_logoutResponseSaga, 1)
+          .call(s_logoutResponseSaga, clientId)
           // Dispatch any actions that the saga will `take`.
           .dispatch({
             type: actionTypes.S_MESSAGE,
-            clientId: 1,
+            clientId,
             message: JSON.stringify({
               type: actionTypes.C_LOGOUT_REQUEST
             })
