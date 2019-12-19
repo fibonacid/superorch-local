@@ -1,5 +1,5 @@
 import { actionTypes } from "../../../actions/actionTypes";
-import { takeLatest, put, race, take, delay, select } from "redux-saga/effects";
+import { takeLatest, put, race, take, delay } from "redux-saga/effects";
 import { send } from "@giantmachines/redux-websocket";
 import {
   c_createDocumentError,
@@ -7,9 +7,6 @@ import {
   c_createDocumentSuccess,
   c_createDocumentTimeout
 } from "../../../actions/client/requests/createDocumentRequest";
-import { c_updateMyDocId } from "../../../actions/client/updateMyDocId";
-import { c_updateDocument } from "../../../actions/client/crudDocuments";
-import { c_getDocumentListRequest } from "../../../actions/client/requests/getDocumentListRequest";
 
 /**
  *
