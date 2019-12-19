@@ -1,4 +1,4 @@
-import { expectSaga, testSaga } from "redux-saga-test-plan";
+import { expectSaga } from "redux-saga-test-plan";
 import { actionTypes } from "../../../../actions/actionTypes";
 import {
   c_createDocumentRequestSaga,
@@ -53,7 +53,50 @@ describe("c_createDocumentRequest", () => {
     });
   });
 
-  describe("when an error is received", () => {});
+  describe("when an error is received", () => {
+    it("should dispatch an error action", () => {
+      const action = {
+        type: actionTypes.C_CREATE_DOCUMENT_REQUEST,
+        docData: {}
+      };
+      return (
+        expectSaga(c_createDocumentRequestSaga, action)
+          // Assert that the `put` will eventually happen.
+          .put.like({
+            action: {
+              type: actionTypes.C_CREATE_DOCUMENT_ERROR,
+              error: {}
+            }
+          })
+          // Dispatch any actions that the saga will `take`.
+          .dispatch({
+            type: actionTypes.S_CREATE_DOCUMENT_ERROR,
+            error: {}
+          })
+          // Start the test. Returns a Promise.
+          .run(500)
+      );
+    });
+  });
 
-  describe("when request takes too long to complete", () => {});
+  describe("when request takes too long to complete", () => {
+    it("should dispatch a timeout action", () => {
+      const action = {
+        type: actionTypes.C_CREATE_DOCUMENT_REQUEST,
+        docData: {}
+      };
+      return (
+        expectSaga(c_createDocumentRequestSaga, action)
+          // Assert that the `put` will eventually happen.
+          .put.like({
+            action: {
+              type: actionTypes.C_CREATE_DOCUMENT_TIMEOUT
+            }
+          })
+          .delay(2500)
+          // Start the test. Returns a Promise.
+          .run(3000)
+      );
+    });
+  });
 });
