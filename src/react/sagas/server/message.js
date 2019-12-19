@@ -24,9 +24,6 @@ import { s_updateScQueryDataResponseSaga } from "./responses/updateScQueryDataRe
 
 export function* s_messageWatcher() {
   yield takeLatest(actionTypes.S_MESSAGE, s_messageSaga);
-
-  yield take(actionTypes.S_MESSAGE_ERROR);
-  yield cancel(s_messageSaga);
 }
 
 export function* s_messageSaga(action) {
@@ -45,12 +42,14 @@ export function* s_messageSaga(action) {
       // If client is already logged in:
       if (isLoggedIn) {
         // Send an error message
-        yield put(s_messageError(400, `Already logged in`));
+        return yield put(
+          s_transmit(clientId, s_messageError(400, `Already logged in`))
+        );
       }
       // Else, if client is not logged in
       else {
         // respond to request.
-        yield call(s_loginResponseSaga, clientId, message.userData);
+        return yield call(s_loginResponseSaga, clientId, message.userData);
       }
     }
 
