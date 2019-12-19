@@ -1,7 +1,7 @@
 import { expectSaga } from "redux-saga-test-plan";
 import * as matchers from "redux-saga-test-plan/matchers";
 import { actionTypes } from "../../../actions/actionTypes";
-import { s_messageWatcher } from "../../../sagas/server/message";
+import { s_messageWatcher, testFunction } from "../../../sagas/server/message";
 import { s_logoutResponseSaga } from "../../../sagas/server/responses/logoutResponse";
 import { s_getUserListResponseSaga } from "../../../sagas/server/responses/getUserListResponse";
 import { s_updateUserDataResponseSaga } from "../../../sagas/server/responses/updateUserDataResponse";
@@ -310,6 +310,41 @@ describe("s_messageWatcher", () => {
               scqId,
               scqData
             })
+          })
+          // Start the test. Returns a Promise.
+          .run()
+      );
+    });
+  });
+  describe("when an error is raised", () => {
+    it("should send an error 500 message to the client", () => {
+      const error = new Error("test");
+      return (
+        expectSaga(s_messageWatcher)
+          .put.like({
+            action: {
+              type: actionTypes.S_TRANSMIT,
+              clientId: 1,
+              message: {
+                type: actionTypes.S_MESSAGE_ERROR,
+                error: {
+                  status: 500
+                }
+              }
+            }
+          })
+          .provide([
+            [
+              matchers.call.fn(testFunction),
+              () => {
+                throw new Error("test");
+              }
+            ]
+          ])
+          // Dispatch any actions that the saga will `take`.
+          .dispatch({
+            type: actionTypes.S_MESSAGE,
+            clientId: 1
           })
           // Start the test. Returns a Promise.
           .run()
