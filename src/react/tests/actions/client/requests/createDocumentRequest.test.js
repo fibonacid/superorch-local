@@ -17,11 +17,11 @@ describe("c_createDocumentRequest action", () => {
 describe("c_createDocumentSuccess action", () => {
   it("should create an action to communicate that the request succeeded", () => {
     const docId = 0;
-    const message = "";
-    expect(c_createDocumentSuccess(docId, message)).toEqual({
+    const docData = {};
+    expect(c_createDocumentSuccess(docId, docData)).toEqual({
       type: actionTypes.C_CREATE_DOCUMENT_SUCCESS,
       docId,
-      message
+      docData
     });
   });
 });
