@@ -1,9 +1,16 @@
 import { expectSaga } from "redux-saga-test-plan";
-import { s_messageWatcher } from "../../../sagas/server/message";
+import * as matchers from "redux-saga-test-plan/matchers";
 import { actionTypes } from "../../../actions/actionTypes";
+import { s_messageWatcher } from "../../../sagas/server/message";
 import { c_messageWatcher } from "../../../sagas/client/message";
 import { s_logoutResponseSaga } from "../../../sagas/server/responses/logoutResponse";
-import { put } from "redux-saga/effects";
+import { s_getUserListResponseSaga } from "../../../sagas/server/responses/getUserListResponse";
+import { s_updateUserDataResponseSaga } from "../../../sagas/server/responses/updateUserDataResponse";
+import { s_createDocumentResponseSaga } from "../../../sagas/server/responses/createDocumentResponse";
+import { s_updateDocumentDataResponseSaga } from "../../../sagas/server/responses/updateDocumentDataResponse";
+import { s_getDocumentListResponseSaga } from "../../../sagas/server/responses/getDocumentListResponse";
+import { s_getScQueryDataResponseSaga } from "../../../sagas/server/responses/getScQueryDataResponse";
+import { s_updateScQueryDataResponseSaga } from "../../../sagas/server/responses/updateScQueryDataResponse";
 
 describe("s_messageWatcher", () => {
   describe("when the client is not logged in", () => {
@@ -118,12 +125,194 @@ describe("s_messageWatcher", () => {
           .run()
       );
     });
-    it.skip("should handle message C_GET_USER_LIST_REQUEST", () => {});
-    it.skip("should handle message C_UPDATE_USER_DATA_REQUEST", () => {});
-    it.skip("should handle message C_CREATE_DOCUMENT_REQUEST", () => {});
-    it.skip("should handle message C_UPDATE_DOCUMENT_DATA_REQUEST", () => {});
-    it.skip("should handle message C_GET_DOCUMENT_LIST_REQUEST", () => {});
-    it.skip("should handle message C_GET_SC_QUERY_DATA_REQUEST", () => {});
-    it.skip("should handle message C_UPDATE_SC_QUERY_DATA_REQUEST", () => {});
+    it("should handle message C_GET_USER_LIST_REQUEST", () => {
+      const clientId = 1;
+      return (
+        expectSaga(s_messageWatcher)
+          .withState({
+            server: {
+              clients: [{ id: clientId, isLoggedIn: true }]
+            }
+          })
+          // Provide a mock alternative for saga call
+          .provide([[matchers.call.fn(s_getUserListResponseSaga), {}]])
+          // Assert that a call effect will happen
+          .call(s_getUserListResponseSaga, 1)
+          // Dispatch any actions that the saga will `take`.
+          .dispatch({
+            type: actionTypes.S_MESSAGE,
+            clientId,
+            message: JSON.stringify({
+              type: actionTypes.C_GET_USER_LIST_REQUEST
+            })
+          })
+          // Start the test. Returns a Promise.
+          .run()
+      );
+    });
+    it("should handle message C_UPDATE_USER_DATA_REQUEST", () => {
+      const clientId = 1;
+      const userData = {};
+      return (
+        expectSaga(s_messageWatcher)
+          .withState({
+            server: {
+              clients: [{ id: clientId, isLoggedIn: true }]
+            }
+          })
+          // Provide a mock alternative for saga call
+          .provide([[matchers.call.fn(s_updateUserDataResponseSaga), {}]])
+          // Assert that a call effect will happen
+          .call(s_updateUserDataResponseSaga, clientId, userData)
+          // Dispatch any actions that the saga will `take`.
+          .dispatch({
+            type: actionTypes.S_MESSAGE,
+            clientId,
+            message: JSON.stringify({
+              type: actionTypes.C_UPDATE_USER_DATA_REQUEST,
+              userData: {}
+            })
+          })
+          // Start the test. Returns a Promise.
+          .run()
+      );
+    });
+    it("should handle message C_CREATE_DOCUMENT_REQUEST", () => {
+      const clientId = 1;
+      const docData = {};
+      return (
+        expectSaga(s_messageWatcher)
+          .withState({
+            server: {
+              clients: [{ id: clientId, isLoggedIn: true }]
+            }
+          })
+          // Provide a mock alternative for saga call
+          .provide([[matchers.call.fn(s_createDocumentResponseSaga), {}]])
+          // Assert that a call effect will happen
+          .call(s_createDocumentResponseSaga, clientId, docData)
+          // Dispatch any actions that the saga will `take`.
+          .dispatch({
+            type: actionTypes.S_MESSAGE,
+            clientId,
+            message: JSON.stringify({
+              type: actionTypes.C_CREATE_DOCUMENT_REQUEST,
+              docData: {}
+            })
+          })
+          // Start the test. Returns a Promise.
+          .run()
+      );
+    });
+    it("should handle message C_UPDATE_DOCUMENT_DATA_REQUEST", () => {
+      const clientId = 1;
+      const docId = 2;
+      const docData = {};
+      return (
+        expectSaga(s_messageWatcher)
+          .withState({
+            server: {
+              clients: [{ id: clientId, isLoggedIn: true }]
+            }
+          })
+          // Provide a mock alternative for saga call
+          .provide([[matchers.call.fn(s_updateDocumentDataResponseSaga), {}]])
+          // Assert that a call effect will happen
+          .call(s_updateDocumentDataResponseSaga, clientId, docId, docData)
+          // Dispatch any actions that the saga will `take`.
+          .dispatch({
+            type: actionTypes.S_MESSAGE,
+            clientId,
+            message: JSON.stringify({
+              type: actionTypes.C_UPDATE_DOCUMENT_DATA_REQUEST,
+              docId,
+              docData
+            })
+          })
+          // Start the test. Returns a Promise.
+          .run()
+      );
+    });
+    it("should handle message C_GET_DOCUMENT_LIST_REQUEST", () => {
+      const clientId = 1;
+      return (
+        expectSaga(s_messageWatcher)
+          .withState({
+            server: {
+              clients: [{ id: clientId, isLoggedIn: true }]
+            }
+          })
+          // Provide a mock alternative for saga call
+          .provide([[matchers.call.fn(s_getDocumentListResponseSaga), {}]])
+          // Assert that a call effect will happen
+          .call(s_getDocumentListResponseSaga, clientId)
+          // Dispatch any actions that the saga will `take`.
+          .dispatch({
+            type: actionTypes.S_MESSAGE,
+            clientId,
+            message: JSON.stringify({
+              type: actionTypes.C_GET_DOCUMENT_LIST_REQUEST
+            })
+          })
+          // Start the test. Returns a Promise.
+          .run()
+      );
+    });
+    it("should handle message C_GET_SC_QUERY_DATA_REQUEST", () => {
+      const clientId = 1;
+      const scqId = 1;
+      return (
+        expectSaga(s_messageWatcher)
+          .withState({
+            server: {
+              clients: [{ id: clientId, isLoggedIn: true }]
+            }
+          })
+          // Provide a mock alternative for saga call
+          .provide([[matchers.call.fn(s_getScQueryDataResponseSaga), {}]])
+          // Assert that a call effect will happen
+          .call(s_getScQueryDataResponseSaga, clientId, scqId)
+          // Dispatch any actions that the saga will `take`.
+          .dispatch({
+            type: actionTypes.S_MESSAGE,
+            clientId,
+            message: JSON.stringify({
+              type: actionTypes.C_GET_SC_QUERY_DATA_REQUEST,
+              scqId
+            })
+          })
+          // Start the test. Returns a Promise.
+          .run()
+      );
+    });
+    it("should handle message C_UPDATE_SC_QUERY_DATA_REQUEST", () => {
+      const clientId = 1;
+      const scqId = 2;
+      const scqData = {};
+      return (
+        expectSaga(s_messageWatcher)
+          .withState({
+            server: {
+              clients: [{ id: clientId, isLoggedIn: true }]
+            }
+          })
+          // Provide a mock alternative for saga call
+          .provide([[matchers.call.fn(s_updateScQueryDataResponseSaga), {}]])
+          // Assert that a call effect will happen
+          .call(s_updateScQueryDataResponseSaga, clientId, scqId, scqData)
+          // Dispatch any actions that the saga will `take`.
+          .dispatch({
+            type: actionTypes.S_MESSAGE,
+            clientId,
+            message: JSON.stringify({
+              type: actionTypes.C_UPDATE_SC_QUERY_DATA_REQUEST,
+              scqId,
+              scqData
+            })
+          })
+          // Start the test. Returns a Promise.
+          .run()
+      );
+    });
   });
 });
