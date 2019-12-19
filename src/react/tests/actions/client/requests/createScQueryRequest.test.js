@@ -20,10 +20,12 @@ describe("c_createScQueryRequest action", () => {
 
 describe("c_createScQuerySuccess action", () => {
   it("should create an action to communicate that the request succeeded", () => {
-    const message = "";
-    expect(c_createScQuerySuccess(message)).toEqual({
+    const scqId = 0;
+    const scqData = {};
+    expect(c_createScQuerySuccess(scqId, scqData)).toEqual({
       type: actionTypes.C_CREATE_SC_QUERY_SUCCESS,
-      message
+      scqId,
+      scqData
     });
   });
 });
