@@ -1,13 +1,6 @@
 import { actionTypes } from "../../actions/actionTypes";
 import { statusCodes } from "../../utils/constants";
-import {
-  takeLatest,
-  put,
-  select,
-  call,
-  cancel,
-  take
-} from "redux-saga/effects";
+import { takeLatest, put, select, call } from "redux-saga/effects";
 import { s_loginResponseSaga } from "./responses/loginResponse";
 import { s_logoutResponseSaga } from "./responses/logoutResponse";
 import { s_getUserListResponseSaga } from "./responses/getUserListResponse";
@@ -41,14 +34,14 @@ export function* s_messageSaga(action) {
     if (message.type === actionTypes.C_LOGIN_REQUEST) {
       // If client is already logged in:
       if (isLoggedIn) {
-        // Send an error message
+        // Send an error message and leave.
         return yield put(
           s_transmit(clientId, s_messageError(400, `Already logged in`))
         );
       }
-      // Else, if client is not logged in
+      // Else, if client is not logged in:
       else {
-        // respond to request.
+        // respond to request and leave.
         return yield call(s_loginResponseSaga, clientId, message.userData);
       }
     }
