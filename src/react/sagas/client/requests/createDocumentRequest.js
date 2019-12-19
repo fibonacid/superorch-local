@@ -39,23 +39,7 @@ export function* c_createDocumentRequestSaga(action) {
   });
 
   if (result) {
-    // Replace myDocId with new one:
-    const { myDocId: oldDocId } = yield select(state => state.client.status);
-    yield put(c_updateMyDocId(result.docId));
-
-    // Update document with new id
-    yield put(
-      c_updateDocument(oldDocId, {
-        id: result.docId,
-        ...result.docData
-      })
-    );
-
-    // Request  document list
-    yield put(c_getDocumentListRequest());
-
-    // Send success message
-    yield put(c_createDocumentSuccess(result.docId, `document created`));
+    yield put(c_createDocumentSuccess(result.docId, result.docData));
   } else if (error) {
     yield put(c_createDocumentError(error));
   } else if (timeout) {
