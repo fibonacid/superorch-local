@@ -15,17 +15,23 @@ import { s_createScQueryResponseSaga } from "./responses/createScQueryResponse";
 import { s_getScQueryDataResponseSaga } from "./responses/getScQueryDataResponse";
 import { s_updateScQueryDataResponseSaga } from "./responses/updateScQueryDataResponse";
 
+export function testFunction() {}
+
 export function* s_messageWatcher() {
   yield takeLatest(actionTypes.S_MESSAGE, s_messageSaga);
 }
 
 export function* s_messageSaga(action) {
   try {
+    // If app runs on a test environment
+    // allow allow to throw errors programmatically
+    if (process.env.NODE_ENV === "test") {
+      yield call(testFunction);
+    }
+
     // Unpack message
     const { clientId } = action;
     const message = JSON.parse(action.message);
-
-    console.log(`server received a message: ${message.type}`);
 
     // Find out if client is logged in
     const { isLoggedIn } = yield select(state => selectClient(state, clientId));
@@ -99,12 +105,15 @@ export function* s_messageSaga(action) {
           message.scqData
         );
       default:
-        return null;
+        console.log(`server received a message: ${message.type}`);
+        break;
     }
   } catch (error) {
     yield put(
       s_transmit(action.clientId, s_messageError(500, statusCodes[500]))
     );
-    console.error(error);
+    if (process.env.NODE_ENV !== "test") {
+      console.error(error);
+    }
   }
 }
