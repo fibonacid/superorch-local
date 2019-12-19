@@ -51,6 +51,39 @@ describe("c_createScQueryRequest", () => {
           .run()
       );
     });
+    it("should update the id of the original supercollider query", () => {
+      const action = {
+        type: actionTypes.C_CREATE_SC_QUERY_REQUEST,
+        scqId: 1,
+        scqData: {}
+      };
+      return (
+        expectSaga(c_createScQueryRequestSaga, action)
+          // Assert that the `put` will eventually happen.
+          .put.like({
+            action: {
+              type: actionTypes.C_UPDATE_SC_QUERY,
+              scqId: 1,
+              scqData: { foo: "bar" }
+            }
+          })
+          .put.like({
+            action: {
+              type: actionTypes.C_UPDATE_MY_SC_QUERY_ID,
+              scqId: 1,
+              newId: 100
+            }
+          })
+          // Dispatch any actions that the saga will `take`.
+          .dispatch({
+            type: actionTypes.S_CREATE_SC_QUERY_SUCCESS,
+            scqId: 100,
+            scqData: { foo: "bar" }
+          })
+          // Start the test. Returns a Promise.
+          .run()
+      );
+    });
   });
 
   describe("when an error is received", () => {
