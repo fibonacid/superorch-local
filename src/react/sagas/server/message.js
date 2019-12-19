@@ -102,8 +102,9 @@ export function* s_messageSaga(action) {
         return null;
     }
   } catch (error) {
-    const message = s_messageError(500, statusCodes[500]);
-    console.error(message.error);
-    yield put(s_transmit(action.clientId, message));
+    yield put(
+      s_transmit(action.clientId, s_messageError(500, statusCodes[500]))
+    );
+    console.error(error);
   }
 }
