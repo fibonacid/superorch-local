@@ -111,6 +111,46 @@ describe("s_updateDocumentData saga", () => {
     });
   });
 
+  describe("when document is NOT owned by the client", () => {
+    const clientId = 0;
+    const userId = 1;
+    const docId = 2;
+    const docData = { foo: "bar" };
+
+    let saga;
+    beforeEach(() => {
+      saga = expectSaga(
+        s_updateDocumentDataResponseSaga,
+        clientId,
+        docId,
+        docData
+      ).withState({
+        server: {
+          clients: [{ id: clientId, userId }]
+        },
+        client: {
+          users: [{ id: userId }],
+          documents: [{ id: 2, userId: 10 }]
+        }
+      });
+    });
+
+    it("should transmit an error 400 to the client", () => {
+      return saga.put
+        .like({
+          action: {
+            type: actionTypes.S_TRANSMIT,
+            clientId,
+            message: {
+              type: actionTypes.S_UPDATE_DOCUMENT_DATA_ERROR,
+              error: { status: 400 }
+            }
+          }
+        })
+        .run();
+    });
+  });
+
   describe("when an error is raised", () => {
     it("should transmit an error 500 message to the client", () => {
       const clientId = 0;
