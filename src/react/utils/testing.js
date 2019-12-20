@@ -1,4 +1,6 @@
-import {checkPropTypes} from "prop-types";
+import { checkPropTypes } from "prop-types";
+
+export const testFunction = () => {};
 
 export const findByTestAttr = (component, attr) => {
   const wrapper = component.find(`[data-test='${attr}']`);
@@ -6,6 +8,11 @@ export const findByTestAttr = (component, attr) => {
 };
 
 export const checkProps = (component, expectedProps) => {
-  const propsErr = checkPropTypes(component.propTypes, expectedProps, 'props', component.name);
+  const propsErr = checkPropTypes(
+    component.propTypes,
+    expectedProps,
+    "props",
+    component.name
+  );
   return propsErr;
 };
