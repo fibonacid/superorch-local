@@ -42,7 +42,7 @@ export function* s_messageSaga(action) {
       if (isLoggedIn) {
         // Send an error message and leave.
         const message = s_messageError(400, `Already logged in`);
-        console.error(message.error);
+        process.env.NODE_ENV !== "test" && console.error(message.error);
         return yield put(s_transmit(clientId, message));
       }
       // Else, if client is not logged in:
@@ -54,7 +54,7 @@ export function* s_messageSaga(action) {
       // If client is not logged in:
       // Send error message and leave.
       const message = s_messageError(400, `Log in is required`);
-      console.error(message.error);
+      process.env.NODE_ENV !== "test" && console.error(message.error);
       return yield put(s_transmit(clientId, message));
     }
 
@@ -113,7 +113,7 @@ export function* s_messageSaga(action) {
       s_transmit(action.clientId, s_messageError(500, statusCodes[500]))
     );
     if (process.env.NODE_ENV !== "test") {
-      console.error(error);
+      process.env.NODE_ENV !== "test" && console.error(error);
     }
   }
 }
