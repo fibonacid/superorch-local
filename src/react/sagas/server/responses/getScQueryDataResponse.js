@@ -6,18 +6,24 @@ import {
 import { s_transmit } from "../../../actions/server/transmit";
 import { selectScQuery } from "../../../reducers/root";
 import { statusCodes } from "../../../utils/constants";
+import { testFunction } from "../../../utils/testing";
 
 export function* s_getScQueryDataResponseSaga(clientId, scqId) {
   try {
+    // Call testFunction to enable test code injection
+    if (process.env.NODE_ENV === "test") {
+      yield call(testFunction);
+    }
+
     // Get list of users from state
     const scqData = yield select(state => selectScQuery(state, scqId));
 
-    console.log("s_getScQueryDataResponseSaga", { scqData });
-
     if (typeof scqData === "undefined") {
-      console.error(`scQuery with id ${scqId} doesn't exist`);
+      const message = `supercollider query with id ${scqId} doesn't exist`;
+      process.env.NODE_ENV !== "test" && console.error(message);
+      // transmit error message
       return yield put(
-        s_transmit(clientId, s_getScQueryDataError(400, statusCodes[400]))
+        s_transmit(clientId, s_getScQueryDataError(400, message))
       );
     }
 
@@ -26,7 +32,9 @@ export function* s_getScQueryDataResponseSaga(clientId, scqId) {
   } catch (error) {
     // If there was an error:
     // Transmit error to the client that tried logging in.
-    yield put(s_transmit(clientId, s_getScQueryDataError(error)));
-    console.error(error);
+    yield put(
+      s_transmit(clientId, s_getScQueryDataError(500, statusCodes[500]))
+    );
+    process.env.NODE_ENV !== "test" && console.error(error);
   }
 }
