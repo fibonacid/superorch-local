@@ -30,7 +30,7 @@ export function* s_updateDocumentDataResponseSaga(clientId, docId, docData) {
     // Check if document exists:
     if (!document) {
       const message = `Document with is ${docId} doesn't exist`;
-      console.error(message);
+      process.env.NODE_ENV !== "test" && console.error(message);
       return yield put(
         s_transmit(clientId, s_updateDocumentDataError(404, message))
       );
@@ -59,6 +59,6 @@ export function* s_updateDocumentDataResponseSaga(clientId, docId, docData) {
     yield put(
       s_transmit(clientId, s_updateDocumentDataError(500, statusCodes[500]))
     );
-    console.error(error);
+    process.env.NODE_ENV !== "test" && console.error(error);
   }
 }

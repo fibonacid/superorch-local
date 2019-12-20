@@ -34,6 +34,6 @@ export function* s_updateUserDataResponseSaga(clientId, userData) {
     yield put(
       s_transmit(clientId, s_updateUserDataError(500, statusCodes[500]))
     );
-    process.env.NODE_ENV === "test" && console.error(error);
+    process.env.NODE_ENV !== "test" && console.error(error);
   }
 }

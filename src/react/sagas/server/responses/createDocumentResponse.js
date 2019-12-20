@@ -56,8 +56,6 @@ export function* s_createDocumentResponseSaga(clientId, docData) {
     yield put(
       s_transmit(clientId, s_createDocumentError(500, statusCodes[500]))
     );
-    if (process.env.NODE_ENV !== "test") {
-      console.error(error);
-    }
+    process.env.NODE_ENV !== "test" && console.error(error);
   }
 }
