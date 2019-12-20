@@ -5,7 +5,7 @@ export const s_getUserListSuccess = userList => ({
   userList
 });
 
-export const s_getUserListError = error => ({
+export const s_getUserListError = (status, message) => ({
   type: actionTypes.S_GET_USER_LIST_ERROR,
-  error
+  error: { status, message }
 });
