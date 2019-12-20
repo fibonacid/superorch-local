@@ -1,10 +1,9 @@
-import { put, select, takeLatest, all } from "redux-saga/effects";
+import { put, select, takeLatest } from "redux-saga/effects";
 import { actionTypes } from "../../../actions/actionTypes";
 import { c_updateUser } from "../../../actions/client/crudUsers";
 import { c_updateMyUserId } from "../../../actions/client/updateMyUserId";
 import { c_getUserListRequest } from "../../../actions/client/requests/getUserListRequest";
 import { c_createDocumentRequest } from "../../../actions/client/requests/createDocumentRequest";
-import { c_getDocumentListRequest } from "../../../actions/client/requests/getDocumentListRequest";
 import { selectDocument } from "../../../reducers/root";
 import { displayUser } from "../../../actions/displayUser";
 
