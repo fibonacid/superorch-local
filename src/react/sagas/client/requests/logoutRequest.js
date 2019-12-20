@@ -26,7 +26,7 @@ export function* c_logoutRequestSaga() {
   });
 
   if (result) {
-    yield put(c_logoutSuccess(`logged out`));
+    yield put(c_logoutSuccess());
   } else if (error) {
     yield put(c_logoutError(error));
   } else if (timeout) {
