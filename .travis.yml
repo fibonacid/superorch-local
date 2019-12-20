@@ -2,6 +2,7 @@ language: node_js
 branches:
   only:
     - master
+    - development
     - stable
 node_js:
   - v12.13.0
