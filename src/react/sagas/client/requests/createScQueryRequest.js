@@ -37,10 +37,8 @@ export function* c_createScQueryRequestSaga(action) {
     // Dispatch success message
     yield put(c_createScQuerySuccess(result.scqId, result.scqData));
   } else if (error) {
-    console.error(error);
     yield put(c_createScQueryError(error));
   } else if (timeout) {
-    console.error(timeout);
     yield put(c_createScQueryTimeout(timeout));
   }
 }
