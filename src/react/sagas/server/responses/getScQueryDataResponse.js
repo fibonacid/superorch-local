@@ -1,4 +1,4 @@
-import { put, select } from "redux-saga/effects";
+import { put, select, call } from "redux-saga/effects";
 import {
   s_getScQueryDataError,
   s_getScQueryDataSuccess
@@ -19,11 +19,11 @@ export function* s_getScQueryDataResponseSaga(clientId, scqId) {
     const scqData = yield select(state => selectScQuery(state, scqId));
 
     if (typeof scqData === "undefined") {
-      const message = `supercollider query with id ${scqId} doesn't exist`;
+      const message = `supercollider query with id ${scqId} wasn't found`;
       process.env.NODE_ENV !== "test" && console.error(message);
       // transmit error message
       return yield put(
-        s_transmit(clientId, s_getScQueryDataError(400, message))
+        s_transmit(clientId, s_getScQueryDataError(404, message))
       );
     }
 
