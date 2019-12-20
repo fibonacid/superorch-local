@@ -22,8 +22,6 @@ export function* s_updateDocumentDataResponseSaga(clientId, docId, docData) {
       yield call(testFunction);
     }
 
-    console.log(yield select(state => state));
-
     // Get user associated with the client
     const client = yield select(state => selectClient(state, clientId));
     const user = yield select(state => selectUser(state, client.userId));
