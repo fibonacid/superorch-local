@@ -1,10 +1,8 @@
 import { expectSaga } from "redux-saga-test-plan";
 import * as matchers from "redux-saga-test-plan/matchers";
-import { select } from "redux-saga/effects";
 import { actionTypes } from "../../../../actions/actionTypes";
 import { testFunction } from "../../../../utils/testing";
 import { s_getScQueryDataResponseSaga } from "../../../../sagas/server/responses/getScQueryDataResponse";
-import { selectScQuery } from "../../../../reducers/root";
 
 describe("s_getScQueryDataResponse saga", () => {
   describe("when everything is alright", () => {
