@@ -66,7 +66,7 @@ describe("s_logoutResponse saga", () => {
   });
 
   describe("when an error is raised", () => {
-    it.skip("should transmit an error 500 message to the client", () => {
+    it("should transmit an error 500 message to the client", () => {
       const clientId = 0;
       return expectSaga(s_logoutResponseSaga, clientId)
         .provide([
