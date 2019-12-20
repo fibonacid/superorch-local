@@ -20,10 +20,8 @@ describe("c_updateDocumentDataRequest action", () => {
 
 describe("c_updateDocumentDataSuccess action", () => {
   it("should create an action to communicate that the request succeeded", () => {
-    const message = "";
-    expect(c_updateDocumentDataSuccess(message)).toEqual({
-      type: actionTypes.C_UPDATE_DOCUMENT_DATA_SUCCESS,
-      message
+    expect(c_updateDocumentDataSuccess()).toEqual({
+      type: actionTypes.C_UPDATE_DOCUMENT_DATA_SUCCESS
     });
   });
 });
