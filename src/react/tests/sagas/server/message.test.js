@@ -10,6 +10,7 @@ import { s_updateDocumentDataResponseSaga } from "../../../sagas/server/response
 import { s_getDocumentListResponseSaga } from "../../../sagas/server/responses/getDocumentListResponse";
 import { s_getScQueryDataResponseSaga } from "../../../sagas/server/responses/getScQueryDataResponse";
 import { s_updateScQueryDataResponseSaga } from "../../../sagas/server/responses/updateScQueryDataResponse";
+import { generateUserId } from "../../../sagas/server/responses/loginResponse";
 
 describe("s_messageWatcher", () => {
   describe("when the client is not logged in", () => {
@@ -50,12 +51,13 @@ describe("s_messageWatcher", () => {
               clients: [{ id: 1, isLoggedIn: false }]
             }
           })
+          .provide([[matchers.call.fn(generateUserId), 2]])
           .put({
             type: actionTypes.S_TRANSMIT,
             clientId: 1,
             message: {
               type: actionTypes.S_LOGIN_SUCCESS,
-              userId: 1
+              userId: 2
             }
           })
           // Dispatch any actions that the saga will `take`.
