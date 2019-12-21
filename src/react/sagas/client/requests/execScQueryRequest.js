@@ -1,5 +1,5 @@
 import { actionTypes } from "../../../actions/actionTypes";
-import { takeEvery, select, put } from "redux-saga/effects";
+import { takeEvery, select, put, call } from "redux-saga/effects";
 import { channels } from "../../../../shared/constants";
 import { selectScQuery } from "../../../reducers/root";
 import { c_updateScQuery } from "../../../actions/client/crudScQueries";
@@ -21,9 +21,11 @@ export function* c_execScQueryRequestSaga(action) {
     const scQuery = yield select(state => selectScQuery(state, action.scqId));
 
     // Send to electron main process
-    const response = yield ipcRenderer.invoke(channels.SUPERCOLLIDER_MESSAGE, {
-      message: scQuery.input
-    });
+    const response = yield call(
+      ipcRenderer.invoke,
+      channels.SUPERCOLLIDER_MESSAGE,
+      { message: scQuery.input }
+    );
 
     const newScqData = {
       output: JSON.stringify(response, null, 1)
