@@ -4,9 +4,8 @@ export const c_logoutRequest = () => ({
   type: actionTypes.C_LOGOUT_REQUEST
 });
 
-export const c_logoutSuccess = message => ({
-  type: actionTypes.C_LOGOUT_SUCCESS,
-  message
+export const c_logoutSuccess = () => ({
+  type: actionTypes.C_LOGOUT_SUCCESS
 });
 
 export const c_logoutError = error => ({

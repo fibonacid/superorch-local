@@ -4,7 +4,6 @@ import { actionTypes } from "../../../actions/actionTypes";
 describe("status reducer", () => {
   it("should return the initial state", () => {
     expect(reducer(undefined, {})).toEqual({
-      url: "ws://localhost:8989",
       isLoggedIn: false,
       isConnected: false,
       isTryingToConnect: false,
@@ -122,6 +121,19 @@ describe("status reducer", () => {
       )
     ).toMatchObject({
       myScQueryIds: [2]
+    });
+  });
+
+  it("should handle S_SERVER_STARTED", () => {
+    const address = "127.0.0";
+    const port = 8000;
+    expect(
+      reducer(undefined, {
+        type: actionTypes.S_SERVER_STARTED,
+        data: { address, port }
+      })
+    ).toMatchObject({
+      url: `ws://${address}:${port}`
     });
   });
 });

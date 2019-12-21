@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled, { css } from "styled-components/macro";
-import { IoMdRadioButtonOn } from "react-icons/io";
+import styled from "styled-components/macro";
 
 const StyledContainer = styled.div`
   padding: 5px;
@@ -12,26 +11,32 @@ const StyledContainer = styled.div`
   align-items: center;
 `;
 
-const StyledCircle = styled(IoMdRadioButtonOn)`
-  vertical-align: middle;
-`;
-
 function StatusBar(props) {
-  const { appName, appVersion } = props;
+  const { appName, appVersion, server } = props;
+
+  const handleUrlClick = () => {
+    props.openExternalLink(server.url);
+  };
+
   return (
     <StyledContainer data-test={"StatusBarComponent"}>
       <span data-test={"app-info"}>
         {appName} {appVersion}
       </span>
-      <StyledCircle color={props.isConnected ? "green" : "red"} />
+      {!server.isRunning ? (
+        <span>Server offline</span>
+      ) : (
+        <a href="#" onClick={handleUrlClick}>
+          Server online
+        </a>
+      )}
     </StyledContainer>
   );
 }
 
 StatusBar.propTypes = {
   appName: PropTypes.string,
-  appVersion: PropTypes.string,
-  isConnected: PropTypes.bool.isRequired
+  appVersion: PropTypes.string
 };
 
 export default StatusBar;

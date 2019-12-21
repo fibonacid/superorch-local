@@ -4,6 +4,7 @@ import _ from "lodash";
 export default function clients(state = [], action) {
   switch (action.type) {
     case actionTypes.S_CREATE_CLIENT:
+    case actionTypes.S_CLIENT_CONNECTED:
       return [
         ...state,
         {

@@ -5,10 +5,10 @@ export const c_createDocumentRequest = docData => ({
   docData
 });
 
-export const c_createDocumentSuccess = (docId, message) => ({
+export const c_createDocumentSuccess = (docId, docData) => ({
   type: actionTypes.C_CREATE_DOCUMENT_SUCCESS,
   docId,
-  message
+  docData
 });
 
 export const c_createDocumentError = error => ({

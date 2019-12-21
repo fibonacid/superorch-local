@@ -1,6 +1,8 @@
 import { actionTypes } from "../actions/actionTypes";
 
-export const initialState = {};
+export const initialState = {
+  displayedUser: 0
+};
 
 const base = (state = initialState, action) => {
   switch (action.type) {
@@ -9,6 +11,11 @@ const base = (state = initialState, action) => {
       return {
         ...state,
         ...action.data
+      };
+    case actionTypes.DISPLAY_USER:
+      return {
+        ...state,
+        displayedUser: action.userId
       };
     default:
       return state;

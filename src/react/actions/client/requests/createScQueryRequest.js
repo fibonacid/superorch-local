@@ -6,9 +6,10 @@ export const c_createScQueryRequest = (scqId, scqData) => ({
   scqData
 });
 
-export const c_createScQuerySuccess = message => ({
+export const c_createScQuerySuccess = (scqId, scqData) => ({
   type: actionTypes.C_CREATE_SC_QUERY_SUCCESS,
-  message
+  scqId,
+  scqData
 });
 
 export const c_createScQueryError = error => ({

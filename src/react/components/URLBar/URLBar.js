@@ -61,7 +61,12 @@ function URLBar(props) {
 
   useEffect(() => {
     setModified(url !== props.url);
-  }, [url, props.url]);
+  }, [url]);
+
+  useEffect(() => {
+    setUrl(props.url);
+    setModified(true);
+  }, [props.url]);
 
   function handleReconnect() {
     props.connect(url);

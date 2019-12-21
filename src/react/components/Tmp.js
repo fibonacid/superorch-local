@@ -6,7 +6,6 @@ import { c_updateUser } from "../actions/client/crudUsers";
 
 function Tmp(props) {
   const [userName, setUserName] = useState("");
-  const [docValue, setDocValue] = useState("");
 
   return (
     <div>

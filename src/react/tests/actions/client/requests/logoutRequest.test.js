@@ -16,10 +16,8 @@ describe("c_logoutRequest action", () => {
 
 describe("c_logoutSuccess action", () => {
   it("should create an action to communicate that the request succeeded", () => {
-    const message = "";
-    expect(c_logoutSuccess(message)).toEqual({
-      type: actionTypes.C_LOGOUT_SUCCESS,
-      message
+    expect(c_logoutSuccess()).toEqual({
+      type: actionTypes.C_LOGOUT_SUCCESS
     });
   });
 });

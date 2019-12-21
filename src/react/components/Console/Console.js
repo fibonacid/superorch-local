@@ -16,12 +16,14 @@ export default function Console(props) {
       <ul>
         {props.queries.map((query, i) => {
           const user = props.users.find(user => user.id === query.userId);
-          return (
-            <li key={i}>
-              {user && <span>{user.name}~</span>}
-              <span>> {query.output}</span>
-            </li>
-          );
+          if (query.output) {
+            return (
+              <li key={i}>
+                {user && <span>{user.name}~</span>}
+                {<span> > {query.output}</span>}
+              </li>
+            );
+          }
         })}
       </ul>
     </StyledContainer>

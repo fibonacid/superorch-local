@@ -16,6 +16,16 @@ describe("clients reducer", () => {
     ).toEqual([{ id: 0, foo: "bar" }]);
   });
 
+  it("should handle S_CLIENT_CONNECTED", () => {
+    expect(
+      reducer([], {
+        type: actionTypes.S_CLIENT_CONNECTED,
+        clientId: 0,
+        clientData: { foo: "bar" }
+      })
+    ).toEqual([{ id: 0, foo: "bar" }]);
+  });
+
   it("should handle S_UPDATE_CLIENT", () => {
     expect(
       reducer(

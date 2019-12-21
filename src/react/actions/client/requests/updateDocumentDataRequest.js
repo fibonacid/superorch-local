@@ -6,9 +6,8 @@ export const c_updateDocumentDataRequest = (docId, docData) => ({
   docData
 });
 
-export const c_updateDocumentDataSuccess = message => ({
-  type: actionTypes.C_UPDATE_DOCUMENT_DATA_SUCCESS,
-  message
+export const c_updateDocumentDataSuccess = () => ({
+  type: actionTypes.C_UPDATE_DOCUMENT_DATA_SUCCESS
 });
 
 export const c_updateDocumentDataError = error => ({

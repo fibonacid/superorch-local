@@ -1,7 +1,6 @@
 import { actionTypes } from "../../actions/actionTypes";
 
 const initialState = {
-  url: "ws://localhost:8989",
   isLoggedIn: false,
   isConnected: false,
   isTryingToConnect: false,
@@ -71,6 +70,12 @@ const status = (state = initialState, action) => {
       return {
         ...state,
         myScQueryIds: state.myScQueryIds.filter(scqId => scqId !== action.scqId)
+      };
+    case actionTypes.S_SERVER_STARTED:
+      const { address, port } = action.data;
+      return {
+        ...state,
+        url: `ws://${address}:${port}`
       };
     default:
       return state;

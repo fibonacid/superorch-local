@@ -4,7 +4,7 @@ import { actionTypes } from "../../actions/actionTypes";
 describe("base reducer", () => {
   it("should return the initial state", () => {
     expect(reducer(undefined, {})).toEqual({
-      myUserId: undefined
+      displayedUser: 0
     });
   });
 
@@ -17,10 +17,20 @@ describe("base reducer", () => {
           version: "0.0.0"
         }
       })
-    ).toEqual({
-      myUserId: undefined,
+    ).toMatchObject({
       name: "test",
       version: "0.0.0"
+    });
+  });
+
+  it("should handle DISPLAY_USER", () => {
+    expect(
+      reducer(undefined, {
+        type: actionTypes.DISPLAY_USER,
+        userId: 32
+      })
+    ).toMatchObject({
+      displayedUser: 32
     });
   });
 });

@@ -3,6 +3,7 @@ import {
   s_createDocumentSuccess,
   s_createDocumentError
 } from "../../../../actions/server/responses/createDocumentResponse";
+import { statusCodes } from "../../../../utils/constants";
 
 describe("s_createDocumentSuccess action", () => {
   it("should create an action to communicate that the request completed successfully", () => {
@@ -16,10 +17,11 @@ describe("s_createDocumentSuccess action", () => {
 
 describe("s_createDocumentError action", () => {
   it("should create an action to communicate that the request raised some errors", () => {
-    const error = new Error();
-    expect(s_createDocumentError(error)).toEqual({
+    const status = 500;
+    const message = statusCodes[500];
+    expect(s_createDocumentError(status, message)).toEqual({
       type: actionTypes.S_CREATE_DOCUMENT_ERROR,
-      error
+      error: { status, message }
     });
   });
 });

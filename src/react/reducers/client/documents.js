@@ -38,7 +38,7 @@ const documents = (state = initialState, action) => {
       return state.filter(document => document.userId !== action.userId);
 
     case actionTypes.C_REPLACE_DOCUMENT_LIST:
-      return action.docList;
+      return action.docList || state;
 
     default:
       return state;
