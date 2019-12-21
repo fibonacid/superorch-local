@@ -1,4 +1,5 @@
 import { expectSaga } from "redux-saga-test-plan";
+import { throwError } from "redux-saga-test-plan/providers";
 import * as matchers from "redux-saga-test-plan/matchers";
 import { actionTypes } from "../../../../actions/actionTypes";
 import {
@@ -60,18 +61,11 @@ describe("s_loginResponse saga", () => {
   });
 
   describe("when an error is raised", () => {
-    it.skip("should transmit an error 500 message to the client", () => {
+    it("should transmit an error 500 message to the client", () => {
       const clientId = 0;
-      const userData = {};
-      return expectSaga(s_loginResponseSaga, clientId, userData)
-        .provide([
-          [
-            matchers.call.fn(testFunction),
-            () => {
-              throw new Error("test");
-            }
-          ]
-        ])
+      const error = new Error("test");
+      return expectSaga(s_loginResponseSaga, clientId)
+        .provide([[matchers.call.fn(testFunction), throwError(error)]])
         .put.like({
           action: {
             type: actionTypes.S_TRANSMIT,
