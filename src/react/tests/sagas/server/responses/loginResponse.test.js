@@ -1,6 +1,6 @@
 import { expectSaga } from "redux-saga-test-plan";
-import { throwError } from "redux-saga-test-plan/providers";
 import * as matchers from "redux-saga-test-plan/matchers";
+import { throwError } from "redux-saga-test-plan/providers";
 import { actionTypes } from "../../../../actions/actionTypes";
 import {
   generateUserId,

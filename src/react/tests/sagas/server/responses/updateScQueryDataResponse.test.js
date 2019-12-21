@@ -1,6 +1,7 @@
 import _ from "lodash";
 import { expectSaga } from "redux-saga-test-plan";
 import * as matchers from "redux-saga-test-plan/matchers";
+import { throwError } from "redux-saga-test-plan/providers";
 import { actionTypes } from "../../../../actions/actionTypes";
 import { s_updateScQueryDataResponseSaga } from "../../../../sagas/server/responses/updateScQueryDataResponse";
 import { testFunction } from "../../../../utils/testing";
@@ -139,22 +140,9 @@ describe("s_updateScQueryData saga", () => {
   describe("when an error is raised", () => {
     it("should transmit an error 500 message to the client", () => {
       const clientId = 0;
-      const scqId = 0;
-      const scqData = {};
-      return expectSaga(
-        s_updateScQueryDataResponseSaga,
-        clientId,
-        scqId,
-        scqData
-      )
-        .provide([
-          [
-            matchers.call.fn(testFunction),
-            () => {
-              throw new Error("test");
-            }
-          ]
-        ])
+      const error = new Error("test");
+      return expectSaga(s_updateScQueryDataResponseSaga, clientId)
+        .provide([[matchers.call.fn(testFunction), throwError(error)]])
         .put.like({
           action: {
             type: actionTypes.S_TRANSMIT,
