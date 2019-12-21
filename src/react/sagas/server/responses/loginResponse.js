@@ -44,6 +44,6 @@ export function* s_loginResponseSaga(clientId, userData) {
     // If there was an error:
     // Transmit error to the client that tried logging in.
     yield put(s_transmit(clientId, s_loginError(500, statusCodes[500])));
-    process.env.NODE_ENV === "test" && console.error(error);
+    process.env.NODE_ENV !== "test" && console.error(error);
   }
 }

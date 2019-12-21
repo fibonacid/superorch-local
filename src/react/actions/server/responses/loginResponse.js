@@ -5,7 +5,7 @@ export const s_loginSuccess = userId => ({
   userId
 });
 
-export const s_loginError = error => ({
+export const s_loginError = (status, message) => ({
   type: actionTypes.S_LOGIN_ERROR,
-  error
+  error: { status, message }
 });
