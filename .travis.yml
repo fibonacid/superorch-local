@@ -1,7 +1,7 @@
 language: node_js
 
 node_js:
-  - "v12.13.0"
+  - "v11.10.1"
 
 # Always run two parallel builds: one on mac and one on linux
 # the linux build will use wine to be able to build windows and
@@ -60,7 +60,7 @@ script:
         electronuserland/builder:wine \
         /bin/bash -c "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash" \
         /bin/bash -c "source ~/.bashrc" \
-        /bin/bash -c "nvm install v11.10.1"
+        /bin/bash -c "nvm install v11.10.1" \
         /bin/bash -c "yarn --link-duplicates --pure-lockfile && yarn test --coverage && yarn build && yarn build:electron"
     else
       yarn test --coverage && yarn build && yarn build:electron
