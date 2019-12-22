@@ -25,6 +25,10 @@ matrix:
 notifications:
   email: false
 
+env:
+  global:
+    - CI=false
+
 # cache some files for faster builds
 cache:
   yarn: true
@@ -32,9 +36,6 @@ cache:
     - node_modules
     - $HOME/.cache/electron
     - $HOME/.cache/electron-builder
-
-env:
-  - SOCKET_PORT=8989 REACT_APP_SOCKET_URL='ws://localhost:8989' CI=false
 
 # add git lfs for large file support
 before_install:
