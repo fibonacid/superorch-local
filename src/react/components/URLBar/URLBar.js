@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import styled, { keyframes, css } from "styled-components";
 import { resetInput } from "../../utils/styles";
 import { IconContext } from "react-icons";
@@ -55,18 +55,18 @@ const StyledRefresh = styled(IoMdRefresh)`
  * @constructor
  */
 function URLBar(props) {
-  const [originalUrl] = useState(props.url);
-  const [url, setUrl] = useState(props.url);
+  const [url, setUrl] = useState(props.url || "");
   const [modified, setModified] = useState(false);
+
+  useEffect(() => {
+    setUrl(props.url || "");
+  }, [props.url]);
 
   useEffect(() => {
     setModified(url !== props.url);
   }, [url]);
 
-  useEffect(() => {
-    setUrl(props.url);
-    setModified(true);
-  }, [props.url]);
+  const handleChange = useCallback(event => setUrl(event.target.value), []);
 
   function handleReconnect() {
     props.connect(url);
@@ -81,8 +81,8 @@ function URLBar(props) {
       <StyledInput
         data-test={"input"}
         type="text"
-        placeholder={originalUrl}
-        onChange={e => setUrl(e.target.value)}
+        placeholder={"ws://localhost:8000"}
+        onChange={handleChange}
         value={url}
       />
       <IconContext.Provider value={{ style: { verticalAlign: "middle" } }}>
