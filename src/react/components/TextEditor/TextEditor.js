@@ -105,10 +105,12 @@ export default class TextEditor extends React.Component {
     };
 
     // Store initial editor content to the store
-    this.props.sendEditorState(
-      this.props.document.id,
-      JSON.stringify(convertToRaw(initialContent))
-    );
+    if (this.props.document && this.props.document.id) {
+      this.props.sendEditorState(
+        this.props.document.id,
+        JSON.stringify(convertToRaw(initialContent))
+      );
+    }
 
     this.setDomEditorRef = ref => (this.domEditor = ref);
 
