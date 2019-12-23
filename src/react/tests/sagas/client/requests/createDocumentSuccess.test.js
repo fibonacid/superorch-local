@@ -28,7 +28,7 @@ describe("c_createDocumentSuccess saga", () => {
         docId
       })
       .dispatch({
-        type: actionTypes.C_CREATE_SC_QUERY_SUCCESS,
+        type: actionTypes.C_CREATE_DOCUMENT_SUCCESS,
         docId,
         docData
       })
@@ -45,7 +45,7 @@ describe("c_createDocumentSuccess saga", () => {
       })
       .put({ type: actionTypes.C_GET_DOCUMENT_LIST_REQUEST })
       .dispatch({
-        type: actionTypes.C_CREATE_SC_QUERY_SUCCESS,
+        type: actionTypes.C_CREATE_DOCUMENT_SUCCESS,
         docId: 1,
         docData: {}
       })
