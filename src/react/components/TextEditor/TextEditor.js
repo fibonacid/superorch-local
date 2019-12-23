@@ -4,6 +4,7 @@ import {
   convertToRaw,
   Editor,
   EditorState,
+  ContentState,
   getDefaultKeyBinding,
   CompositeDecorator,
   KeyBindingUtil,
@@ -75,6 +76,14 @@ const compositeDecorator = new CompositeDecorator([
   }
 ]);
 
+const introText = `/*\nWelcome to superorch, an IDE for shared supercollider sessions :-)
+You can start making music by typing sclang code into this text editor and then executing it by selecting the text and pressing CMD+ENTER.
+\nYou can try with the following line:\n*/
+\nx = { SinOsc.ar(660, 0, 0.2) }.play;
+\n// To stop the sound execute the following line:
+\nx.free
+`;
+
 // ------------------------
 // Text Editor Component
 // ------------------------
@@ -85,7 +94,10 @@ export default class TextEditor extends React.Component {
 
     // Initialize component state.
     this.state = {
-      editorState: EditorState.createEmpty(compositeDecorator)
+      editorState: EditorState.createWithContent(
+        ContentState.createFromText(introText),
+        compositeDecorator
+      )
     };
 
     this.setDomEditorRef = ref => (this.domEditor = ref);
