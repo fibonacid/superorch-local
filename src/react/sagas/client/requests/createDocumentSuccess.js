@@ -6,7 +6,7 @@ import { c_getDocumentListRequest } from "../../../actions/client/requests/getDo
 
 export function* c_createDocumentSuccessWatcher() {
   yield takeLatest(
-    actionTypes.C_CREATE_SC_QUERY_SUCCESS,
+    actionTypes.C_CREATE_DOCUMENT_SUCCESS,
     c_createDocumentSuccessSaga
   );
 }
