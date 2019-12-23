@@ -92,13 +92,23 @@ export default class TextEditor extends React.Component {
   constructor(props) {
     super(props);
 
-    // Initialize component state.
+    // Initialize content state with a text introduction that
+    // explains to the users how to operate the text editor.
+    const initialContent = ContentState.createFromText(introText);
+
+    // Initialize editor state.
     this.state = {
       editorState: EditorState.createWithContent(
-        ContentState.createFromText(introText),
+        initialContent,
         compositeDecorator
       )
     };
+
+    // Store initial editor content to the store
+    this.props.sendEditorState(
+      this.props.document.id,
+      JSON.stringify(convertToRaw(initialContent))
+    );
 
     this.setDomEditorRef = ref => (this.domEditor = ref);
 
