@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import TextEditor from "./TextEditor";
 import { c_updateDocument } from "../../actions/client/crudDocuments";
 import { c_appendScQuery } from "../../actions/client/crudScQueries";
-import { selectDocuments, selectUser } from "../../reducers/root";
+import { selectDocuments } from "../../reducers/root";
 
 const mapStateToProps = state => {
   const document = selectDocuments(state).find(
