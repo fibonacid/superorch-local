@@ -8,6 +8,7 @@ const StyledContainer = styled.div`
   padding: 5px;
   font-family: monospace;
   overflow-y: auto;
+  overflow-x: auto;
 `;
 
 export default function Console(props) {
@@ -19,8 +20,12 @@ export default function Console(props) {
           if (query.output) {
             return (
               <li key={i}>
-                {user && <span>{user.name}~</span>}
-                {<span> > {query.output}</span>}
+                {user && (
+                  <p>
+                    {user.name}~ {query.input}
+                  </p>
+                )}
+                {<p>{query.output}</p>}
               </li>
             );
           }
