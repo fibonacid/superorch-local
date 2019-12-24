@@ -48,7 +48,8 @@ describe("s_messageWatcher", () => {
         expectSaga(s_messageWatcher)
           .withState({
             server: {
-              clients: [{ id: 1, isLoggedIn: false }]
+              clients: [{ id: 1, isLoggedIn: false }],
+              status: { authRequired: false }
             }
           })
           .provide([[matchers.call.fn(generateUserId), 2]])
