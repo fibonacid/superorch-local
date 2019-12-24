@@ -14,6 +14,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
+  runsOnElectron: state.base.runsOnElectron,
   appName: state.base.name,
   appVersion: state.base.version,
   server: state.server.status
