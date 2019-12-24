@@ -9,7 +9,8 @@ const mapDispatchToProps = dispatch => ({
   setPassword: function(password) {
     dispatch(s_changePassword(password));
     dispatch(s_authWithPassword());
-  }
+  },
+  disablePassword: () => dispatch(s_authWithPassword(false))
 });
 
 const mapStateToProps = state => ({
