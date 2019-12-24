@@ -12,11 +12,6 @@ const StyledContainer = styled.div`
   align-items: center;
 `;
 
-const StyledWrapper = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
 function StatusBar(props) {
   const { appName, appVersion, server } = props;
 
@@ -29,13 +24,17 @@ function StatusBar(props) {
       <span data-test={"app-info"}>
         {appName} {appVersion}
       </span>
-      <PasswordForm {...props} />
-      {!server.isRunning ? (
-        <span>Server offline</span>
-      ) : (
-        <a href="#" onClick={handleUrlClick}>
-          Server online
-        </a>
+      {props.runsOnElectron && (
+        <>
+          <PasswordForm {...props} />
+          {!server.isRunning ? (
+            <span>Server offline</span>
+          ) : (
+            <a href="#" onClick={handleUrlClick}>
+              Server online
+            </a>
+          )}
+        </>
       )}
     </StyledContainer>
   );
