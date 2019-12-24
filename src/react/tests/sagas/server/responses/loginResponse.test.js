@@ -23,7 +23,10 @@ describe("s_loginResponse saga", () => {
       saga = expectSaga(s_loginResponseSaga, clientId, userData)
         .withState({
           server: {
-            clients: [{ id: 0, userId }]
+            clients: [{ id: 0, userId }],
+            status: {
+              authRequired: false
+            }
           },
           client: {
             users: [{ id: 1 }]
@@ -59,7 +62,105 @@ describe("s_loginResponse saga", () => {
         .run();
     });
   });
+  describe("when authentication is required", () => {
+    const clientId = 0;
+    const userData = {};
+    const password = "test";
 
+    it("should send a success message when password is correct", () => {
+      return expectSaga(s_loginResponseSaga, clientId, userData, password)
+        .withState({
+          server: {
+            clients: [{ id: clientId }],
+            status: {
+              password,
+              authRequired: true
+            }
+          }
+        })
+        .put.like({
+          action: {
+            type: actionTypes.S_TRANSMIT,
+            clientId,
+            message: {
+              type: actionTypes.S_LOGIN_SUCCESS
+            }
+          }
+        })
+        .run();
+    });
+
+    it("should send en error 403 when given password is empty", () => {
+      return expectSaga(s_loginResponseSaga, clientId, userData, undefined)
+        .withState({
+          server: {
+            clients: [{ id: clientId }],
+            status: {
+              password,
+              authRequired: true
+            }
+          }
+        })
+        .put.like({
+          action: {
+            type: actionTypes.S_TRANSMIT,
+            clientId,
+            message: {
+              type: actionTypes.S_LOGIN_ERROR,
+              error: { status: 403 }
+            }
+          }
+        })
+        .run();
+    });
+
+    it("should send an error 403 when password is incorrect", () => {
+      return expectSaga(s_loginResponseSaga, clientId, userData, "foo")
+        .withState({
+          server: {
+            clients: [{ id: clientId }],
+            status: {
+              password,
+              authRequired: true
+            }
+          }
+        })
+        .put.like({
+          action: {
+            type: actionTypes.S_TRANSMIT,
+            clientId,
+            message: {
+              type: actionTypes.S_LOGIN_ERROR,
+              error: { status: 403 }
+            }
+          }
+        })
+        .run();
+    });
+
+    it("should send en error 500 when server password is empty", () => {
+      return expectSaga(s_loginResponseSaga, clientId, userData, password)
+        .withState({
+          server: {
+            clients: [{ id: clientId }],
+            status: {
+              authRequired: true
+            }
+          }
+        })
+        .put.like({
+          action: {
+            type: actionTypes.S_TRANSMIT,
+            clientId,
+            message: {
+              type: actionTypes.S_LOGIN_ERROR,
+              error: { status: 500 }
+            }
+          }
+        })
+        .run();
+    });
+  });
   describe("when an error is raised", () => {
     it("should transmit an error 500 message to the client", () => {
       const clientId = 0;
