@@ -1,4 +1,4 @@
-import { call, put } from "redux-saga/effects";
+import { call, put, select } from "redux-saga/effects";
 import {
   s_loginError,
   s_loginSuccess
@@ -16,12 +16,38 @@ export function generateUserId() {
   return userCount++;
 }
 
-export function* s_loginResponseSaga(clientId, userData) {
+export function* s_loginResponseSaga(clientId, userData, password) {
   try {
     // Call testFunction to enable test code injection
     if (process.env.NODE_ENV === "test") {
       yield call(testFunction);
     }
+
+    // Get password and authRequired from the state
+    const { authRequired } = yield select(state => state.server.status);
+    // If authentication is required
+    if (authRequired === true) {
+      // If no password is given
+      if (!password) {
+        // transmit a message to the client the signal that
+        // it can't login without a valid password.
+        yield put(
+          s_transmit(clientId, s_loginError(403, `Password is required`))
+        );
+      } else {
+        // Try authenticating client:
+        const success = yield call(authenticate, password);
+        // If authentication failed:
+        if (success === false) {
+          // transmit a message to the client to signal
+          // that the given password is incorrect.
+          yield put(
+            s_transmit(clientId, s_loginError(403, `Password is incorrect`))
+          );
+        }
+      }
+    }
+
     // Generate new user id
     const userId = yield call(generateUserId);
 
@@ -45,5 +71,19 @@ export function* s_loginResponseSaga(clientId, userData) {
     // Transmit error to the client that tried logging in.
     yield put(s_transmit(clientId, s_loginError(500, statusCodes[500])));
     process.env.NODE_ENV !== "test" && console.error(error);
+  }
+}
+
+export function* authenticate(password) {
+  const { password: serverPass } = yield select(state => state.server.status);
+  // If server password is exists:
+  if (serverPass) {
+    // Find out if passwords match
+    return password === serverPass;
+  } else {
+    // Else, throw an error 500.
+    throw new Error(
+      "authentication failed due to an error: server password is undefined"
+    );
   }
 }
