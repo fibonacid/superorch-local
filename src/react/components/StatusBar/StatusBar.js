@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components/macro";
+import PasswordForm from "./PasswordForm";
 
 const StyledContainer = styled.div`
   padding: 5px;
@@ -8,6 +9,11 @@ const StyledContainer = styled.div`
   flex: 0 0 auto;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+`;
+
+const StyledWrapper = styled.div`
+  display: flex;
   align-items: center;
 `;
 
@@ -23,6 +29,7 @@ function StatusBar(props) {
       <span data-test={"app-info"}>
         {appName} {appVersion}
       </span>
+      <PasswordForm setPassword={props.setPassword} />
       {!server.isRunning ? (
         <span>Server offline</span>
       ) : (
