@@ -58,7 +58,20 @@ yarn build && yarn build:electron
 yarn package
 ```
 
-If build fails for windows or linux targets you have to run electron-builder on a virtual machine. This is how to do it with docker.
+If build fails for windows or linux targets you have to run electron-builder on a virtual machine. In the section below i explain how to do it with docker.
+
+If you want to distribute your app executable on github you have to first get you github account token end then expose it as an environment variable.
+You can find it by going to Settings > Personal access tokens and then copy and paste the token or generate one if you don't have any.
+
+```
+export GH_TOKEN=123456789
+```
+Then you just need to run this command to publish the app on github.
+```sh
+yarn deploy -c.snap.publish=github
+```
+
+### Build for Linux and Windows on a Mac
 
 Firstly you will need to install [docker](https://hub.docker.com/?overlay=onboarding) on your machine.
 When docker is installed you can open a terminal and paste this comand:
@@ -83,18 +96,20 @@ If that's the case you can go ahead and install the project dependencies.
 yarn install
 ```
 
-Then build the app and create the package
+If there's an error saying that the node version isn't compatible with one of the required modules you should change node version through nvm. Follow their [guidelines](https://github.com/nvm-sh/nvm#install--update-script) to install the software and then run this command with your desired node version in the arguments (for me it was v11.10.1).
+```sh
+nvm install <desired_node_version>
+```
+
+At last you can run `node -v` to verify that the current version of node is in fact the one you tried to install,
+if that's the case you can go ahead and run `yarn install` again.
+
+
+Finally, to build and package the app you should run these commands:
 
 ```sh
 yarn build && yarn build:electron
 yarn package --win --linux
-```
-
-To deploy the package to github you have to expose your account token into the environment variables and then run:
-
-```sh
-export GH_TOKEN=123456789
-yarn deploy --win --linux -c.snap.publish=github
 ```
 
 ## To Do
