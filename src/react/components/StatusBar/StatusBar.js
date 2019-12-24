@@ -29,7 +29,7 @@ function StatusBar(props) {
       <span data-test={"app-info"}>
         {appName} {appVersion}
       </span>
-      <PasswordForm setPassword={props.setPassword} />
+      <PasswordForm {...props} />
       {!server.isRunning ? (
         <span>Server offline</span>
       ) : (
