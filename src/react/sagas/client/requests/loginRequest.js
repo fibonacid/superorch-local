@@ -25,16 +25,16 @@ export function* c_loginRequestSaga(action) {
   yield put(send(message));
 
   // start a race between sagas
-  const { result, error, timeout } = yield race({
+  const { result, failure, timeout } = yield race({
     result: take(actionTypes.S_LOGIN_SUCCESS),
-    error: take(actionTypes.S_LOGIN_ERROR),
+    failure: take(actionTypes.S_LOGIN_ERROR),
     timeout: delay(2000, `Request took too long to complete`)
   });
 
   if (result) {
     yield put(c_loginSuccess(result.userId, `logged in`));
-  } else if (error) {
-    yield put(c_loginError(error));
+  } else if (failure) {
+    yield put(c_loginError(failure.error));
   } else if (timeout) {
     yield put(c_loginTimeout(timeout));
   }
