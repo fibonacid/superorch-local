@@ -23,10 +23,10 @@ export function* s_loginResponseSaga(clientId, userData, password) {
       yield call(testFunction);
     }
 
-    // Get password and authRequired from the state
-    const { authRequired } = yield select(state => state.server.status);
+    // Get password and requirePassword from the state
+    const { requirePassword } = yield select(state => state.server.status);
     // If authentication is required
-    if (authRequired === true) {
+    if (requirePassword === true) {
       // If no password is given
       if (!password) {
         // transmit a message to the client the signal that

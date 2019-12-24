@@ -25,7 +25,7 @@ describe("s_loginResponse saga", () => {
           server: {
             clients: [{ id: 0, userId }],
             status: {
-              authRequired: false
+              requirePassword: false
             }
           },
           client: {
@@ -74,7 +74,7 @@ describe("s_loginResponse saga", () => {
             clients: [{ id: clientId }],
             status: {
               password,
-              authRequired: true
+              requirePassword: true
             }
           }
         })
@@ -97,7 +97,7 @@ describe("s_loginResponse saga", () => {
             clients: [{ id: clientId }],
             status: {
               password,
-              authRequired: true
+              requirePassword: true
             }
           }
         })
@@ -121,7 +121,7 @@ describe("s_loginResponse saga", () => {
             clients: [{ id: clientId }],
             status: {
               password,
-              authRequired: true
+              requirePassword: true
             }
           }
         })
@@ -144,7 +144,7 @@ describe("s_loginResponse saga", () => {
           server: {
             clients: [{ id: clientId }],
             status: {
-              authRequired: true
+              requirePassword: true
             }
           }
         })

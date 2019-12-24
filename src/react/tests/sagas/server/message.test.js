@@ -49,7 +49,7 @@ describe("s_messageWatcher", () => {
           .withState({
             server: {
               clients: [{ id: 1, isLoggedIn: false }],
-              status: { authRequired: false }
+              status: { requirePassword: false }
             }
           })
           .provide([[matchers.call.fn(generateUserId), 2]])

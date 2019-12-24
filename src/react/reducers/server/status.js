@@ -3,7 +3,7 @@ import { actionTypes } from "../../actions/actionTypes";
 const initialState = {
   isRunning: false,
   password: "2019",
-  authRequired: true
+  requirePassword: true
 };
 
 export default function status(state = initialState, action) {
@@ -15,6 +15,16 @@ export default function status(state = initialState, action) {
         isRunning: true,
         url: `http://${address}:${port}`,
         wsEndpoint: `ws://${address}:${port}`
+      };
+    case actionTypes.S_AUTH_WITH_PASSWORD:
+      return {
+        ...state,
+        requirePassword: action.flag
+      };
+    case actionTypes.S_CHANGE_PASSWORD:
+      return {
+        ...state,
+        password: action.password
       };
     default:
       return state;
