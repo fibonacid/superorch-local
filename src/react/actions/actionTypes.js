@@ -83,6 +83,10 @@ export const actionTypes = {
   // ====================================================
 
   // Login / Logout
+  C_CONNECTION_REQUEST: "C::CONNECTION_REQUEST",
+  C_CONNECTION_SUCCESS: "C::CONNECTION_SUCCESS",
+  C_CONNECTION_ERROR: "C::CONNECTION_ERROR",
+  C_CONNECTION_TIMEOUT: "C::CONNECTION_TIMEOUT",
 
   C_LOGIN_REQUEST: "C::LOGIN_REQUEST",
   C_LOGIN_SUCCESS: "C::LOGIN_SUCCESS",
