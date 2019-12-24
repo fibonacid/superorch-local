@@ -3,7 +3,7 @@ import { actionTypes } from "../../../actions/actionTypes";
 
 describe("status reducer", () => {
   it("should return the initial state", () => {
-    expect(reducer(undefined, {})).toEqual({
+    expect(reducer(undefined, {})).toMatchObject({
       isRunning: false
     });
   });
