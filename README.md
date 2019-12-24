@@ -8,6 +8,8 @@
 This application provides a simple system to connect supercollider musicians over a network, allowing them to transmit sclang instruction to each other in real time.
 The app will work alongside supercollider to intercept instructions and having them translated into sound immediately.
 
+![A screenshot of the app](screenshots/superorch-02.png)
+
 ## Requirements
 
 In order to produce any sound the app requires a copy of supercollider to be installed on the user machine. If you don't have it already, go to the official [download page](https://supercollider.github.io/download) and install a version of the software for your operating system.
