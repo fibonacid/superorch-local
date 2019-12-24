@@ -33,6 +33,7 @@ export default function LoginForm(props) {
   const handleSubmit = useCallback(
     event => {
       event.preventDefault();
+      props.handleSubmit(url, password);
     },
     [url, password]
   );
