@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Provider } from "react-redux";
+import { MemoryRouter, Route } from "react-router-dom";
 import styled from "styled-components/macro";
 import normalize from "styled-normalize";
 import reset from "styled-reset";
@@ -13,14 +14,16 @@ import { s_message } from "./actions/server/message";
 import { s_clientDisconnected } from "./actions/server/clientDisconnected";
 import { s_clientConnected } from "./actions/server/clientConnected";
 import { updateBaseData } from "./actions/updateBaseData";
+import { s_serverStarted } from "./actions/server/serverStarted";
 
 // Components
 import { createGlobalStyle } from "styled-components";
-import SideBar from "./components/SideBar/index";
 import Header from "./components/Header/index";
 import StatusBar from "./components/StatusBar/index";
-import MainBar from "./components/MainBar/MainBar";
-import { s_serverStarted } from "./actions/server/serverStarted";
+
+// Views
+import Home from "./views/home";
+import Join from "./views/join";
 
 /* =============================================== */
 /*    REDUX                                        */
@@ -75,7 +78,7 @@ export const StyledContainer = styled.div`
   flex-direction: column;
 `;
 
-export const StyledWrapper = styled.div`
+const StyledWrapper = styled.div`
   flex: 1 1 100%;
   overflow-y: auto;
   display: flex;
@@ -150,12 +153,14 @@ class App extends Component {
       <Provider store={store}>
         <StyledContainer className="App">
           <GlobalStyle />
-          <Header />
-          <StyledWrapper>
-            <SideBar />
-            <MainBar />
-          </StyledWrapper>
-          <StatusBar />
+          <MemoryRouter>
+            <Header />
+            <StyledWrapper>
+              <Route path="/" exact component={Home} />
+              <Route path="/join" exact component={Join} />
+            </StyledWrapper>
+            <StatusBar />
+          </MemoryRouter>
         </StyledContainer>
       </Provider>
     );
