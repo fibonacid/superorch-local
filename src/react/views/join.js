@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import LoginForm from "../components/LoginForm/LoginForm";
+import LoginForm from "../components/LoginForm/index";
 
 const StyledContainer = styled.div`
   display: flex;
