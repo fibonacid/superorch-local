@@ -2,8 +2,8 @@ import { actionTypes } from "../../actions/actionTypes";
 
 const initialState = {
   isRunning: false,
-  password: "2019",
-  requirePassword: true
+  password: null,
+  requirePassword: false
 };
 
 export default function status(state = initialState, action) {
