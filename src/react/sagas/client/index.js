@@ -20,6 +20,7 @@ import { c_getScQueryDataRequestWatcher } from "./requests/getScQueryDataRequest
 import { c_updateScQueryDataRequestWatcher } from "./requests/updateScQueryDataRequest";
 import { c_getDocumentListSuccessWatcher } from "./requests/getDocumentListSuccess";
 import { c_createDocumentSuccessWatcher } from "./requests/createDocumentSuccess";
+import { c_connectionRequestWatcher } from "./requests/connectionRequest";
 
 export function* clientSagas() {
   yield all([
@@ -29,6 +30,7 @@ export function* clientSagas() {
     c_appendScQueryWatcher(),
     c_createScQueryWatcher(),
     // Requests
+    c_connectionRequestWatcher(),
     c_loginRequestWatcher(),
     c_loginSuccessWatcher(),
     c_logoutRequestWatcher(),
