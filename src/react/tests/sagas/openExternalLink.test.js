@@ -1,8 +1,8 @@
 import { expectSaga } from "redux-saga-test-plan";
-import { actionTypes } from "../actions/actionTypes";
-import { channels } from "../../shared/constants";
-import { openExternalLinkWatcher } from "../sagas/openExternalLink";
-import { ipcRenderer } from "mocks/electron";
+import { actionTypes } from "../../actions/actionTypes";
+import { channels } from "../../../shared/constants";
+import { openExternalLinkWatcher } from "../../sagas/openExternalLink";
+import { ipcRenderer } from "src/react/tests/mocks/electron";
 
 describe("openExternalLink saga", () => {
   it("should send a message to the main process", () => {
