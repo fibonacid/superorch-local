@@ -1,12 +1,12 @@
 "use strict";
 
-require('dotenv').config();
+require("dotenv").config();
 const session = require("express-session");
 const express = require("express");
 const http = require("http");
 const uuid = require("uuid");
 const WebSocket = require("ws");
-const { MongoClient } = require('mongodb');
+const { MongoClient } = require("mongodb");
 
 //
 //  Connect to database
@@ -46,9 +46,20 @@ app.post("/login", function(req, res) {
   //
   const id = uuid.v4();
 
-  console.log(`Updating session for user ${id}`);
-  req.session.userId = id;
-  res.send({ result: "OK", message: "Session updated" });
+  // Save user into the db
+  db.collection("users")
+    .insertOne({ name: "john" })
+    .then(result => {
+      console.log("saved to database");
+
+      const id = result.insertedId;
+      console.log(`Updating session for user ${id}`);
+      req.session.userId = id;
+      res.send({ result: "OK", message: "Session updated" });
+    })
+    .catch(err => {
+      console.log(err);
+    });
 });
 
 app.delete("/logout", function(request, response) {
