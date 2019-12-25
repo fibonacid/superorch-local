@@ -16,7 +16,11 @@ MongoClient.connect(process.env.DATABASE_URL, (err, client) => {
   if (err) return console.log(err);
   db = client.db(process.env.DATABASE_NAME);
   if (db) console.log(`connected to ${db.databaseName}`);
-});
+
+  db.collection('system')
+    .insertOne({ password: require('./helpers').password })
+    .then(r => console.log('saved to database'))
+ });
 
 const app = express();
 const map = new Map();
@@ -72,8 +76,6 @@ app.post("/logout", function(req, res) {
     return res.send({ result: "ERROR", message: "Session Not Found" });
   }
 
-  console.log(req.session);
-
   const ws = map.get(id);
 
   console.log("Destroying session");
@@ -97,10 +99,10 @@ app.post("/logout", function(req, res) {
 //
 // Create HTTP server by ourselves.
 //
-const server = http.createServer(app);
+const index = http.createServer(app);
 const wss = new WebSocket.Server({ clientTracking: false, noServer: true });
 
-server.on("upgrade", function(request, socket, head) {
+index.on("upgrade", function(request, socket, head) {
   console.log("Parsing session from request...");
 
   sessionParser(request, {}, () => {
@@ -137,6 +139,6 @@ wss.on("connection", function(ws, request) {
 //
 // Start the server.
 //
-server.listen(8080, function() {
+index.listen(8080, function() {
   console.log("Listening on http://localhost:8080");
 });

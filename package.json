@@ -10,8 +10,8 @@
     "url": "https://github.com/lorenzorivosecchi/superorch.git"
   },
   "scripts": {
-    "server": "dotenv nodemon src/server.js",
-    "start:server": "node src/server.js",
+    "server": "dotenv nodemon src/server/index.js",
+    "start:server": "node src/server/index.js",
     "start": "export BROWSER=none && react-scripts start",
     "start:electron": "export ELECTRON_START_URL=http://localhost:3000 && electron .",
     "dev": "NODE_ENV='development' nf start -p 3000",
