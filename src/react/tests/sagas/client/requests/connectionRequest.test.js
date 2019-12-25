@@ -50,6 +50,24 @@ describe("c_connectionRequest", () => {
           .run()
       );
     });
+    it("should dispatch a login request", () => {
+      return (
+        expectSaga(c_connectionRequestSaga, action)
+          // Assert that the `put` will eventually happen.
+          .put.like({
+            action: {
+              type: actionTypes.C_LOGIN_REQUEST,
+              password
+            }
+          })
+          // Dispatch any actions that the saga will `take`.
+          .dispatch({
+            type: actionTypes.S_CONNECTION_SUCCESS
+          })
+          // Start the test. Returns a Promise.
+          .run()
+      );
+    });
   });
 
   describe("when an error is received", () => {

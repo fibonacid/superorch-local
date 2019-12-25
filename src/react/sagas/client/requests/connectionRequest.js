@@ -6,6 +6,7 @@ import {
   c_connectionSuccess,
   c_connectionTimeout
 } from "../../../actions/client/requests/connectionRequest";
+import { c_loginRequest } from "../../../actions/client/requests/loginRequest";
 
 /**
  *
@@ -33,7 +34,8 @@ export function* c_connectionRequestSaga(action) {
   });
 
   if (result) {
-    yield put(c_connectionSuccess(result.docId, result.docData));
+    yield put(c_connectionSuccess());
+    yield put(c_loginRequest(action.password));
   } else if (clientError) {
     yield put(c_connectionError(clientError.error));
   } else if (serverError) {
