@@ -22,7 +22,7 @@ export function* c_connectionRequestWatcher() {
  */
 export function* c_connectionRequestSaga(action) {
   // Send request
-  yield put(connect(action.url, action.password));
+  yield put(connect(action.url));
 
   // start a race between sagas
   const { result, serverError, clientError, timeout } = yield race({
