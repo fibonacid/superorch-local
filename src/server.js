@@ -1,10 +1,25 @@
 "use strict";
 
+require('dotenv').config();
 const session = require("express-session");
 const express = require("express");
 const http = require("http");
 const uuid = require("uuid");
 const WebSocket = require("ws");
+const { MongoClient } = require('mongodb');
+
+//
+//  Connect to database
+//
+let db;
+MongoClient.connect(process.env.DATABASE_URL, (err, client) => {
+  // ... start the server
+  if (err) return console.log(err);
+  db = client.db(process.env.DATABASE_NAME);
+  if (db) {
+    console.log(`connected to ${db.databaseName}`);
+  }
+});
 
 const app = express();
 const map = new Map();
