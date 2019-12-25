@@ -1,7 +1,8 @@
 import { actionTypes } from "../../actionTypes";
 
-export const c_loginRequest = () => ({
-  type: actionTypes.C_LOGIN_REQUEST
+export const c_loginRequest = password => ({
+  type: actionTypes.C_LOGIN_REQUEST,
+  password
 });
 
 export const c_loginSuccess = (userId, message) => ({
