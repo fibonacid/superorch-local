@@ -4,9 +4,8 @@ require("dotenv").config();
 const session = require("express-session");
 const express = require("express");
 const http = require("http");
-const uuid = require("uuid");
 const WebSocket = require("ws");
-const { MongoClient } = require("mongodb");
+const { MongoClient, ObjectId } = require("mongodb");
 
 //
 //  Connect to database
@@ -16,9 +15,7 @@ MongoClient.connect(process.env.DATABASE_URL, (err, client) => {
   // ... start the server
   if (err) return console.log(err);
   db = client.db(process.env.DATABASE_NAME);
-  if (db) {
-    console.log(`connected to ${db.databaseName}`);
-  }
+  if (db) console.log(`connected to ${db.databaseName}`);
 });
 
 const app = express();
@@ -40,19 +37,23 @@ const sessionParser = session({
 app.use(express.static("public"));
 app.use(sessionParser);
 
+//
+//  POST /login
+//
 app.post("/login", function(req, res) {
   //
   // "Log in" user and set userId to session.
   //
-  const id = uuid.v4();
 
   // Save user into the db
   db.collection("users")
     .insertOne({ name: "john" })
     .then(result => {
-      console.log("saved to database");
-
+      //
+      // Bind id to the request session.
+      //
       const id = result.insertedId;
+
       console.log(`Updating session for user ${id}`);
       req.session.userId = id;
       res.send({ result: "OK", message: "Session updated" });
@@ -62,15 +63,35 @@ app.post("/login", function(req, res) {
     });
 });
 
-app.delete("/logout", function(request, response) {
-  const ws = map.get(request.session.userId);
+//
+// POST /logout
+//
+app.post("/logout", function(req, res) {
+  const { userId: id } = req.session;
+  if (!id) {
+    return res.send({ result: "ERROR", message: "Session Not Found" });
+  }
+
+  console.log(req.session);
+
+  const ws = map.get(id);
 
   console.log("Destroying session");
-  request.session.destroy(function() {
+  req.session.destroy(function() {
     if (ws) ws.close();
 
-    response.send({ result: "OK", message: "Session destroyed" });
+    res.send({ result: "OK", message: "Session destroyed" });
   });
+
+  // Delete user from the db
+  db.collection("users")
+    .deleteOne({ _id: ObjectId(id) })
+    .then(result => {
+      console.log("saved to database");
+    })
+    .catch(err => {
+      throw err;
+    });
 });
 
 //
