@@ -10,7 +10,7 @@
     "url": "https://github.com/lorenzorivosecchi/superorch.git"
   },
   "scripts": {
-    "server": "nodemon src/server.js",
+    "server": "dotenv nodemon src/server.js",
     "start:server": "node src/server.js",
     "start": "export BROWSER=none && react-scripts start",
     "start:electron": "export ELECTRON_START_URL=http://localhost:3000 && electron .",
@@ -35,6 +35,7 @@
   },
   "devDependencies": {
     "babel-plugin-module-resolver": "^3.2.0",
+    "dotenv-cli": "^3.1.0",
     "electron": "^7.1.2",
     "electron-builder": "^21.1.1",
     "electron-devtools-installer": "^2.2.4",
