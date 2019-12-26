@@ -7,7 +7,7 @@ const NodemonPlugin = require("nodemon-webpack-plugin");
 
 module.exports = {
   mode: "development",
-  entry: "./src/server/index.js",
+  entry: ["babel-polyfill", "./src/server/index.js"],
   output: {
     path: path.resolve(__dirname, "build"),
     filename: "server.bundle.js"
