@@ -1,10 +1,9 @@
-import { actionTypes } from "../../actions/actionTypes";
+import { actionTypes } from "../../../shared/actions/actionTypes";
 import { put, select, debounce } from "redux-saga/effects";
-import { selectDocument } from "../../reducers/root";
 import { c_updateDocumentDataRequest } from "../../actions/client/requests/updateDocumentDataRequest";
 
 export function* c_updateDocumentWatcher() {
-  yield debounce(50, actionTypes.C_UPDATE_DOCUMENT, c_updateDocumentSaga);
+  yield debounce(50, actionTypes.UPDATE_DOCUMENT, c_updateDocumentSaga);
 }
 
 export function* c_updateDocumentSaga(action) {

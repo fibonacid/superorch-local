@@ -23,7 +23,7 @@ describe("c_updateUserWatcher", () => {
 
         // Dispatch any actions that the saga will `take`.
         .dispatch({
-          type: actionTypes.C_UPDATE_USER,
+          type: actionTypes.UPDATE_USER,
           userId: 0,
           userData: { foo: "bar" }
         })
@@ -53,7 +53,7 @@ describe("c_updateUserWatcher", () => {
 
         // Dispatch any actions that the saga will `take`.
         .dispatch({
-          type: actionTypes.C_UPDATE_USER,
+          type: actionTypes.UPDATE_USER,
           userId: 0,
           userData: { foo: "bar" }
         })
@@ -83,7 +83,7 @@ describe("c_updateUserWatcher", () => {
 
         // Dispatch any actions that the saga will `take`.
         .dispatch({
-          type: actionTypes.C_UPDATE_USER,
+          type: actionTypes.UPDATE_USER,
           userId: 0,
           userData: { foo: "bar" }
         })

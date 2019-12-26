@@ -1,10 +1,10 @@
-import { actionTypes } from "../../actions/actionTypes";
+import { actionTypes } from "../../../shared/actions/actionTypes";
 import { takeLatest, put } from "redux-saga/effects";
 import { select } from "redux-saga/effects";
 import { c_updateUserDataRequest } from "../../actions/client/requests/updateUserDataRequest";
 
 export function* c_updateUserWatcher() {
-  yield takeLatest(actionTypes.C_UPDATE_USER, c_updateUserSaga);
+  yield takeLatest(actionTypes.UPDATE_USER, c_updateUserSaga);
 }
 
 export function* c_updateUserSaga(action) {

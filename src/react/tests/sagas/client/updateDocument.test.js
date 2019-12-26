@@ -24,7 +24,7 @@ describe("c_updateDocumentWatcher", () => {
 
         // Dispatch any actions that the saga will `take`.
         .dispatch({
-          type: actionTypes.C_UPDATE_DOCUMENT,
+          type: actionTypes.UPDATE_DOCUMENT,
           docId: 0,
           docData: { foo: "bar" }
         })
@@ -55,7 +55,7 @@ describe("c_updateDocumentWatcher", () => {
 
         // Dispatch any actions that the saga will `take`.
         .dispatch({
-          type: actionTypes.C_UPDATE_DOCUMENT,
+          type: actionTypes.UPDATE_DOCUMENT,
           docId: 0,
           docData: { foo: "bar" }
         })
@@ -86,7 +86,7 @@ describe("c_updateDocumentWatcher", () => {
 
         // Dispatch any actions that the saga will `take`.
         .dispatch({
-          type: actionTypes.C_UPDATE_DOCUMENT,
+          type: actionTypes.UPDATE_DOCUMENT,
           docId: 0,
           docData: { foo: "bar" }
         })
