@@ -1,3 +1,5 @@
-import { test } from "./module";
+import configureStore from "./store";
 
-console.log(test);
+const store = configureStore({});
+
+console.log(store);
