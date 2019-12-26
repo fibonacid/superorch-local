@@ -10,12 +10,12 @@
     "url": "https://github.com/lorenzorivosecchi/superorch.git"
   },
   "scripts": {
-    "server": "dotenv nodemon src/server/index.js",
-    "start:server": "node src/server/index.js",
-    "start": "export BROWSER=none && react-scripts start",
-    "start:electron": "export ELECTRON_START_URL=http://localhost:3000 && electron .",
     "dev": "NODE_ENV='development' nf start -p 3000",
-    "build": "react-scripts build",
+    "start:server": "node src/server/index.js",
+    "start:react": "export BROWSER=none && react-scripts start",
+    "start:electron": "export ELECTRON_START_URL=http://localhost:3000 && electron .",
+    "build:react": "react-scripts build",
+    "build:server": "webpack",
     "build:electron": "mkdir build/src && cp -r src/electron/. build/src/electron && cp -r src/shared/. build/src/shared",
     "package:mac": "electron-builder build --mac -c.extraMetadata.main=build/src/electron/main.js --publish never",
     "package:win": "electron-builder build --win -c.extraMetadata.main=build/src/electron/main.js --publish never",
@@ -34,8 +34,12 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.6",
     "babel-plugin-module-resolver": "^3.2.0",
-    "dotenv-cli": "^3.1.0",
+    "babel-preset-env": "^1.7.0",
     "electron": "^7.1.2",
     "electron-builder": "^21.1.1",
     "electron-devtools-installer": "^2.2.4",
@@ -47,13 +51,14 @@
     "jest-enzyme": "^7.1.2",
     "jest-prop-type-error": "^1.1.0",
     "jest-styled-components": "^6.3.3",
-    "nodemon": "^2.0.2",
     "prettier": "^1.19.1",
     "pretty-quick": "^2.0.1",
     "react-scripts": "^3.2.0",
     "redux-devtools-extension": "^2.13.8",
     "redux-saga-test-plan": "^4.0.0-rc.3",
-    "redux-test-utils": "^0.3.0"
+    "redux-test-utils": "^0.3.0",
+    "webpack": "^4.41.4",
+    "webpack-cli": "^3.3.10"
   },
   "dependencies": {
     "@giantmachines/redux-websocket": "^1.1.5",
@@ -80,7 +85,6 @@
     "styled-normalize": "^8.0.6",
     "styled-reset": "^4.0.3",
     "supercolliderjs": "^1.0.0-beta.1",
-    "uuid": "^3.3.3",
     "ws": "^7.2.0"
   },
   "browserslist": {
