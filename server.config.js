@@ -3,14 +3,16 @@
 //
 
 const path = require("path");
+const NodemonPlugin = require("nodemon-webpack-plugin");
 
 module.exports = {
   mode: "development",
   entry: "./src/server/index.js",
   output: {
-    path: path.resolve(__dirname, "build/static/js"),
-    filename: "server.[chunkhash:8].js"
+    path: path.resolve(__dirname, "build"),
+    filename: "server.bundle.js"
   },
+  plugins: [new NodemonPlugin()],
   module: {
     rules: [
       {
