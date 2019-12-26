@@ -23,25 +23,25 @@ const index = (state = initialState, action) => {
         ...state,
         displayedUser: action.userId
       };
-    case actionTypes.C_OPEN:
+    case actionTypes.WS_OPEN:
       return {
         ...state,
         isConnected: true,
         isTryingToConnect: false
       };
-    case actionTypes.C_CLOSED:
+    case actionTypes.WS_CLOSED:
       return {
         ...state,
         isConnected: false,
         isTryingToConnect: false
       };
-    case actionTypes.C_CONNECT:
+    case actionTypes.WS_CONNECT:
       return {
         ...state,
         url: action.payload.url,
         isTryingToConnect: true
       };
-    case actionTypes.C_BEGIN_RECONNECT:
+    case actionTypes.WS_BEGIN_RECONNECT:
       return {
         ...state,
         isTryingToConnect: true

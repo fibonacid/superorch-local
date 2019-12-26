@@ -5,8 +5,6 @@ let flashCount = 0;
 export default function index(state = [], action) {
   switch (action.type) {
     case actionTypes.ADD_FLASH_MESSAGE:
-    case actionTypes.C_LOGIN_SUCCESS:
-    case actionTypes.C_LOGOUT_SUCCESS:
       flashCount++;
       return [
         ...state,

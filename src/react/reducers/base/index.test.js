@@ -3,9 +3,7 @@ import { actionTypes } from "../../actions/actionTypes";
 
 describe("base reducer", () => {
   it("should return the initial state", () => {
-    expect(reducer(undefined, {})).toEqual({
-      displayedUser: 0
-    });
+    expect(reducer(undefined, {})).toBeDefined();
   });
 
   it("should handle DIGEST_APP_CREDITS", () => {
@@ -34,21 +32,10 @@ describe("base reducer", () => {
     });
   });
 
-  it("should return the initial state", () => {
-    expect(reducer(undefined, {})).toEqual({
-      isLoggedIn: false,
-      isConnected: false,
-      isTryingToConnect: false,
-      myUserId: 0,
-      myDocId: 0,
-      myScQueryIds: []
-    });
-  });
-
-  it("should handle C_OPEN", () => {
+  it("should handle WS_OPEN", () => {
     expect(
       reducer(undefined, {
-        type: actionTypes.C_OPEN
+        type: actionTypes.WS_OPEN
       })
     ).toMatchObject({
       isConnected: true,
@@ -56,10 +43,10 @@ describe("base reducer", () => {
     });
   });
 
-  it("should handle C_CLOSED", () => {
+  it("should handle WS_CLOSED", () => {
     expect(
       reducer(undefined, {
-        type: actionTypes.C_CLOSED
+        type: actionTypes.WS_CLOSED
       })
     ).toMatchObject({
       isConnected: false,
@@ -67,10 +54,10 @@ describe("base reducer", () => {
     });
   });
 
-  it("should handle C_CONNECT", () => {
+  it("should handle WS_CONNECT", () => {
     expect(
       reducer(undefined, {
-        type: actionTypes.C_CONNECT,
+        type: actionTypes.WS_CONNECT,
         payload: { url: "ws://test:8989" }
       })
     ).toMatchObject({
@@ -79,10 +66,10 @@ describe("base reducer", () => {
     });
   });
 
-  it("should handle C_BEGIN_RECONNECT", () => {
+  it("should handle WS_BEGIN_RECONNECT", () => {
     expect(
       reducer(undefined, {
-        type: actionTypes.C_BEGIN_RECONNECT
+        type: actionTypes.WS_BEGIN_RECONNECT
       })
     ).toMatchObject({
       isConnected: false,
@@ -153,19 +140,6 @@ describe("base reducer", () => {
       )
     ).toMatchObject({
       myScQueryIds: [2]
-    });
-  });
-
-  it("should handle S_SERVER_STARTED", () => {
-    const address = "127.0.0";
-    const port = 8000;
-    expect(
-      reducer(undefined, {
-        type: actionTypes.S_SERVER_STARTED,
-        data: { address, port }
-      })
-    ).toMatchObject({
-      url: `ws://${address}:${port}`
     });
   });
 });
