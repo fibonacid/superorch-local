@@ -4,7 +4,7 @@ import {
   c_getScQueryDataRequest,
   c_getScQueryDataSuccess,
   c_getScQueryDataTimeout
-} from "../../../../actions/client/requests/getScQueryDataRequest";
+} from "../../../../actions/requests/getScQueryDataRequest";
 
 describe("c_getScQueryDataRequest action", () => {
   it("should create an action to submit a getScQueryData request", () => {

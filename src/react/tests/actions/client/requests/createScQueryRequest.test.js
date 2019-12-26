@@ -4,7 +4,7 @@ import {
   c_createScQueryRequest,
   c_createScQuerySuccess,
   c_createScQueryTimeout
-} from "../../../../actions/client/requests/createScQueryRequest";
+} from "../../../../actions/requests/createScQueryRequest";
 
 describe("c_createScQueryRequest action", () => {
   it("should create an action to submit a createScQuery request", () => {

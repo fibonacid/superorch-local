@@ -4,7 +4,7 @@ import {
   c_connectionRequest,
   c_connectionSuccess,
   c_connectionTimeout
-} from "../../../../actions/client/requests/connectionRequest";
+} from "../../../../actions/requests/connectionRequest";
 
 describe("c_connectionRequest action", () => {
   it("should create an action to submit a connection request", () => {

@@ -4,7 +4,7 @@ import {
   c_updateDocumentDataRequest,
   c_updateDocumentDataSuccess,
   c_updateDocumentDataTimeout
-} from "../../../../actions/client/requests/updateDocumentDataRequest";
+} from "../../../../actions/requests/updateDocumentDataRequest";
 
 describe("c_updateDocumentDataRequest action", () => {
   it("should create an action to submit a updateDocument request", () => {

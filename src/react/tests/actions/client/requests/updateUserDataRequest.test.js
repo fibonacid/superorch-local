@@ -4,7 +4,7 @@ import {
   c_updateUserDataRequest,
   c_updateUserDataSuccess,
   c_updateUserDataTimeout
-} from "../../../../actions/client/requests/updateUserDataRequest";
+} from "../../../../actions/requests/updateUserDataRequest";
 
 describe("c_updateUserDataRequest action", () => {
   it("should create an action to submit a updateUser request", () => {

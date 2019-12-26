@@ -4,7 +4,7 @@ import {
   c_logoutRequest,
   c_logoutSuccess,
   c_logoutTimeout
-} from "../../../../actions/client/requests/logoutRequest";
+} from "../../../../actions/requests/logoutRequest";
 
 describe("c_logoutRequest action", () => {
   it("should create an action to submit a logout request", () => {

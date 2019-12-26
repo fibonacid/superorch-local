@@ -4,7 +4,7 @@ import {
   c_getUserListRequest,
   c_getUserListSuccess,
   c_getUserListTimeout
-} from "../../../../actions/client/requests/getUserListRequest";
+} from "../../../../actions/requests/getUserListRequest";
 
 describe("c_getUserListRequest action", () => {
   it("should create an action to submit a getUserList request", () => {

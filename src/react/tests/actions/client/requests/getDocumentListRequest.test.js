@@ -4,7 +4,7 @@ import {
   c_getDocumentListRequest,
   c_getDocumentListSuccess,
   c_getDocumentListTimeout
-} from "../../../../actions/client/requests/getDocumentListRequest";
+} from "../../../../actions/requests/getDocumentListRequest";
 
 describe("c_getDocumentListRequest action", () => {
   it("should create an action to submit a getDocumentList request", () => {

@@ -4,7 +4,7 @@ import {
   c_loginRequest,
   c_loginSuccess,
   c_loginTimeout
-} from "../../../../actions/client/requests/loginRequest";
+} from "../../../../actions/requests/loginRequest";
 
 describe("c_loginRequest action", () => {
   it("should create an action to submit a login request", () => {

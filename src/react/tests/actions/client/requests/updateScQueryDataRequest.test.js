@@ -4,7 +4,7 @@ import {
   c_updateScQueryDataRequest,
   c_updateScQueryDataSuccess,
   c_updateScQueryDataTimeout
-} from "../../../../actions/client/requests/updateScQueryDataRequest";
+} from "../../../../actions/requests/updateScQueryDataRequest";
 
 describe("c_updateScQueryDataRequest action", () => {
   it("should create an action to submit a updateScQuery request", () => {

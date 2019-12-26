@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import LoginToggle from "./LoginToggle";
-import { c_loginRequest } from "../../actions/client/requests/loginRequest";
-import { c_logoutRequest } from "../../actions/client/requests/logoutRequest";
+import { c_loginRequest } from "../../actions/requests/loginRequest";
+import { c_logoutRequest } from "../../actions/requests/logoutRequest";
 
 const mapDispatchToProps = dispatch => ({
   login: () => dispatch(c_loginRequest()),

@@ -4,7 +4,7 @@ import {
   c_createDocumentRequest,
   c_createDocumentSuccess,
   c_createDocumentTimeout
-} from "../../../../actions/client/requests/createDocumentRequest";
+} from "../../../../actions/requests/createDocumentRequest";
 
 describe("c_createDocumentRequest action", () => {
   it("should create an action to submit a createDocument request", () => {
