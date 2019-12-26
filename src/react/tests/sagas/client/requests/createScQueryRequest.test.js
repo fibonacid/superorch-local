@@ -62,7 +62,7 @@ describe("c_createScQueryRequest", () => {
           // Assert that the `put` will eventually happen.
           .put.like({
             action: {
-              type: actionTypes.C_UPDATE_SC_QUERY,
+              type: actionTypes.UPDATE_SC_QUERY,
               scqId: 1,
               scqData: { foo: "bar" }
             }

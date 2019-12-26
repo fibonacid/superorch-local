@@ -7,8 +7,10 @@ import {
   c_createScQuerySuccess,
   c_createScQueryTimeout
 } from "../../../actions/client/requests/createScQueryRequest";
-import { c_updateScQuery } from "../../../actions/client/crudScQueries";
 import { c_updateMyScQueryId } from "../../../actions/client/updateMyScQueryId";
+import { actions } from "../../../actions";
+
+const { updateScQuery } = actions;
 
 export function* c_createScQueryRequestWatcher() {
   yield takeEvery(
@@ -30,7 +32,7 @@ export function* c_createScQueryRequestSaga(action) {
   if (result) {
     // Updated scQuery id
     yield all([
-      put(c_updateScQuery(action.scqId, result.scqData)),
+      put(updateScQuery(action.scqId, result.scqData)),
       put(c_updateMyScQueryId(action.scqId, result.scqId))
     ]);
 

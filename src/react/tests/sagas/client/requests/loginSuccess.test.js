@@ -26,7 +26,7 @@ describe("c_loginSuccess saga", () => {
     return expectSaga(c_loginSuccessWatcher)
       .withState(state)
       .put({
-        type: actionTypes.C_UPDATE_USER,
+        type: actionTypes.UPDATE_USER,
         userId: myUserId,
         userData: {
           id: userId

@@ -47,7 +47,7 @@ describe("c_execScQueryRequest saga", () => {
       return saga
         .withState(getState())
         .put({
-          type: actionTypes.C_UPDATE_SC_QUERY,
+          type: actionTypes.UPDATE_SC_QUERY,
           scqId,
           scqData: {
             output: JSON.stringify(response)

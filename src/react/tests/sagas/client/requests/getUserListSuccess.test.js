@@ -7,7 +7,7 @@ describe("c_getUserListSuccess saga", () => {
     const userList = [{}, {}, {}, {}];
     return expectSaga(c_getUserListSuccessWatcher)
       .put({
-        type: actionTypes.C_REPLACE_USER_LIST,
+        type: actionTypes.REPLACE_USER_LIST,
         userList
       })
       .dispatch({

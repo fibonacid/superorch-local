@@ -7,7 +7,9 @@ import {
   c_updateDocumentDataSuccess,
   c_updateDocumentDataTimeout
 } from "../../../actions/client/requests/updateDocumentDataRequest";
-import { c_updateDocument } from "../../../actions/client/crudDocuments";
+import { actions } from "../../../actions";
+
+const { updateDocument } = actions;
 
 export function* c_updateDocumentDataRequestWatcher() {
   yield takeLatest(
@@ -29,7 +31,7 @@ export function* c_updateDocumentDataRequestSaga({ docId, docData }) {
 
   if (result) {
     // Update document data
-    yield put(c_updateDocument(result.docId, result.docData));
+    yield put(updateDocument(result.docId, result.docData));
 
     // Send success message
     yield put(c_updateDocumentDataSuccess(result.docId, `document updated`));
