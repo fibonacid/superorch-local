@@ -1,7 +1,7 @@
 import Enzyme from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import "jest-prop-type-error";
-import { ipcRenderer } from "./react/tests/mocks/electron";
+import { ipcRenderer } from "./react/mocks/electron";
 
 // Note: this filename must remain 'setupTest'
 // because it's the default path for jest setup

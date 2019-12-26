@@ -111,7 +111,7 @@
       "enzyme-to-json/serializer"
     ],
     "moduleNameMapper": {
-      "electron": "<rootDir>/src/react/tests/mocks/electron.js"
+      "electron": "<rootDir>/src/react/mocks/electron.js"
     }
   },
   "husky": {
