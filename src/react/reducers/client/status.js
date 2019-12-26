@@ -34,12 +34,12 @@ const status = (state = initialState, action) => {
         ...state,
         isTryingToConnect: true
       };
-    case actionTypes.C_UPDATE_MY_USER_ID:
+    case actionTypes.UPDATE_MY_USER_ID:
       return {
         ...state,
         myUserId: action.userId
       };
-    case actionTypes.C_UPDATE_MY_DOC_ID:
+    case actionTypes.UPDATE_MY_DOC_ID:
       return {
         ...state,
         myDocId: action.docId
@@ -54,19 +54,19 @@ const status = (state = initialState, action) => {
         ...state,
         isLoggedIn: false
       };
-    case actionTypes.C_ADD_MY_SC_QUERY_ID:
+    case actionTypes.ADD_MY_SC_QUERY_ID:
       return {
         ...state,
         myScQueryIds: [...state.myScQueryIds, action.scqId]
       };
-    case actionTypes.C_UPDATE_MY_SC_QUERY_ID:
+    case actionTypes.UPDATE_MY_SC_QUERY_ID:
       return {
         ...state,
         myScQueryIds: state.myScQueryIds.map(scqId =>
           action.scqId === scqId ? action.newId : scqId
         )
       };
-    case actionTypes.C_REMOVE_MY_SC_QUERY_ID:
+    case actionTypes.REMOVE_MY_SC_QUERY_ID:
       return {
         ...state,
         myScQueryIds: state.myScQueryIds.filter(scqId => scqId !== action.scqId)

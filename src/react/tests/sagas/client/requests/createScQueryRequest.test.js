@@ -69,7 +69,7 @@ describe("c_createScQueryRequest", () => {
           })
           .put.like({
             action: {
-              type: actionTypes.C_UPDATE_MY_SC_QUERY_ID,
+              type: actionTypes.UPDATE_MY_SC_QUERY_ID,
               scqId: 1,
               newId: 100
             }
