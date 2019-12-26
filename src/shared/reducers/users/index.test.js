@@ -3,7 +3,7 @@ import { actionTypes } from "../../actions/actionTypes";
 
 describe("users reducer", () => {
   it("should return the initial state", () => {
-    expect(reducer(undefined, {})).toMatchObject([{ id: 0 }]);
+    expect(reducer(undefined, {})).toEqual([]);
   });
 
   it("should handle CREATE_USER", () => {

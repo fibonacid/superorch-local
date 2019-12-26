@@ -1,13 +1,11 @@
 import { actionTypes } from "../../actions/actionTypes";
 
-const initialState = [{ id: 0, userId: 0, value: "" }];
-
 /**
  * @param state
  * @param action
  * @returns {[]|*[]}
  */
-const index = (state = initialState, action) => {
+const index = (state = [], action) => {
   switch (action.type) {
     case actionTypes.CREATE_DOCUMENT:
     case actionTypes.B_DOCUMENT_CREATED:

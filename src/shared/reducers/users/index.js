@@ -1,8 +1,6 @@
 import { actionTypes } from "../../actions/actionTypes";
 
-const initialState = [{ id: 0, name: "foo" }];
-
-export default function index(state = initialState, action) {
+export default function index(state = [], action) {
   switch (action.type) {
     case actionTypes.CREATE_USER:
       return [

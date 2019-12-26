@@ -3,7 +3,7 @@ import { actionTypes } from "../../actions/actionTypes";
 
 describe("documents reducer", () => {
   it.skip("should return the initial state", () => {
-    expect(reducer(undefined, {})).toEqual([{ id: 0, value: "", userId: 0 }]);
+    expect(reducer(undefined, {})).toEqual([]);
   });
 
   it("should handle CREATE_DOCUMENT", () => {
