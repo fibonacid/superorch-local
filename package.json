@@ -51,13 +51,13 @@
     "jest-enzyme": "^7.1.2",
     "jest-prop-type-error": "^1.1.0",
     "jest-styled-components": "^6.3.3",
+    "nodemon-webpack-plugin": "^4.2.2",
     "prettier": "^1.19.1",
     "pretty-quick": "^2.0.1",
     "react-scripts": "^3.2.0",
     "redux-devtools-extension": "^2.13.8",
     "redux-saga-test-plan": "^4.0.0-rc.3",
     "redux-test-utils": "^0.3.0",
-    "webpack": "^4.41.4",
     "webpack-cli": "^3.3.10"
   },
   "dependencies": {
