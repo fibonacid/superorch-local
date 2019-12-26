@@ -1,10 +1,12 @@
 import { connect } from "react-redux";
 import UserTag from "./UserTag";
 import { selectUser } from "../../reducers/root";
-import { c_updateUser } from "../../actions/client/crudUsers";
+import actions from "../../actions";
+
+const { updateUser } = actions;
 
 const mapDispatchToProps = dispatch => ({
-  updateUsername: (userId, name) => dispatch(c_updateUser(userId, { name }))
+  updateUsername: (userId, name) => dispatch(updateUser(userId, { name }))
 });
 
 const mapStateToProps = state => ({

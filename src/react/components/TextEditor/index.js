@@ -1,8 +1,9 @@
 import { connect } from "react-redux";
 import TextEditor from "./TextEditor";
-import { c_updateDocument } from "../../actions/client/crudDocuments";
-import { c_appendScQuery } from "../../actions/client/crudScQueries";
+import actions from "../../actions";
 import { selectDocuments } from "../../reducers/root";
+
+const { updateDocument, appendScQuery } = actions;
 
 const mapStateToProps = state => {
   const document = selectDocuments(state).find(
@@ -17,14 +18,14 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   handleExecuteSelection: text => {
     dispatch(
-      c_appendScQuery({
+      appendScQuery({
         input: text
       })
     );
   },
   sendEditorState: (id, data) =>
     dispatch(
-      c_updateDocument(id, {
+      updateDocument(id, {
         value: data
       })
     )
