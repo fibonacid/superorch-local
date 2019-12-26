@@ -1,8 +1,8 @@
 import { connect } from "react-redux";
 import StatusBar from "./StatusBar";
-import { openExternalLink } from "../../actions/openExternalLink";
 import { s_authWithPassword } from "../../actions/server/authWith";
 import { s_changePassword } from "../../actions/server/changePassword";
+import { openExternalLink } from "../../actions/openExternalLink";
 
 const mapDispatchToProps = dispatch => ({
   openExternalLink: url => dispatch(openExternalLink(url)),
