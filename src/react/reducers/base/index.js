@@ -10,7 +10,7 @@ export const initialState = {
   isTryingToConnect: false
 };
 
-const index = (state = initialState, action) => {
+const base = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.DIGEST_APP_CREDITS:
     case actionTypes.UPDATE_BASE_DATA:
@@ -94,4 +94,4 @@ const index = (state = initialState, action) => {
   }
 };
 
-export default index;
+export default base;
