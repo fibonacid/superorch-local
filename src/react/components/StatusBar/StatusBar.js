@@ -16,7 +16,7 @@ function StatusBar(props) {
   const { appName, appVersion, server } = props;
 
   const handleUrlClick = () => {
-    props.openExternalLink(server.url);
+    //props.openExternalLink(server.url);
   };
 
   return (

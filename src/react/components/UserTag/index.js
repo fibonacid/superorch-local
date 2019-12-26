@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import UserTag from "./UserTag";
-import { selectUser } from "../../reducers/root";
+import { selectBase, selectUser } from "../../reducers/root";
 import actions from "../../actions";
 
 const { updateUser } = actions;
@@ -10,8 +10,8 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
-  myUserId: state.client.status.myUserId,
-  user: selectUser(state, state.base.displayedUser)
+  myUserId: selectBase(state).myUserId,
+  user: selectUser(state, selectBase(state).displayedUser)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserTag);

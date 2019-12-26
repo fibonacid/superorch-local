@@ -9,7 +9,7 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => ({
   displayedUser: state.base.displayedUser,
-  myUserId: state.client.status.myUserId,
+  myUserId: state.base.myUserId,
   users: selectUsers(state)
 });
 

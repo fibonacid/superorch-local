@@ -10,11 +10,7 @@ import { channels } from "../shared/constants";
 
 // Actions
 import { digestAppCredits } from "./actions/digestAppCredits";
-import { s_message } from "./actions/server/message";
-import { s_clientDisconnected } from "./actions/server/clientDisconnected";
-import { s_clientConnected } from "./actions/server/clientConnected";
 import { updateBaseData } from "./actions/updateBaseData";
-import { s_serverStarted } from "./actions/server/serverStarted";
 
 // Components
 import { createGlobalStyle } from "styled-components";
@@ -118,12 +114,12 @@ class App extends Component {
         ipcRenderer.removeAllListeners(channels.APP_INFO);
       });
 
-      ipcRenderer.send(channels.START_SUPERCOLLIDER);
-      ipcRenderer.send(channels.START_WS_SERVER);
+      //ipcRenderer.send(channels.START_SUPERCOLLIDER);
+      //ipcRenderer.send(channels.START_WS_SERVER);
 
       // Websocket messages
       // ------------------
-      ipcRenderer.on(channels.WS_SERVER_STARTED, (event, arg) => {
+      /*ipcRenderer.on(channels.WS_SERVER_STARTED, (event, arg) => {
         store.dispatch(s_serverStarted(arg));
         const { server } = store.getState();
         store.dispatch(connectSocket(server.status.wsEndpoint));
@@ -137,15 +133,15 @@ class App extends Component {
       });
       ipcRenderer.on(channels.WEBSOCKET_MESSAGE, (event, arg) => {
         store.dispatch(s_message(arg.clientId, arg.message));
-      });
+      });*/
     }
   }
 
   componentDidMount() {
-    if (!ipcRenderer) {
+    /*if (!ipcRenderer) {
       const port = process.env.SERVER_PORT || 8000;
       store.dispatch(connectSocket(`ws://localhost:${port}`));
-    }
+    }*/
   }
 
   render() {

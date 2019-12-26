@@ -1,23 +1,18 @@
 import { connect } from "react-redux";
 import StatusBar from "./StatusBar";
-import { s_authWithPassword } from "../../actions/server/authWith";
-import { s_changePassword } from "../../actions/server/changePassword";
 import { openExternalLink } from "../../actions/openExternalLink";
 
 const mapDispatchToProps = dispatch => ({
   openExternalLink: url => dispatch(openExternalLink(url)),
-  setPassword: function(password) {
-    dispatch(s_changePassword(password));
-    dispatch(s_authWithPassword());
-  },
-  disablePassword: () => dispatch(s_authWithPassword(false))
+  setPassword: function(password) {},
+  disablePassword: () => {}
 });
 
 const mapStateToProps = state => ({
   runsOnElectron: state.base.runsOnElectron,
   appName: state.base.name,
   appVersion: state.base.version,
-  server: state.server.status
+  server: { isRunning: false }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(StatusBar);
