@@ -33,7 +33,7 @@ describe("c_loginSuccess saga", () => {
         }
       })
       .put({
-        type: actionTypes.C_UPDATE_MY_USER_ID,
+        type: actionTypes.UPDATE_MY_USER_ID,
         userId
       })
       .dispatch(action)

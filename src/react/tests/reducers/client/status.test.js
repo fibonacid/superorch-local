@@ -58,10 +58,10 @@ describe("status reducer", () => {
     });
   });
 
-  it("should handle C_UPDATE_MY_USER_ID", () => {
+  it("should handle UPDATE_MY_USER_ID", () => {
     expect(
       reducer(undefined, {
-        type: actionTypes.C_UPDATE_MY_USER_ID,
+        type: actionTypes.UPDATE_MY_USER_ID,
         userId: 99
       })
     ).toMatchObject({
@@ -69,10 +69,10 @@ describe("status reducer", () => {
     });
   });
 
-  it("should handle C_UPDATE_MY_DOC_ID", () => {
+  it("should handle UPDATE_MY_DOC_ID", () => {
     expect(
       reducer(undefined, {
-        type: actionTypes.C_UPDATE_MY_DOC_ID,
+        type: actionTypes.UPDATE_MY_DOC_ID,
         docId: 99
       })
     ).toMatchObject({
@@ -80,10 +80,10 @@ describe("status reducer", () => {
     });
   });
 
-  it("should handle C_ADD_MY_SC_QUERY_ID", () => {
+  it("should handle ADD_MY_SC_QUERY_ID", () => {
     expect(
       reducer(undefined, {
-        type: actionTypes.C_ADD_MY_SC_QUERY_ID,
+        type: actionTypes.ADD_MY_SC_QUERY_ID,
         scqId: 1
       })
     ).toMatchObject({
@@ -91,14 +91,14 @@ describe("status reducer", () => {
     });
   });
 
-  it("should handle C_UPDATE_MY_SC_QUERY_ID", () => {
+  it("should handle UPDATE_MY_SC_QUERY_ID", () => {
     expect(
       reducer(
         {
           myScQueryIds: [1, 2]
         },
         {
-          type: actionTypes.C_UPDATE_MY_SC_QUERY_ID,
+          type: actionTypes.UPDATE_MY_SC_QUERY_ID,
           scqId: 1,
           newId: 3
         }
@@ -108,14 +108,14 @@ describe("status reducer", () => {
     });
   });
 
-  it("should handle C_REMOVE_MY_SC_QUERY_ID", () => {
+  it("should handle REMOVE_MY_SC_QUERY_ID", () => {
     expect(
       reducer(
         {
           myScQueryIds: [1, 2]
         },
         {
-          type: actionTypes.C_REMOVE_MY_SC_QUERY_ID,
+          type: actionTypes.REMOVE_MY_SC_QUERY_ID,
           scqId: 1
         }
       )

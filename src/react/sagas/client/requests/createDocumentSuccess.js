@@ -3,10 +3,7 @@ import { actionTypes } from "../../../actions/actionTypes";
 import actions from "../../../actions";
 import { c_getDocumentListRequest } from "../../../actions/client/requests/getDocumentListRequest";
 
-// todo: include in actions
-import { c_updateMyDocId } from "../../../actions/client/updateMyDocId";
-
-const { updateDocument } = actions;
+const { updateDocument, updateMyDocId } = actions;
 
 export function* c_createDocumentSuccessWatcher() {
   yield takeLatest(
@@ -18,7 +15,7 @@ export function* c_createDocumentSuccessWatcher() {
 export function* c_createDocumentSuccessSaga(action) {
   // Replace myDocId with new one:
   const { myDocId: oldDocId } = yield select(state => state.client.status);
-  yield put(c_updateMyDocId(action.docId));
+  yield put(updateMyDocId(action.docId));
 
   // Update document with new id
   yield put(

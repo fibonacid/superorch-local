@@ -2,7 +2,7 @@ import _ from "lodash";
 import { actionTypes } from "../../actions/actionTypes";
 import { takeEvery, select, put } from "redux-saga/effects";
 import { selectScQueries } from "../../reducers/root";
-import { c_addMyScQueryId } from "../../actions/client/addMyScQueryId";
+import { addMyScQueryId } from "../../actions/addMyScQueryId";
 import actions from "../../actions";
 
 const { createScQuery } = actions;
@@ -20,7 +20,7 @@ export function* c_appendScQuerySaga(action) {
   const nextId = 1 + maxId;
 
   // Store id into client status
-  yield put(c_addMyScQueryId(nextId));
+  yield put(addMyScQueryId(nextId));
 
   const { myUserId } = yield select(state => state.client.status);
 

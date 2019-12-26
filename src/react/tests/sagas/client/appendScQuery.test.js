@@ -31,7 +31,7 @@ describe("c_appendScQueryWatcher", () => {
           }
         })
         .put({
-          type: actionTypes.C_ADD_MY_SC_QUERY_ID,
+          type: actionTypes.ADD_MY_SC_QUERY_ID,
           scqId: 4
         })
         // Dispatch any actions that the saga will `take`.

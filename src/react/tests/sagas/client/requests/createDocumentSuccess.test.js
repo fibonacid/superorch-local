@@ -24,7 +24,7 @@ describe("c_createDocumentSuccess saga", () => {
         }
       })
       .put({
-        type: actionTypes.C_UPDATE_MY_DOC_ID,
+        type: actionTypes.UPDATE_MY_DOC_ID,
         docId
       })
       .dispatch({
