@@ -1,4 +1,4 @@
-import reducer from "../../reducers/flash";
+import reducer from "./index";
 import { actionTypes } from "../../actions/actionTypes";
 import { statusCodes } from "../../utils/constants";
 

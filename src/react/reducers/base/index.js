@@ -1,16 +1,28 @@
 import { actionTypes } from "../../actions/actionTypes";
 
-const initialState = {
-  isLoggedIn: false,
-  isConnected: false,
-  isTryingToConnect: false,
+export const initialState = {
+  displayedUser: 0,
   myUserId: 0,
   myDocId: 0,
-  myScQueryIds: []
+  myScQueryIds: [],
+  isLoggedIn: false,
+  isConnected: false,
+  isTryingToConnect: false
 };
 
-const status = (state = initialState, action) => {
+const index = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.DIGEST_APP_CREDITS:
+    case actionTypes.UPDATE_BASE_DATA:
+      return {
+        ...state,
+        ...action.data
+      };
+    case actionTypes.DISPLAY_USER:
+      return {
+        ...state,
+        displayedUser: action.userId
+      };
     case actionTypes.C_OPEN:
       return {
         ...state,
@@ -82,4 +94,4 @@ const status = (state = initialState, action) => {
   }
 };
 
-export default status;
+export default index;

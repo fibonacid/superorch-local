@@ -1,7 +1,39 @@
-import reducer from "../../../reducers/client/status";
-import { actionTypes } from "../../../actions/actionTypes";
+import reducer from "./index";
+import { actionTypes } from "../../actions/actionTypes";
 
-describe("status reducer", () => {
+describe("base reducer", () => {
+  it("should return the initial state", () => {
+    expect(reducer(undefined, {})).toEqual({
+      displayedUser: 0
+    });
+  });
+
+  it("should handle DIGEST_APP_CREDITS", () => {
+    expect(
+      reducer(undefined, {
+        type: actionTypes.DIGEST_APP_CREDITS,
+        data: {
+          name: "test",
+          version: "0.0.0"
+        }
+      })
+    ).toMatchObject({
+      name: "test",
+      version: "0.0.0"
+    });
+  });
+
+  it("should handle DISPLAY_USER", () => {
+    expect(
+      reducer(undefined, {
+        type: actionTypes.DISPLAY_USER,
+        userId: 32
+      })
+    ).toMatchObject({
+      displayedUser: 32
+    });
+  });
+
   it("should return the initial state", () => {
     expect(reducer(undefined, {})).toEqual({
       isLoggedIn: false,

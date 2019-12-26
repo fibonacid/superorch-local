@@ -1,8 +1,8 @@
-import { actionTypes } from "../actions/actionTypes";
+import { actionTypes } from "../../actions/actionTypes";
 
 let flashCount = 0;
 
-export default function flash(state = [], action) {
+export default function index(state = [], action) {
   switch (action.type) {
     case actionTypes.ADD_FLASH_MESSAGE:
     case actionTypes.C_LOGIN_SUCCESS:
