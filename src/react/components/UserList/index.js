@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import UserList from "./UserList";
-import { selectUsers, selectUser } from "../../reducers/root";
+import { selectUsers } from "../../reducers/root";
 import { displayUser } from "../../actions/displayUser";
 
 const mapDispatchToProps = dispatch => ({
