@@ -1,4 +1,7 @@
+import { actionTypes as sharedActions } from "../../shared/actions/actionTypes";
+
 export const actionTypes = {
+  ...sharedActions,
   // ====================================================
   //    General app actions
   // ====================================================
