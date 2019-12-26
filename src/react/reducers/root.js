@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import reducers, { selectors } from "../../shared/reducers";
 import base from "./base";
+import errors from "./errors";
 
 const { users, documents, scQueries } = reducers;
 
@@ -8,7 +9,8 @@ const root = combineReducers({
   base,
   users,
   documents,
-  scQueries
+  scQueries,
+  errors
 });
 
 export default root;
