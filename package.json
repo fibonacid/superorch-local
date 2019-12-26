@@ -11,11 +11,11 @@
   },
   "scripts": {
     "dev": "NODE_ENV='development' nf start -p 3000",
-    "start:server": "node src/server/index.js",
+    "start:server": "webpack --watch --config server.config.js",
     "start:react": "export BROWSER=none && react-scripts start",
     "start:electron": "export ELECTRON_START_URL=http://localhost:3000 && electron .",
     "build:react": "react-scripts build",
-    "build:server": "webpack",
+    "build:server": "webpack --config server.config.js",
     "build:electron": "mkdir build/src && cp -r src/electron/. build/src/electron && cp -r src/shared/. build/src/shared",
     "package:mac": "electron-builder build --mac -c.extraMetadata.main=build/src/electron/main.js --publish never",
     "package:win": "electron-builder build --win -c.extraMetadata.main=build/src/electron/main.js --publish never",
