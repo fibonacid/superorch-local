@@ -1,5 +1,5 @@
-import { actionTypes } from "../../actions/actionTypes";
-import { displayUser } from "../../actions/displayUser";
+import { actionTypes } from "../actionTypes";
+import { displayUser } from "./index";
 
 describe("displayUser action", () => {
   it("should create an action to digest app credits", () => {

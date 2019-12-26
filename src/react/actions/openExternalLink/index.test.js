@@ -1,5 +1,5 @@
-import { actionTypes } from "../../actions/actionTypes";
-import { openExternalLink } from "../../actions/openExternalLink";
+import { actionTypes } from "../actionTypes";
+import { openExternalLink } from "./index";
 
 describe("openExternalLink action", () => {
   it("should create an action to open an external link", () => {

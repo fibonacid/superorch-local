@@ -1,5 +1,5 @@
-import { actionTypes } from "../../actions/actionTypes";
-import { digestAppCredits } from "../../actions/digestAppCredits";
+import { actionTypes } from "../actionTypes";
+import { digestAppCredits } from "./";
 
 describe("digestAppCredits action", () => {
   it("should create an action to digest app credits", () => {

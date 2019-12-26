@@ -1,5 +1,5 @@
-import { actionTypes } from "../../actions/actionTypes";
-import { addFlashMessage } from "../../actions/addFlashMessage";
+import { actionTypes } from "../actionTypes";
+import { addFlashMessage } from "./index";
 import { statusCodes } from "../../utils/constants";
 
 describe("addFlashMessage action", () => {

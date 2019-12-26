@@ -1,5 +1,5 @@
-import { actionTypes } from "../../actions/actionTypes";
-import { updateBaseData } from "../../actions/updateBaseData";
+import { actionTypes } from "../actionTypes";
+import { updateBaseData } from "./index";
 
 describe("updateBaseData action", () => {
   it("should create an action to update base data", () => {

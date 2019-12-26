@@ -1,5 +1,5 @@
-import { actionTypes } from "../../actions/actionTypes";
-import { removeFlashMessage } from "../../actions/removeFlashMessage";
+import { actionTypes } from "../actionTypes";
+import { removeFlashMessage } from "./index";
 
 describe("removeFlashMessage action", () => {
   it("should create an action to remove a flash message", () => {
