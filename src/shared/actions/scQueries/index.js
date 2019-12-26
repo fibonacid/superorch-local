@@ -16,3 +16,8 @@ export const deleteScQuery = scqId => ({
   type: actionTypes.DELETE_SC_QUERY,
   scqId
 });
+
+export const appendScQuery = scqData => ({
+  type: actionTypes.APPEND_SC_QUERY,
+  scqData
+});

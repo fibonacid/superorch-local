@@ -1,5 +1,11 @@
 import { actionTypes } from "../actionTypes";
-import { createScQuery, deleteScQuery, updateScQuery } from "./index";
+import {
+  appendScQuery,
+  createScQuery,
+  deleteScQuery,
+  updateScQuery,
+  appendScQuery
+} from "./index";
 
 describe("createScQuery action", () => {
   it("should create an action to create a supercollider query", () => {
@@ -34,5 +40,16 @@ describe("updateScQuery action", () => {
       scqData
     };
     expect(updateScQuery(scqId, scqData)).toEqual(expectedAction);
+  });
+});
+
+describe("appendScQuery action", () => {
+  it("should create an action to append a supercollider query", () => {
+    const scqData = {};
+    const expectedAction = {
+      type: actionTypes.APPEND_SC_QUERY,
+      scqData
+    };
+    expect(appendScQuery(scqData)).toEqual(expectedAction);
   });
 });
