@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import sharedReducers from "../../shared/reducers";
 import base from "./base";
 import client, * as fromClient from "./client";
 import server, * as fromServer from "./server";
@@ -8,7 +9,8 @@ const root = combineReducers({
   base,
   flash,
   client,
-  server
+  server,
+  ...sharedReducers
 });
 
 export default root;
