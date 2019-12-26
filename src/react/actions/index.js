@@ -6,7 +6,7 @@ import { updateBaseData } from "./updateBaseData";
 import { removeFlashMessage } from "./removeFlashMessage";
 import { displayUser } from "./displayUser";
 
-export const index = {
+export const actions = {
   ...sharedActions,
   addFlashMessage,
   digestAppCredits,
