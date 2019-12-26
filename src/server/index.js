@@ -1,4 +1,4 @@
-import configureStore from "./store";
+import configureStore from "./lib/config/store";
 import express from "express";
 import WebSocket from "ws";
 import http from "http";
