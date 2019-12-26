@@ -1,12 +1,10 @@
 import { actionTypes } from "../../actions/actionTypes";
-import name from "../../utils/name";
 
-const initialState = [{ id: 0, name }];
+const initialState = [{ id: 0, name: "foo" }];
 
-export default function users(state = initialState, action) {
+export default function index(state = initialState, action) {
   switch (action.type) {
-    case actionTypes.C_CREATE_USER:
-    case actionTypes.B_USER_JOINED:
+    case actionTypes.CREATE_USER:
       return [
         ...state,
         {
@@ -15,8 +13,7 @@ export default function users(state = initialState, action) {
         }
       ];
 
-    case actionTypes.C_UPDATE_USER:
-    case actionTypes.B_USER_UPDATE:
+    case actionTypes.UPDATE_USER:
       // Modify data of user with same id.
       return state.map(user =>
         user.id === action.userId
@@ -27,13 +24,12 @@ export default function users(state = initialState, action) {
           : user
       );
 
-    case actionTypes.C_DELETE_USER:
-    case actionTypes.C_DESTROY_USER:
-    case actionTypes.B_USER_LEFT:
+    case actionTypes.DELETE_USER:
+    case actionTypes.DESTROY_USER:
       // Delete user with the given id.
       return state.filter(user => user.id !== action.userId);
 
-    case actionTypes.C_REPLACE_USER_LIST:
+    case actionTypes.REPLACE_USER_LIST:
       return action.userList;
 
     default:

@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
-import users, * as fromUsers from "./users";
-import documents, * as fromDocuments from "./documents";
-import scQueries, * as fromScQueries from "./scQueries";
+import users, * as fromUsers from "../../../shared/reducers/users";
+import documents, * as fromDocuments from "../../../shared/reducers/documents";
+import scQueries, * as fromScQueries from "../../../shared/reducers/scQueries";
 import status from "./status";
 
 const client = combineReducers({

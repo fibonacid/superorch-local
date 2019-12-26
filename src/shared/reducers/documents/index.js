@@ -7,9 +7,9 @@ const initialState = [{ id: 0, userId: 0, value: "" }];
  * @param action
  * @returns {[]|*[]}
  */
-const documents = (state = initialState, action) => {
+const index = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.C_CREATE_DOCUMENT:
+    case actionTypes.CREATE_DOCUMENT:
     case actionTypes.B_DOCUMENT_CREATED:
       return [
         ...state,
@@ -19,7 +19,7 @@ const documents = (state = initialState, action) => {
         }
       ];
 
-    case actionTypes.C_UPDATE_DOCUMENT:
+    case actionTypes.UPDATE_DOCUMENT:
     case actionTypes.B_DOCUMENT_UPDATE:
       // Modify data of document with same id.
       return state.map(document =>
@@ -31,13 +31,13 @@ const documents = (state = initialState, action) => {
           : document
       );
 
-    case actionTypes.C_DELETE_DOCUMENT:
+    case actionTypes.DELETE_DOCUMENT:
       return state.filter(document => document.id !== action.docId);
 
-    case actionTypes.C_DESTROY_USER:
+    case actionTypes.DESTROY_USER:
       return state.filter(document => document.userId !== action.userId);
 
-    case actionTypes.C_REPLACE_DOCUMENT_LIST:
+    case actionTypes.REPLACE_DOCUMENT_LIST:
       return action.docList || state;
 
     default:
@@ -45,7 +45,7 @@ const documents = (state = initialState, action) => {
   }
 };
 
-export default documents;
+export default index;
 
 export const selectDocument = (state, id) =>
   state.find(document => document.id === id);

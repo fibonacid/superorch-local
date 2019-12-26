@@ -3,8 +3,7 @@ import {
   appendScQuery,
   createScQuery,
   deleteScQuery,
-  updateScQuery,
-  appendScQuery
+  updateScQuery
 } from "./index";
 
 describe("createScQuery action", () => {

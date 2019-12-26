@@ -1,4 +1,4 @@
-import { actionTypes } from "../../../react/actions/actionTypes";
+import { actionTypes } from "../actionTypes";
 
 export const createScQuery = (scqId, scqData) => ({
   type: actionTypes.CREATE_SC_QUERY,
