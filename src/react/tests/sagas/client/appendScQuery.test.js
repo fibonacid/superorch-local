@@ -22,7 +22,7 @@ describe("c_appendScQueryWatcher", () => {
         })
         // Assert that the `put` will eventually happen.
         .put({
-          type: actionTypes.C_CREATE_SC_QUERY,
+          type: actionTypes.CREATE_SC_QUERY,
           scqId: 4,
           scqData: {
             id: 4,

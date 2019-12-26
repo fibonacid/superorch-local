@@ -1,8 +1,12 @@
-import { actionTypes } from "../../../actions/actionTypes";
 import { put, select, takeLatest } from "redux-saga/effects";
-import { c_updateMyDocId } from "../../../actions/client/updateMyDocId";
-import { c_updateDocument } from "../../../actions/client/crudDocuments";
+import { actionTypes } from "../../../actions/actionTypes";
+import actions from "../../../actions";
 import { c_getDocumentListRequest } from "../../../actions/client/requests/getDocumentListRequest";
+
+// todo: include in actions
+import { c_updateMyDocId } from "../../../actions/client/updateMyDocId";
+
+const { updateDocument } = actions;
 
 export function* c_createDocumentSuccessWatcher() {
   yield takeLatest(
@@ -18,7 +22,7 @@ export function* c_createDocumentSuccessSaga(action) {
 
   // Update document with new id
   yield put(
-    c_updateDocument(oldDocId, {
+    updateDocument(oldDocId, {
       id: action.docId,
       ...action.docData
     })

@@ -7,7 +7,7 @@ import {
   c_updateDocumentDataSuccess,
   c_updateDocumentDataTimeout
 } from "../../../actions/client/requests/updateDocumentDataRequest";
-import { actions } from "../../../actions";
+import actions from "../../../actions";
 
 const { updateDocument } = actions;
 

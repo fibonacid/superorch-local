@@ -7,7 +7,7 @@ describe("c_getDocumentListSuccess saga", () => {
     const docList = [{}, {}, {}, {}];
     return expectSaga(c_getDocumentListSuccessWatcher)
       .put({
-        type: actionTypes.C_REPLACE_DOCUMENT_LIST,
+        type: actionTypes.REPLACE_DOCUMENT_LIST,
         docList
       })
       .dispatch({

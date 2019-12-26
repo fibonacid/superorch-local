@@ -1,6 +1,8 @@
-import { actionTypes } from "../../../actions/actionTypes";
 import { takeLatest, put } from "redux-saga/effects";
-import { c_replaceDocumentList } from "../../../actions/client/crudDocuments";
+import { actionTypes } from "../../../actions/actionTypes";
+import actions from "../../../actions";
+
+const { replaceDocumentList } = actions;
 
 export function* c_getDocumentListSuccessWatcher() {
   yield takeLatest(
@@ -10,5 +12,5 @@ export function* c_getDocumentListSuccessWatcher() {
 }
 
 export function* c_getDocumentListSuccessSaga(action) {
-  yield put(c_replaceDocumentList(action.docList));
+  yield put(replaceDocumentList(action.docList));
 }

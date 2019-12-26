@@ -4,7 +4,7 @@ import { c_updateMyUserId } from "../../../actions/client/updateMyUserId";
 import { c_getUserListRequest } from "../../../actions/client/requests/getUserListRequest";
 import { c_createDocumentRequest } from "../../../actions/client/requests/createDocumentRequest";
 import { selectDocument } from "../../../reducers/root";
-import { actions } from "../../../actions";
+import actions from "../../../actions";
 
 const { updateUser, displayUser } = actions;
 

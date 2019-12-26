@@ -2,8 +2,10 @@ import _ from "lodash";
 import { actionTypes } from "../../actions/actionTypes";
 import { takeEvery, select, put } from "redux-saga/effects";
 import { selectScQueries } from "../../reducers/root";
-import { c_createScQuery } from "../../actions/client/crudScQueries";
 import { c_addMyScQueryId } from "../../actions/client/addMyScQueryId";
+import actions from "../../actions";
+
+const { createScQuery } = actions;
 
 export function* c_appendScQueryWatcher() {
   yield takeEvery(actionTypes.C_APPEND_SC_QUERY, c_appendScQuerySaga);
@@ -24,7 +26,7 @@ export function* c_appendScQuerySaga(action) {
 
   // Dispatch an action to create a new scQuery
   yield put(
-    c_createScQuery(nextId, {
+    createScQuery(nextId, {
       ...action.scqData,
       id: nextId,
       userId: myUserId

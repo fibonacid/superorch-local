@@ -3,7 +3,7 @@ import { takeEvery, select, put, call } from "redux-saga/effects";
 import { channels } from "../../../../shared/constants";
 import { selectScQuery } from "../../../reducers/root";
 import { c_updateScQueryDataRequest } from "../../../actions/client/requests/updateScQueryDataRequest";
-import { actions } from "../../../actions";
+import actions from "../../../actions";
 
 const { updateScQuery } = actions;
 

@@ -8,7 +8,7 @@ describe("b_scQueryCreatedSaga", () => {
       expectSaga(b_userLeftWatcher)
         // Assert that the `put` will eventually happen.
         .put({
-          type: actionTypes.C_DESTROY_USER,
+          type: actionTypes.DESTROY_USER,
           userId: 4
         })
 

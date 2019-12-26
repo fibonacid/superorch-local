@@ -14,19 +14,19 @@ describe("c_logoutSuccess saga", () => {
         }
       })
       .not.put({
-        type: actionTypes.C_DESTROY_USER,
+        type: actionTypes.DESTROY_USER,
         userId: 0
       })
       .put({
-        type: actionTypes.C_DESTROY_USER,
+        type: actionTypes.DESTROY_USER,
         userId: 1
       })
       .put({
-        type: actionTypes.C_DESTROY_USER,
+        type: actionTypes.DESTROY_USER,
         userId: 2
       })
       .put({
-        type: actionTypes.C_DESTROY_USER,
+        type: actionTypes.DESTROY_USER,
         userId: 3
       })
       .dispatch({

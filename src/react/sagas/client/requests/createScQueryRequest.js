@@ -8,7 +8,7 @@ import {
   c_createScQueryTimeout
 } from "../../../actions/client/requests/createScQueryRequest";
 import { c_updateMyScQueryId } from "../../../actions/client/updateMyScQueryId";
-import { actions } from "../../../actions";
+import actions from "../../../actions";
 
 const { updateScQuery } = actions;
 
