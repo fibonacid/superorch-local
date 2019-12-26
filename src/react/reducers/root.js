@@ -1,17 +1,19 @@
 import { combineReducers } from "redux";
 import reducers, { selectors } from "../../shared/reducers";
 import base from "./base";
-import flash from "./flash";
+
+const { users, documents, scQueries } = reducers;
 
 const root = combineReducers({
   base,
-  flash,
-  ...sharedReducers
+  users,
+  documents,
+  scQueries
 });
 
 export default root;
 
-export const selectBase = (state) => state.base;
+export const selectBase = state => state.base;
 
 //
 //  selectors from shared directory
@@ -31,5 +33,4 @@ export const selectUser = (state, id) => {
 
 export const selectScQuery = (state, id) => {
   selectors.selectScQuery(selectScQueries(state), id);
-}
-
+};
