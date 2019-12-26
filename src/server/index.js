@@ -2,6 +2,7 @@ import configureStore from "./lib/config/store";
 import express from "express";
 import WebSocket from "ws";
 import http from "http";
+import { createReduxStoreMiddleware } from "./lib/helpers/middleware";
 
 require("dotenv").config();
 
@@ -9,11 +10,14 @@ require("dotenv").config();
 //  Create redux store.
 //
 const store = configureStore({});
+const reduxStoreMiddleware = createReduxStoreMiddleware(store);
 
 //
 //  Create express app.
 //
 const app = express();
+
+app.use(reduxStoreMiddleware);
 
 //
 // Create HTTP server.
