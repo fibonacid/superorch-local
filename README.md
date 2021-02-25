@@ -1,5 +1,3 @@
-DEPRECATED
-
 # superorch
 
 > A supercollider IDE for laptop orchestras
